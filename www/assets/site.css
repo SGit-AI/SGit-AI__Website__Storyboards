@@ -149,3 +149,11 @@ footer.site a{color:var(--dim)}
 }
 @media (prefers-reduced-motion:reduce){.card{transition:none}.card:hover{transform:none}}
 @media print{nav.site,footer.site,.sb-tools,.formats,.embed-code{display:none}body{background:#fff}}
+
+/* the Lab */
+.lab-card .q{font-family:var(--note);font-size:1.05rem;color:var(--fg)}
+.lab-card .meta{flex-wrap:wrap}
+.pill.exploring{border-color:var(--c-amber-line);color:var(--c-amber-ink);background:var(--c-amber-bg)}
+.pill.promising{border-color:#86c5b8;color:var(--accent-dk)}
+.pill.parked{border-color:var(--line2);color:var(--dim)}
+.pill.lifted{border-color:var(--c-violet-line);color:var(--c-violet-ink);background:var(--c-violet-bg)}

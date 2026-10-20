@@ -1,0 +1,363 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ink pack · the Lab · storyboards.sgit.ai</title>
+<meta name="description" content="A second character pack in a clean thick-line cartoon style, drawn beside the kit's sketchy one with the same look fields, poses and moods.">
+<link rel="stylesheet" href="https://api.storyboards.sgit.ai/v0/v0.1/v0.1.0/fonts.css" integrity="sha384-ep4bdPYRUzquMICQMhuOkSZ/CB1FnMh6qnGWS1F74VepoLOlw9JGK+Zg+E6/t9dD" crossorigin="anonymous">
+<link rel="stylesheet" href="https://api.storyboards.sgit.ai/v0/v0.1/v0.1.0/storyboard.css" integrity="sha384-NGJqtVi+93pE7lBuwFU0RQWhqnQVLR33Wp8AYH1iAeyC2A7h2ijgU4bEKF5HIKIf" crossorigin="anonymous">
+<script src="https://api.storyboards.sgit.ai/v0/v0.1/v0.1.0/vendor/rough-4.6.6.js" integrity="sha384-XPr5sCJfqHMzoJ8Cn1UYdXXD+XvRi0yoZm3W0yVJ24QP0ps8SYUskiXqnl4yqWlc" crossorigin="anonymous"></script>
+<script src="https://api.storyboards.sgit.ai/v0/v0.1/v0.1.0/storyboard.js" integrity="sha384-3xZhCe5dUdBXMwV57gyscmlqdIjzz9L6huUkcuiEyC0V3jfrlQEdyEhvvF4kCeOa" crossorigin="anonymous"></script>
+<style>
+  :root { --paper: #fbf7ee; --ink: #23262b; --marker: #fde68a; --accent: #0f766e; --red: #dc2626; --page: #f7f3ea; --dim: #5b6169; --line: #d9d2c1; }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--page); color: var(--ink); font-family: system-ui, -apple-system, "Segoe UI", sans-serif; line-height: 1.5; }
+  .lab-head { display: flex; flex-wrap: wrap; align-items: baseline; gap: .3rem 1rem; padding: .7rem 16px; background: var(--paper); border-bottom: 2px solid var(--ink); }
+  .lab-head h1 { margin: 0; font-family: 'Caveat', cursive; font-weight: 700; font-size: 2.4rem; line-height: 1; }
+  .lab-head .track { font-family: 'Patrick Hand', cursive; font-size: 1.15rem; color: var(--dim); }
+  .lab-head .pin { font-size: .85rem; color: var(--dim); }
+  .lab-head .back { margin-left: auto; font-size: .9rem; color: var(--accent); }
+  main { max-width: 1200px; margin: 0 auto; padding: .8rem 16px 3rem; }
+  h2 { font-family: 'Caveat', cursive; font-weight: 700; font-size: 2rem; margin: 1.6rem 0 .4rem; line-height: 1; }
+  p.lede { margin: .2rem 0 .8rem; max-width: 60rem; color: var(--dim); }
+  .controls { display: flex; flex-wrap: wrap; gap: .4rem 1rem; align-items: center; padding: .4rem .8rem; background: var(--paper); border: 1.5px solid var(--ink); border-radius: 10px; margin: .6rem 0; }
+  .controls label { display: inline-flex; align-items: center; gap: .4rem; min-height: 44px; }
+  select, button, input[type=checkbox] { font: inherit; }
+  select { min-height: 44px; padding: 0 .5rem; border: 1.5px solid var(--ink); border-radius: 8px; background: #fff; color: var(--ink); }
+  input[type=checkbox] { width: 24px; height: 24px; accent-color: var(--accent); }
+  button { min-height: 44px; min-width: 44px; padding: 0 1rem; border: 2px solid var(--ink); border-radius: 8px; background: var(--marker); color: var(--ink); cursor: pointer; font-weight: 600; }
+  button:hover { background: #fcd34d; }
+  .keys { font-size: .82rem; color: var(--dim); }
+  .keys kbd { font-family: ui-monospace, Menlo, monospace; border: 1px solid var(--line); border-bottom-width: 2px; border-radius: 4px; padding: 0 .3em; background: #fff; }
+  .pairs { display: grid; grid-template-columns: repeat(auto-fill, minmax(270px, 1fr)); gap: .8rem; margin: .6rem 0; }
+  .pairs figure, .sheet figure { margin: 0; background: var(--paper); border: 1.5px solid var(--ink); border-radius: 10px; padding: .3rem; text-align: center; }
+  .pairs svg, .sheet svg { display: block; width: 100%; height: auto; background: var(--paper); border-radius: 6px; }
+  .pairs svg { aspect-ratio: 840/650; }
+  figcaption { font-family: 'Patrick Hand', cursive; font-size: 1.05rem; color: var(--dim); }
+  .sheet-faces, .sheet-poses { display: grid; gap: .5rem; margin: .4rem 0 1rem; }
+  .sheet-faces { grid-template-columns: repeat(auto-fill, minmax(100px, 1fr)); }
+  .sheet-poses { grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)); }
+  .sheet-faces svg { aspect-ratio: 260/243; } .sheet-poses svg { aspect-ratio: 480/620; }
+  .learnt { background: var(--paper); border: 1.5px solid var(--ink); border-radius: 10px; padding: .6rem 1.1rem; max-width: 62rem; }
+  .learnt li { margin: .4rem 0; }
+  .status { font-family: 'Patrick Hand', cursive; color: var(--dim); }
+  @media (max-width: 480px) { .lab-head h1 { font-size: 2rem; } .pairs { grid-template-columns: 1fr 1fr; } }
+</style>
+</head>
+<body>
+<header class="lab-head">
+  <h1>Ink pack</h1>
+  <span class="track">track: characters</span>
+  <span class="pin">lab · experiment · pinned to kit v0.1.0</span>
+  <a class="back" href="../index.html">back to the lab</a>
+</header>
+<main>
+  <p class="lede">The kit draws its people with Rough.js: a wobbly line, hatched fills, a sketch. This page draws the same four people a second way, as a clean line cartoon with thick ink outlines and flat fills, from the same look fields, with the same poses and moods, through a function with the kit's contract. Left in each frame is the kit; right is the ink pack. Pick a pose and a mood and both redraw.</p>
+
+  <h2>Side by side</h2>
+  <div class="controls">
+    <label>pose <select id="pose"></select></label>
+    <label>mood <select id="mood"></select></label>
+    <label><input type="checkbox" id="flip"> flip</label>
+    <span class="keys"><kbd>←</kbd> <kbd>→</kbd> pose, <kbd>↑</kbd> <kbd>↓</kbd> mood, <kbd>f</kbd> flip</span>
+  </div>
+  <div class="pairs" id="pairs"></div>
+
+  <h2>Ink model sheet</h2>
+  <p class="lede">The way animators check a character stays on model: the same face in every mood, the same body in every pose, side by side. Everything here is the ink pack only.</p>
+  <div class="controls">
+    <label>character <select id="who"></select></label>
+  </div>
+  <div class="sheet">
+    <div class="sheet-faces" id="faces"></div>
+    <div class="sheet-poses" id="poses"></div>
+  </div>
+
+  <h2>What this taught us</h2>
+  <div class="learnt">
+    <p class="status">status: exploring. The pack works and keeps the contract; nothing is lifted into the kit yet.</p>
+    <ol id="learnt"></ol>
+  </div>
+</main>
+
+<script>
+// The ink pack. Plain SVG elements, no Rough.js: a thick ink outline, flat fills, no hatching, no gradients. It keeps
+// the kit's contract (the same look fields, the seven poses, the ten moods, a returned { headX, headTop }) but takes no
+// Rough canvas, so its signature is drawCharacter(g, who, x, floor, { pose, mood, flip, scale }).
+window.InkPack = (function () {
+  'use strict';
+  const NS = 'http://www.w3.org/2000/svg';
+  const LINE = '#0d0d0c', LW = 5.5;
+  const el = (tag, attrs, parent) => {
+    const e = document.createElementNS(NS, tag);
+    for (const k in attrs || {}) e.setAttribute(k, attrs[k]);
+    if (parent) parent.appendChild(e);
+    return e;
+  };
+  // The mouths, in units of u (one kit pixel at a 56 radius head), so a bigger head gets a bigger mouth.
+  const MOUTH = {
+    neutral: (x, y, u) => `M${x - 10 * u},${y} L${x + 10 * u},${y}`,
+    happy: (x, y, u) => `M${x - 15 * u},${y - 4 * u} Q${x},${y + 14 * u} ${x + 15 * u},${y - 4 * u}`,
+    calm: (x, y, u) => `M${x - 11 * u},${y - 1 * u} Q${x},${y + 8 * u} ${x + 11 * u},${y - 1 * u}`,
+    worried: (x, y, u) => `M${x - 11 * u},${y + 4 * u} Q${x - 3 * u},${y - 3 * u} ${x + 1 * u},${y + 1 * u} Q${x + 5 * u},${y + 4 * u} ${x + 11 * u},${y}`,
+    sad: (x, y, u) => `M${x - 12 * u},${y + 7 * u} Q${x},${y - 6 * u} ${x + 12 * u},${y + 7 * u}`,
+    thinking: (x, y, u) => `M${x - 4 * u},${y + 2 * u} L${x + 10 * u},${y}`,
+    confused: (x, y, u) => `M${x - 12 * u},${y + 2 * u} Q${x - 5 * u},${y - 4 * u} ${x},${y + 1 * u} Q${x + 5 * u},${y + 6 * u} ${x + 12 * u},${y}`,
+    determined: (x, y, u) => `M${x - 13 * u},${y} Q${x},${y + 8 * u} ${x + 13 * u},${y}`,
+  };
+  // Brows as in the kit: [inner, outer] offsets, negative is up; near and far when the two differ.
+  const BROWS = {
+    neutral: { both: [0, 0] },
+    happy: { both: [-3, -1], arch: 3 },
+    excited: { both: [-7, -5], arch: 4 },
+    calm: { both: [-1, 0], arch: 2 },
+    worried: { both: [-7, 2], arch: 1 },
+    sad: { both: [-6, 3], arch: 0 },
+    surprised: { both: [-10, -9], arch: 4 },
+    thinking: { near: [-1, -1], far: [-8, -6], arch: 2 },
+    confused: { near: [2, 0], far: [-9, -7], arch: 2 },
+    determined: { both: [2, -1], arch: 1 },
+  };
+  const MOODS = Object.keys(BROWS);
+  const POSES = ['stand', 'point', 'wave', 'arms-up', 'shrug', 'think', 'sit'];
+  // The arm table is the kit's: [[elbow, hand], [elbow, hand]] for the near arm and the far arm, around the shoulder.
+  function arms(pose, dir) {
+    const d = dir;
+    switch (pose) {
+      case 'point': return [[[d * 60, 25], [d * 135, -5]], [[-d * 22, 70], [-d * 14, 140]]];
+      case 'wave': return [[[d * 55, -20], [d * 70, -105]], [[-d * 22, 70], [-d * 14, 140]]];
+      case 'arms-up': return [[[d * 50, -40], [d * 75, -120]], [[-d * 50, -40], [-d * 75, -120]]];
+      case 'shrug': return [[[d * 60, 45], [d * 85, -10]], [[-d * 60, 45], [-d * 85, -10]]];
+      case 'think': return [[[d * 45, 70], [d * 18, -25]], [[-d * 22, 70], [-d * 14, 140]]];
+      default: return [[[d * 22, 70], [d * 16, 140]], [[-d * 22, 70], [-d * 16, 140]]];
+    }
+  }
+  const outline = (o) => Object.assign({ stroke: LINE, 'stroke-width': LW, 'stroke-linecap': 'round', 'stroke-linejoin': 'round' }, o || {});
+  // A limb is two strokes: the ink underneath, a touch wider on each side, then the colour on top.
+  function limb(g, d, colour, w) {
+    el('path', { d, fill: 'none', stroke: LINE, 'stroke-width': w + LW * 2, 'stroke-linecap': 'round', 'stroke-linejoin': 'round' }, g);
+    el('path', { d, fill: 'none', stroke: colour, 'stroke-width': w, 'stroke-linecap': 'round', 'stroke-linejoin': 'round' }, g);
+  }
+  function hair(g, look, hx, hy, r, front) {
+    const c = look.hairColour || '#3b2a20', o = outline({ fill: c });
+    switch (look.hair) {
+      case 'long':
+        if (front) el('path', outline({ d: `M${hx - r + 4},${hy - r * 0.35} Q${hx - r * 0.2},${hy - r * 1.15} ${hx + r - 2},${hy - r * 0.4} Q${hx + r * 0.2},${hy - r * 0.8} ${hx - r + 4},${hy - r * 0.35} Z`, fill: c }), g);
+        else el('path', outline({ d: `M${hx - r - 8},${hy + r * 1.6} Q${hx - r - 16},${hy - r * 0.2} ${hx - r * 0.2},${hy - r - 8} Q${hx + r + 14},${hy - r - 6} ${hx + r + 8},${hy + r * 1.6} L${hx + r - 6},${hy + r * 1.5} Q${hx + r - 2},${hy - r * 0.2} ${hx},${hy - r * 0.55} Q${hx - r + 2},${hy - r * 0.2} ${hx - r + 6},${hy + r * 1.5} Z`, fill: c }), g);
+        break;
+      case 'curly':
+        if (!front) break;
+        for (let i = 0; i < 9; i++) { const a = Math.PI * (1.05 + i * 0.11); el('circle', outline({ cx: hx + Math.cos(a) * r * 0.95, cy: hy + Math.sin(a) * r * 0.95, r: r * 0.33, fill: c }), g); }
+        el('path', { d: `M${hx - r},${hy + 2} Q${hx - r},${hy - r - 2} ${hx},${hy - r - 2} Q${hx + r},${hy - r - 2} ${hx + r},${hy + 2} Q${hx},${hy - r * 0.5} ${hx - r},${hy + 2} Z`, fill: c }, g);
+        break;
+      case 'bun':
+        if (!front) break;
+        el('circle', outline({ cx: hx, cy: hy - r - 14, r: r * 0.4, fill: c }), g);
+        el('path', outline({ d: `M${hx - r},${hy - 2} Q${hx - r},${hy - r - 4} ${hx},${hy - r - 4} Q${hx + r},${hy - r - 4} ${hx + r},${hy - 2} Q${hx},${hy - r * 0.55} ${hx - r},${hy - 2} Z`, fill: c }), g);
+        break;
+      case 'beanie': {
+        if (!front) break;
+        const hat = look.hatColour || '#c0392b';
+        el('path', outline({ d: `M${hx - r - 5},${hy - 4} Q${hx - r},${hy - r - 26} ${hx},${hy - r - 28} Q${hx + r},${hy - r - 26} ${hx + r + 5},${hy - 4} Z`, fill: hat }), g);
+        el('path', outline({ d: `M${hx - r - 5},${hy - 4} Q${hx},${hy - 22} ${hx + r + 5},${hy - 4} Q${hx},${hy + 8} ${hx - r - 5},${hy - 4} Z`, fill: hat }), g);
+        el('circle', outline({ cx: hx, cy: hy - r - 30, r: 15, fill: hat }), g);
+        break;
+      }
+      case 'bald': break;
+      default:
+        if (!front) break;
+        el('path', outline({ d: `M${hx - r - 2},${hy + 4} Q${hx - r - 4},${hy - r - 10} ${hx + 2},${hy - r - 10} Q${hx + r + 6},${hy - r - 8} ${hx + r + 2},${hy + 4} Q${hx + 4},${hy - r * 0.45} ${hx - r - 2},${hy + 4} Z`, fill: c }), g);
+    }
+  }
+  function face(g, mood, hx, hy, r, dir) {
+    const u = r / 56, ex = hx + dir * 6 * u, eo = r * 0.36, b = BROWS[mood] || BROWS.neutral;
+    for (const s of [-1, 1]) {
+      const x = ex + s * eo, near = s === dir;
+      if (mood === 'calm') el('path', { d: `M${x - 8 * u},${hy} Q${x},${hy - 9 * u} ${x + 8 * u},${hy}`, fill: 'none', stroke: LINE, 'stroke-width': 4.5, 'stroke-linecap': 'round' }, g);
+      else {
+        const big = mood === 'surprised' || mood === 'excited';
+        if (big) el('circle', { cx: x, cy: hy - 2 * u, r: 10 * u, fill: '#fff', stroke: LINE, 'stroke-width': 3.5 }, g);
+        el('circle', { cx: x + (mood === 'thinking' ? dir * 3 * u : 0), cy: hy - 2 * u - (mood === 'thinking' ? 3 * u : 0), r: (big ? 5.5 : 5) * u, fill: LINE }, g);
+      }
+      const [inner, outer] = b.both || (near ? b.near : b.far);
+      const yi = hy - 18 * u + inner * u, yo = hy - 18 * u + outer * u, xi = x - s * 10 * u, xo = x + s * 10 * u, arch = (b.arch || 0) * u;
+      el('path', { d: `M${xo},${yo} Q${x},${Math.min(yi, yo) - arch} ${xi},${yi}`, fill: 'none', stroke: LINE, 'stroke-width': 5, 'stroke-linecap': 'round' }, g);
+    }
+    const mx = ex, my = hy + r * 0.45;
+    if (mood === 'surprised') el('ellipse', { cx: mx, cy: my + 2 * u, rx: 12 * u, ry: 16 * u, fill: '#7a2e2e', stroke: LINE, 'stroke-width': 4 }, g);
+    else if (mood === 'excited') {
+      el('path', { d: `M${mx - 16 * u},${my - 4 * u} Q${mx},${my - 1 * u} ${mx + 16 * u},${my - 4 * u} Q${mx + 13 * u},${my + 17 * u} ${mx},${my + 17 * u} Q${mx - 13 * u},${my + 17 * u} ${mx - 16 * u},${my - 4 * u} Z`, fill: '#7a2e2e', stroke: LINE, 'stroke-width': 4, 'stroke-linejoin': 'round' }, g);
+      el('path', { d: `M${mx - 12 * u},${my - 1 * u} Q${mx},${my + 1 * u} ${mx + 12 * u},${my - 1 * u} L${mx + 11 * u},${my + 4 * u} L${mx - 11 * u},${my + 4 * u} Z`, fill: '#fff' }, g);
+    } else el('path', { d: (MOUTH[mood] || MOUTH.neutral)(mx, my, u), fill: 'none', stroke: LINE, 'stroke-width': 4.5, 'stroke-linecap': 'round' }, g);
+  }
+  function accessory(g, look, hx, hy, r, dir) {
+    const u = r / 56;
+    if (look.accessory === 'glasses') {
+      const ex = hx + dir * 6 * u, eo = r * 0.36;
+      for (const s of [-1, 1]) el('circle', { cx: ex + s * eo, cy: hy - 2 * u, r: 21 * u, fill: 'rgba(255,255,255,.25)', stroke: LINE, 'stroke-width': 4 }, g);
+      el('line', { x1: ex - eo + 21 * u, y1: hy - 4 * u, x2: ex + eo - 21 * u, y2: hy - 4 * u, stroke: LINE, 'stroke-width': 4 }, g);
+    } else if (look.accessory === 'headphones') {
+      el('path', { d: `M${hx - r - 6},${hy} Q${hx},${hy - r * 2.15} ${hx + r + 6},${hy}`, fill: 'none', stroke: LINE, 'stroke-width': 10, 'stroke-linecap': 'round' }, g);
+      for (const s of [-1, 1]) el('rect', outline({ x: hx + s * (r + 6) - 11, y: hy - 10, width: 22, height: 34, rx: 6, fill: look.accentColour || '#2d6a4f', 'stroke-width': 4 }), g);
+    } else if (look.accessory === 'lanyard') {
+      el('path', { d: `M${hx - 20},${hy + r + 12} L${hx},${hy + r + 80} L${hx + 20},${hy + r + 12}`, fill: 'none', stroke: look.accentColour || '#1d4ed8', 'stroke-width': 6, 'stroke-linejoin': 'round' }, g);
+      el('rect', outline({ x: hx - 14, y: hy + r + 78, width: 28, height: 36, rx: 3, fill: '#fff', 'stroke-width': 4 }), g);
+    }
+  }
+  function drawAgent(g, who, x, floor, o) {
+    const s = o.scale || 1, c = who.look.colour || '#0f766e', dir = o.flip ? -1 : 1, mood = o.mood || 'happy';
+    const by = floor - 40 * s, hx = x, hy = floor - 300 * s;
+    const G = el('g', { class: 'ink-figure' }, g);
+    el('ellipse', { cx: x, cy: floor - 4, rx: 75 * s, ry: 11 * s, fill: 'rgba(0,0,0,.12)' }, G);
+    // the far arm, then the body, then the near arm, so the flat fills overlap the right way
+    const [[e1, h1], [e2, h2]] = arms(o.pose || 'stand', dir);
+    const sy = hy + 90 * s;
+    const arm = ([e, h], side) => {
+      const d = `M${x + side * 48 * s},${sy} Q${x + e[0] * s},${sy + e[1] * s} ${x + h[0] * s},${sy + h[1] * s}`;
+      limb(G, d, c, 12 * s);
+      el('circle', outline({ cx: x + h[0] * s, cy: sy + h[1] * s, r: 19 * s, fill: c, 'stroke-width': 4.5 }), G);
+    };
+    arm([e2, h2], -dir);
+    el('path', outline({ d: `M${x - 60 * s},${by} Q${x},${by + 22 * s} ${x + 60 * s},${by} L${x + 48 * s},${hy + 70 * s} L${x - 48 * s},${hy + 70 * s} Z`, fill: c }), G);
+    arm([e1, h1], dir);
+    el('line', { x1: hx, y1: hy - 60 * s, x2: hx + dir * 12 * s, y2: hy - 100 * s, stroke: LINE, 'stroke-width': 5, 'stroke-linecap': 'round' }, G);
+    el('circle', outline({ cx: hx + dir * 12 * s, cy: hy - 104 * s, r: 9 * s, fill: '#f59e0b', 'stroke-width': 4 }), G);
+    el('rect', outline({ x: hx - 85 * s, y: hy - 60 * s, width: 170 * s, height: 120 * s, rx: 24 * s, fill: '#e6fffa' }), G);
+    const tall = !(mood === 'thinking' || mood === 'calm');
+    for (const sx of [-1, 1]) el('rect', { x: hx + sx * 34 * s - 9 * s + dir * 6, y: hy - 24 * s, width: 18 * s, height: (tall ? 26 : 8) * s, rx: 4, fill: c }, G);
+    el('path', { d: (MOUTH[mood] || MOUTH.happy)(hx + dir * 6, hy + 28 * s, s), fill: 'none', stroke: c, 'stroke-width': 4.5, 'stroke-linecap': 'round' }, G);
+    const t = el('text', { x: hx - 70 * s, y: hy + 50 * s, 'font-family': 'ui-monospace, Menlo, monospace', 'font-size': 14 * s, 'font-weight': 'bold', fill: c }, G);
+    t.textContent = '>_';
+    return { headX: hx, headTop: hy - 110 * s };
+  }
+  function drawCharacter(g, who, x, floor, o) {
+    o = o || {};
+    if (who.kind === 'agent') return drawAgent(g, who, x, floor, o);
+    const look = who.look || {}, s = (o.scale || 1) * (look.height || 1), dir = o.flip ? -1 : 1, pose = o.pose || 'stand', sit = pose === 'sit';
+    // the same skeleton as the kit, with a head a seventh bigger (64 against 56)
+    const hipY = floor - (sit ? 120 : 180) * s, shY = hipY - 160 * s, r = 64 * s, hx = x + dir * 4 * s, hy = shY - r - 12 * s;
+    const skin = look.skin || '#e0ac69', shirt = look.shirt || '#2563eb', trousers = look.trousers || '#334155';
+    const G = el('g', { class: 'ink-figure' }, g);
+    el('ellipse', { cx: x, cy: floor - 3, rx: 85 * s, ry: 11 * s, fill: 'rgba(0,0,0,.12)' }, G);
+    if (sit) {
+      el('rect', outline({ x: x - 70 * s, y: hipY + 6 * s, width: 140 * s, height: 18 * s, fill: '#a16207' }), G);
+      for (const k of [-1, 1]) el('line', outline({ x1: x + k * 60 * s, y1: hipY + 24 * s, x2: x + k * 60 * s, y2: floor }), G);
+    }
+    // legs, then feet
+    if (sit) {
+      for (const k of [-1, 1]) limb(G, `M${x + k * 18 * s},${hipY} L${x + dir * 70 * s + k * 14 * s},${hipY + 6 * s} L${x + dir * 74 * s + k * 14 * s},${floor - 8}`, trousers, 16 * s);
+    } else {
+      for (const k of [-1, 1]) limb(G, `M${x + k * 20 * s},${hipY} L${x + k * 30 * s},${floor - 10}`, trousers, 16 * s);
+      for (const k of [-1, 1]) el('ellipse', { cx: x + k * 34 * s + dir * 8 * s, cy: floor - 8, rx: 22 * s, ry: 9 * s, fill: LINE }, G);
+    }
+    // the far arm, the body, the near arm
+    const a = arms(pose, dir), sy = shY + 18 * s;
+    const arm = ([e, h], side) => {
+      const d = `M${x + side * 46 * s},${sy} Q${x + e[0] * s},${sy + e[1] * s} ${x + h[0] * s},${sy + h[1] * s}`;
+      limb(G, d, shirt, 14 * s);
+      el('circle', outline({ cx: x + h[0] * s, cy: sy + h[1] * s, r: 21 * s, fill: skin, 'stroke-width': 4.5 }), G);
+    };
+    arm(a[1], -dir);
+    el('path', outline({ d: `M${x - 55 * s},${shY + 6 * s} Q${x},${shY - 14 * s} ${x + 55 * s},${shY + 6 * s} L${x + 46 * s},${hipY + 8 * s} Q${x},${hipY + 18 * s} ${x - 46 * s},${hipY + 8 * s} Z`, fill: shirt }), G);
+    arm(a[0], dir);
+    // neck, hair behind, head, hair in front, face, accessory
+    el('rect', outline({ x: hx - 12 * s, y: hy + r - 8 * s, width: 24 * s, height: 30 * s, fill: skin, 'stroke-width': 4.5 }), G);
+    hair(G, look, hx, hy, r, false);
+    el('circle', outline({ cx: hx, cy: hy, r, fill: skin }), G);
+    hair(G, look, hx, hy, r, true);
+    face(G, o.mood || 'neutral', hx, hy, r, dir);
+    accessory(G, look, hx, hy, r, dir);
+    return { headX: hx, headTop: hy - r - (look.hair === 'bun' || look.hair === 'beanie' ? 46 : 16) * s };
+  }
+  return { drawCharacter, MOODS, POSES, LINE, VERSION: 'lab-ink-1' };
+})();
+</script>
+
+<script>
+(function () {
+  'use strict';
+  const CAST = {
+    "what": "The lab's own cast: three people and an agent, invented for the experiments.",
+    "characters": [
+      { "id": "ines", "name": "Ines", "kind": "human", "pronouns": "they/them", "role": "the one who asks",
+        "look": { "skin": "#c68642", "hair": "long", "hairColour": "#2b1d14", "shirt": "#0f766e", "trousers": "#1f2937", "accessory": "glasses", "height": 1.0 } },
+      { "id": "oto", "name": "Oto", "kind": "human", "pronouns": "they/them", "role": "the one who tries things",
+        "look": { "skin": "#f1c27d", "hair": "beanie", "hatColour": "#b91c1c", "hairColour": "#111827", "shirt": "#7c3aed", "trousers": "#334155", "accessory": "headphones", "accentColour": "#f59e0b", "height": 0.96 } },
+      { "id": "vex", "name": "Vex", "kind": "human", "pronouns": "they/them", "role": "the one who breaks things",
+        "look": { "skin": "#e0ac69", "hair": "short", "hairColour": "#6b7280", "shirt": "#374151", "trousers": "#111827", "accessory": "none", "height": 1.02 } },
+      { "id": "unit", "name": "Unit", "kind": "agent", "pronouns": "it/its", "role": "the agent", "look": { "colour": "#1d4ed8" } }
+    ]
+  };
+  const K = window.StoryboardKit, INK = window.InkPack, NS = 'http://www.w3.org/2000/svg', FLOOR = 900, PAPER = '#fbf7ee';
+  const LEARNT = [
+    'The thick line buys legibility at small sizes: in the four-across view the ink figure\'s pose and mood read before the kit\'s hatched one does, and the flat shirt reads as one colour where the hatching reads as texture. At full panel size the sketch has more life; the ink pack looks like a sticker.',
+    'Keeping the face on model was the hard part. The kit places eyes, brows and mouth with fixed pixel offsets on a 56 px head; under a 5 px brow and a 5.5 px outline those features vanished, so the ink pack scales every feature with the head (one unit is a 56th of the radius) and gives surprised and excited eyes a white ring. Glasses had to drop to a 4 px line or they swallowed the eyes.',
+    'Flat fills expose drawing order. The kit\'s hatching hides where an arm crosses the body; a flat fill does not, so the ink pack draws the far arm, then the body, then the near arm, and every limb is two strokes (ink under colour) to get an outline round a round-capped line.',
+    'The contract held without a change to the look data: the same skin, hair, shirt, trousers, accessory and height fields drive both packs, all seven poses and ten moods are there, and { headX, headTop } comes back so a bubble would still find the head. The one difference is the signature (no Rough canvas), which is what a kit-level pack switch would have to hide behind a name.',
+  ];
+  const $ = (id) => document.getElementById(id);
+  const el = (tag, attrs, parent) => { const e = document.createElementNS(NS, tag); for (const k in attrs || {}) e.setAttribute(k, attrs[k]); if (parent) parent.appendChild(e); return e; };
+  const fill = (sel, items) => { items.forEach(v => { const o = document.createElement('option'); o.value = v; o.textContent = v; sel.appendChild(o); }); };
+  fill($('pose'), K.POSES); fill($('mood'), K.MOODS); fill($('who'), CAST.characters.map(c => c.id));
+  $('mood').value = 'happy';
+  const ol = $('learnt'); LEARNT.forEach(t => { const li = document.createElement('li'); li.textContent = t; ol.appendChild(li); });
+
+  const paper = (svg) => { while (svg.firstChild) svg.removeChild(svg.firstChild); el('rect', { x: -400, y: -400, width: 2400, height: 1800, fill: PAPER }, svg); return el('g', {}, svg); };
+  const hand = (g, text, x, y, size) => { const t = el('text', { x, y, 'font-family': "'Patrick Hand', cursive", 'font-size': size || 30, fill: '#5b6169', 'text-anchor': 'middle' }, g); t.textContent = text; return t; };
+
+  // the side-by-side frames: the kit on the left, the ink pack on the right, the same pose and mood
+  const pairs = $('pairs'), pairSvgs = [];
+  CAST.characters.forEach((who) => {
+    const fig = document.createElement('figure'), svg = el('svg', { role: 'img', 'aria-label': who.name + ' drawn by the kit and by the ink pack' }, fig);
+    const cap = document.createElement('figcaption'); cap.textContent = who.name + ', ' + who.role; fig.appendChild(cap);
+    pairs.appendChild(fig); pairSvgs.push([svg, who]);
+  });
+  function drawPairs() {
+    const o = { pose: $('pose').value, mood: $('mood').value, flip: $('flip').checked };
+    pairSvgs.forEach(([svg, who], i) => {
+      const g = paper(svg);
+      const rc = rough.svg(svg, { options: { seed: 11 + i, roughness: 1, bowing: 1.2 } });
+      const a = K.drawCharacter(el('g', {}, g), rc, who, 220, FLOOR, o);
+      const b = INK.drawCharacter(el('g', {}, g), who, 620, FLOOR, o);
+      hand(g, 'kit', 220, FLOOR + 50); hand(g, 'ink', 620, FLOOR + 50);
+      const top = Math.min(a.headTop, b.headTop, FLOOR - 560) - 40;
+      svg.setAttribute('viewBox', `0 ${top} 840 ${FLOOR + 70 - top}`);
+    });
+  }
+  // the ink model sheet for one character: a face per mood, a body per pose
+  function drawSheet() {
+    const who = CAST.characters.find(c => c.id === $('who').value);
+    const faces = $('faces'), poses = $('poses');
+    faces.textContent = ''; poses.textContent = '';
+    const figure = (row, label, aspect) => { const fig = document.createElement('figure'), svg = el('svg', { role: 'img', 'aria-label': who.name + ', ' + label }, fig); const c = document.createElement('figcaption'); c.textContent = label; fig.appendChild(c); row.appendChild(fig); return svg; };
+    INK.MOODS.forEach((m) => {
+      const svg = figure(faces, m), g = paper(svg);
+      const head = INK.drawCharacter(g, who, 300, FLOOR, { pose: 'stand', mood: m });
+      const top = who.kind === 'agent' ? head.headTop - 10 : head.headTop - 24;
+      svg.setAttribute('viewBox', `${head.headX - 130} ${top} 260 243`);
+    });
+    INK.POSES.forEach((p) => {
+      const svg = figure(poses, p), g = paper(svg);
+      const head = INK.drawCharacter(g, who, 300, FLOOR, { pose: p, mood: 'happy' });
+      const top = Math.min(head.headTop, FLOOR - 560) - 40;
+      svg.setAttribute('viewBox', `60 ${top} 480 ${FLOOR + 20 - top}`);
+    });
+  }
+  ['pose', 'mood', 'flip'].forEach(id => $(id).addEventListener('change', drawPairs));
+  $('who').addEventListener('change', drawSheet);
+  // keys: arrows cycle pose and mood, f flips; nothing happens while a field has focus
+  const cycle = (sel, by) => { const n = sel.options.length; sel.selectedIndex = (sel.selectedIndex + by + n) % n; drawPairs(); };
+  document.addEventListener('keydown', (e) => {
+    if (e.target.closest('input, select, textarea, button') || e.metaKey || e.ctrlKey || e.altKey) return;
+    if (e.key === 'ArrowRight') { cycle($('pose'), 1); e.preventDefault(); }
+    else if (e.key === 'ArrowLeft') { cycle($('pose'), -1); e.preventDefault(); }
+    else if (e.key === 'ArrowDown') { cycle($('mood'), 1); e.preventDefault(); }
+    else if (e.key === 'ArrowUp') { cycle($('mood'), -1); e.preventDefault(); }
+    else if (e.key === 'f' || e.key === 'F') { $('flip').checked = !$('flip').checked; drawPairs(); }
+  });
+  drawPairs(); drawSheet();
+})();
+</script>
+</body>
+</html>

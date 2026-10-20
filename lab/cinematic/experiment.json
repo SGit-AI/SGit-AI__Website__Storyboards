@@ -1,0 +1,19 @@
+{
+ "slug": "cinematic",
+ "title": "Cinematic",
+ "track": "motion",
+ "question": "What does a real animation timeline (scrubbing, speed, easing) give a kit panel that the kit's CSS play cannot, and what in the kit's markup helps or hinders it?",
+ "summary": "One kit panel choreographed with an anime.js timeline: setting, prop, entrances with overshoot, bubbles word by word, caption, with a scrubber, speed and easing controls.",
+ "kit": "v0.1.0",
+ "libraries": [
+  "anime-3.2.2.min.js"
+ ],
+ "status": "promising",
+ "date": "2026-10-20",
+ "learnt": [
+  "A real timeline gives three things a CSS class cannot: a scrubber (seek to any millisecond, forwards or back, while paused), a speed, and an easing you can swap and compare on the same panel. The kit's play() gives one run at one speed with no way back. The cost is about sixty lines of choreography for one panel against one class, and a vendored library; a storyboard with forty panels would want the choreography written once from data, not by hand per panel.",
+  "The kit's markup made the big groups easy and the details hard. actor, prop, scenery and pop found everything the timeline moves. What took digging: the floor line is a bare ink group found only by its position in the setting; the caption and the bubbles share the class pop and differ only by a style attribute; a bubble carries no link to its speaker (document order says whose it is); which side an actor enters from had to be read from the x of its name; and a bubble's lines are tspans with their own x and dy, so a word-by-word reveal has to keep the first word's attributes and fade the rest with fill-opacity, since opacity does not apply to a tspan.",
+  "What to lift into the kit: a data-who on each actor and its bubble, a class on the caption and on the setting's floor, a transform-origin on pop, and an arrival list, the delays the kit already writes as --d, exposed as data ({ target, at }) so a page can build a timeline from it instead of guessing the order. With those, this page's choreography would be data too. Status: the page works; the lifts are proposals.",
+  "The transforms are CSS transforms on SVG groups, and that works in Chromium with transform-box: fill-box, but the kit's own play uses them too and never says so; a translateX on an actor is in panel units because the group lives inside the viewBox, which is convenient and surprising. Scrubbing a word-by-word reveal is the one place the timeline shows its seams: words are discrete, so a seek lands between them and the sentence is half there, which reads as a glitch where the strokes and the slides read as a pause."
+ ]
+}

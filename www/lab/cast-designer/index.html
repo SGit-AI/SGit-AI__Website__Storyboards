@@ -1,0 +1,256 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Cast designer · the Lab · storyboards.sgit.ai</title>
+<meta name="description" content="A live character designer on top of the kit's drawCharacter: every look field as a control, two previews that redraw as you type, and the cast JSON ready to copy.">
+<link rel="stylesheet" href="https://api.storyboards.sgit.ai/v0/v0.1/v0.1.0/fonts.css" integrity="sha384-ep4bdPYRUzquMICQMhuOkSZ/CB1FnMh6qnGWS1F74VepoLOlw9JGK+Zg+E6/t9dD" crossorigin="anonymous">
+<link rel="stylesheet" href="https://api.storyboards.sgit.ai/v0/v0.1/v0.1.0/storyboard.css" integrity="sha384-NGJqtVi+93pE7lBuwFU0RQWhqnQVLR33Wp8AYH1iAeyC2A7h2ijgU4bEKF5HIKIf" crossorigin="anonymous">
+<script src="https://api.storyboards.sgit.ai/v0/v0.1/v0.1.0/vendor/rough-4.6.6.js" integrity="sha384-XPr5sCJfqHMzoJ8Cn1UYdXXD+XvRi0yoZm3W0yVJ24QP0ps8SYUskiXqnl4yqWlc" crossorigin="anonymous"></script>
+<script src="https://api.storyboards.sgit.ai/v0/v0.1/v0.1.0/storyboard.js" integrity="sha384-3xZhCe5dUdBXMwV57gyscmlqdIjzz9L6huUkcuiEyC0V3jfrlQEdyEhvvF4kCeOa" crossorigin="anonymous"></script>
+<style>
+  :root { --paper: #fbf7ee; --ink: #23262b; --marker: #fde68a; --accent: #0f766e; --red: #dc2626; --page: #f7f3ea; --dim: #5b6169; --line: #d9d2c1; }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--page); color: var(--ink); font-family: system-ui, -apple-system, "Segoe UI", sans-serif; line-height: 1.5; }
+  .lab-head { display: flex; flex-wrap: wrap; align-items: baseline; gap: .3rem 1rem; padding: .7rem 16px; background: var(--paper); border-bottom: 2px solid var(--ink); }
+  .lab-head h1 { margin: 0; font-family: 'Caveat', cursive; font-weight: 700; font-size: 2.4rem; line-height: 1; }
+  .lab-head .track { font-family: 'Patrick Hand', cursive; font-size: 1.15rem; color: var(--dim); }
+  .lab-head .pin { font-size: .85rem; color: var(--dim); }
+  .lab-head .back { margin-left: auto; font-size: .9rem; color: var(--accent); }
+  main { max-width: 1200px; margin: 0 auto; padding: .8rem 16px 3rem; }
+  h2 { font-family: 'Caveat', cursive; font-weight: 700; font-size: 2rem; margin: 1.6rem 0 .4rem; line-height: 1; }
+  h3 { font-family: 'Patrick Hand', cursive; font-weight: 400; font-size: 1.3rem; margin: .8rem 0 .2rem; color: var(--dim); }
+  p.lede { margin: .2rem 0 .8rem; max-width: 60rem; color: var(--dim); }
+  .designer { display: grid; grid-template-columns: minmax(280px, 5fr) minmax(0, 7fr); gap: 1rem; align-items: start; }
+  .form, .previews, .json { background: var(--paper); border: 1.5px solid var(--ink); border-radius: 10px; padding: .6rem .8rem; }
+  .row { display: flex; flex-wrap: wrap; gap: .3rem .8rem; align-items: center; margin: .25rem 0; }
+  label { display: inline-flex; align-items: center; gap: .4rem; min-height: 44px; }
+  label > span { min-width: 6.2rem; color: var(--dim); font-size: .92rem; }
+  input, select, button, textarea { font: inherit; }
+  input[type=text], select { min-height: 44px; padding: 0 .5rem; border: 1.5px solid var(--ink); border-radius: 8px; background: #fff; color: var(--ink); }
+  input[type=text] { width: 11rem; }
+  input[type=color] { width: 56px; height: 44px; padding: 2px; border: 1.5px solid var(--ink); border-radius: 8px; background: #fff; cursor: pointer; }
+  input[type=range] { width: 150px; min-height: 44px; accent-color: var(--accent); }
+  input[type=radio] { width: 22px; height: 22px; accent-color: var(--accent); }
+  .swatches { display: inline-flex; gap: 4px; }
+  .swatch { width: 44px; height: 44px; border: 2px solid var(--ink); border-radius: 8px; padding: 0; min-width: 0; cursor: pointer; }
+  .swatch[aria-pressed=true] { outline: 3px solid var(--accent); outline-offset: 1px; }
+  button { min-height: 44px; min-width: 44px; padding: 0 1rem; border: 2px solid var(--ink); border-radius: 8px; background: var(--marker); color: var(--ink); cursor: pointer; font-weight: 600; }
+  button:hover { background: #fcd34d; }
+  button.quiet { background: #fff; font-weight: 500; }
+  .hint { font-size: .8rem; color: var(--dim); }
+  .keys kbd { font-family: ui-monospace, Menlo, monospace; border: 1px solid var(--line); border-bottom-width: 2px; border-radius: 4px; padding: 0 .3em; background: #fff; }
+  .hidden { display: none !important; }
+  .previews { display: grid; grid-template-columns: minmax(0, 2fr) minmax(0, 1fr); gap: .6rem; }
+  .previews figure { margin: 0; text-align: center; }
+  .previews svg { display: block; width: 100%; height: auto; background: var(--paper); border: 1px solid var(--line); border-radius: 8px; aspect-ratio: 480/620; }
+  figcaption { font-family: 'Patrick Hand', cursive; color: var(--dim); }
+  .previews .row { grid-column: 1 / -1; }
+  .json { grid-column: 1 / -1; }
+  textarea { width: 100%; min-height: 15rem; font-family: ui-monospace, Menlo, monospace; font-size: .85rem; line-height: 1.35; border: 1.5px solid var(--ink); border-radius: 8px; padding: .5rem; background: #fff; color: var(--ink); resize: vertical; }
+  textarea.bad { border-color: var(--red); }
+  .learnt { background: var(--paper); border: 1.5px solid var(--ink); border-radius: 10px; padding: .6rem 1.1rem; max-width: 62rem; }
+  .learnt li { margin: .4rem 0; }
+  .status { font-family: 'Patrick Hand', cursive; color: var(--dim); }
+  @media (max-width: 760px) { .designer { grid-template-columns: 1fr; } .lab-head h1 { font-size: 2rem; } input[type=text] { width: 9rem; } }
+</style>
+</head>
+<body>
+<header class="lab-head">
+  <h1>Cast designer</h1>
+  <span class="track">track: characters</span>
+  <span class="pin">lab · experiment · pinned to kit v0.1.0</span>
+  <a class="back" href="../index.html">back to the lab</a>
+</header>
+<main>
+  <p class="lede">The kit draws a character from a few fields in a cast file: skin, hair, shirt, trousers, an accessory, a height, or one colour for an agent. This page turns each field into a control and redraws the figure as you change it, twice (a second preview at another pose and mood), and writes the character in the cast format, ready to copy into a cast.json. Start from Ines, or press random.</p>
+
+  <h2>The designer</h2>
+  <div class="designer">
+    <form class="form" id="form" autocomplete="off">
+      <h3>who</h3>
+      <div class="row">
+        <label><input type="radio" name="kind" value="human" checked> human</label>
+        <label><input type="radio" name="kind" value="agent"> agent</label>
+      </div>
+      <div class="row"><label><span>name</span><input type="text" id="name" value="Ines"></label></div>
+      <div class="row"><label><span>id</span><input type="text" id="id" value="ines" pattern="[a-z0-9-]+"></label></div>
+      <div class="row"><label><span>pronouns</span><input type="text" id="pronouns" value="they/them"></label></div>
+      <div class="row"><label><span>role</span><input type="text" id="role" value="the one who asks"></label></div>
+      <div id="human">
+        <h3>look</h3>
+        <div class="row"><label><span>skin</span><input type="color" id="skin" value="#c68642"></label><span class="swatches" id="skins" role="group" aria-label="skin swatches"></span></div>
+        <div class="row"><label><span>hair</span><select id="hair"></select></label><label><span>hair colour</span><input type="color" id="hairColour" value="#2b1d14"></label></div>
+        <div class="row" id="hatRow"><label><span>hat colour</span><input type="color" id="hatColour" value="#b91c1c"></label><span class="hint">read only when the hair is a beanie</span></div>
+        <div class="row"><label><span>shirt</span><input type="color" id="shirt" value="#0f766e"></label><label><span>trousers</span><input type="color" id="trousers" value="#1f2937"></label></div>
+        <div class="row"><label><span>accessory</span><select id="accessory"></select></label></div>
+        <div class="row" id="accentRow"><label><span>accent colour</span><input type="color" id="accentColour" value="#f59e0b"></label><span class="hint">the headphones' cups or the lanyard's cord</span></div>
+        <div class="row"><label><span>height</span><input type="range" id="height" min="0.8" max="1.2" step="0.01" value="1"> <output id="heightv" for="height">1.00</output></label></div>
+      </div>
+      <div id="agent" class="hidden">
+        <h3>look</h3>
+        <div class="row"><label><span>colour</span><input type="color" id="colour" value="#1d4ed8"></label><span class="hint">an agent has one colour and no other field</span></div>
+      </div>
+      <h3>preview</h3>
+      <div class="row">
+        <label><span>pose</span><select id="pose"></select></label>
+        <label><span>mood</span><select id="mood"></select></label>
+      </div>
+      <div class="row">
+        <button type="button" id="random">random</button>
+        <button type="button" id="copy" class="quiet">copy JSON</button>
+        <span class="hint" id="copied" aria-live="polite"></span>
+      </div>
+      <p class="hint keys"><kbd>r</kbd> random, <kbd>c</kbd> copy, when no field has focus</p>
+    </form>
+    <div class="previews">
+      <figure><svg id="big" role="img" aria-label="the character, large"></svg><figcaption id="bigcap">stand, happy</figcaption></figure>
+      <figure><svg id="small" role="img" aria-label="the character at another pose and mood"></svg><figcaption id="smallcap">think, worried</figcaption></figure>
+      <div class="json">
+        <label for="json" style="min-height:0"><span style="min-width:0">the character, in the cast format (edit it and the form follows)</span></label>
+        <textarea id="json" spellcheck="false"></textarea>
+      </div>
+    </div>
+  </div>
+
+  <h2>What this taught us</h2>
+  <div class="learnt">
+    <p class="status">status: promising. The designer writes a valid cast entry; the palettes it relies on are not in the kit.</p>
+    <ol id="learnt"></ol>
+  </div>
+</main>
+
+<script>
+(function () {
+  'use strict';
+  const CAST = {
+    "what": "The lab's own cast: three people and an agent, invented for the experiments.",
+    "characters": [
+      { "id": "ines", "name": "Ines", "kind": "human", "pronouns": "they/them", "role": "the one who asks",
+        "look": { "skin": "#c68642", "hair": "long", "hairColour": "#2b1d14", "shirt": "#0f766e", "trousers": "#1f2937", "accessory": "glasses", "height": 1.0 } },
+      { "id": "oto", "name": "Oto", "kind": "human", "pronouns": "they/them", "role": "the one who tries things",
+        "look": { "skin": "#f1c27d", "hair": "beanie", "hatColour": "#b91c1c", "hairColour": "#111827", "shirt": "#7c3aed", "trousers": "#334155", "accessory": "headphones", "accentColour": "#f59e0b", "height": 0.96 } },
+      { "id": "vex", "name": "Vex", "kind": "human", "pronouns": "they/them", "role": "the one who breaks things",
+        "look": { "skin": "#e0ac69", "hair": "short", "hairColour": "#6b7280", "shirt": "#374151", "trousers": "#111827", "accessory": "none", "height": 1.02 } },
+      { "id": "unit", "name": "Unit", "kind": "agent", "pronouns": "it/its", "role": "the agent", "look": { "colour": "#1d4ed8" } }
+    ]
+  };
+  const LEARNT = [
+    'The fields that matter, in order, at panel size: the shirt colour (the biggest flat area), the hair shape (the silhouette), the skin, then the accessory. Trousers barely register, because the legs are thin strokes; a height of 0.8 against 1.2 only reads when two people stand side by side. Two people with the same shirt colour and hair shape are one person.',
+    'A cast file needs what the drawing never reads: id, name, pronouns, role. The drawing reads what nobody would write by hand: height to two decimals. The designer writes exactly the cast format so the file is the only contract, and it hides hatColour unless the hair is a beanie and accentColour unless there are headphones or a lanyard, which the format itself does not.',
+    'Random is only plausible with palettes. A random hex for skin makes a green person and a random shirt on random trousers makes a clown, so the random button draws from six skins, eight hair colours and ten shirts that live in this page. Those palettes belong in the kit as data, so a story can ask for a plausible stranger with one call.',
+    'The second preview catches what the first hides. Ines, with long near-black hair, loses raised brows (surprised, worried) against the fringe, because the kit draws brows in ink over hair of almost the same colour; a thinking hand sits in front of a lanyard\'s cord. The small figure at another pose and mood showed both. One preview is not a check; the model sheet is.',
+  ];
+  const K = window.StoryboardKit, NS = 'http://www.w3.org/2000/svg', FLOOR = 900;
+  const $ = (id) => document.getElementById(id);
+  const el = (tag, attrs, parent) => { const e = document.createElementNS(NS, tag); for (const k in attrs || {}) e.setAttribute(k, attrs[k]); if (parent) parent.appendChild(e); return e; };
+  const HAIRS = ['short', 'long', 'curly', 'bun', 'beanie', 'bald'], ACCESSORIES = ['glasses', 'headphones', 'lanyard', 'none'];
+  const SKINS = ['#f1c27d', '#e0ac69', '#c68642', '#8d5524', '#5c3a21', '#ffdbac'];
+  const HAIR_COLOURS = ['#2b1d14', '#111827', '#6b7280', '#b45309', '#d97706', '#e5e7eb', '#7f1d1d', '#3b2a20'];
+  const HATS = ['#b91c1c', '#0f766e', '#1d4ed8', '#f59e0b', '#111827'];
+  const SHIRTS = ['#0f766e', '#7c3aed', '#374151', '#2563eb', '#b91c1c', '#f59e0b', '#15803d', '#be185d', '#0e7490', '#a16207'];
+  const TROUSERS = ['#1f2937', '#334155', '#111827', '#7c2d12', '#365314', '#4b5563'];
+  const ACCENTS = ['#f59e0b', '#1d4ed8', '#2d6a4f', '#dc2626', '#7c3aed'];
+  const AGENT_COLOURS = ['#1d4ed8', '#0f766e', '#7c3aed', '#b91c1c', '#d97706'];
+  const NAMES = ['Ada', 'Bo', 'Cy', 'Dee', 'Esi', 'Fen', 'Gus', 'Hal', 'Ivo', 'Jem', 'Kit', 'Lu', 'Mo', 'Nia', 'Oz', 'Pip', 'Quin', 'Ray', 'Sol', 'Tam', 'Uma', 'Val', 'Wren', 'Xan', 'Yu', 'Zed'];
+  const ROLES = ['the one who asks', 'the one who tries things', 'the one who breaks things', 'the one who writes it down', 'the one who says no', 'the one who was here first', 'the new one', 'the one who reads the logs'];
+  const AGENT_NAMES = ['Unit', 'Relay', 'Clerk', 'Scribe', 'Probe', 'Sentry'];
+  const fill = (sel, items) => items.forEach(v => { const o = document.createElement('option'); o.value = v; o.textContent = v; sel.appendChild(o); });
+  fill($('hair'), HAIRS); fill($('accessory'), ACCESSORIES); fill($('pose'), K.POSES); fill($('mood'), K.MOODS);
+  $('hair').value = 'long'; $('accessory').value = 'glasses'; $('mood').value = 'happy';
+  SKINS.forEach(c => { const b = document.createElement('button'); b.type = 'button'; b.className = 'swatch'; b.style.background = c; b.setAttribute('aria-label', 'skin ' + c); b.dataset.colour = c; b.addEventListener('click', () => { $('skin').value = c; update(); }); $('skins').appendChild(b); });
+  const ol = $('learnt'); LEARNT.forEach(t => { const li = document.createElement('li'); li.textContent = t; ol.appendChild(li); });
+
+  const slug = (s) => String(s || '').toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '') || 'who';
+  let idTouched = false;
+  // the form, read as a character in the cast format; fields the drawing would ignore are left out of the look
+  function read() {
+    const kind = document.querySelector('input[name=kind]:checked').value;
+    const who = { id: $('id').value.trim() || slug($('name').value), name: $('name').value.trim() || 'Who', kind, pronouns: $('pronouns').value.trim(), role: $('role').value.trim() };
+    if (kind === 'agent') who.look = { colour: $('colour').value };
+    else {
+      const hair = $('hair').value, acc = $('accessory').value, look = { skin: $('skin').value, hair, hairColour: $('hairColour').value };
+      if (hair === 'beanie') look.hatColour = $('hatColour').value;
+      look.shirt = $('shirt').value; look.trousers = $('trousers').value; look.accessory = acc;
+      if (acc === 'headphones' || acc === 'lanyard') look.accentColour = $('accentColour').value;
+      look.height = Math.round(+$('height').value * 100) / 100;
+      who.look = look;
+    }
+    return who;
+  }
+  // the character, written into the form (from random, or from the edited JSON)
+  function write(who) {
+    document.querySelector(`input[name=kind][value=${who.kind === 'agent' ? 'agent' : 'human'}]`).checked = true;
+    $('name').value = who.name || ''; $('id').value = who.id || slug(who.name); $('pronouns').value = who.pronouns || ''; $('role').value = who.role || '';
+    const l = who.look || {};
+    if (who.kind === 'agent') $('colour').value = l.colour || '#0f766e';
+    else {
+      $('skin').value = l.skin || '#e0ac69'; $('hair').value = HAIRS.includes(l.hair) ? l.hair : 'short'; $('hairColour').value = l.hairColour || '#3b2a20';
+      $('hatColour').value = l.hatColour || '#c0392b'; $('shirt').value = l.shirt || '#2563eb'; $('trousers').value = l.trousers || '#334155';
+      $('accessory').value = ACCESSORIES.includes(l.accessory) ? l.accessory : 'none'; $('accentColour').value = l.accentColour || '#2d6a4f';
+      $('height').value = Math.min(1.2, Math.max(0.8, +l.height || 1));
+    }
+  }
+  function figure(svg, who, pose, mood, seed) {
+    while (svg.firstChild) svg.removeChild(svg.firstChild);
+    el('rect', { x: -400, y: -400, width: 2400, height: 1800, fill: K.PAPER }, svg);
+    const rc = rough.svg(svg, { options: { seed, roughness: 1, bowing: 1.2 } }), g = el('g', {}, svg);
+    const head = K.drawCharacter(g, rc, who, 300, FLOOR, { pose, mood });
+    const top = Math.min(head.headTop, FLOOR - 560) - 40;
+    svg.setAttribute('viewBox', `60 ${top} 480 ${FLOOR + 30 - top}`);
+  }
+  const OTHER = { stand: ['think', 'worried'], point: ['sit', 'calm'], wave: ['shrug', 'confused'], 'arms-up': ['stand', 'sad'], shrug: ['point', 'determined'], think: ['wave', 'excited'], sit: ['stand', 'surprised'] };
+  let fromJson = false;
+  function update() {
+    const who = read(), agent = who.kind === 'agent';
+    $('human').classList.toggle('hidden', agent); $('agent').classList.toggle('hidden', !agent);
+    $('hatRow').classList.toggle('hidden', $('hair').value !== 'beanie');
+    $('accentRow').classList.toggle('hidden', !['headphones', 'lanyard'].includes($('accessory').value));
+    $('heightv').value = (+$('height').value).toFixed(2);
+    document.querySelectorAll('.swatch').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.colour === $('skin').value)));
+    const pose = $('pose').value, mood = $('mood').value, [p2, m2] = OTHER[pose] || ['think', 'worried'];
+    figure($('big'), who, pose, mood, 7); $('bigcap').textContent = `${pose}, ${mood}`;
+    figure($('small'), who, p2, m2, 13); $('smallcap').textContent = `${p2}, ${m2}`;
+    if (!fromJson) { $('json').value = JSON.stringify(who, null, 2); $('json').classList.remove('bad'); }
+  }
+  const pick = (a) => a[Math.floor(Math.random() * a.length)];
+  function random() {
+    const agent = Math.random() < 0.2, name = agent ? pick(AGENT_NAMES) : pick(NAMES);
+    const who = { id: slug(name), name, kind: agent ? 'agent' : 'human', pronouns: agent ? 'it/its' : pick(['they/them', 'she/her', 'he/him']), role: agent ? 'the agent' : pick(ROLES) };
+    if (agent) who.look = { colour: pick(AGENT_COLOURS) };
+    else {
+      const hair = pick(HAIRS), acc = pick(ACCESSORIES), shirt = pick(SHIRTS);
+      who.look = { skin: pick(SKINS), hair, hairColour: pick(HAIR_COLOURS), hatColour: pick(HATS), shirt, trousers: pick(TROUSERS.filter(t => t !== shirt)), accessory: acc, accentColour: pick(ACCENTS.filter(a => a !== shirt)), height: Math.round((0.86 + Math.random() * 0.28) * 100) / 100 };
+    }
+    idTouched = false; write(who); update();
+  }
+  function copy() {
+    const text = $('json').value, done = () => { $('copied').textContent = 'copied'; setTimeout(() => { $('copied').textContent = ''; }, 1800); };
+    if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(text).then(done, () => fallback());
+    else fallback();
+    function fallback() { const t = $('json'); t.focus(); t.select(); try { document.execCommand('copy'); done(); } catch (e) { $('copied').textContent = 'select the text and copy it'; } }
+  }
+  $('form').addEventListener('input', (e) => {
+    if (e.target.id === 'id') idTouched = true;
+    if (e.target.id === 'name' && !idTouched) $('id').value = slug($('name').value);
+    update();
+  });
+  $('form').addEventListener('change', update);
+  $('random').addEventListener('click', random);
+  $('copy').addEventListener('click', copy);
+  $('json').addEventListener('input', () => {
+    let who; try { who = JSON.parse($('json').value); } catch (e) { $('json').classList.add('bad'); return; }
+    if (!who || typeof who !== 'object' || !who.look) { $('json').classList.add('bad'); return; }
+    $('json').classList.remove('bad'); idTouched = true; write(who); fromJson = true; update(); fromJson = false;
+  });
+  document.addEventListener('keydown', (e) => {
+    if (e.target.closest('input, select, textarea, button') || e.metaKey || e.ctrlKey || e.altKey) return;
+    if (e.key === 'r' || e.key === 'R') random();
+    else if (e.key === 'c' || e.key === 'C') copy();
+  });
+  write(CAST.characters[0]); update();
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,18 @@
+# Room (a game engine)
+
+> kaplay in a canvas: the lab cast baked into sprites from the kit's drawings, a player who walks, bumps into people for a line and opens a vault.
+
+*Source: <https://storyboards.sgit.ai/lab/room/>. A standalone experiment of the Lab, status exploring, pinned to api.storyboards.sgit.ai v0.1.0, using kaplay-3001.0.19.js. The page is drawn by code; this file is what it says.*
+
+---
+
+**The question.** What does a game engine give a storyboard's cast, what does it cost, and what would it take for a storyboard to play inside one?
+
+## What this taught us
+
+- An engine gives, for nothing, the three things a storyboard page has to fake: input (keys, touch and a gamepad through one API, with the canvas owning the keyboard so a page's fields are left alone), a camera (one call a frame and the room is wider than the screen), and collisions (bumping into Vex is one handler on a tag). The room took fewer lines than the walk cycle's rig. Status: exploring.
+- It costs the DOM. Everything is pixels on a canvas: no text to select or search, no svg to inspect or export, and the kit's drawings only get in by being baked into bitmaps first (SVG serialised, loaded as an image, drawn to a canvas, handed over as a data URL). The bake is done once at load and is cheap, but a sprite is one pose at one size: a new mood or pose is another bake, and zooming the camera shows the pixels where the SVG would stay crisp.
+- Rasterising through a canvas was needed, not a fallback: the engine's loader takes a URL and the page must not fetch anything from a third party, so the sprite is a data: URL made by the page, and that needs the canvas step. The SVG is written with explicit width and height attributes, so the image has a size to draw at; the page avoids the blank-image failure rather than testing it. The kit's fonts do not reach the engine either; the lines are drawn in the engine's own font.
+- For a storyboard to play inside an engine it would need three things the data does not have yet: a room (where the floor is, where people stand, what blocks them), verbs on the props (the vault's open is a sprite swap here, written by hand) and the lines as reactions rather than a sequence. The storyboard's kinds of scene, with cast, props and says, map onto all three; what is missing is the geometry and the triggers, which is a new scene kind, not a change to the kit.
+
+[The Lab](https://storyboards.sgit.ai/lab/index.md)

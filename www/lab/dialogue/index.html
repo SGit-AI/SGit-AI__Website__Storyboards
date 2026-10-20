@@ -1,0 +1,290 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Dialogue engine: a branching, typed-out scene on a storyboard panel</title>
+<meta name="description" content="A lab experiment: a visual-novel style scene drawn by the kit, lines typed out one character at a time, a branching script as data, and the reader's choices as real buttons.">
+<link rel="stylesheet" href="https://api.storyboards.sgit.ai/v0/v0.1/v0.1.0/fonts.css" integrity="sha384-ep4bdPYRUzquMICQMhuOkSZ/CB1FnMh6qnGWS1F74VepoLOlw9JGK+Zg+E6/t9dD" crossorigin="anonymous">
+<link rel="stylesheet" href="https://api.storyboards.sgit.ai/v0/v0.1/v0.1.0/storyboard.css" integrity="sha384-NGJqtVi+93pE7lBuwFU0RQWhqnQVLR33Wp8AYH1iAeyC2A7h2ijgU4bEKF5HIKIf" crossorigin="anonymous">
+<script src="https://api.storyboards.sgit.ai/v0/v0.1/v0.1.0/vendor/rough-4.6.6.js" integrity="sha384-XPr5sCJfqHMzoJ8Cn1UYdXXD+XvRi0yoZm3W0yVJ24QP0ps8SYUskiXqnl4yqWlc" crossorigin="anonymous"></script>
+<script src="https://api.storyboards.sgit.ai/v0/v0.1/v0.1.0/props/security.js" integrity="sha384-IkxAFhrp5pQhBSjFCLMEA+1iqFHJ6xPRLeO2n9g478h7Z8hW9cUyvza3PuOtmsOx" crossorigin="anonymous"></script>
+<script src="https://api.storyboards.sgit.ai/v0/v0.1/v0.1.0/storyboard.js" integrity="sha384-3xZhCe5dUdBXMwV57gyscmlqdIjzz9L6huUkcuiEyC0V3jfrlQEdyEhvvF4kCeOa" crossorigin="anonymous"></script>
+<style>
+  :root { --paper: #fbf7ee; --ink: #23262b; --marker: #fde68a; --accent: #0f766e; --red: #dc2626; --page: #f7f3ea; --dim: #5b6169; }
+  * { box-sizing: border-box; }
+  html { background: var(--page); }
+  body { margin: 0; background: var(--page); color: var(--ink); font-family: system-ui, -apple-system, "Segoe UI", sans-serif; line-height: 1.5; }
+  .strip { display: flex; flex-wrap: wrap; align-items: baseline; gap: .4rem 1.2rem; padding: .9rem 1.2rem; border-bottom: 2px solid var(--ink); background: var(--paper); }
+  .strip h1 { margin: 0; font-family: 'Caveat', 'Patrick Hand', cursive; font-weight: 700; font-size: 2.6rem; line-height: 1; }
+  .strip .track { font-family: 'Patrick Hand', cursive; font-size: 1.15rem; color: var(--accent); }
+  .strip .pin { font-size: .85rem; color: var(--dim); }
+  .strip a { margin-left: auto; color: var(--accent); font-weight: 600; text-decoration: none; min-height: 44px; display: inline-flex; align-items: center; }
+  .strip a:hover { text-decoration: underline; }
+  main { max-width: 1240px; margin: 0 auto; padding: 1rem 16px 3rem; }
+  .lede { max-width: 60rem; color: var(--dim); margin: .4rem 0 1rem; }
+  .panel { display: block; width: 100%; height: auto; aspect-ratio: 16 / 10; background: var(--paper); border: 2px solid var(--ink); border-radius: 10px; cursor: pointer; }
+  .choices { display: flex; flex-wrap: wrap; gap: .6rem; align-items: center; margin: .8rem 0; min-height: 52px; }
+  .choices .prompt { font-family: 'Patrick Hand', cursive; font-size: 1.15rem; color: var(--dim); }
+  .controls { display: flex; flex-wrap: wrap; gap: .6rem 1.2rem; align-items: center; margin: .8rem 0; padding: .7rem .9rem; background: #fff; border: 1px solid #d9d3c4; border-radius: 10px; }
+  .controls label { display: inline-flex; align-items: center; gap: .45rem; min-height: 44px; font-size: .95rem; }
+  .controls input[type=range] { width: 160px; min-height: 44px; }
+  .controls output { font-family: ui-monospace, Menlo, monospace; font-size: .85rem; color: var(--dim); min-width: 3em; }
+  button { font: inherit; min-height: 44px; min-width: 44px; padding: 0 .9rem; border: 2px solid var(--ink); border-radius: 8px; background: #fff; color: var(--ink); cursor: pointer; }
+  button:hover { background: var(--marker); }
+  button.choice { background: var(--marker); font-family: 'Patrick Hand', cursive; font-size: 1.15rem; }
+  button.choice:hover { background: #fcd34d; }
+  .two { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 1.2rem; margin-top: 1rem; }
+  @media (max-width: 800px) { .two { grid-template-columns: 1fr; } }
+  h2 { font-family: 'Caveat', 'Patrick Hand', cursive; font-size: 2.2rem; margin: 2rem 0 .4rem; line-height: 1; }
+  h3 { font-family: 'Caveat', 'Patrick Hand', cursive; font-size: 1.7rem; margin: 0 0 .4rem; line-height: 1; }
+  .log { margin: 0; padding: .6rem .9rem; background: #fff; border: 1px solid #d9d3c4; border-radius: 10px; max-height: 20rem; overflow: auto; font-size: .93rem; list-style: none; }
+  .log li { padding: .15rem 0; border-bottom: 1px dashed #e5e0d3; }
+  .log li b { color: var(--accent); }
+  .log li.choice { color: var(--dim); font-style: italic; }
+  textarea { width: 100%; min-height: 20rem; font: .8rem/1.4 ui-monospace, Menlo, monospace; padding: .6rem; border: 1px solid #d9d3c4; border-radius: 10px; background: #fff; color: var(--ink); resize: vertical; }
+  .error { color: var(--red); font-size: .9rem; min-height: 1.4rem; margin: .3rem 0; }
+  .learnt { max-width: 60rem; padding-left: 1.3rem; }
+  .learnt li { margin: .45rem 0; }
+  .status { font-size: .85rem; color: var(--dim); }
+  @media (max-width: 600px) { .strip h1 { font-size: 2rem; } .controls input[type=range] { width: 120px; } }
+</style>
+</head>
+<body>
+<header class="strip">
+  <h1>Dialogue engine</h1>
+  <span class="track">track: motion</span>
+  <span class="pin">lab &middot; experiment &middot; pinned to kit v0.1.0</span>
+  <a href="../index.html">&larr; the lab</a>
+</header>
+<main>
+  <p class="lede">A scene in the style of a visual novel. Ines and Unit stand on a kit panel, drawn by <code>drawCharacter</code>; Oto walks in when the script says so. Each line is typed out into a Rough.js bubble (seeded, with a tail to the speaker's head), the reader's choices are buttons under the panel, and the whole script is data you can edit and reapply. Space or a click on the panel finishes a line.</p>
+
+  <svg id="panel" class="panel" viewBox="0 0 1600 1000" role="img" aria-label="A storyboard panel: Ines, Unit and Oto talk in speech bubbles"></svg>
+  <div class="choices" id="choices" aria-live="polite"></div>
+
+  <div class="controls" aria-label="playback">
+    <label>typing speed <input type="range" id="speed" min="5" max="120" step="1" value="40"> <output id="speedOut">40</output> chars/s</label>
+    <button type="button" id="skip">skip (space)</button>
+    <button type="button" id="restart">restart</button>
+  </div>
+  <p class="status" id="motionNote"></p>
+
+  <div class="two">
+    <section>
+      <h3>The path taken</h3>
+      <ol class="log" id="log"></ol>
+    </section>
+    <section>
+      <h3>The script</h3>
+      <textarea id="script" spellcheck="false" aria-label="the script as JSON"></textarea>
+      <div class="error" id="error" role="alert"></div>
+      <button type="button" id="apply">apply</button>
+    </section>
+  </div>
+
+  <h2>What this taught us</h2>
+  <ol class="learnt">
+    <li>A reader's choice turns a storyboard from a sequence into a graph, and the panel stops being the unit: the unit becomes the node (who, what, mood, pose) and a panel is whatever nodes the reader passed through. The log under the panel is the storyboard the reader wrote; two readers get two storyboards from the same script. For a deck, that means the still pictures cannot be rendered ahead of time unless every path is rendered, which for ten nodes with two forks is four strips.</li>
+    <li>Typed text changes the pacing from the reader's to the author's. At 40 characters a second a line of 90 characters takes a little over two seconds to appear, and the reader waits for it; in a drawn bubble they read it in under a second and move on. The waiting is the point when a line should land (Oto's interruption reads better typed), and a cost everywhere else, which is why skip has to be one key and one click. Status: exploring.</li>
+    <li>The data needs less than expected: an id, who speaks, the text, a mood and a pose, and either a next or a list of choices. What it also needs, and this page checks on apply, is a validator: a choice that points at a missing node is the error a reader hits last and an author hits first. What the data does not say yet, and would have to, is where people stand and when they enter; Oto's entrance is hard-coded here.</li>
+    <li>The kit draws the people but not the bubble, so the bubble here is the page's own (a rounded rectangle and a tail, in the kit's ink, with the same Rough.js seed each redraw so the box does not boil while the text types). Changing a character's mood means redrawing the whole character with the same seed, which is quick but visible as a flicker on slow machines; a bubble and a face that could be updated in place are the two things to lift into a release.</li>
+  </ol>
+</main>
+<script>
+(function () {
+  'use strict';
+  const NS = 'http://www.w3.org/2000/svg';
+  const K = window.StoryboardKit;
+  const svg = document.getElementById('panel');
+  const W = 1600, H = 1000, FLOOR = 900, INK = K.INK, PAPER = K.PAPER;
+  const FONT = "'Patrick Hand', cursive";
+  const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const el = (tag, attrs, parent) => { const e = document.createElementNS(NS, tag); for (const k in attrs) e.setAttribute(k, attrs[k]); if (parent) parent.appendChild(e); return e; };
+  const $ = (id) => document.getElementById(id);
+
+  // The lab cast, copied in.
+  const CAST = { characters: [
+    { id: 'ines', name: 'Ines', kind: 'human', pronouns: 'they/them', role: 'the one who asks', look: { skin: '#c68642', hair: 'long', hairColour: '#2b1d14', shirt: '#0f766e', trousers: '#1f2937', accessory: 'glasses', height: 1.0 } },
+    { id: 'oto', name: 'Oto', kind: 'human', pronouns: 'they/them', role: 'the one who tries things', look: { skin: '#f1c27d', hair: 'beanie', hatColour: '#b91c1c', hairColour: '#111827', shirt: '#7c3aed', trousers: '#334155', accessory: 'headphones', accentColour: '#f59e0b', height: 0.96 } },
+    { id: 'vex', name: 'Vex', kind: 'human', pronouns: 'they/them', role: 'the one who breaks things', look: { skin: '#e0ac69', hair: 'short', hairColour: '#6b7280', shirt: '#374151', trousers: '#111827', accessory: 'none', height: 1.02 } },
+    { id: 'unit', name: 'Unit', kind: 'agent', pronouns: 'it/its', role: 'the agent', look: { colour: '#1d4ed8' } },
+  ] };
+  // Where each speaker stands, which way they face, and the seed that keeps their wobble the same between redraws.
+  const STAGE = { ines: { x: 330, flip: false, seed: 41 }, unit: { x: 1270, flip: true, seed: 43 }, oto: { x: 820, flip: false, seed: 47 }, vex: { x: 820, flip: true, seed: 53 } };
+
+  // The script: a short original scene. A node is { id, who, text, mood, pose, choices: [{ text, next }] | next }.
+  const SCRIPT = [
+    { id: 'ask', who: 'ines', text: 'Unit, where is the key for the vault? The one we signed the record with yesterday.', mood: 'neutral', pose: 'point', next: 'offer' },
+    { id: 'offer', who: 'unit', text: 'On the vault keyring, under your name. I can fetch it, or you can go and look.', mood: 'happy', pose: 'stand', choices: [ { text: 'Fetch it for me', next: 'fetch' }, { text: 'I will look myself', next: 'look' } ] },
+    { id: 'fetch', who: 'unit', text: 'Fetching. The record says the key was made at 14:02 and has not left the vault since.', mood: 'thinking', pose: 'think', next: 'interrupt' },
+    { id: 'look', who: 'ines', text: 'Fine. I will check the record myself, with my own eyes, before anyone touches it.', mood: 'determined', pose: 'arms-up', next: 'interrupt' },
+    { id: 'interrupt', who: 'oto', text: 'Wait, wait. Nobody touches that key. I rotated it this morning and the old one is dead.', mood: 'excited', pose: 'wave', next: 'rotated' },
+    { id: 'rotated', who: 'ines', text: 'You rotated it? Oto, the signed record still points at the key from yesterday.', mood: 'surprised', pose: 'shrug', next: 'both' },
+    { id: 'both', who: 'unit', text: 'Both are true. Yesterday\'s key signed the record. This morning\'s key opens the vault. Which one do you need?', mood: 'thinking', pose: 'think', choices: [ { text: 'The one that signed', next: 'signed' }, { text: 'The one that opens', next: 'opens' } ] },
+    { id: 'signed', who: 'unit', text: 'Then nothing has changed. The signature still checks against the old public half, which I kept.', mood: 'calm', pose: 'stand', next: 'end' },
+    { id: 'opens', who: 'oto', text: 'That one is mine to hand out. Give me a second and it goes on your ring.', mood: 'happy', pose: 'point', next: 'end' },
+    { id: 'end', who: 'ines', text: 'Good. Next time, tell me before the key changes, not after.', mood: 'happy', pose: 'stand' },
+  ];
+
+  // ------------------------------------------------------------ the panel
+  el('rect', { x: 0, y: 0, width: W, height: H, fill: PAPER }, svg);
+  const rcPanel = rough.svg(svg, { options: { seed: 5, roughness: 1, bowing: 1.2 } });
+  svg.appendChild(rcPanel.line(0, FLOOR, W, FLOOR, { stroke: INK, strokeWidth: 3, roughness: 2 }));
+  const peopleG = el('g', {}, svg), bubbleG = el('g', {}, svg);
+  const drawn = {}; // id -> { g, name, mood, pose }
+  function who(id) { return CAST.characters.find(c => c.id === id); }
+  function place(id, mood, pose) {
+    const st = STAGE[id], c = who(id);
+    if (!st || !c) return null;
+    let d = drawn[id];
+    if (!d) {
+      d = drawn[id] = { g: el('g', { class: 'actor' }, peopleG), mood: null, pose: null };
+      const name = el('text', { x: st.x, y: FLOOR + 44, 'font-family': FONT, 'font-size': 26, fill: '#6b7280', 'text-anchor': 'middle' }, d.g);
+      name.textContent = c.name;
+    }
+    if (d.mood === mood && d.pose === pose) return d.head;
+    while (d.g.childNodes.length > 1) d.g.removeChild(d.g.lastChild);
+    const rc = rough.svg(svg, { options: { seed: st.seed, roughness: 1, bowing: 1.2 } });
+    d.head = K.drawCharacter(d.g, rc, c, st.x, FLOOR, { pose, mood, flip: st.flip });
+    d.mood = mood; d.pose = pose;
+    return d.head;
+  }
+  function rest(id) { if (drawn[id]) place(id, 'neutral', 'stand'); }
+
+  // A speech bubble of our own: a rounded box with a tail to the speaker's head, Rough.js with a fixed seed so the
+  // box is the same drawing on every frame of the typing. Text is laid out in full first; typing reveals it.
+  function roundRect(x, y, w, h, r) {
+    return `M${x + r},${y} H${x + w - r} Q${x + w},${y} ${x + w},${y + r} V${y + h - r} Q${x + w},${y + h} ${x + w - r},${y + h} H${x + r} Q${x},${y + h} ${x},${y + h - r} V${y + r} Q${x},${y} ${x + r},${y} Z`;
+  }
+  function wrap(text, max) {
+    const words = String(text).split(/\s+/).filter(Boolean), lines = []; let line = '';
+    for (const w of words) { if ((line + ' ' + w).trim().length > max && line) { lines.push(line); line = w; } else line = (line + ' ' + w).trim(); }
+    if (line) lines.push(line); return lines;
+  }
+  let bubble = null; // { lines, spans, size }
+  function drawBubble(text, head, headX) {
+    while (bubbleG.firstChild) bubbleG.removeChild(bubbleG.firstChild);
+    const size = 36, lines = wrap(text, 34);
+    const w = Math.max(...lines.map(l => l.length)) * size * 0.44 + 70, h = lines.length * size * 1.18 + 44;
+    const bx = Math.min(Math.max(headX - w / 2, 30), W - w - 30), by = Math.max(head.headTop - 70 - h, 30);
+    const tipX = head.headX, tipY = head.headTop - 8, tx = Math.min(Math.max(tipX, bx + 50), bx + w - 50);
+    const rc = rough.svg(svg, { options: { seed: 9, roughness: 0.9, bowing: 1 } });
+    bubbleG.appendChild(rc.path(`${roundRect(bx, by, w, h, 28)} M${tx - 24},${by + h - 2} L${tipX},${tipY} L${tx + 24},${by + h - 2}`, { fill: '#fff', fillStyle: 'solid', stroke: INK, strokeWidth: 2.6 }));
+    el('rect', { x: tx - 22, y: by + h - 6, width: 44, height: 8, fill: '#fff' }, bubbleG);
+    const t = el('text', { x: bx + 34, y: by + 24 + size * 0.85, 'font-family': FONT, 'font-size': size, fill: INK }, bubbleG);
+    const spans = lines.map((l, i) => { const s = el('tspan', { x: bx + 34, dy: i === 0 ? 0 : size * 1.18 }, t); s.textContent = ''; return s; });
+    bubble = { lines, spans };
+  }
+  function reveal(n) { // show the first n characters of the bubble's text
+    if (!bubble) return;
+    let left = n;
+    bubble.lines.forEach((l, i) => { bubble.spans[i].textContent = l.slice(0, Math.max(0, left)); left -= l.length + 1; });
+  }
+
+  // ------------------------------------------------------------ the engine
+  let nodes = {}, order = [], current = null, typed = 0, total = 0, typing = false, lastT = 0, raf = 0;
+  const log = [];
+  function validate(list) {
+    if (!Array.isArray(list) || !list.length) throw new Error('the script must be a non-empty array of nodes');
+    const ids = new Set();
+    list.forEach((n, i) => {
+      if (!n || typeof n !== 'object') throw new Error(`node ${i} is not an object`);
+      if (!n.id) throw new Error(`node ${i} has no id`);
+      if (ids.has(n.id)) throw new Error(`node id "${n.id}" is used twice`);
+      ids.add(n.id);
+      if (!STAGE[n.who]) throw new Error(`node "${n.id}": who "${n.who}" is not in the lab cast (ines, oto, vex, unit)`);
+      if (typeof n.text !== 'string') throw new Error(`node "${n.id}" has no text`);
+      if (n.mood && !K.MOODS.includes(n.mood)) throw new Error(`node "${n.id}": mood "${n.mood}" is not one of ${K.MOODS.join(', ')}`);
+      if (n.pose && !K.POSES.includes(n.pose)) throw new Error(`node "${n.id}": pose "${n.pose}" is not one of ${K.POSES.join(', ')}`);
+      if (n.choices && !Array.isArray(n.choices)) throw new Error(`node "${n.id}": choices must be an array`);
+    });
+    list.forEach(n => {
+      if (n.next && !ids.has(n.next)) throw new Error(`node "${n.id}" points at "${n.next}", which does not exist`);
+      (n.choices || []).forEach((c, j) => { if (!c || !c.text) throw new Error(`node "${n.id}" choice ${j} has no text`); if (!ids.has(c.next)) throw new Error(`node "${n.id}" choice "${c.text}" points at "${c.next}", which does not exist`); });
+    });
+  }
+  function load(list) {
+    validate(list);
+    nodes = {}; order = list.map(n => n.id); list.forEach(n => { nodes[n.id] = n; });
+    for (const id in drawn) { drawn[id].g.remove(); delete drawn[id]; }
+    log.length = 0; renderLog();
+    // the two who start on stage
+    place('ines', 'neutral', 'stand'); place('unit', 'neutral', 'stand');
+    go(order[0]);
+  }
+  function go(id) {
+    const n = nodes[id]; current = n;
+    for (const k in drawn) if (k !== n.who) rest(k);
+    const head = place(n.who, n.mood || 'neutral', n.pose || 'stand');
+    drawBubble(n.text, head, STAGE[n.who].x);
+    log.push({ who: who(n.who).name, text: n.text }); renderLog();
+    total = n.text.length; typed = 0; typing = true;
+    $('choices').innerHTML = '';
+    if (reduced) { finishLine(); return; }
+    reveal(0); lastT = performance.now(); cancelAnimationFrame(raf); raf = requestAnimationFrame(tick);
+  }
+  function tick(now) {
+    if (!typing) return;
+    const dt = Math.min(0.1, (now - lastT) / 1000); lastT = now;
+    typed = Math.min(total, typed + dt * (+$('speed').value));
+    reveal(Math.floor(typed));
+    if (typed >= total) finishLine(); else raf = requestAnimationFrame(tick);
+  }
+  function finishLine() {
+    typing = false; cancelAnimationFrame(raf); reveal(total);
+    const box = $('choices'); box.innerHTML = '';
+    const n = current;
+    if (n.choices && n.choices.length) {
+      const p = document.createElement('span'); p.className = 'prompt'; p.textContent = 'you say:'; box.appendChild(p);
+      n.choices.forEach(c => {
+        const b = document.createElement('button'); b.type = 'button'; b.className = 'choice'; b.textContent = c.text;
+        b.addEventListener('click', () => { log.push({ choice: c.text }); go(c.next); });
+        box.appendChild(b);
+      });
+    } else if (n.next) {
+      const b = document.createElement('button'); b.type = 'button'; b.textContent = 'continue'; b.addEventListener('click', () => go(n.next)); box.appendChild(b);
+    } else {
+      const p = document.createElement('span'); p.className = 'prompt'; p.textContent = 'the end of this path.'; box.appendChild(p);
+      const b = document.createElement('button'); b.type = 'button'; b.textContent = 'play again'; b.addEventListener('click', () => load(JSON.parse($('script').value))); box.appendChild(b);
+    }
+  }
+  function skip() {
+    if (typing) { finishLine(); return; }
+    // a second skip on a line with a single next moves on, as a visual novel does
+    const n = current; if (n && !n.choices && n.next) go(n.next);
+  }
+  function renderLog() {
+    const ol = $('log'); ol.innerHTML = '';
+    log.forEach(e => {
+      const li = document.createElement('li');
+      if (e.choice) { li.className = 'choice'; li.textContent = 'you chose: ' + e.choice; }
+      else { const b = document.createElement('b'); b.textContent = e.who + ': '; li.appendChild(b); li.appendChild(document.createTextNode(e.text)); }
+      ol.appendChild(li);
+    });
+    ol.scrollTop = ol.scrollHeight;
+  }
+
+  // ------------------------------------------------------------ controls
+  $('speed').addEventListener('input', (e) => { $('speedOut').value = e.target.value; });
+  $('skip').addEventListener('click', skip);
+  svg.addEventListener('click', skip);
+  $('restart').addEventListener('click', () => { $('error').textContent = ''; try { load(JSON.parse($('script').value)); } catch (e) { $('error').textContent = String(e.message || e); } });
+  $('apply').addEventListener('click', () => {
+    $('error').textContent = '';
+    try { load(JSON.parse($('script').value)); } catch (e) { $('error').textContent = 'not applied: ' + (e.message || e); }
+  });
+  document.addEventListener('keydown', (e) => {
+    const tag = (e.target.tagName || '').toLowerCase();
+    if (tag === 'input' || tag === 'textarea' || tag === 'select' || e.target.isContentEditable) return;
+    if (e.key === ' ') { e.preventDefault(); skip(); }
+    else if (e.key >= '1' && e.key <= '9') { const b = $('choices').querySelectorAll('button.choice')[+e.key - 1]; if (b) b.click(); }
+  });
+
+  $('script').value = JSON.stringify(SCRIPT, null, 1);
+  $('motionNote').textContent = reduced ? 'Your system asks for reduced motion, so each line appears whole instead of typing.' : 'Keys: space finishes a line (and moves on), 1 and 2 pick a choice. A click on the panel does what space does.';
+  load(SCRIPT);
+})();
+</script>
+</body>
+</html>

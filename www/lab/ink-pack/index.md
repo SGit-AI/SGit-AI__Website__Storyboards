@@ -1,0 +1,18 @@
+# Ink pack
+
+> The lab cast drawn twice, by the kit and by a plain-SVG ink pack with thick outlines and flat fills, from the same look fields, poses and moods.
+
+*Source: <https://storyboards.sgit.ai/lab/ink-pack/>. A standalone experiment of the Lab, status exploring, pinned to api.storyboards.sgit.ai v0.1.0. The page is drawn by code; this file is what it says.*
+
+---
+
+**The question.** Can a second character pack, clean thick-line cartoon instead of sketch, keep the kit's contract and stay on model?
+
+## What this taught us
+
+- The thick line buys legibility at small sizes: in the four-across view the ink figure's pose and mood read before the kit's hatched one does, and the flat shirt reads as one colour where the hatching reads as texture. At full panel size the sketch has more life; the ink pack looks like a sticker.
+- Keeping the face on model was the hard part. The kit places eyes, brows and mouth with fixed pixel offsets on a 56 px head; under a 5 px brow and a 5.5 px outline those features vanished, so the ink pack scales every feature with the head (one unit is a 56th of the radius) and gives surprised and excited eyes a white ring. Glasses had to drop to a 4 px line or they swallowed the eyes.
+- Flat fills expose drawing order. The kit's hatching hides where an arm crosses the body; a flat fill does not, so the ink pack draws the far arm, then the body, then the near arm, and every limb is two strokes (ink under colour) to get an outline round a round-capped line.
+- The contract held without a change to the look data: the same skin, hair, shirt, trousers, accessory and height fields drive both packs, all seven poses and ten moods are there, and { headX, headTop } comes back so a bubble would still find the head. The one difference is the signature (no Rough canvas), which is what a kit-level pack switch would have to hide behind a name.
+
+[The Lab](https://storyboards.sgit.ai/lab/index.md)

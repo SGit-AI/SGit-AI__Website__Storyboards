@@ -1,0 +1,249 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Comic page: a lab experiment</title>
+<meta name="description" content="The same seven-panel storyboard laid out as a comic page, a filmstrip and a 2 by 4 grid; a lab experiment of storyboards.sgit.ai, pinned to kit v0.1.0.">
+<link rel="stylesheet" href="https://api.storyboards.sgit.ai/v0/v0.1/v0.1.0/fonts.css" integrity="sha384-ep4bdPYRUzquMICQMhuOkSZ/CB1FnMh6qnGWS1F74VepoLOlw9JGK+Zg+E6/t9dD" crossorigin="anonymous">
+<link rel="stylesheet" href="https://api.storyboards.sgit.ai/v0/v0.1/v0.1.0/storyboard.css" integrity="sha384-NGJqtVi+93pE7lBuwFU0RQWhqnQVLR33Wp8AYH1iAeyC2A7h2ijgU4bEKF5HIKIf" crossorigin="anonymous">
+<script src="https://api.storyboards.sgit.ai/v0/v0.1/v0.1.0/vendor/rough-4.6.6.js" integrity="sha384-XPr5sCJfqHMzoJ8Cn1UYdXXD+XvRi0yoZm3W0yVJ24QP0ps8SYUskiXqnl4yqWlc" crossorigin="anonymous"></script>
+<script src="https://api.storyboards.sgit.ai/v0/v0.1/v0.1.0/props/security.js" integrity="sha384-IkxAFhrp5pQhBSjFCLMEA+1iqFHJ6xPRLeO2n9g478h7Z8hW9cUyvza3PuOtmsOx" crossorigin="anonymous"></script>
+<script src="https://api.storyboards.sgit.ai/v0/v0.1/v0.1.0/storyboard.js" integrity="sha384-3xZhCe5dUdBXMwV57gyscmlqdIjzz9L6huUkcuiEyC0V3jfrlQEdyEhvvF4kCeOa" crossorigin="anonymous"></script>
+<style>
+/* House style: paper, ink, marker, accent, red, page, dim. Titles in Caveat, hand text in Patrick Hand, body in system-ui. */
+:root{--paper:#fbf7ee;--ink:#23262b;--marker:#fde68a;--accent:#0f766e;--red:#dc2626;--page:#f7f3ea;--dim:#5b6169}
+*{box-sizing:border-box}
+html{background:var(--page)}
+body{margin:0;background:var(--page);color:var(--ink);font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;line-height:1.5}
+.lab-head{display:flex;flex-wrap:wrap;align-items:baseline;gap:.3rem 1rem;padding:.7rem 16px;background:var(--paper);border-bottom:2px solid var(--ink)}
+.lab-head h1{margin:0;font-family:Caveat,cursive;font-weight:700;font-size:2.3rem;line-height:1}
+.lab-head .track{font-family:'Patrick Hand',cursive;font-size:1.15rem;background:var(--marker);border:1.5px solid var(--ink);padding:0 .5rem;border-radius:4px}
+.lab-head .pin{color:var(--dim);font-size:.9rem}
+.lab-head a{margin-left:auto;color:var(--accent);font-weight:600;min-height:44px;display:inline-flex;align-items:center}
+main{max-width:1200px;margin:0 auto;padding:1rem 16px 3rem}
+h2{font-family:Caveat,cursive;font-size:2rem;margin:1.6rem 0 .5rem;line-height:1.1}
+p.lede{max-width:60rem;color:var(--dim);margin:.3rem 0 1rem}
+/* controls: real buttons and selects, 44px tall, labelled */
+.controls{display:flex;flex-wrap:wrap;gap:.6rem 1rem;align-items:center;margin:.6rem 0 1rem;padding:.6rem .8rem;background:var(--paper);border:1.5px solid var(--ink);border-radius:10px}
+.controls label{display:inline-flex;align-items:center;gap:.4rem;font-size:.95rem}
+.controls .group{display:inline-flex}
+.controls button,.controls select{font:inherit;font-size:.95rem;min-height:44px;padding:0 .9rem;border:1.5px solid var(--ink);background:#fff;color:var(--ink);cursor:pointer;border-radius:8px}
+.controls select{padding-right:.6rem}
+.controls .group button{border-radius:0;margin-left:-1.5px}
+.controls .group button:first-child{border-radius:8px 0 0 8px;margin-left:0}
+.controls .group button:last-child{border-radius:0 8px 8px 0}
+.controls button[aria-pressed=true]{background:var(--ink);color:var(--paper)}
+.controls button.go{background:var(--accent);color:#fff;border-color:var(--accent)}
+.controls .keys{color:var(--dim);font-size:.85rem}
+.controls kbd{font-family:ui-monospace,Menlo,monospace;font-size:.8rem;border:1px solid var(--dim);border-bottom-width:2px;border-radius:4px;padding:0 .3em;background:#fff}
+/* every layout holds slots; the seven drawn panels move between the slots of the active layout */
+.layout[hidden]{display:none}
+.slot{position:relative;background:var(--paper);border:2px solid var(--ink);overflow:hidden;min-width:0;min-height:0}
+.slot svg{position:absolute;inset:0;width:100%;height:100%;display:block}
+.sheet .slot[data-fit*="slice"] .caption{display:none}
+.slot .num{position:absolute;top:0;right:0;z-index:1;font-family:Caveat,cursive;font-weight:700;font-size:1.1rem;line-height:1;padding:.15rem .4rem .1rem;background:var(--ink);color:var(--paper);border-radius:0 0 0 6px}
+/* (a) the comic page: a sheet in A4 proportion, a 3-column grid with gutters, a title block, a splash spanning two
+   columns, a row of three small panels, a tall one beside a wide one, and the punchline under the last panel */
+.sheet-wrap{width:min(100%,780px);margin:0 auto;container-type:inline-size}
+.sheet{width:100%;aspect-ratio:210/297;background:#fff;border:1px solid #d6d0c4;box-shadow:0 6px 20px rgba(35,38,43,.12);padding:3.2cqw;display:grid;gap:2.2cqw;grid-template-columns:repeat(3,minmax(0,1fr));grid-template-rows:auto 38cqw 18.58cqw 30cqw minmax(0,1fr);grid-template-areas:"title title title" "p1 p1 p2" "p3 p4 p5" "p6 p7 p7" "p6 punch punch"}
+.sheet .title{grid-area:title;border-bottom:3px solid var(--ink);padding-bottom:.3rem;display:flex;flex-wrap:wrap;align-items:baseline;gap:.2rem .8rem}
+.sheet .title b{font-family:Caveat,cursive;font-weight:700;font-size:clamp(1.4rem,3.6vw,2.6rem);line-height:1}
+.sheet .title span{font-family:'Patrick Hand',cursive;color:var(--dim);font-size:clamp(.75rem,1.6vw,1.05rem)}
+.sheet .p1{grid-area:p1}.sheet .p2{grid-area:p2}.sheet .p3{grid-area:p3}.sheet .p4{grid-area:p4}.sheet .p5{grid-area:p5}.sheet .p6{grid-area:p6}.sheet .p7{grid-area:p7}
+.sheet .punch{grid-area:punch;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;font-family:Caveat,cursive;font-weight:700;font-size:clamp(1rem,2.6vw,1.9rem);line-height:1.05;padding:0 .4rem}
+.sheet .punch svg{display:block;width:60%;height:14px}
+.sheet .punch svg path{fill:none;stroke:var(--red);stroke-width:4;stroke-linecap:round}
+/* (b) the filmstrip: one horizontal row, dark stock, sprocket holes drawn with gradients above and below the frames */
+.strip{background:#1f2328;border-radius:10px;padding:26px 14px;overflow-x:auto;scroll-snap-type:x proximity;position:relative}
+.strip::before,.strip::after{content:"";position:absolute;left:0;right:0;height:14px;background-image:radial-gradient(ellipse 7px 5px at center,var(--page) 85%,transparent 90%);background-size:28px 14px;background-repeat:repeat-x;opacity:.9}
+.strip::before{top:6px}.strip::after{bottom:6px}
+.strip .row{display:flex;gap:14px;width:max-content}
+.strip .slot{width:360px;aspect-ratio:16/10;border-color:#000;scroll-snap-align:start;flex:0 0 auto}
+.strip .slot .num{background:#000}
+/* (c) the 2 by 4 grid: eight cells, seven panels and the end card */
+.grid24{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;max-width:900px;margin:0 auto}
+.grid24 .slot{aspect-ratio:16/10}
+.grid24 .end{display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;border:2px dashed var(--ink);background:var(--paper);font-family:Caveat,cursive;font-weight:700;font-size:clamp(1.2rem,3vw,2rem);line-height:1.1;padding:1rem}
+.grid24 .end small{font-family:'Patrick Hand',cursive;font-weight:400;font-size:1rem;color:var(--dim);margin-top:.4rem}
+/* what this taught us */
+.learnt{max-width:62rem}
+.learnt ol{padding-left:1.3rem}
+.learnt li{margin:.5rem 0}
+.learnt b{font-weight:700}
+/* print: only the comic page, fitted to one A4 sheet */
+@page{size:A4 portrait;margin:8mm}
+@media print{
+  html,body{background:#fff}
+  .lab-head,.controls,.learnt,h2,p.lede,.layout:not(#lay-comic){display:none!important}
+  main{max-width:none;padding:0;margin:0}
+  #lay-comic{display:block!important}
+  .sheet-wrap{width:100%}
+  .sheet{box-shadow:none;border:0;padding:0;aspect-ratio:auto;height:270mm}
+  .slot{break-inside:avoid}
+}
+@media (max-width:700px){
+  .lab-head h1{font-size:1.9rem}
+  .strip .slot{width:280px}
+  .grid24{gap:8px}
+}
+@media (prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;transition:none!important}}
+</style>
+</head>
+<body>
+<header class="lab-head">
+  <h1>Comic page</h1>
+  <span class="track">layout</span>
+  <span class="pin">lab · experiment · pinned to kit v0.1.0</span>
+  <a href="../index.html">All experiments</a>
+</header>
+<main>
+  <p class="lede">One storyboard of seven panels, drawn once by the kit, laid out three ways. The data does not change between layouts; only the slots the panels sit in do. The question is what a layout wants from the data that the data does not yet carry.</p>
+
+  <div class="controls" role="group" aria-label="Layout controls">
+    <label>Layout
+      <span class="group" id="layouts">
+        <button type="button" data-layout="comic" aria-pressed="true">Comic page</button>
+        <button type="button" data-layout="strip" aria-pressed="false">Filmstrip</button>
+        <button type="button" data-layout="grid" aria-pressed="false">2 by 4 grid</button>
+      </span>
+    </label>
+    <label for="fit">Panel fit
+      <select id="fit">
+        <option value="composed">composed per slot</option>
+        <option value="xMidYMid slice">crop every panel</option>
+        <option value="xMidYMid meet">letterbox every panel</option>
+      </select>
+    </label>
+    <button type="button" class="go" id="print">Print the comic page</button>
+    <span class="keys"><kbd>1</kbd> <kbd>2</kbd> <kbd>3</kbd> switch layouts</span>
+  </div>
+
+  <!-- (a) the comic page -->
+  <section class="layout" id="lay-comic" aria-label="Comic page layout">
+    <div class="sheet-wrap"><div class="sheet">
+      <div class="title"><b id="sheet-title"></b><span id="sheet-sub"></span></div>
+      <div class="slot p1" data-i="0" data-fit="xMidYMid meet"></div>
+      <div class="slot p2" data-i="1" data-fit="xMidYMid slice"></div>
+      <div class="slot p3" data-i="2"></div>
+      <div class="slot p4" data-i="3"></div>
+      <div class="slot p5" data-i="4"></div>
+      <div class="slot p6" data-i="5" data-fit="xMidYMid slice"></div>
+      <div class="slot p7" data-i="6" data-fit="xMidYMax slice"></div>
+      <div class="punch"><span id="sheet-punch"></span><svg viewBox="0 0 200 14" aria-hidden="true"><path d="M4,8 Q60,2 110,9 T196,6"/></svg></div>
+    </div></div>
+  </section>
+
+  <!-- (b) the filmstrip -->
+  <section class="layout strip" id="lay-strip" aria-label="Filmstrip layout" hidden>
+    <div class="row">
+      <div class="slot" data-i="0"></div><div class="slot" data-i="1"></div><div class="slot" data-i="2"></div><div class="slot" data-i="3"></div><div class="slot" data-i="4"></div><div class="slot" data-i="5"></div><div class="slot" data-i="6"></div>
+    </div>
+  </section>
+
+  <!-- (c) the 2 by 4 grid -->
+  <section class="layout grid24" id="lay-grid" aria-label="2 by 4 grid layout" hidden>
+    <div class="slot" data-i="0"></div><div class="slot" data-i="1"></div><div class="slot" data-i="2"></div><div class="slot" data-i="3"></div><div class="slot" data-i="4"></div><div class="slot" data-i="5"></div><div class="slot" data-i="6"></div>
+    <div class="end"><span id="grid-punch"></span><small>the end · seven panels, one rule</small></div>
+  </section>
+
+  <section class="learnt">
+    <h2>What this taught us</h2>
+    <ol>
+      <li><b>Small panels lose the words first.</b> In the row of three, a panel is a third of a 780px sheet, about 232px wide, so the kit's 1600-wide drawing is shown at 0.145 of its size and the 34px bubble text is under 5px tall. The row reads as pictures: the figure, the laptop, the vault, the terminal's dark block and the yellow caption survive; the words do not. A small panel wants one figure, one prop and a caption of a few words, and the bubbles want the big panels.</li>
+      <li><b>A splash is the cover's job; every other slot shape is a crop, and a crop needs a scene written for it.</b> The cover's 96px title and its own frame fill the two-column slot letterboxed. The tall slot shows the middle 30% of a 16:10 panel's width, the wide slot (anchored to the floor) the lower 78% of its height, so panels 2, 6 and 7 were written for their slot: short lines, people inside the visible strip, one person alone in the tall one. The kit pins the caption to the top left, so a cropped slot can show only half of it; this page hides it there, and the filmstrip and the grid still show it. Try "crop every panel" to see the cover and the small panels lose their edges.</li>
+      <li><b>A layout wants a size hint per panel, and the kit wants to draw into the slot's aspect.</b> Nothing in the data says which panel is the splash, which three are small and which one is tall; this page hard-codes the slots and their fit. The thing to lift is a <code>size</code> hint per scene (splash, wide, tall, small) that the author sets, so a scene is written for its slot, and a <code>drawScene</code> that reads the svg's own aspect and places the cast, the bubbles and the caption inside that frame instead of inside 16:10. Status: a proposal, not in the kit.</li>
+      <li><b>Panel numbers, the title block and the punchline belong to the layout, not the scene.</b> The seven svg elements move between the three layouts with one appendChild each and no redraw; the filmstrip needed only a width, the grid only an eighth cell. The punchline is the layout's text under the last panel rather than a punchline-kind panel, because a punchline panel and a punchline block printed the same line twice. Print fits the sheet to one A4 page with a print stylesheet and no second drawing. Status: the three layouts and the print work.</li>
+    </ol>
+  </section>
+</main>
+
+<script>
+// The lab cast, inline: never fetched.
+const CAST = {"what":"The lab's own cast: three people and an agent, invented for the experiments.","characters":[
+ {"id":"ines","name":"Ines","kind":"human","pronouns":"they/them","role":"the one who asks","look":{"skin":"#c68642","hair":"long","hairColour":"#2b1d14","shirt":"#0f766e","trousers":"#1f2937","accessory":"glasses","height":1.0}},
+ {"id":"oto","name":"Oto","kind":"human","pronouns":"they/them","role":"the one who tries things","look":{"skin":"#f1c27d","hair":"beanie","hatColour":"#b91c1c","hairColour":"#111827","shirt":"#7c3aed","trousers":"#334155","accessory":"headphones","accentColour":"#f59e0b","height":0.96}},
+ {"id":"vex","name":"Vex","kind":"human","pronouns":"they/them","role":"the one who breaks things","look":{"skin":"#e0ac69","hair":"short","hairColour":"#6b7280","shirt":"#374151","trousers":"#111827","accessory":"none","height":1.02}},
+ {"id":"unit","name":"Unit","kind":"agent","pronouns":"it/its","role":"the agent","look":{"colour":"#1d4ed8"}}]};
+
+// The storyboard: seven panels on one rule, in the kit's scene format. Nothing here is a quote.
+const STORY = {
+ "title": "The key that must not leave",
+ "subtitle": "Seven panels on one rule: the vault opens for work, the key stays inside.",
+ "punchline": "The key never leaves. Only its signature does.",
+ "scenes": [
+  {"kind":"cover","title":"The key that must not leave","subtitle":"Seven panels on one rule: the vault opens for work, the key stays inside.",
+   "cast":[{"who":"ines","pose":"wave","mood":"happy"},{"who":"unit","pose":"stand","mood":"happy"},{"who":"vex","pose":"stand","mood":"neutral"}]},
+  {"kind":"scene","setting":"office","caption":"Ines asks the obvious question first.",
+   "cast":[{"who":"ines","x":0.38,"pose":"point","mood":"thinking","says":"Where is the key?"},{"who":"unit","x":0.65,"pose":"stand","mood":"calm","says":"In the vault."}]},
+  {"kind":"scene","setting":"office","caption":"Oto tries to be helpful.",
+   "props":[{"kind":"laptop","x":0.5,"y":760,"scale":1.1},{"kind":"desk","x":0.5,"y":770}],
+   "cast":[{"who":"oto","x":0.24,"pose":"point","mood":"happy","says":"I will copy it to my laptop, just for the demo."},{"who":"unit","x":0.78,"pose":"shrug","mood":"worried","says":"That is the one thing the rule forbids."}]},
+  {"kind":"scene","setting":"night","caption":"Vex tries the other door.",
+   "props":[{"kind":"vault","x":0.5,"label":"locked"},{"kind":"padlock","x":0.5,"y":660,"scale":0.9}],
+   "cast":[{"who":"vex","x":0.2,"pose":"think","mood":"determined","says":"If I cannot take the key, I will take the vault."},{"who":"unit","x":0.8,"pose":"stand","mood":"calm","flip":true,"says":"It signs. It never hands over."}]},
+  {"kind":"scene","setting":"office","caption":"What leaves the vault is a signature, not a key.",
+   "props":[{"kind":"terminal","x":0.5,"y":560,"lines":["$ vault sign message.txt","signed: yes","key left the vault: no"]},{"kind":"envelope","x":0.5,"y":860,"scale":0.8,"label":"signed record"}],
+   "cast":[{"who":"ines","x":0.17,"pose":"stand","mood":"surprised","says":"So I send the message in?"},{"who":"unit","x":0.84,"pose":"point","mood":"happy","flip":true,"says":"And a signed record comes out."}]},
+  {"kind":"scene","setting":"office","caption":"Oto, later, alone with it.",
+   "props":[{"kind":"key","x":0.5,"y":880,"scale":0.7,"colour":"#0f766e"}],
+   "cast":[{"who":"oto","x":0.5,"pose":"think","mood":"thinking","thinks":true,"says":"A place, not a file."}]},
+  {"kind":"scene","setting":"office","caption":"Vex wanted the key. Vex got a signature.",
+   "cast":[{"who":"vex","x":0.2,"pose":"shrug","mood":"confused","says":"So what did I get?"},{"who":"ines","x":0.5,"pose":"wave","mood":"happy"},{"who":"unit","x":0.8,"pose":"arms-up","mood":"excited","flip":true,"says":"A signature. Nothing else."}]}
+ ]
+};
+
+(function () {
+  'use strict';
+  const NS = 'http://www.w3.org/2000/svg';
+  const kit = window.StoryboardKit;
+  const fit = document.getElementById('fit');
+  // Draw the seven panels once, each with its own seed, so a panel is the same picture in every layout.
+  const panels = STORY.scenes.map((scene, i) => {
+    const svg = document.createElementNS(NS, 'svg');
+    kit.drawScene(svg, scene, CAST, { seed: 11 + i });
+    // The kit gives the caption and the bubbles the same class, pop; the caption is the one without a delay. Tag it.
+    svg.querySelectorAll('.pop:not([style])').forEach(c => c.classList.add('caption'));
+    return svg;
+  });
+  // A slot on the comic page says how its panel fits (data-fit); "composed" honours that, the other two override it.
+  const fitFor = (slot) => fit.value === 'composed' ? (slot.dataset.fit || 'xMidYMid meet') : fit.value;
+  const numberOf = (slot, i) => {
+    const b = document.createElement('b'); b.className = 'num'; b.textContent = i + 1; slot.appendChild(b);
+  };
+  // Moving the svg elements into the active layout's slots is the whole switch: no redraw, no second copy.
+  function place(name) {
+    document.querySelectorAll('.layout').forEach(l => { l.hidden = l.id !== 'lay-' + name; });
+    const active = document.getElementById('lay-' + name);
+    active.querySelectorAll('.slot').forEach(slot => {
+      const i = +slot.dataset.i, svg = panels[i];
+      svg.setAttribute('preserveAspectRatio', fitFor(slot));
+      slot.innerHTML = '';
+      slot.appendChild(svg);
+      numberOf(slot, i);
+    });
+    document.querySelectorAll('#layouts button').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.layout === name)));
+    try { history.replaceState(null, '', '#' + name); } catch (e) { /* the hash is a convenience */ }
+  }
+  document.getElementById('sheet-title').textContent = STORY.title;
+  document.getElementById('sheet-sub').textContent = STORY.subtitle;
+  document.getElementById('sheet-punch').textContent = STORY.punchline;
+  document.getElementById('grid-punch').textContent = STORY.punchline;
+  const names = ['comic', 'strip', 'grid'];
+  document.querySelectorAll('#layouts button').forEach(b => b.addEventListener('click', () => place(b.dataset.layout)));
+  fit.addEventListener('change', () => document.querySelectorAll('.layout:not([hidden]) .slot').forEach(slot => panels[+slot.dataset.i].setAttribute('preserveAspectRatio', fitFor(slot))));
+  document.getElementById('print').addEventListener('click', () => { place('comic'); setTimeout(() => window.print(), 50); });
+  // The print stylesheet shows only the comic page, but the panels must be in its slots when the sheet prints.
+  window.addEventListener('beforeprint', () => { if (document.getElementById('lay-comic').hidden) place('comic'); });
+  // Keys 1, 2, 3 switch layouts; keys typed into a field or a select are left alone.
+  document.addEventListener('keydown', (e) => {
+    if (e.metaKey || e.ctrlKey || e.altKey || /^(INPUT|SELECT|TEXTAREA)$/.test(e.target.tagName)) return;
+    const k = names[+e.key - 1];
+    if (k) { e.preventDefault(); place(k); }
+  });
+  const start = location.hash.replace('#', '');
+  place(names.includes(start) ? start : 'comic');
+})();
+</script>
+</body>
+</html>

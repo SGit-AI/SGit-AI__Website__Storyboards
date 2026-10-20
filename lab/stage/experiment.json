@@ -1,0 +1,19 @@
+{
+ "slug": "stage",
+ "title": "Stage",
+ "track": "motion",
+ "question": "Can a storyboard's actors be directed like a game, from a script of verbs, and can playing the game write the script?",
+ "summary": "A script of verbs (enter, walk, say, think, camera) the actors carry out, drawn by the kit's own drawCharacter; a timeline, a scrubber, and a direct mode where the arrow keys move an actor and what you do is written into the script.",
+ "kit": "v0.1.0",
+ "libraries": [],
+ "order": 1,
+ "status": "promising",
+ "date": "2026-10-20",
+ "learnt": [
+  "The script is a storyboard with time in it: a panel is a script where every action is at t = 0, and a played script is a panel at every t. One data file can hold both.",
+  "Redraw on change, move by transform: drawing a character once per pose and mood and moving the group keeps Rough.js still; redrawing every frame makes the sketch boil.",
+  "Direct mode is the editor nobody has to learn: walking an actor with the arrow keys and typing a line writes the actions with their times. Playing the game wrote the data.",
+  "What the kit should export next: its bubble, caption and setting as functions, and a walk pose. This page redraws its own bubble in the kit's ink to get round it.",
+  "Timing needs a grammar: 'when their last line ends' was enough for two actors; a third and a camera wanted at and wait. A tiny timeline language is the next experiment, not a bigger JSON."
+ ]
+}

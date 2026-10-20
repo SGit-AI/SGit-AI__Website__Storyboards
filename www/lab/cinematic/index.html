@@ -1,0 +1,217 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Cinematic: a lab experiment</title>
+<meta name="description" content="One kit panel choreographed with an anime.js timeline instead of the kit's CSS play: a scrubber, speed and easing; a lab experiment of storyboards.sgit.ai, pinned to kit v0.1.0.">
+<link rel="stylesheet" href="https://api.storyboards.sgit.ai/v0/v0.1/v0.1.0/fonts.css" integrity="sha384-ep4bdPYRUzquMICQMhuOkSZ/CB1FnMh6qnGWS1F74VepoLOlw9JGK+Zg+E6/t9dD" crossorigin="anonymous">
+<link rel="stylesheet" href="https://api.storyboards.sgit.ai/v0/v0.1/v0.1.0/storyboard.css" integrity="sha384-NGJqtVi+93pE7lBuwFU0RQWhqnQVLR33Wp8AYH1iAeyC2A7h2ijgU4bEKF5HIKIf" crossorigin="anonymous">
+<script src="https://api.storyboards.sgit.ai/v0/v0.1/v0.1.0/vendor/rough-4.6.6.js" integrity="sha384-XPr5sCJfqHMzoJ8Cn1UYdXXD+XvRi0yoZm3W0yVJ24QP0ps8SYUskiXqnl4yqWlc" crossorigin="anonymous"></script>
+<script src="https://api.storyboards.sgit.ai/v0/v0.1/v0.1.0/props/security.js" integrity="sha384-IkxAFhrp5pQhBSjFCLMEA+1iqFHJ6xPRLeO2n9g478h7Z8hW9cUyvza3PuOtmsOx" crossorigin="anonymous"></script>
+<script src="https://api.storyboards.sgit.ai/v0/v0.1/v0.1.0/storyboard.js" integrity="sha384-3xZhCe5dUdBXMwV57gyscmlqdIjzz9L6huUkcuiEyC0V3jfrlQEdyEhvvF4kCeOa" crossorigin="anonymous"></script>
+<script src="../vendor/anime-3.2.2.min.js"></script>
+<style>
+/* House style: paper, ink, marker, accent, red, page, dim. Titles in Caveat, hand text in Patrick Hand, body in system-ui. */
+:root{--paper:#fbf7ee;--ink:#23262b;--marker:#fde68a;--accent:#0f766e;--red:#dc2626;--page:#f7f3ea;--dim:#5b6169}
+*{box-sizing:border-box}
+html{background:var(--page)}
+body{margin:0;background:var(--page);color:var(--ink);font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;line-height:1.5}
+.lab-head{display:flex;flex-wrap:wrap;align-items:baseline;gap:.3rem 1rem;padding:.7rem 16px;background:var(--paper);border-bottom:2px solid var(--ink)}
+.lab-head h1{margin:0;font-family:Caveat,cursive;font-weight:700;font-size:2.3rem;line-height:1}
+.lab-head .track{font-family:'Patrick Hand',cursive;font-size:1.15rem;background:var(--marker);border:1.5px solid var(--ink);padding:0 .5rem;border-radius:4px}
+.lab-head .pin{color:var(--dim);font-size:.9rem}
+.lab-head a{margin-left:auto;color:var(--accent);font-weight:600;min-height:44px;display:inline-flex;align-items:center}
+main{max-width:1200px;margin:0 auto;padding:1rem 16px 3rem}
+h2{font-family:Caveat,cursive;font-size:2rem;margin:1.6rem 0 .5rem;line-height:1.1}
+p.lede{max-width:60rem;color:var(--dim);margin:.3rem 0 1rem}
+/* the stage: one panel, 16:10, drawn by the kit; the groups it tagged are what the timeline moves */
+.stage{max-width:1000px;margin:0 auto}
+.stage .frame{background:var(--paper);border:2px solid var(--ink);border-radius:10px;overflow:hidden;box-shadow:6px 6px 0 var(--ink)}
+.stage svg{display:block;width:100%;height:auto;aspect-ratio:16/10;background:var(--paper)}
+/* a bubble pops from its tail, an actor and a prop move as a block; the paths draw from a dash of their own length */
+.stage .pop{transform-box:fill-box;transform-origin:50% 100%}
+.stage .actor,.stage .prop,.stage .scenery{transform-box:fill-box;transform-origin:50% 100%}
+.stage path[pathLength]{stroke-dasharray:1}
+.controls{display:flex;flex-wrap:wrap;gap:.6rem 1rem;align-items:center;margin:.8rem 0;padding:.6rem .8rem;background:var(--paper);border:1.5px solid var(--ink);border-radius:10px}
+.controls button,.controls select{font:inherit;font-size:.95rem;min-height:44px;padding:0 .9rem;border:1.5px solid var(--ink);background:#fff;color:var(--ink);cursor:pointer;border-radius:8px}
+.controls button[aria-pressed=true]{background:var(--ink);color:var(--paper)}
+.controls button:disabled{opacity:.5;cursor:default}
+.controls label{display:inline-flex;align-items:center;gap:.5rem}
+.controls label.wide{flex:1 1 16rem;min-width:0}
+.controls input[type=range]{flex:1;min-width:6rem;height:44px;accent-color:var(--accent)}
+.controls .readout{font-family:ui-monospace,Menlo,monospace;font-size:.85rem;color:var(--dim);white-space:nowrap}
+.controls .keys{color:var(--dim);font-size:.85rem}
+.controls kbd{font-family:ui-monospace,Menlo,monospace;font-size:.8rem;border:1px solid var(--dim);border-bottom-width:2px;border-radius:4px;padding:0 .3em;background:#fff}
+.tracks{max-width:1000px;margin:.6rem auto 0;font-family:'Patrick Hand',cursive;font-size:1.05rem;color:var(--dim)}
+.tracks b{color:var(--ink);font-weight:400}
+.note{max-width:1000px;margin:.4rem auto 0;color:var(--dim);font-size:.9rem}
+.learnt{max-width:62rem}
+.learnt ol{padding-left:1.3rem}
+.learnt li{margin:.5rem 0}
+@media (max-width:700px){.lab-head h1{font-size:1.9rem}.stage .frame{box-shadow:3px 3px 0 var(--ink)}}
+</style>
+</head>
+<body>
+<header class="lab-head">
+  <h1>Cinematic</h1>
+  <span class="track">motion</span>
+  <span class="pin">lab · experiment · pinned to kit v0.1.0</span>
+  <a href="../index.html">All experiments</a>
+</header>
+<main>
+  <p class="lede">One panel, drawn once by the kit with its seed, then choreographed by an anime.js timeline instead of the kit's CSS play: the setting fades in, the prop slides up, each character enters from their side with a small overshoot, each bubble pops and its words arrive one by one, and the caption slides in last. The drawing is untouched; only the groups the kit tagged are moved.</p>
+
+  <div class="stage">
+    <div class="frame"><svg id="panel" xmlns="http://www.w3.org/2000/svg"></svg></div>
+  </div>
+  <div class="controls" role="group" aria-label="Timeline controls">
+    <button type="button" id="play" aria-pressed="false">Play</button>
+    <button type="button" id="restart">Restart</button>
+    <label class="wide" for="scrub">Time <input type="range" id="scrub" min="0" max="1000" value="0" step="10"> <span class="readout" id="time">0.00 s</span></label>
+    <label for="speed">Speed <select id="speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option></select></label>
+    <label for="easing">Easing <select id="easing"><option value="easeOutBack" selected>easeOutBack</option><option value="easeOutElastic(1, .6)">easeOutElastic</option><option value="linear">linear</option></select></label>
+    <span class="keys"><kbd>space</kbd> play <kbd>←</kbd> <kbd>→</kbd> a quarter second</span>
+  </div>
+  <p class="tracks" id="tracks"></p>
+  <p class="note" id="note"></p>
+
+  <section class="learnt">
+    <h2>What this taught us</h2>
+    <ol id="learnt"></ol>
+  </section>
+</main>
+
+<script>
+// The lab cast, inline: never fetched.
+const CAST = {"what":"The lab's own cast: three people and an agent, invented for the experiments.","characters":[
+ {"id":"ines","name":"Ines","kind":"human","pronouns":"they/them","role":"the one who asks","look":{"skin":"#c68642","hair":"long","hairColour":"#2b1d14","shirt":"#0f766e","trousers":"#1f2937","accessory":"glasses","height":1.0}},
+ {"id":"oto","name":"Oto","kind":"human","pronouns":"they/them","role":"the one who tries things","look":{"skin":"#f1c27d","hair":"beanie","hatColour":"#b91c1c","hairColour":"#111827","shirt":"#7c3aed","trousers":"#334155","accessory":"headphones","accentColour":"#f59e0b","height":0.96}},
+ {"id":"vex","name":"Vex","kind":"human","pronouns":"they/them","role":"the one who breaks things","look":{"skin":"#e0ac69","hair":"short","hairColour":"#6b7280","shirt":"#374151","trousers":"#111827","accessory":"none","height":1.02}},
+ {"id":"unit","name":"Unit","kind":"agent","pronouns":"it/its","role":"the agent","look":{"colour":"#1d4ed8"}}]};
+
+// The scene, in the kit's format: two characters, a prop, a caption and a bubble each. Nothing here is a quote.
+const SCENE = {"kind":"scene","setting":"office","caption":"The lab, late. One rule on the wall.",
+ "props":[{"kind":"vault","x":0.5,"label":"the vault"}],
+ "cast":[{"who":"ines","x":0.2,"pose":"point","mood":"thinking","says":"Can the key come out, just for a minute?"},
+         {"who":"unit","x":0.8,"pose":"shrug","mood":"calm","flip":true,"says":"No. Bring the message to the key."}]};
+
+const LEARNT = [
+ "A real timeline gives three things a CSS class cannot: a scrubber (seek to any millisecond, forwards or back, while paused), a speed, and an easing you can swap and compare on the same panel. The kit's play() gives one run at one speed with no way back. The cost is about sixty lines of choreography for one panel against one class, and a vendored library; a storyboard with forty panels would want the choreography written once from data, not by hand per panel.",
+ "The kit's markup made the big groups easy and the details hard. actor, prop, scenery and pop found everything the timeline moves. What took digging: the floor line is a bare ink group found only by its position in the setting; the caption and the bubbles share the class pop and differ only by a style attribute; a bubble carries no link to its speaker (document order says whose it is); which side an actor enters from had to be read from the x of its name; and a bubble's lines are tspans with their own x and dy, so a word-by-word reveal has to keep the first word's attributes and fade the rest with fill-opacity, since opacity does not apply to a tspan.",
+ "What to lift into the kit: a data-who on each actor and its bubble, a class on the caption and on the setting's floor, a transform-origin on pop, and an arrival list, the delays the kit already writes as --d, exposed as data ({ target, at }) so a page can build a timeline from it instead of guessing the order. With those, this page's choreography would be data too. Status: the page works; the lifts are proposals.",
+ "The transforms are CSS transforms on SVG groups, and that works in Chromium with transform-box: fill-box, but the kit's own play uses them too and never says so; a translateX on an actor is in panel units because the group lives inside the viewBox, which is convenient and surprising. Scrubbing a word-by-word reveal is the one place the timeline shows its seams: words are discrete, so a seek lands between them and the sentence is half there, which reads as a glitch where the strokes and the slides read as a pause."
+];
+
+(function () {
+  'use strict';
+  const kit = window.StoryboardKit;
+  const reduced = (() => { try { return matchMedia('(prefers-reduced-motion: reduce)').matches; } catch (e) { return false; } })();
+  const svg = document.getElementById('panel');
+  kit.drawScene(svg, SCENE, CAST, { seed: 11 });
+
+  // ---- the targets, read from the markup the kit produced
+  const main = svg.querySelector('svg > g');
+  const floor = main.firstElementChild; // setting() draws the floor line first, as a bare ink group
+  const scenery = [...svg.querySelectorAll('.scenery')];
+  const props = [...svg.querySelectorAll('.prop')];
+  const actors = [...svg.querySelectorAll('.actor')];
+  const bubbles = [...svg.querySelectorAll('.pop[style]')];   // the kit gives bubbles a --d delay; the caption none
+  const caption = svg.querySelector('.pop:not([style])');
+  const sideOf = (actor) => +actor.querySelector('text.name').getAttribute('x') < kit.W / 2 ? -1 : 1;
+  const strokesIn = (el) => [...el.querySelectorAll('path[pathLength]')];
+  // Split each bubble line into words: the first word keeps the line's x and dy, the rest follow it, each faded in by
+  // fill-opacity (opacity does not apply to a tspan).
+  const words = [];
+  bubbles.forEach(b => {
+    b.querySelectorAll('text > tspan').forEach(line => {
+      const parts = line.textContent.split(/\s+/).filter(Boolean), text = line.parentNode;
+      parts.forEach((w, i) => {
+        const t = document.createElementNS('http://www.w3.org/2000/svg', 'tspan');
+        if (i === 0) { t.setAttribute('x', line.getAttribute('x')); t.setAttribute('dy', line.getAttribute('dy')); }
+        t.textContent = i === 0 ? w : ' ' + w;
+        t.style.fillOpacity = '0';
+        text.insertBefore(t, line);
+        words.push(t);
+      });
+      line.remove();
+    });
+  });
+  const summary = `targets found: ${scenery.length} scenery, 1 floor, ${props.length} prop${props.length === 1 ? '' : 's'}, ${actors.length} actors, ${bubbles.length} bubbles (${words.length} words), ${caption ? 1 : 0} caption, ${strokesIn(svg).length} strokes with pathLength`;
+  document.getElementById('tracks').innerHTML = '<b>' + summary + '</b>';
+  window.__lab = { summary, duration: 0 };
+
+  // ---- the timeline
+  let tl = null, scrubbing = false;
+  const scrub = document.getElementById('scrub'), time = document.getElementById('time'), playBtn = document.getElementById('play');
+  function build(easing) {
+    const t = anime.timeline({ autoplay: false, easing: 'easeOutQuad', update: (a) => { if (!scrubbing) { scrub.value = a.currentTime; time.textContent = (a.currentTime / 1000).toFixed(2) + ' s'; } }, complete: () => { playBtn.textContent = 'Play'; playBtn.setAttribute('aria-pressed', 'false'); } });
+    // 1. the setting fades in and the floor draws itself
+    t.add({ targets: scenery.concat([floor]), opacity: [0, 1], duration: 500 }, 0);
+    t.add({ targets: strokesIn(floor), strokeDashoffset: [1, 0], duration: 700 }, 0);
+    // 2. the props slide up
+    t.add({ targets: props, translateY: [70, 0], opacity: { value: [0, 1], duration: 300 }, duration: 600, easing, delay: anime.stagger(150) }, 300);
+    // 3. each character enters from their side with an overshoot while their strokes draw in
+    actors.forEach((a, i) => {
+      const at = 800 + i * 350;
+      t.add({ targets: a, translateX: [sideOf(a) * 260, 0], opacity: { value: [0, 1], duration: 250 }, duration: 700, easing }, at);
+      t.add({ targets: strokesIn(a), strokeDashoffset: [1, 0], duration: 800 }, at);
+    });
+    // 4. each bubble pops from its tail, then its words arrive one by one
+    let at = 800 + actors.length * 350 + 300;
+    bubbles.forEach(b => {
+      t.add({ targets: b, scale: [0, 1], opacity: { value: [0, 1], duration: 120 }, duration: 450, easing }, at);
+      const ws = words.filter(w => b.contains(w));
+      t.add({ targets: ws, fillOpacity: [0, 1], duration: 140, delay: anime.stagger(90) }, at + 220);
+      at += 220 + ws.length * 90 + 400;
+    });
+    // 5. the caption slides in last
+    if (caption) t.add({ targets: caption, translateX: [-160, 0], opacity: { value: [0, 1], duration: 250 }, duration: 500, easing }, at);
+    scrub.max = t.duration;
+    window.__lab.duration = t.duration;
+    document.getElementById('note').textContent = `The timeline runs ${(t.duration / 1000).toFixed(2)} s at 1x: setting, prop, two entrances, two bubbles with ${words.length} words, caption. Easing ${easing} on the entrances, the pops and the caption; the strokes and the fades keep easeOutQuad.`;
+    return t;
+  }
+  function rebuild() {
+    const was = tl ? tl.currentTime : 0, running = tl && !tl.paused;
+    if (tl) tl.pause();
+    tl = build(document.getElementById('easing').value);
+    tl.seek(Math.min(was, tl.duration));
+    if (running && !reduced) tl.play();
+  }
+  rebuild();
+  if (reduced) {
+    // reduced motion: the panel is a still at the end of the timeline; the scrubber still shows any moment of it
+    tl.seek(tl.duration); scrub.value = tl.duration; time.textContent = (tl.duration / 1000).toFixed(2) + ' s';
+    playBtn.disabled = true; playBtn.textContent = 'Play (off: reduced motion)';
+  }
+
+  // ---- controls
+  const toggle = () => {
+    if (reduced) return;
+    if (tl.paused) { if (tl.completed || tl.currentTime >= tl.duration) tl.restart(); else tl.play(); playBtn.textContent = 'Pause'; playBtn.setAttribute('aria-pressed', 'true'); }
+    else { tl.pause(); playBtn.textContent = 'Play'; playBtn.setAttribute('aria-pressed', 'false'); }
+  };
+  playBtn.addEventListener('click', toggle);
+  document.getElementById('restart').addEventListener('click', () => { if (reduced) { tl.seek(0); scrub.value = 0; time.textContent = '0.00 s'; return; } tl.restart(); playBtn.textContent = 'Pause'; playBtn.setAttribute('aria-pressed', 'true'); });
+  const seekTo = (ms) => { tl.pause(); playBtn.textContent = 'Play'; playBtn.setAttribute('aria-pressed', 'false'); tl.seek(Math.max(0, Math.min(tl.duration, ms))); scrub.value = tl.currentTime; time.textContent = (tl.currentTime / 1000).toFixed(2) + ' s'; };
+  scrub.addEventListener('input', () => { scrubbing = true; seekTo(+scrub.value); scrubbing = false; });
+  document.getElementById('speed').addEventListener('change', (e) => { anime.speed = +e.target.value; });
+  document.getElementById('easing').addEventListener('change', rebuild);
+  // Keys: space plays or pauses, the arrows seek a quarter second; keys typed into a field, and space on a button, are left alone.
+  document.addEventListener('keydown', (e) => {
+    if (e.metaKey || e.ctrlKey || e.altKey || /^(INPUT|SELECT|TEXTAREA)$/.test(e.target.tagName)) return;
+    if ((e.key === ' ' || e.key === 'Enter') && e.target.tagName === 'BUTTON') return;
+    if (e.key === ' ') { e.preventDefault(); toggle(); }
+    else if (e.key === 'ArrowRight') { e.preventDefault(); seekTo(tl.currentTime + 250); }
+    else if (e.key === 'ArrowLeft') { e.preventDefault(); seekTo(tl.currentTime - 250); }
+  });
+  window.__lab.seek = (ms) => seekTo(ms);
+  // The timeline plays once on arrival, so the first view is the choreography and not an empty panel at 0 s.
+  if (!reduced) setTimeout(() => { if (tl.paused && tl.currentTime === 0) toggle(); }, 500);
+  const learnt = document.getElementById('learnt');
+  LEARNT.forEach(t => { const li = document.createElement('li'); const i = t.indexOf('. '); const b = document.createElement('b'); b.textContent = t.slice(0, i + 1); li.appendChild(b); li.appendChild(document.createTextNode(t.slice(i + 1))); learnt.appendChild(li); });
+})();
+</script>
+</body>
+</html>

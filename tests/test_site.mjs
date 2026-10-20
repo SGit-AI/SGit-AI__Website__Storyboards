@@ -46,6 +46,8 @@ async function visit(rel, check, name) {
   page.on('requestfailed', (r) => errors.push('failed: ' + r.url()));
   await page.goto(`${SITE}/${rel}`);
   await page.waitForLoadState('networkidle');
+  // a Lab page draws on its own clock (timelines, physics, an engine): give it a moment before judging its console
+  if (rel.startsWith('lab/')) await page.waitForTimeout(2500);
   if (check) await check(page);
   if (shots && name) await page.screenshot({ path: join(shots, name + '.png'), fullPage: !!process.env.FULL });
   assert.deepEqual(errors, [], `${rel}: ${errors.join('; ')}`);

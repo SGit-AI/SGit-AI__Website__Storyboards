@@ -1,0 +1,18 @@
+{
+ "slug": "sequence",
+ "title": "A sequence diagram",
+ "track": "deeper",
+ "question": "What does a sequence diagram gain when its lifelines are characters with faces, and what does a text language for its messages need?",
+ "summary": "A sequence diagram with the lab cast as lifelines, messages from a tiny text language, envelopes that travel, arrows that draw themselves and faces that react.",
+ "kit": "v0.1.0",
+ "libraries": [],
+ "status": "promising",
+ "date": "2026-10-20",
+ "learnt": [
+  "Characters give a sequence diagram a reaction, which a box never has. A UML lifeline says who sent what; a face at the top says how it landed. Vex's lifeline reads as an attack before any arrow arrives, because Vex looks like Vex, and a vault that answers with a padlock says more than a return arrow. The mood suffix on a line became the most used part of the language.",
+  "The DSL needed four things and no more: a solid arrow, a dashed reply, a note over one lifeline, and a mood in square brackets, plus an error that names the line and shows the three shapes it accepts. What it does not have and wanted at once: a message to oneself, an activation bar on a lifeline, and two messages at the same time. Status: the four shapes work; the rest is parked.",
+  "The layout fights the drawing at the top and at the labels. The kit's figures are 510 panel units tall and stand on a floor, so at half size the header takes 265 of the diagram's units before the first message, and the vault had to be drawn by hand to the pack's look to stand at the same height. A label longer than the gap between two lifelines crosses the next one, so this page wraps labels at 26 characters and gives a long message a taller row: the diagram grows down, never sideways.",
+  "One state count drives everything. Play, step and the scrubber all call setState(k): messages under k are shown, the rest hidden, and each face is the last mood its lifeline received, redrawn from the same seed so only the face moves. The envelope (600 ms, requestAnimationFrame) and the arrow's draw-in (350 ms) are the only things that happen in time, and both are skipped when the reader scrubs or asks for reduced motion.",
+  "A CSS draw-in that depends on an attribute selector did not start in Chromium 141. The first version revealed an arrow by toggling a class on its group and let a rule on path[pathLength] draw the stroke; the class changed, the paths were never restyled, and the arrows stayed invisible until something else touched them. The kit's own play() uses the same shape of rule and shows the same symptom in this browser (the scrolly experiment has the one-line nudge). This page sets the dash offset inline and draws the stroke with element.animate, which works everywhere tried. Status: a bug to report against the kit's CSS, with the fix of classing the paths instead of selecting them by attribute."
+ ]
+}

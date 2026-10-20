@@ -1,0 +1,249 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Scrolly: a lab experiment</title>
+<meta name="description" content="A scrollytelling storyboard: one sticky panel redrawn and played as eight steps of text scroll past; a lab experiment of storyboards.sgit.ai, pinned to kit v0.1.0.">
+<link rel="stylesheet" href="https://api.storyboards.sgit.ai/v0/v0.1/v0.1.0/fonts.css" integrity="sha384-ep4bdPYRUzquMICQMhuOkSZ/CB1FnMh6qnGWS1F74VepoLOlw9JGK+Zg+E6/t9dD" crossorigin="anonymous">
+<link rel="stylesheet" href="https://api.storyboards.sgit.ai/v0/v0.1/v0.1.0/storyboard.css" integrity="sha384-NGJqtVi+93pE7lBuwFU0RQWhqnQVLR33Wp8AYH1iAeyC2A7h2ijgU4bEKF5HIKIf" crossorigin="anonymous">
+<script src="https://api.storyboards.sgit.ai/v0/v0.1/v0.1.0/vendor/rough-4.6.6.js" integrity="sha384-XPr5sCJfqHMzoJ8Cn1UYdXXD+XvRi0yoZm3W0yVJ24QP0ps8SYUskiXqnl4yqWlc" crossorigin="anonymous"></script>
+<script src="https://api.storyboards.sgit.ai/v0/v0.1/v0.1.0/props/security.js" integrity="sha384-IkxAFhrp5pQhBSjFCLMEA+1iqFHJ6xPRLeO2n9g478h7Z8hW9cUyvza3PuOtmsOx" crossorigin="anonymous"></script>
+<script src="https://api.storyboards.sgit.ai/v0/v0.1/v0.1.0/storyboard.js" integrity="sha384-3xZhCe5dUdBXMwV57gyscmlqdIjzz9L6huUkcuiEyC0V3jfrlQEdyEhvvF4kCeOa" crossorigin="anonymous"></script>
+<style>
+/* House style: paper, ink, marker, accent, red, page, dim. Titles in Caveat, hand text in Patrick Hand, body in system-ui. */
+:root{--paper:#fbf7ee;--ink:#23262b;--marker:#fde68a;--accent:#0f766e;--red:#dc2626;--page:#f7f3ea;--dim:#5b6169}
+*{box-sizing:border-box}
+html{background:var(--page);scroll-behavior:smooth}
+body{margin:0;background:var(--page);color:var(--ink);font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;line-height:1.5}
+/* the progress bar: how far down the story the reader is */
+#progress{position:fixed;top:0;left:0;height:5px;width:0;background:var(--accent);z-index:20}
+.lab-head{display:flex;flex-wrap:wrap;align-items:baseline;gap:.3rem 1rem;padding:.7rem 16px;background:var(--paper);border-bottom:2px solid var(--ink)}
+.lab-head h1{margin:0;font-family:Caveat,cursive;font-weight:700;font-size:2.3rem;line-height:1}
+.lab-head .track{font-family:'Patrick Hand',cursive;font-size:1.15rem;background:var(--marker);border:1.5px solid var(--ink);padding:0 .5rem;border-radius:4px}
+.lab-head .pin{color:var(--dim);font-size:.9rem}
+.lab-head a{margin-left:auto;color:var(--accent);font-weight:600;min-height:44px;display:inline-flex;align-items:center}
+main{max-width:1200px;margin:0 auto;padding:1rem 16px 3rem}
+h2{font-family:Caveat,cursive;font-size:2rem;margin:1.6rem 0 .5rem;line-height:1.1}
+p.lede{max-width:60rem;color:var(--dim);margin:.3rem 0 1rem}
+.controls{display:flex;flex-wrap:wrap;gap:.6rem 1rem;align-items:center;margin:.6rem 0 1rem;padding:.6rem .8rem;background:var(--paper);border:1.5px solid var(--ink);border-radius:10px}
+.controls button{font:inherit;font-size:.95rem;min-height:44px;padding:0 .9rem;border:1.5px solid var(--ink);background:#fff;color:var(--ink);cursor:pointer;border-radius:8px}
+.controls button[aria-pressed=true]{background:var(--ink);color:var(--paper)}
+.controls .keys{color:var(--dim);font-size:.85rem}
+.controls kbd{font-family:ui-monospace,Menlo,monospace;font-size:.8rem;border:1px solid var(--dim);border-bottom-width:2px;border-radius:4px;padding:0 .3em;background:#fff}
+.readout{font-family:ui-monospace,Menlo,monospace;font-size:.82rem;color:var(--dim)}
+/* the story: a sticky stage on the left, the steps on the right */
+.scrolly{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:2rem;align-items:start}
+.stage{position:sticky;top:12px}
+.stage .sb-panel{background:var(--paper);border:2px solid var(--ink);border-radius:8px;overflow:hidden;box-shadow:6px 6px 0 var(--ink)}
+.stage svg{display:block;width:100%;height:auto;aspect-ratio:16/10;background:var(--paper)}
+.stage .meta{display:flex;justify-content:space-between;gap:1rem;margin:.6rem .2rem 0;font-family:'Patrick Hand',cursive;font-size:1.1rem;color:var(--dim)}
+.steps{padding:12vh 0 40vh}
+.step{min-height:62vh;display:flex;align-items:center}
+.step .card{margin:0;padding:1rem 1.2rem;background:#fff;border:1.5px solid #d6d0c4;border-left:6px solid #d6d0c4;border-radius:8px;font-size:1.08rem;transition:border-color .25s,box-shadow .25s}
+.step .card b{display:block;font-family:Caveat,cursive;font-size:1.6rem;line-height:1.1;margin-bottom:.2rem}
+.step.active .card{border-color:var(--ink);border-left-color:var(--accent);box-shadow:4px 4px 0 var(--marker)}
+/* panels only: the eight panels in a column, no prose */
+.column{display:none;max-width:820px;margin:0 auto}
+.column figure{margin:0 0 1.2rem}
+.column .sb-panel{border:2px solid var(--ink);border-radius:8px;overflow:hidden;background:var(--paper)}
+.column svg{display:block;width:100%;height:auto;aspect-ratio:16/10;background:var(--paper)}
+.column figcaption{font-family:'Patrick Hand',cursive;font-size:1.05rem;color:var(--dim);margin-top:.3rem}
+body.panels-only .scrolly{display:none}
+body.panels-only .column{display:block}
+.learnt{max-width:62rem}
+.learnt ol{padding-left:1.3rem}
+.learnt li{margin:.5rem 0}
+@media (max-width:760px){
+  .lab-head h1{font-size:1.9rem}
+  .scrolly{grid-template-columns:1fr;gap:0}
+  .stage{top:0;z-index:5;background:var(--page);padding:6px 0}
+  .stage .sb-panel{box-shadow:3px 3px 0 var(--ink);width:min(100%,60vh);margin:0 auto}
+  .stage .meta{font-size:.95rem}
+  .steps{padding:4vh 0 30vh}
+  .step{min-height:52vh}
+}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}.step .card{transition:none}}
+</style>
+</head>
+<body>
+<div id="progress" role="progressbar" aria-label="How far through the story" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"></div>
+<header class="lab-head">
+  <h1>Scrolly</h1>
+  <span class="track">layout</span>
+  <span class="pin">lab · experiment · pinned to kit v0.1.0</span>
+  <a href="../index.html">All experiments</a>
+</header>
+<main>
+  <p class="lede">One panel stays on screen while eight short steps scroll past it. When a step reaches the middle of the window the panel is redrawn as that step's scene and played, the kit's strokes drawing themselves in. The deck shows one panel at a time on a click; this shows one panel at a time on a scroll, and the difference is the pacing.</p>
+
+  <div class="controls" role="group" aria-label="Story controls">
+    <button type="button" id="mode" aria-pressed="false">Panels only</button>
+    <button type="button" id="replay">Replay this panel</button>
+    <span class="keys"><kbd>n</kbd> next step <kbd>p</kbd> previous step</span>
+    <span class="readout" id="readout">step 1 of 8</span>
+  </div>
+
+  <div class="scrolly">
+    <div class="stage">
+      <div class="sb-panel" id="panel"><svg id="stage-svg" xmlns="http://www.w3.org/2000/svg"></svg></div>
+      <div class="meta"><span id="meta-step"></span><span id="meta-time"></span></div>
+    </div>
+    <div class="steps" id="steps"></div>
+  </div>
+
+  <div class="column" id="column"></div>
+
+  <section class="learnt">
+    <h2>What this taught us</h2>
+    <ol id="learnt"></ol>
+  </section>
+</main>
+
+<script>
+// The lab cast, inline: never fetched.
+const CAST = {"what":"The lab's own cast: three people and an agent, invented for the experiments.","characters":[
+ {"id":"ines","name":"Ines","kind":"human","pronouns":"they/them","role":"the one who asks","look":{"skin":"#c68642","hair":"long","hairColour":"#2b1d14","shirt":"#0f766e","trousers":"#1f2937","accessory":"glasses","height":1.0}},
+ {"id":"oto","name":"Oto","kind":"human","pronouns":"they/them","role":"the one who tries things","look":{"skin":"#f1c27d","hair":"beanie","hatColour":"#b91c1c","hairColour":"#111827","shirt":"#7c3aed","trousers":"#334155","accessory":"headphones","accentColour":"#f59e0b","height":0.96}},
+ {"id":"vex","name":"Vex","kind":"human","pronouns":"they/them","role":"the one who breaks things","look":{"skin":"#e0ac69","hair":"short","hairColour":"#6b7280","shirt":"#374151","trousers":"#111827","accessory":"none","height":1.02}},
+ {"id":"unit","name":"Unit","kind":"agent","pronouns":"it/its","role":"the agent","look":{"colour":"#1d4ed8"}}]};
+
+// Eight steps: each a scene in the kit's format and a short paragraph beside it. The paragraph adds what the panel
+// does not say (who, why, what to look at); it never repeats a bubble. Nothing here is a quote.
+const STEPS = [
+ {"head":"One rule","text":"A short story about a key that must not leave its vault. Scroll, and the panel keeps up with you; each step redraws it and plays it once.",
+  "scene":{"kind":"cover","title":"The key that must not leave","subtitle":"Eight steps on one rule: the vault opens for work, the key stays inside.",
+   "cast":[{"who":"ines","pose":"wave","mood":"happy"},{"who":"unit","pose":"stand","mood":"happy"},{"who":"vex","pose":"stand","mood":"neutral"}]}},
+ {"head":"Ines asks","text":"Ines starts where every reader starts, with the location. Unit's answer is a place rather than a path, and that one word is the whole design.",
+  "scene":{"kind":"scene","setting":"office","caption":"The first question is always where.",
+   "props":[{"kind":"vault","x":0.8,"label":"the vault"}],
+   "cast":[{"who":"ines","x":0.22,"pose":"point","mood":"thinking","says":"Where does the key live?"},{"who":"unit","x":0.52,"pose":"stand","mood":"calm","says":"In the vault. Only there."}]}},
+ {"head":"Oto tries","text":"Oto means well. A copy for a demo is how most keys leave: with good intentions, a laptop and a deadline. Watch Unit's face.",
+  "scene":{"kind":"scene","setting":"office","caption":"Oto tries to be helpful.",
+   "props":[{"kind":"laptop","x":0.5,"y":760,"scale":1.1},{"kind":"desk","x":0.5,"y":770}],
+   "cast":[{"who":"oto","x":0.24,"pose":"point","mood":"happy","says":"I will copy it to my laptop, just for the demo."},{"who":"unit","x":0.78,"pose":"shrug","mood":"worried","says":"That is the one thing the rule forbids."}]}},
+ {"head":"Vex breaks","text":"Vex goes for the box instead of the key. A vault that signs on your behalf has no take-the-key operation to attack, so the padlock on the door is the least of it.",
+  "scene":{"kind":"scene","setting":"night","caption":"Vex tries the other door.",
+   "props":[{"kind":"vault","x":0.5,"label":"locked"},{"kind":"padlock","x":0.5,"y":660,"scale":0.9}],
+   "cast":[{"who":"vex","x":0.2,"pose":"think","mood":"determined","says":"If I cannot take the key, I will take the vault."},{"who":"unit","x":0.8,"pose":"stand","mood":"calm","flip":true,"says":"It signs. It never hands over."}]}},
+ {"head":"The trade","text":"This is the trade the rule buys. Messages go in, signed records come out, and the line on the terminal that matters is the last one.",
+  "scene":{"kind":"scene","setting":"office","caption":"What leaves the vault is a signature, not a key.",
+   "props":[{"kind":"terminal","x":0.5,"y":560,"lines":["$ vault sign message.txt","signed: yes","key left the vault: no"]},{"kind":"envelope","x":0.5,"y":860,"scale":0.8,"label":"signed record"}],
+   "cast":[{"who":"ines","x":0.17,"pose":"stand","mood":"surprised","says":"So I send the message in?"},{"who":"unit","x":0.84,"pose":"point","mood":"happy","flip":true,"says":"And a signed record comes out."}]}},
+ {"head":"Three habits","text":"Three things people do with a key, left to right. Copying and lending both move it; only signing leaves it where it is. Oto is still on the left of the line.",
+  "scene":{"kind":"spectrum","setting":"none","caption":"Three ways to use a key. One keeps it.",
+   "stops":[{"label":"Copy it","note":"the key is everywhere","colour":"#fecaca"},{"label":"Lend it","note":"the key is somewhere else","colour":"#fde68a"},{"label":"Sign with it","note":"the key stays put","colour":"#a7f3d0"}],
+   "cast":[{"who":"oto","x":0.3,"pose":"think","mood":"confused"},{"who":"ines","x":0.7,"pose":"point","mood":"determined"}]}},
+ {"head":"Oto, later","text":"Oto gets there alone, after the others have gone. The thought bubble is the kit's, the key on the floor is the security pack's.",
+  "scene":{"kind":"scene","setting":"office","caption":"Oto, later, alone with it.",
+   "props":[{"kind":"key","x":0.5,"y":880,"scale":0.7,"colour":"#0f766e"}],
+   "cast":[{"who":"oto","x":0.5,"pose":"think","mood":"thinking","thinks":true,"says":"A place, not a file."}]}},
+ {"head":"The line","text":"That is the rule in one line. Press Panels only to see all eight without the prose, or scroll back up and watch the strokes draw again.",
+  "scene":{"kind":"punchline","setting":"none","punchline":"The key never leaves. Only its signature does.",
+   "cast":[{"who":"vex","x":0.14,"pose":"shrug","mood":"confused"},{"who":"unit","x":0.34,"pose":"arms-up","mood":"excited"}]}}
+];
+
+const LEARNT = [
+ "Scroll paces a story by distance, a deck paces it by clicks. A step here is 62% of the window tall, so the reader sets the tempo with a thumb and can linger or race; the deck's play-on-arrival gives every panel the same beat. The cost is that a fast scroll passes a step before its strokes have finished drawing, which a deck never does. Status: works; the thing to try next is a shorter play when a step is passed quickly.",
+ "Redraw per step is fast enough, measured. drawScene clears the svg and draws the whole scene again, seeded, and the readout under the panel times it: in the checker's Chromium the first draw took 45 to 65 ms (the cold run, with the fonts and Rough.js warming up) and every later step 4 to 15 ms, under one frame, with no flicker because the drawing happens before the browser paints. A jump from step 8 back to step 5 redrew 7 and 6 on the way at that cost, so one panel redrawn beats eight svg elements swapped.",
+ "The text beside a panel should say who, why and what to look at, and never repeat a bubble. A first draft restated the bubbles and the reader read every line twice at two sizes. What the prose carries that the panel cannot: the character's intent (Oto means well), the reason behind the rule, and a pointer (watch Unit's face). The caption inside the panel is the panel's own and stays short.",
+ "The kit's stroke draw-in did not start in Chromium 141 until this page nudged it. play() toggles a class on the panel and relies on a rule on path[pathLength] to draw the strokes; the browser did not restyle those paths for the class change, so the people and the bubbles arrived but every stroke was simply there. One inline change per path after play() makes the browser restyle them, and the draw-in runs (measured: 47 of 47 paths animating on the cover). The sequence experiment hit the same wall. Status: a bug to report against the kit's CSS, fixed by classing the paths instead of selecting them by attribute; and play() still wants a promise or an event for when the arrival ends, since it returns only a length in milliseconds."
+];
+
+(function () {
+  'use strict';
+  const kit = window.StoryboardKit;
+  const reduced = (() => { try { return matchMedia('(prefers-reduced-motion: reduce)').matches; } catch (e) { return false; } })();
+  const svg = document.getElementById('stage-svg'), panel = document.getElementById('panel');
+  const readout = document.getElementById('readout'), metaStep = document.getElementById('meta-step'), metaTime = document.getElementById('meta-time');
+  const steps = document.getElementById('steps'), column = document.getElementById('column'), progress = document.getElementById('progress');
+  let current = -1;
+  window.__lab = { redraws: [] };
+
+  // Draw a step's scene into the one panel, timed, then play its arrival (hidden by 'wait' until the strokes draw in).
+  function show(i, replay) {
+    if (i === current && !replay) return;
+    current = i;
+    const t0 = performance.now();
+    kit.drawScene(svg, STEPS[i].scene, CAST, { seed: 11 + i });
+    const ms = performance.now() - t0;
+    window.__lab.redraws.push({ step: i, ms: Math.round(ms * 10) / 10 });
+    let len = 0;
+    if (!reduced) {
+      panel.classList.add('wait'); len = kit.play(panel);
+      // The nudge (finding 4): play() toggles a class on the panel, and Chromium 141 does not restyle the strokes
+      // (path[pathLength]) for it, so the kit's draw-in never starts. An inline change on each path makes it restyle.
+      panel.querySelectorAll('path[pathLength]').forEach(p => { p.style.strokeDasharray = '1'; });
+    }
+    metaStep.textContent = `${i + 1} / ${STEPS.length} · ${STEPS[i].head}`;
+    metaTime.textContent = `redraw ${ms.toFixed(1)} ms` + (len ? ` · plays ${(len / 1000).toFixed(1)} s` : ' · still');
+    readout.textContent = `step ${i + 1} of ${STEPS.length}`;
+    document.querySelectorAll('.step').forEach((s, j) => s.classList.toggle('active', j === i));
+    if (!reduced) svg.setAttribute('aria-live', 'polite');
+  }
+
+  // The steps: one card each. As a step crosses 60% visible it becomes the current one.
+  STEPS.forEach((st, i) => {
+    const sec = document.createElement('section'); sec.className = 'step'; sec.dataset.i = i; sec.id = 'step-' + (i + 1);
+    const card = document.createElement('p'); card.className = 'card';
+    const b = document.createElement('b'); b.textContent = `${i + 1}. ${st.head}`; card.appendChild(b);
+    card.appendChild(document.createTextNode(st.text));
+    sec.appendChild(card); steps.appendChild(sec);
+  });
+  const io = new IntersectionObserver((entries) => {
+    // of the steps crossing the threshold, the one most on screen wins
+    let best = null;
+    entries.forEach(e => { if (e.isIntersecting && (!best || e.intersectionRatio > best.intersectionRatio)) best = e; });
+    if (best) show(+best.target.dataset.i);
+  }, { threshold: [0.6] });
+  document.querySelectorAll('.step').forEach(s => io.observe(s));
+
+  // The progress bar: the story's own length, from the first step to the last.
+  const onScroll = () => {
+    const first = steps.firstElementChild.getBoundingClientRect(), last = steps.lastElementChild.getBoundingClientRect();
+    const top = first.top + scrollY - innerHeight / 2, bottom = last.top + scrollY + last.height / 2 - innerHeight / 2;
+    const f = Math.max(0, Math.min(1, (scrollY - top) / Math.max(1, bottom - top)));
+    progress.style.width = (f * 100).toFixed(1) + '%';
+    progress.setAttribute('aria-valuenow', String(Math.round(f * 100)));
+  };
+  addEventListener('scroll', onScroll, { passive: true }); addEventListener('resize', onScroll); onScroll();
+
+  // Panels only: the eight panels in a column, drawn once, still.
+  let columnDrawn = false;
+  const mode = document.getElementById('mode');
+  mode.addEventListener('click', () => {
+    const on = !document.body.classList.contains('panels-only');
+    document.body.classList.toggle('panels-only', on);
+    mode.setAttribute('aria-pressed', String(on));
+    mode.textContent = on ? 'Back to the story' : 'Panels only';
+    if (on && !columnDrawn) {
+      columnDrawn = true;
+      STEPS.forEach((st, i) => {
+        const fig = document.createElement('figure');
+        const p = document.createElement('div'); p.className = 'sb-panel';
+        const s = document.createElementNS('http://www.w3.org/2000/svg', 'svg'); p.appendChild(s); fig.appendChild(p);
+        kit.drawScene(s, st.scene, CAST, { seed: 11 + i });
+        const cap = document.createElement('figcaption'); cap.textContent = `${i + 1}. ${st.head}`; fig.appendChild(cap);
+        column.appendChild(fig);
+      });
+    }
+    if (!on) { const s = document.getElementById('step-' + (Math.max(current, 0) + 1)); if (s) s.scrollIntoView({ block: 'center' }); }
+  });
+  document.getElementById('replay').addEventListener('click', () => show(Math.max(current, 0), true));
+
+  // Keys: n and p move a step; keys typed into a field are left alone.
+  const go = (i) => { const s = document.getElementById('step-' + (i + 1)); if (s) s.scrollIntoView({ block: 'center' }); };
+  document.addEventListener('keydown', (e) => {
+    if (e.metaKey || e.ctrlKey || e.altKey || /^(INPUT|SELECT|TEXTAREA)$/.test(e.target.tagName)) return;
+    if (e.key === 'n') { e.preventDefault(); go(Math.min(STEPS.length - 1, current + 1)); }
+    if (e.key === 'p') { e.preventDefault(); go(Math.max(0, current - 1)); }
+  });
+
+  const learnt = document.getElementById('learnt');
+  LEARNT.forEach(t => { const li = document.createElement('li'); const i = t.indexOf('. '); const b = document.createElement('b'); b.textContent = t.slice(0, i + 1); li.appendChild(b); li.appendChild(document.createTextNode(t.slice(i + 1))); learnt.appendChild(li); });
+
+  show(0);
+})();
+</script>
+</body>
+</html>

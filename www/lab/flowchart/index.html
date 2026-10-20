@@ -1,0 +1,271 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>A flowchart, explained · the Lab · storyboards.sgit.ai</title>
+<meta name="description" content="Mermaid text in, a laid-out graph out, and a character who walks it node by node, saying what each one is for.">
+<link rel="stylesheet" href="https://api.storyboards.sgit.ai/v0/v0.1/v0.1.0/fonts.css" integrity="sha384-ep4bdPYRUzquMICQMhuOkSZ/CB1FnMh6qnGWS1F74VepoLOlw9JGK+Zg+E6/t9dD" crossorigin="anonymous">
+<script src="https://api.storyboards.sgit.ai/v0/v0.1/v0.1.0/vendor/rough-4.6.6.js" integrity="sha384-XPr5sCJfqHMzoJ8Cn1UYdXXD+XvRi0yoZm3W0yVJ24QP0ps8SYUskiXqnl4yqWlc" crossorigin="anonymous"></script>
+<script src="https://api.storyboards.sgit.ai/v0/v0.1/v0.1.0/storyboard.js" integrity="sha384-3xZhCe5dUdBXMwV57gyscmlqdIjzz9L6huUkcuiEyC0V3jfrlQEdyEhvvF4kCeOa" crossorigin="anonymous"></script>
+<script src="../vendor/dagre-1.1.4.min.js"></script>
+<style>
+:root{--bg:#f7f3ea;--fg:#1f2328;--dim:#5b6169;--line:#cfc6b1;--panel:#fff;--paper:#fbf7ee;--ink:#23262b;--marker:#fde68a;--accent:#0f766e;--red:#dc2626;--hand:'Caveat','Patrick Hand',cursive;--note:'Patrick Hand',cursive;--mono:ui-monospace,Menlo,Consolas,monospace}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--fg);font:16px/1.55 system-ui,-apple-system,'Segoe UI',Roboto,sans-serif}
+a{color:#115e59}
+header.lab{display:flex;flex-wrap:wrap;gap:.4rem 1rem;align-items:baseline;justify-content:space-between;padding:.8rem 1rem;border-bottom:1px solid var(--line);background:rgba(247,243,234,.95);position:sticky;top:0;z-index:5}
+header.lab h1{margin:0;font-family:var(--hand);font-size:2rem;line-height:1}
+header.lab .meta{font-family:var(--note);font-size:1.05rem;color:var(--dim)}
+main{max-width:1180px;margin:0 auto;padding:1rem}
+.lede{font-size:1.1rem;max-width:52rem;color:#2b3036;margin:.4rem 0 1rem}
+.wrap{display:grid;grid-template-columns:minmax(0,1.6fr) minmax(0,1fr);gap:1rem;align-items:start}
+.panel{background:var(--paper);border:3px solid var(--ink);border-radius:12px;overflow:hidden;box-shadow:4px 4px 0 var(--ink)}
+.panel svg{display:block;width:100%;height:auto;aspect-ratio:16/10}
+.transport{display:flex;flex-wrap:wrap;gap:.5rem;align-items:center;margin:.7rem 0}
+button,select{font:inherit;min-height:44px;border:2px solid var(--ink);border-radius:8px;background:var(--panel);color:var(--fg);padding:0 .8rem;cursor:pointer}
+button.ink{background:var(--ink);color:#fff;font-weight:700}
+input[type=range]{flex:1;min-width:120px;accent-color:var(--accent)}
+.count{font-family:var(--mono);font-size:.85rem;color:var(--dim);min-width:5em;text-align:right}
+.side h2{font-family:var(--note);font-size:1.3rem;margin:.2rem 0 .4rem}
+textarea{width:100%;min-height:340px;font:13px/1.45 var(--mono);background:#1f2328;color:#e8e6e1;border:0;border-radius:10px;padding:.8rem;resize:vertical}
+.err{color:#b91c1c;font-size:.9rem;min-height:1.3em}
+.grammar{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:.6rem .9rem;font-size:.86rem;margin-top:.6rem}
+.grammar code{font-family:var(--mono);background:#f1ece0;padding:0 .3em;border-radius:4px}
+section.learnt{margin-top:2rem;border-top:2px dashed var(--line);padding-top:1rem}
+section.learnt h2{font-family:var(--hand);font-size:2rem;margin:.2rem 0 .4rem}
+section.learnt li{margin:.3rem 0;max-width:56rem}
+@media (max-width:900px){.wrap{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<header class="lab">
+  <div><h1>A flowchart, explained</h1><div class="meta">lab · experiment · deeper · pinned to kit v0.1.0 · dagre 1.1.4</div></div>
+  <nav><a href="../index.html">&larr; the Lab</a></nav>
+</header>
+<main>
+<p class="lede">A diagram shows everything at once, which is why it explains nothing. Here a flowchart written in Mermaid's syntax is laid out by dagre, drawn in the kit's ink by Rough.js, and then <b>walked</b>: a character goes node by node along the edges, the node lights up, and a bubble says what that step is for (the <code>%% note</code> lines). The diagram is the stage; the explanation is the script.</p>
+
+<div class="wrap">
+  <div>
+    <div class="panel" id="panel"><svg id="svg" role="img" aria-label="The flowchart, with a walker"></svg></div>
+    <div class="transport">
+      <button class="ink" id="play">&#9654; Explain</button>
+      <button id="prev" aria-label="Previous node">&larr;</button>
+      <button id="next" aria-label="Next node">&rarr;</button>
+      <input type="range" id="scrub" min="0" max="1" value="0" aria-label="Node">
+      <span class="count" id="count"></span>
+      <label>walker <select id="walker"></select></label>
+      <label><input type="checkbox" id="follow" checked> camera follows</label>
+    </div>
+  </div>
+  <div class="side">
+    <h2>The chart is text (a subset of Mermaid)</h2>
+    <textarea id="src" spellcheck="false" aria-label="The flowchart source"></textarea>
+    <div class="transport"><button class="ink" id="apply">Apply</button><button id="example">The example</button><span class="err" id="err"></span></div>
+    <div class="grammar">
+      <code>flowchart LR</code> or <code>TD</code> · <code>A[box]</code> <code>B(rounded)</code> <code>C{decision}</code> <code>D((circle))</code> · <code>A --&gt; B</code> · <code>A --&gt;|label| B</code> · <code>A --- B</code> (no arrow) ·
+      <code>%% note A: what the walker says here</code> · <code>%% path A,B,C</code> (the order to walk; without it, every node in layout order) · <code>%% walker oto</code>
+    </div>
+  </div>
+</div>
+
+<section class="learnt">
+  <h2>What this taught us</h2>
+  <ul>
+    <li><b>The notes are the storyboard.</b> The chart's nodes are the panels' settings; the <code>%% note</code> lines are the lines spoken. Writing the notes made it obvious which nodes were two steps pretending to be one.</li>
+    <li><b>Layout is somebody else's problem, and should stay so.</b> dagre (96 KB, MIT) placed every example first time; the kit should draw what a layout engine returns, not grow its own.</li>
+    <li><b>A walker needs a path, not a graph.</b> Explaining is linear even when the chart is not; <code>%% path</code> is the author's choice of the one story through the diagram, and a decision node wants the "yes" and "no" branches walked as two short paths.</li>
+    <li><b>Mermaid's syntax is enough, and it is already everywhere.</b> Reading a subset of it means a chart from a README can be explained without being redrawn. What the subset lacks (subgraphs, styles) is what an explanation rarely needs.</li>
+    <li><b>The camera wants to follow.</b> On a tall chart the walker leaves the screen; zooming the viewBox to the current node (the Camera experiment) is the next step.</li>
+  </ul>
+</section>
+</main>
+
+<script>
+(function () {
+  'use strict';
+  const K = window.StoryboardKit, INK = K.INK, PAPER = K.PAPER, NS = 'http://www.w3.org/2000/svg';
+  const CAST = {"characters":[
+    {"id":"ines","name":"Ines","kind":"human","look":{"skin":"#c68642","hair":"long","hairColour":"#2b1d14","shirt":"#0f766e","trousers":"#1f2937","accessory":"glasses","height":1.0}},
+    {"id":"oto","name":"Oto","kind":"human","look":{"skin":"#f1c27d","hair":"beanie","hatColour":"#b91c1c","hairColour":"#111827","shirt":"#7c3aed","trousers":"#334155","accessory":"headphones","accentColour":"#f59e0b","height":0.96}},
+    {"id":"vex","name":"Vex","kind":"human","look":{"skin":"#e0ac69","hair":"short","hairColour":"#6b7280","shirt":"#374151","trousers":"#111827","accessory":"none","height":1.02}},
+    {"id":"unit","name":"Unit","kind":"agent","look":{"colour":"#1d4ed8"}}]};
+  const EXAMPLE = `flowchart LR
+  bump[bump the version] --> edit(edit src/)
+  edit --> cut[cut the release]
+  cut --> check{every hash still right?}
+  check -->|yes| push[push to dev]
+  check -->|no| patch((the next patch))
+  patch --> bump
+  push --> deploy[deploy]
+  deploy --> live[live hash check]
+%% note bump: A release is never edited. The first thing a change does is take the next number.
+%% note edit: Now src/ can change. The published folders cannot.
+%% note cut: src/ is copied into its own folder, with a manifest of every hash.
+%% note check: The gate recomputes every hash of every release. One moved byte and this stops.
+%% note push: dev is the release branch. A push here deploys.
+%% note patch: A bad cut is not fixed. It is followed by a better one.
+%% note deploy: The website and every release folder go up together.
+%% note live: The live host is asked for every file. A release is done when it answers with the right bytes.
+%% path bump,edit,cut,check,push,deploy,live
+%% walker ines`;
+  const hash = (s) => { let h = 2166136261; for (const c of String(s)) { h ^= c.charCodeAt(0); h = Math.imul(h, 16777619); } return (h >>> 0) % 10000; };
+  const ease = (p) => p < 0.5 ? 2 * p * p : 1 - Math.pow(-2 * p + 2, 2) / 2;
+
+  // ---- parse: a subset of Mermaid's flowchart grammar, plus the %% lines this page understands
+  function parse(text) {
+    const g = { dir: 'LR', nodes: {}, edges: [], notes: {}, path: null, walker: 'ines', order: [] };
+    const node = (id, label, shape) => { if (!g.nodes[id]) { g.nodes[id] = { id, label: label || id, shape: shape || 'box' }; g.order.push(id); } else if (label) { g.nodes[id].label = label; g.nodes[id].shape = shape || g.nodes[id].shape; } return id; };
+    const ref = (s) => {
+      s = s.trim();
+      let m;
+      if ((m = /^([A-Za-z0-9_-]+)\(\((.+)\)\)$/.exec(s))) return node(m[1], m[2], 'circle');
+      if ((m = /^([A-Za-z0-9_-]+)\{(.+)\}$/.exec(s))) return node(m[1], m[2], 'diamond');
+      if ((m = /^([A-Za-z0-9_-]+)\((.+)\)$/.exec(s))) return node(m[1], m[2], 'round');
+      if ((m = /^([A-Za-z0-9_-]+)\[(.+)\]$/.exec(s))) return node(m[1], m[2], 'box');
+      if ((m = /^([A-Za-z0-9_-]+)$/.exec(s))) return node(m[1]);
+      throw new Error(`cannot read the node "${s}"`);
+    };
+    text.split('\n').forEach((raw, n) => {
+      const line = raw.trim();
+      if (!line) return;
+      let m;
+      if ((m = /^%%\s*note\s+([A-Za-z0-9_-]+)\s*:\s*(.+)$/.exec(line))) { g.notes[m[1]] = m[2]; return; }
+      if ((m = /^%%\s*path\s+(.+)$/.exec(line))) { g.path = m[1].split(',').map((x) => x.trim()).filter(Boolean); return; }
+      if ((m = /^%%\s*walker\s+([a-z]+)$/.exec(line))) { g.walker = m[1]; return; }
+      if (line.startsWith('%%')) return;
+      if ((m = /^(flowchart|graph)\s+(LR|TD|TB|RL|BT)$/.exec(line))) { g.dir = m[2] === 'TB' ? 'TD' : m[2]; return; }
+      if ((m = /^(.+?)\s*(-->|---)\s*(?:\|([^|]*)\|\s*)?(.+)$/.exec(line))) { g.edges.push({ from: ref(m[1]), to: ref(m[4]), label: (m[3] || '').trim(), arrow: m[2] === '-->' }); return; }
+      ref(line);
+    });
+    if (!g.order.length) throw new Error('no nodes');
+    for (const id of g.path || []) if (!g.nodes[id]) throw new Error(`the path names "${id}", which is not a node`);
+    for (const id in g.notes) if (!g.nodes[id]) throw new Error(`a note names "${id}", which is not a node`);
+    if (!CAST.characters.find((c) => c.id === g.walker)) throw new Error(`"${g.walker}" is not in the cast`);
+    return g;
+  }
+
+  // ---- layout with dagre; the sizes come from the label, in the hand font's rough metrics
+  function layout(g) {
+    const D = new dagre.graphlib.Graph({ multigraph: true }).setGraph({ rankdir: g.dir, nodesep: 70, ranksep: 110, marginx: 60, marginy: 60 }).setDefaultEdgeLabel(() => ({}));
+    for (const id of g.order) {
+      const n = g.nodes[id], w = Math.max(120, n.label.length * 14 + 50), h = n.shape === 'diamond' ? 110 : n.shape === 'circle' ? Math.max(w, 90) : 64;
+      D.setNode(id, { label: n.label, width: n.shape === 'diamond' ? w * 1.4 : w, height: h });
+    }
+    g.edges.forEach((e, i) => D.setEdge(e.from, e.to, { label: e.label, width: e.label.length * 12, height: e.label ? 28 : 0 }, 'e' + i));
+    dagre.layout(D);
+    return D;
+  }
+
+  // ---- draw: nodes and edges in the kit's ink; a floor under every node for the walker to stand on
+  const svg = document.getElementById('svg');
+  let G, D, walkerG, walkerHead, current = 0, rc;
+  function draw() {
+    while (svg.firstChild) svg.removeChild(svg.firstChild);
+    const gw = D.graph().width, gh = D.graph().height + 120;
+    full = [0, 0, gw, Math.max(gh, gw * 0.625)];
+    svg.setAttribute('viewBox', full.join(' '));
+    rc = rough.svg(svg, { options: { seed: 7, roughness: 1, bowing: 1.1 } });
+    const bg = document.createElementNS(NS, 'rect'); bg.setAttribute('width', gw); bg.setAttribute('height', gh); bg.setAttribute('fill', PAPER); svg.appendChild(bg);
+    const edges = document.createElementNS(NS, 'g'), nodes = document.createElementNS(NS, 'g'); svg.appendChild(edges); svg.appendChild(nodes);
+    G.edges.forEach((e, i) => {
+      const pts = D.edge({ v: e.from, w: e.to, name: 'e' + i }).points, d = 'M' + pts.map((p) => `${p.x},${p.y}`).join(' L');
+      const ge = document.createElementNS(NS, 'g'); ge.dataset.edge = `${e.from}>${e.to}`; edges.appendChild(ge);
+      ge.appendChild(rc.path(d, { stroke: '#374151', strokeWidth: 2.4, seed: 11 + i }));
+      if (e.arrow) { const a = pts[pts.length - 1], b = pts[pts.length - 2], ang = Math.atan2(a.y - b.y, a.x - b.x); ge.appendChild(rc.path(`M${a.x - Math.cos(ang - 0.45) * 18},${a.y - Math.sin(ang - 0.45) * 18} L${a.x},${a.y} L${a.x - Math.cos(ang + 0.45) * 18},${a.y - Math.sin(ang + 0.45) * 18}`, { stroke: '#374151', strokeWidth: 2.4, seed: 21 + i })); }
+      if (e.label) { const m = pts[Math.floor(pts.length / 2)]; const r = document.createElementNS(NS, 'rect'); r.setAttribute('x', m.x - e.label.length * 6 - 8); r.setAttribute('y', m.y - 16); r.setAttribute('width', e.label.length * 12 + 16); r.setAttribute('height', 30); r.setAttribute('rx', 6); r.setAttribute('fill', PAPER); ge.appendChild(r); text(ge, e.label, m.x, m.y + 6, 22, '#4b5563'); }
+    });
+    for (const id of G.order) {
+      const n = D.node(id), s = G.nodes[id], gn = document.createElementNS(NS, 'g'); gn.dataset.node = id; nodes.appendChild(gn);
+      const o = { fill: '#fff', fillStyle: 'solid', stroke: INK, strokeWidth: 2.6, seed: 31 + hash(id) };
+      if (s.shape === 'diamond') gn.appendChild(rc.polygon([[n.x, n.y - n.height / 2], [n.x + n.width / 2, n.y], [n.x, n.y + n.height / 2], [n.x - n.width / 2, n.y]], o));
+      else if (s.shape === 'circle') gn.appendChild(rc.circle(n.x, n.y, Math.max(n.width, n.height), o));
+      else if (s.shape === 'round') gn.appendChild(rc.path(`M${n.x - n.width / 2 + 20},${n.y - n.height / 2} H${n.x + n.width / 2 - 20} Q${n.x + n.width / 2},${n.y - n.height / 2} ${n.x + n.width / 2},${n.y - n.height / 2 + 20} V${n.y + n.height / 2 - 20} Q${n.x + n.width / 2},${n.y + n.height / 2} ${n.x + n.width / 2 - 20},${n.y + n.height / 2} H${n.x - n.width / 2 + 20} Q${n.x - n.width / 2},${n.y + n.height / 2} ${n.x - n.width / 2},${n.y + n.height / 2 - 20} V${n.y - n.height / 2 + 20} Q${n.x - n.width / 2},${n.y - n.height / 2} ${n.x - n.width / 2 + 20},${n.y - n.height / 2} Z`, o));
+      else gn.appendChild(rc.rectangle(n.x - n.width / 2, n.y - n.height / 2, n.width, n.height, o));
+      gn.firstChild.classList.add('shape');
+      text(gn, s.label, n.x, n.y + 8, 24, INK, 'middle');
+    }
+    walkerG = document.createElementNS(NS, 'g'); svg.appendChild(walkerG);
+    const wrc = rough.svg(svg, { options: { seed: 5, roughness: 1, bowing: 1.2 } });
+    walkerHead = K.drawCharacter(walkerG, wrc, CAST.characters.find((c) => c.id === G.walker), 0, 0, { pose: 'point', mood: 'happy', scale: 0.36 });
+    bubbleG = document.createElementNS(NS, 'g'); svg.appendChild(bubbleG);
+  }
+  function text(g, s, x, y, size, fill, anchor) { const t = document.createElementNS(NS, 'text'); t.setAttribute('x', x); t.setAttribute('y', y); t.setAttribute('font-family', "'Patrick Hand', cursive"); t.setAttribute('font-size', size); t.setAttribute('fill', fill); t.setAttribute('text-anchor', anchor || 'middle'); t.textContent = s; g.appendChild(t); return t; }
+
+  // ---- the walk: the walker stands under the current node; between nodes it moves along the edge, or straight if there is none
+  let bubbleG, path = [], anim = null;
+  const FOOT = 190; // the walker's floor sits this far under a node's bottom edge, so the figure stands clear of it
+  function standAt(id) { const n = D.node(id); walkerG.setAttribute('transform', `translate(${n.x},${n.y + n.height / 2 + FOOT})`); camera(n.x, n.y + n.height / 2 + FOOT); }
+  // the camera: a 1000 by 625 window round the walker, clamped to the chart; off, the whole chart
+  let full = [0, 0, 0, 0];
+  function camera(x, y) {
+    if (!$('follow').checked) { svg.setAttribute('viewBox', full.join(' ')); return; }
+    const [gw, gh] = [full[2], full[3]], vw = Math.min(gw, 1000), vh = Math.min(gh, 625);
+    const cx = Math.max(vw / 2, Math.min(gw - vw / 2, x)), cy = Math.max(vh / 2, Math.min(gh - vh / 2, y - 130));
+    svg.setAttribute('viewBox', `${cx - vw / 2} ${cy - vh / 2} ${vw} ${vh}`);
+  }
+  function highlight(id) {
+    svg.querySelectorAll('[data-node] .shape path').forEach((p) => { if (p.getAttribute('fill') && p.getAttribute('fill') !== 'none') p.setAttribute('fill', '#fff'); });
+    const g = svg.querySelector(`[data-node="${id}"] .shape`); if (g) g.querySelectorAll('path').forEach((p) => { if (p.getAttribute('fill') && p.getAttribute('fill') !== 'none') p.setAttribute('fill', '#fde68a'); });
+    svg.querySelectorAll('[data-edge] path').forEach((p) => p.setAttribute('stroke', '#374151'));
+    const prev = path[path.indexOf(id) - 1]; if (prev) svg.querySelectorAll(`[data-edge="${prev}>${id}"] path`).forEach((p) => p.setAttribute('stroke', '#dc2626'));
+  }
+  function say(id) {
+    while (bubbleG.firstChild) bubbleG.removeChild(bubbleG.firstChild);
+    const txt = G.notes[id] || G.nodes[id].label, n = D.node(id);
+    const words = txt.split(/\s+/), lines = []; let line = ''; for (const w of words) { if ((line + ' ' + w).trim().length > 34 && line) { lines.push(line); line = w; } else line = (line + ' ' + w).trim(); } if (line) lines.push(line);
+    const size = 22, w = Math.max(...lines.map((l) => l.length)) * size * 0.44 + 40, h = lines.length * size * 1.2 + 26;
+    const gw = +svg.getAttribute('viewBox').split(' ')[2];
+    const hx = n.x + walkerHead.headX * 1, hy = n.y + n.height / 2 + FOOT + walkerHead.headTop;
+    const bx = Math.max(10, Math.min(gw - w - 10, n.x + 70)), by = Math.max(8, hy - h - 10);
+    const brc = rough.svg(svg, { options: { seed: 3 + hash(id), roughness: 0.8 } });
+    const b = brc.path(`M${bx + 14},${by} H${bx + w - 14} Q${bx + w},${by} ${bx + w},${by + 14} V${by + h - 14} Q${bx + w},${by + h} ${bx + w - 14},${by + h} H${bx + 14} Q${bx},${by + h} ${bx},${by + h - 14} V${by + 14} Q${bx},${by} ${bx + 14},${by} Z`, { fill: '#fff', fillStyle: 'solid', stroke: INK, strokeWidth: 2 });
+    bubbleG.appendChild(b);
+    bubbleG.appendChild(brc.line(bx, by + h / 2, hx + 16, hy + 4, { stroke: INK, strokeWidth: 2 }));
+    const t = text(bubbleG, '', bx + 20, by + 10 + size, size, INK, 'start');
+    lines.forEach((l, i) => { const s = document.createElementNS(NS, 'tspan'); s.setAttribute('x', bx + 20); s.setAttribute('dy', i ? size * 1.2 : 0); s.textContent = l; t.appendChild(s); });
+  }
+  function goTo(i, animate) {
+    i = Math.max(0, Math.min(path.length - 1, i));
+    const from = path[current], to = path[i];
+    current = i; scrub.value = i; count.textContent = `${i + 1} / ${path.length}`;
+    if (anim) cancelAnimationFrame(anim);
+    if (!animate || from === to || reduced) { standAt(to); highlight(to); say(to); return; }
+    const a = D.node(from), b = D.node(to), t0 = performance.now(), dur = 700;
+    while (bubbleG.firstChild) bubbleG.removeChild(bubbleG.firstChild);
+    const step = (now) => {
+      const p = Math.min(1, (now - t0) / dur), e = ease(p), bob = -Math.abs(Math.sin(p * Math.PI * 4)) * 8;
+      const wx = a.x + (b.x - a.x) * e, wy = a.y + a.height / 2 + FOOT + ((b.y + b.height / 2) - (a.y + a.height / 2)) * e;
+      walkerG.setAttribute('transform', `translate(${wx},${wy + bob}) scale(${b.x < a.x ? -1 : 1},1)`);
+      camera(wx, wy);
+      if (p < 1) anim = requestAnimationFrame(step); else { walkerG.setAttribute('transform', `translate(${b.x},${b.y + b.height / 2 + FOOT})`); camera(b.x, b.y + b.height / 2 + FOOT); highlight(to); say(to); if (playing && current < path.length - 1) timer = setTimeout(() => goTo(current + 1, true), 1800 + (G.notes[to] || '').length * 25); else if (playing) stop(); }
+    };
+    anim = requestAnimationFrame(step);
+  }
+
+  // ---- the transport
+  const $ = (id) => document.getElementById(id), scrub = $('scrub'), count = $('count'), playBtn = $('play'), src = $('src'), err = $('err'), walkerSel = $('walker');
+  const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  let playing = false, timer = null;
+  CAST.characters.forEach((c) => { const o = document.createElement('option'); o.value = c.id; o.textContent = c.name; walkerSel.appendChild(o); });
+  function load(text) {
+    G = parse(text); D = layout(G); path = G.path || G.order; walkerSel.value = G.walker; draw();
+    scrub.max = path.length - 1; current = 0; goTo(0, false); err.textContent = '';
+  }
+  function stop() { playing = false; clearTimeout(timer); playBtn.innerHTML = '&#9654; Explain'; }
+  playBtn.onclick = () => { if (playing) return stop(); playing = true; playBtn.innerHTML = '&#10074;&#10074; Pause'; if (current >= path.length - 1) { current = 0; goTo(0, false); } timer = setTimeout(() => goTo(current + 1, true), 1400); };
+  $('next').onclick = () => { stop(); goTo(current + 1, true); };
+  $('prev').onclick = () => { stop(); goTo(current - 1, true); };
+  scrub.oninput = () => { stop(); goTo(+scrub.value, false); };
+  $('follow').onchange = () => goTo(current, false);
+  walkerSel.onchange = () => { src.value = src.value.replace(/%% walker \w+/, '') .trimEnd() + `\n%% walker ${walkerSel.value}`; try { stop(); load(src.value); } catch (e) { err.textContent = e.message; } };
+  $('apply').onclick = () => { try { stop(); load(src.value); } catch (e) { err.textContent = e.message; } };
+  $('example').onclick = () => { src.value = EXAMPLE; stop(); load(EXAMPLE); };
+  document.addEventListener('keydown', (e) => { if (/^(INPUT|SELECT|TEXTAREA)$/.test(e.target.tagName)) return; if (e.key === 'ArrowRight') { stop(); goTo(current + 1, true); } else if (e.key === 'ArrowLeft') { stop(); goTo(current - 1, true); } });
+  src.value = EXAMPLE; load(EXAMPLE);
+  if (!reduced) setTimeout(() => playBtn.click(), 900);
+})();
+</script>
+</body>
+</html>

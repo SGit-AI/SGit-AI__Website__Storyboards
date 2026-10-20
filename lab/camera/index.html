@@ -1,0 +1,189 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Camera: one world, many beats · the Lab · storyboards.sgit.ai</title>
+<meta name="description" content="One wide scene, three panels long. The camera pans and zooms between beats, into a laptop whose screen is another storyboard drawn by the same kit.">
+<link rel="stylesheet" href="https://api.storyboards.sgit.ai/v0/v0.1/v0.1.0/fonts.css" integrity="sha384-ep4bdPYRUzquMICQMhuOkSZ/CB1FnMh6qnGWS1F74VepoLOlw9JGK+Zg+E6/t9dD" crossorigin="anonymous">
+<link rel="stylesheet" href="https://api.storyboards.sgit.ai/v0/v0.1/v0.1.0/storyboard.css" integrity="sha384-NGJqtVi+93pE7lBuwFU0RQWhqnQVLR33Wp8AYH1iAeyC2A7h2ijgU4bEKF5HIKIf" crossorigin="anonymous">
+<script src="https://api.storyboards.sgit.ai/v0/v0.1/v0.1.0/vendor/rough-4.6.6.js" integrity="sha384-XPr5sCJfqHMzoJ8Cn1UYdXXD+XvRi0yoZm3W0yVJ24QP0ps8SYUskiXqnl4yqWlc" crossorigin="anonymous"></script>
+<script src="https://api.storyboards.sgit.ai/v0/v0.1/v0.1.0/props/security.js" integrity="sha384-IkxAFhrp5pQhBSjFCLMEA+1iqFHJ6xPRLeO2n9g478h7Z8hW9cUyvza3PuOtmsOx" crossorigin="anonymous"></script>
+<script src="https://api.storyboards.sgit.ai/v0/v0.1/v0.1.0/storyboard.js" integrity="sha384-3xZhCe5dUdBXMwV57gyscmlqdIjzz9L6huUkcuiEyC0V3jfrlQEdyEhvvF4kCeOa" crossorigin="anonymous"></script>
+<style>
+:root{--bg:#f7f3ea;--fg:#1f2328;--dim:#5b6169;--line:#cfc6b1;--panel:#fff;--paper:#fbf7ee;--ink:#23262b;--marker:#fde68a;--accent:#0f766e;--red:#dc2626;--hand:'Caveat','Patrick Hand',cursive;--note:'Patrick Hand',cursive;--mono:ui-monospace,Menlo,Consolas,monospace}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--fg);font:16px/1.55 system-ui,-apple-system,'Segoe UI',Roboto,sans-serif}
+a{color:#115e59}
+header.lab{display:flex;flex-wrap:wrap;gap:.4rem 1rem;align-items:baseline;justify-content:space-between;padding:.8rem 1rem;border-bottom:1px solid var(--line);background:rgba(247,243,234,.95);position:sticky;top:0;z-index:5}
+header.lab h1{margin:0;font-family:var(--hand);font-size:2rem;line-height:1}
+header.lab .meta{font-family:var(--note);font-size:1.05rem;color:var(--dim)}
+main{max-width:1180px;margin:0 auto;padding:1rem}
+.lede{font-size:1.1rem;max-width:52rem;color:#2b3036;margin:.4rem 0 1rem}
+.panel{background:#1f2328;border:3px solid var(--ink);border-radius:12px;overflow:hidden;box-shadow:4px 4px 0 var(--ink)}
+.panel svg{display:block;width:100%;height:auto;aspect-ratio:16/10}
+.world{margin-top:.6rem;background:var(--paper);border:2px solid var(--line);border-radius:8px;overflow:hidden}
+.world svg{display:block;width:100%;height:auto}
+.transport{display:flex;flex-wrap:wrap;gap:.5rem;align-items:center;margin:.7rem 0}
+button,select{font:inherit;min-height:44px;border:2px solid var(--ink);border-radius:8px;background:var(--panel);color:var(--fg);padding:0 .8rem;cursor:pointer}
+button.ink{background:var(--ink);color:#fff;font-weight:700}
+input[type=range]{flex:1;min-width:120px;accent-color:var(--accent)}
+.count{font-family:var(--mono);font-size:.85rem;color:var(--dim)}
+.caption{font-family:var(--note);font-size:1.3rem;min-height:1.6em;margin:.2rem 0}
+.wrap{display:grid;grid-template-columns:minmax(0,1.7fr) minmax(0,1fr);gap:1rem;align-items:start}
+.side h2{font-family:var(--note);font-size:1.3rem;margin:.2rem 0 .4rem}
+textarea{width:100%;min-height:300px;font:12.5px/1.45 var(--mono);background:#1f2328;color:#e8e6e1;border:0;border-radius:10px;padding:.8rem;resize:vertical}
+.err{color:#b91c1c;font-size:.9rem;min-height:1.3em}
+section.learnt{margin-top:2rem;border-top:2px dashed var(--line);padding-top:1rem}
+section.learnt h2{font-family:var(--hand);font-size:2rem;margin:.2rem 0 .4rem}
+section.learnt li{margin:.3rem 0;max-width:56rem}
+@media (max-width:900px){.wrap{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<header class="lab">
+  <div><h1>Camera: one world, many beats</h1><div class="meta">lab · experiment · layout · pinned to kit v0.1.0</div></div>
+  <nav><a href="../index.html">&larr; the Lab</a></nav>
+</header>
+<main>
+<p class="lede">A deck cuts between panels. A camera moves across one scene. Here the world is three of the kit's panels side by side, 4800 by 1000, drawn once; each <b>beat</b> is a place the camera goes (a zoom and a point) and how long it stays. Beat two zooms into the laptop on Ines's desk, whose screen is <em>another panel drawn by the same kit</em>: a storyboard inside the storyboard. The camera is data, so a storyboard can carry its own cinematography.</p>
+
+<div class="wrap">
+  <div>
+    <div class="panel"><svg id="svg" viewBox="0 0 1600 1000" role="img" aria-label="The camera's view of the world"></svg></div>
+    <p class="caption" id="caption"></p>
+    <div class="transport">
+      <button class="ink" id="play">&#9654; Play</button>
+      <button id="prev" aria-label="Previous beat">&larr;</button>
+      <button id="next" aria-label="Next beat">&rarr;</button>
+      <input type="range" id="scrub" min="0" max="1000" value="0" aria-label="Time">
+      <span class="count" id="count"></span>
+    </div>
+    <div class="world"><svg id="world" viewBox="0 0 4800 1000" role="img" aria-label="The whole world, with the camera's frame"></svg></div>
+  </div>
+  <div class="side">
+    <h2>The beats are data</h2>
+    <textarea id="src" spellcheck="false" aria-label="The beats as JSON"></textarea>
+    <div class="transport"><button class="ink" id="apply">Apply</button><button id="example">The example</button><span class="err" id="err"></span></div>
+    <p class="count">a beat: { "zoom": 1..12, "to": [x, y] in 0..1 of the world, "for": seconds of travel, "hold": seconds to stay, "caption": text }. The world's three scenes are in the page's source; the laptop screen's panel is the fourth.</p>
+  </div>
+</div>
+
+<section class="learnt">
+  <h2>What this taught us</h2>
+  <ul>
+    <li><b>A viewBox is a camera, and it is enough.</b> Pan, zoom and a hold are three numbers and a time; SVG does the rest, and the sketch stays sharp at 8x because it was never pixels.</li>
+    <li><b>A storyboard can show a storyboard.</b> The laptop's screen is a nested <code>&lt;svg&gt;</code> the kit drew a different scene into; at zoom 1 it is a glint, at zoom 8 it is a panel. The same trick gives a phone, a board, a book: any prop with a face can hold a scene.</li>
+    <li><b>The world is three panels because the kit draws panels.</b> One continuous floor across them hides the seams; a setting per panel does not. A "world" kind in the data (a width, a floor, props and people in world units) would be the honest next step.</li>
+    <li><b>Beats and actions want to be one script.</b> This page moves the camera; the Stage experiment moves the actors. The same timeline should carry both, which is what the camera verb there already hints at.</li>
+    <li><b>Holding still is a beat too.</b> The first version had no <code>hold</code> and the camera never arrived anywhere; a reader needs a second on each place to read it.</li>
+  </ul>
+</section>
+</main>
+
+<script>
+(function () {
+  'use strict';
+  const K = window.StoryboardKit, W = K.W, H = K.H, NS = 'http://www.w3.org/2000/svg';
+  const CAST = {"characters":[
+    {"id":"ines","name":"Ines","kind":"human","look":{"skin":"#c68642","hair":"long","hairColour":"#2b1d14","shirt":"#0f766e","trousers":"#1f2937","accessory":"glasses","height":1.0}},
+    {"id":"oto","name":"Oto","kind":"human","look":{"skin":"#f1c27d","hair":"beanie","hatColour":"#b91c1c","hairColour":"#111827","shirt":"#7c3aed","trousers":"#334155","accessory":"headphones","accentColour":"#f59e0b","height":0.96}},
+    {"id":"vex","name":"Vex","kind":"human","look":{"skin":"#e0ac69","hair":"short","hairColour":"#6b7280","shirt":"#374151","trousers":"#111827","accessory":"none","height":1.02}},
+    {"id":"unit","name":"Unit","kind":"agent","look":{"colour":"#1d4ed8"}}]};
+  // the world: three scenes side by side, and the one on the laptop's screen
+  const LAPTOP = { kind: 'laptop', x: 0.33, y: 760, scale: 2.2 };
+  const SCENES = [
+    { kind: 'scene', setting: 'office', cast: [{ who: 'ines', x: 0.2, pose: 'point', mood: 'happy', says: 'Look. A storyboard on the storyboard.', max: 20 }, { who: 'unit', x: 0.56, pose: 'think', mood: 'thinking', flip: true }], props: [{ kind: 'desk', x: 0.33, y: 760 }, LAPTOP] },
+    { kind: 'scene', setting: 'street', cast: [{ who: 'oto', x: 0.35, pose: 'wave', mood: 'excited', says: 'The camera went into a laptop!', max: 18 }], props: [{ kind: 'sign', x: 0.72, y: 560, label: 'the Lab' }] },
+    { kind: 'scene', setting: 'night', cast: [{ who: 'vex', x: 0.3, pose: 'shrug', mood: 'confused', says: 'Then where does the key live?', max: 18 }], props: [{ kind: 'vault', x: 0.68, y: 900, label: 'master' }, { kind: 'padlock', x: 0.86, y: 700 }] },
+  ];
+  const INNER = { kind: 'scene', setting: 'none', caption: 'inside the laptop', cast: [{ who: 'ines', x: 0.3, pose: 'wave', mood: 'happy', says: 'Hello from inside.', max: 16 }, { who: 'unit', x: 0.7, pose: 'point', mood: 'happy', flip: true, says: 'Same kit, smaller.', max: 14 }] };
+  const EXAMPLE = [
+    { "zoom": 1, "to": [0.1667, 0.5], "for": 0, "hold": 2, "caption": "Ines's desk." },
+    { "zoom": 2.2, "to": [0.11, 0.62], "for": 1.4, "hold": 1.2, "caption": "A laptop on it." },
+    { "zoom": 8, "to": [0.1095, 0.698], "for": 1.6, "hold": 2.6, "caption": "On the laptop, a storyboard, drawn by the same kit." },
+    { "zoom": 1, "to": [0.1667, 0.5], "for": 1.2, "hold": 0.6, "caption": "Back out." },
+    { "zoom": 1, "to": [0.5, 0.5], "for": 1.8, "hold": 2, "caption": "Next door, the street." },
+    { "zoom": 1.6, "to": [0.57, 0.55], "for": 1, "hold": 1.4, "caption": "Oto saw it happen." },
+    { "zoom": 1, "to": [0.8333, 0.5], "for": 1.8, "hold": 2, "caption": "And at night, the vault." },
+    { "zoom": 2.4, "to": [0.9, 0.78], "for": 1.2, "hold": 2.2, "caption": "Where the key lives." },
+    { "zoom": 0.34, "to": [0.5, 0.5], "for": 2, "hold": 2, "caption": "The whole world, three panels long." }
+  ];
+  const ease = (p) => p < 0.5 ? 2 * p * p : 1 - Math.pow(-2 * p + 2, 2) / 2;
+  const clamp = (v, a, b) => Math.max(a, Math.min(b, v));
+  const WW = W * SCENES.length;
+
+  // ---- draw the world once: three nested svgs, one continuous floor, and the laptop's screen as a fourth scene
+  const svg = document.getElementById('svg'), worldSvg = document.getElementById('world');
+  function buildWorld(into) {
+    while (into.firstChild) into.removeChild(into.firstChild);
+    const bg = document.createElementNS(NS, 'rect'); bg.setAttribute('width', WW); bg.setAttribute('height', H); bg.setAttribute('fill', K.PAPER); into.appendChild(bg);
+    SCENES.forEach((sc, i) => {
+      const s = document.createElementNS(NS, 'svg'); s.setAttribute('x', i * W); s.setAttribute('y', 0); s.setAttribute('width', W); s.setAttribute('height', H); into.appendChild(s);
+      K.drawScene(s, sc, CAST, { seed: 11 + i });
+      s.querySelectorAll('.pop, .actor').forEach((e) => { e.style.animation = 'none'; });
+    });
+    // the laptop's screen: the kit's laptop is 110 wide and 90 tall at scale 1, its screen the trapezoid above y; a panel fits inside it
+    const sw = 100 * LAPTOP.scale, sh = sw * 0.625, sx = LAPTOP.x * W - sw / 2 + 2, sy = LAPTOP.y - 86 * LAPTOP.scale + 2;
+    const inner = document.createElementNS(NS, 'svg'); inner.setAttribute('x', sx); inner.setAttribute('y', sy); inner.setAttribute('width', sw); inner.setAttribute('height', sh); into.appendChild(inner);
+    K.drawScene(inner, INNER, CAST, { seed: 41 });
+    inner.querySelectorAll('.pop, .actor').forEach((e) => { e.style.animation = 'none'; });
+    // the floor, drawn across the seams
+    const rc = rough.svg(into, { options: { seed: 2 } });
+    into.appendChild(rc.line(0, 900, WW, 900, { stroke: K.INK, strokeWidth: 3, roughness: 2 }));
+  }
+  buildWorld(svg);
+  buildWorld(worldSvg);
+  const frame = document.createElementNS(NS, 'rect'); frame.setAttribute('fill', 'none'); frame.setAttribute('stroke', '#dc2626'); frame.setAttribute('stroke-width', 10); worldSvg.appendChild(frame);
+
+  // ---- the camera: the view at time t is interpolated between the beat before and the beat it is travelling to
+  let beats = [], duration = 1, t = 0, playing = false, last = 0;
+  function compile(list) {
+    let at = 0; const out = [];
+    for (const b of list) { const o = Object.assign({ zoom: 1, to: [0.5, 0.5], for: 1, hold: 1, caption: '' }, b); o.arrive = at + o.for; o.leave = o.arrive + o.hold; at = o.leave; out.push(o); }
+    return out;
+  }
+  function viewAt(time) {
+    let prev = { zoom: beats[0].zoom, to: beats[0].to }, cap = '';
+    for (const b of beats) {
+      if (time < b.arrive) { const p = b.for ? clamp((time - (b.arrive - b.for)) / b.for, 0, 1) : 1, e = ease(p); return { zoom: prev.zoom + (b.zoom - prev.zoom) * e, to: [prev.to[0] + (b.to[0] - prev.to[0]) * e, prev.to[1] + (b.to[1] - prev.to[1]) * e], caption: p > 0.5 ? b.caption : cap }; }
+      prev = b; cap = b.caption;
+      if (time < b.leave) return { zoom: b.zoom, to: b.to, caption: b.caption };
+    }
+    return { zoom: prev.zoom, to: prev.to, caption: cap };
+  }
+  function render(time) {
+    const v = viewAt(time), vw = W / v.zoom, vh = H / v.zoom;
+    const cx = v.zoom >= 1 ? clamp(v.to[0] * WW, vw / 2, WW - vw / 2) : v.to[0] * WW, cy = v.zoom >= 1 ? clamp(v.to[1] * H, vh / 2, H - vh / 2) : v.to[1] * H;
+    svg.setAttribute('viewBox', `${cx - vw / 2} ${cy - vh / 2} ${vw} ${vh}`);
+    frame.setAttribute('x', cx - vw / 2); frame.setAttribute('y', cy - vh / 2); frame.setAttribute('width', vw); frame.setAttribute('height', vh);
+    $('caption').textContent = v.caption;
+    $('scrub').value = Math.round(time / duration * 1000);
+    const idx = beats.findIndex((b) => time < b.leave);
+    $('count').textContent = `beat ${(idx < 0 ? beats.length : idx + 1)} / ${beats.length} · ${time.toFixed(1)} s`;
+  }
+  const $ = (id) => document.getElementById(id);
+  function load(list) {
+    if (!Array.isArray(list) || !list.length) throw new Error('the beats must be a non-empty list');
+    for (const b of list) if (b.to && (b.to.length !== 2)) throw new Error('"to" is [x, y]');
+    beats = compile(list); duration = beats[beats.length - 1].leave; setTime(0); $('err').textContent = '';
+    $('src').value = '[\n' + list.map((b) => '  ' + JSON.stringify(b)).join(',\n') + '\n]';
+  }
+  function setTime(v) { t = clamp(v, 0, duration); render(t); }
+  function tick(now) { if (!playing) return; const dt = (now - last) / 1000; last = now; if (t + dt >= duration) { setTime(duration); stop(); return; } setTime(t + dt); requestAnimationFrame(tick); }
+  function start() { if (t >= duration) setTime(0); playing = true; last = performance.now(); $('play').innerHTML = '&#10074;&#10074; Pause'; requestAnimationFrame(tick); }
+  function stop() { playing = false; $('play').innerHTML = '&#9654; Play'; }
+  $('play').onclick = () => (playing ? stop() : start());
+  const beatStart = (i) => (i <= 0 ? 0 : beats[i - 1].leave);
+  $('next').onclick = () => { stop(); const i = beats.findIndex((b) => t < b.leave); setTime(i < 0 ? duration : beats[i].arrive + 0.01 > t ? beats[i].arrive : (beats[i + 1] ? beats[i + 1].arrive : duration)); };
+  $('prev').onclick = () => { stop(); const i = beats.findIndex((b) => t <= b.arrive + 0.01); const k = i < 0 ? beats.length - 1 : i - 1; setTime(k < 0 ? 0 : beats[k].arrive); };
+  $('scrub').oninput = () => { stop(); setTime(+$('scrub').value / 1000 * duration); };
+  $('apply').onclick = () => { try { stop(); load(JSON.parse($('src').value)); } catch (e) { $('err').textContent = e.message; } };
+  $('example').onclick = () => { stop(); load(JSON.parse(JSON.stringify(EXAMPLE))); };
+  document.addEventListener('keydown', (e) => { if (/^(INPUT|SELECT|TEXTAREA)$/.test(e.target.tagName)) return; if (e.key === 'ArrowRight') $('next').click(); else if (e.key === 'ArrowLeft') $('prev').click(); else if (e.key === ' ') { e.preventDefault(); $('play').click(); } });
+  load(JSON.parse(JSON.stringify(EXAMPLE)));
+  if (!matchMedia('(prefers-reduced-motion: reduce)').matches) setTimeout(start, 700);
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,18 @@
+# Gravity
+
+> matter.js behind a kit panel: keys, envelopes and padlocks fall, bounce and pile up, and the characters react when one lands near them.
+
+*Source: <https://storyboards.sgit.ai/lab/gravity/>. A standalone experiment of the Lab, status promising, pinned to api.storyboards.sgit.ai v0.1.0, using matter-0.20.0.min.js. The page is drawn by code; this file is what it says.*
+
+---
+
+**The question.** What does a physics engine behind a storyboard panel add, what does it cost, and could a storyboard carry a drop as data?
+
+## What this taught us
+
+- Physics adds the one thing a storyboard never had: consequence. A dropped key lands where the world says, bounces off the envelope that fell before it, and settles at an angle nobody drew. The panel stops being a picture of a moment and becomes a place where moments happen, and the characters' surprise, triggered by a collision rather than a script, reads as a reaction. Status: promising for a demo, not yet for a storyboard.
+- The cost is a frame loop that never stops. The engine steps and every prop's transform updates at 60 frames a second, whether or not anything is still moving; the readout shows the time a frame takes. The characters stay cheap because they are drawn once and only redrawn (a few dozen Rough.js paths each) when a prop lands near them. The panel also stops being reproducible: the same drops never pile the same way twice unless the engine is stepped on a fixed clock, which this page does.
+- A storyboard could carry a "drop" action as data: { action: "drop", prop: "key", x: 0.3, at: 1.2 }, with the kit's prop drawing and a body of the same size, and the panel's still picture as the state after everything has settled (the reduced-motion path steps the world 300 times and draws the result). What it cannot carry is the exact pile; the author gets to choose what falls and where, not where it ends up.
+- The kit's props are not exported as functions, so the key, envelope and padlock here are redrawn by the page in the pack's proportions; a kit release that exports its prop drawings with a size for each is the thing to lift. The surprised face needs the kit to redraw the whole character; a mood that could be swapped on a drawn character would make the reaction a two-line change.
+
+[The Lab](https://storyboards.sgit.ai/lab/index.md)

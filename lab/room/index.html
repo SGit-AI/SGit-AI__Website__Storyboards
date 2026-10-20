@@ -1,0 +1,252 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Room (a game engine): the lab cast as sprites in kaplay, with a vault to open</title>
+<meta name="description" content="A lab experiment: kaplay running in a canvas, the four lab cast characters baked into sprites from the kit's drawings, a player who walks, bumps into people and opens a vault.">
+<link rel="stylesheet" href="https://api.storyboards.sgit.ai/v0/v0.1/v0.1.0/fonts.css" integrity="sha384-ep4bdPYRUzquMICQMhuOkSZ/CB1FnMh6qnGWS1F74VepoLOlw9JGK+Zg+E6/t9dD" crossorigin="anonymous">
+<link rel="stylesheet" href="https://api.storyboards.sgit.ai/v0/v0.1/v0.1.0/storyboard.css" integrity="sha384-NGJqtVi+93pE7lBuwFU0RQWhqnQVLR33Wp8AYH1iAeyC2A7h2ijgU4bEKF5HIKIf" crossorigin="anonymous">
+<script src="https://api.storyboards.sgit.ai/v0/v0.1/v0.1.0/vendor/rough-4.6.6.js" integrity="sha384-XPr5sCJfqHMzoJ8Cn1UYdXXD+XvRi0yoZm3W0yVJ24QP0ps8SYUskiXqnl4yqWlc" crossorigin="anonymous"></script>
+<script src="https://api.storyboards.sgit.ai/v0/v0.1/v0.1.0/props/security.js" integrity="sha384-IkxAFhrp5pQhBSjFCLMEA+1iqFHJ6xPRLeO2n9g478h7Z8hW9cUyvza3PuOtmsOx" crossorigin="anonymous"></script>
+<script src="https://api.storyboards.sgit.ai/v0/v0.1/v0.1.0/storyboard.js" integrity="sha384-3xZhCe5dUdBXMwV57gyscmlqdIjzz9L6huUkcuiEyC0V3jfrlQEdyEhvvF4kCeOa" crossorigin="anonymous"></script>
+<script src="../vendor/kaplay-3001.0.19.js"></script>
+<style>
+  :root { --paper: #fbf7ee; --ink: #23262b; --marker: #fde68a; --accent: #0f766e; --red: #dc2626; --page: #f7f3ea; --dim: #5b6169; }
+  * { box-sizing: border-box; }
+  html { background: var(--page); }
+  body { margin: 0; background: var(--page); color: var(--ink); font-family: system-ui, -apple-system, "Segoe UI", sans-serif; line-height: 1.5; }
+  .strip { display: flex; flex-wrap: wrap; align-items: baseline; gap: .4rem 1.2rem; padding: .9rem 1.2rem; border-bottom: 2px solid var(--ink); background: var(--paper); }
+  .strip h1 { margin: 0; font-family: 'Caveat', 'Patrick Hand', cursive; font-weight: 700; font-size: 2.6rem; line-height: 1; }
+  .strip .track { font-family: 'Patrick Hand', cursive; font-size: 1.15rem; color: var(--accent); }
+  .strip .pin { font-size: .85rem; color: var(--dim); }
+  .strip a { margin-left: auto; color: var(--accent); font-weight: 600; text-decoration: none; min-height: 44px; display: inline-flex; align-items: center; }
+  .strip a:hover { text-decoration: underline; }
+  main { max-width: 1240px; margin: 0 auto; padding: 1rem 16px 3rem; }
+  .lede { max-width: 60rem; color: var(--dim); margin: .4rem 0 1rem; }
+  .room { position: relative; border: 2px solid var(--ink); border-radius: 10px; overflow: hidden; background: var(--paper); aspect-ratio: 16 / 9; }
+  .room canvas { display: block; width: 100% !important; height: 100% !important; outline: none; }
+  .room canvas:focus-visible { box-shadow: inset 0 0 0 3px var(--accent); }
+  .overlay { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; flex-direction: column; gap: .6rem; background: rgba(251,247,238,.85); font-family: 'Patrick Hand', cursive; font-size: 1.3rem; color: var(--dim); text-align: center; padding: 1rem; }
+  .overlay[hidden] { display: none; }
+  .pad { display: flex; flex-wrap: wrap; gap: .6rem 1.2rem; align-items: center; margin: .8rem 0; padding: .7rem .9rem; background: #fff; border: 1px solid #d9d3c4; border-radius: 10px; }
+  .dpad { display: grid; grid-template-columns: repeat(3, 48px); grid-template-rows: repeat(2, 48px); gap: 4px; }
+  .dpad button { padding: 0; min-width: 48px; min-height: 48px; font-size: 1.2rem; }
+  .dpad .up { grid-column: 2; grid-row: 1; } .dpad .left { grid-column: 1; grid-row: 2; } .dpad .down { grid-column: 2; grid-row: 2; } .dpad .right { grid-column: 3; grid-row: 2; }
+  button { font: inherit; min-height: 44px; min-width: 44px; padding: 0 .9rem; border: 2px solid var(--ink); border-radius: 8px; background: #fff; color: var(--ink); cursor: pointer; touch-action: none; user-select: none; -webkit-user-select: none; }
+  button:hover { background: var(--marker); }
+  button.marker { background: var(--marker); }
+  .legend { font-size: .9rem; color: var(--dim); }
+  .legend kbd { font-family: ui-monospace, Menlo, monospace; font-size: .8rem; border: 1px solid #c9c3b4; border-bottom-width: 2px; border-radius: 4px; padding: 0 .3em; background: #fff; }
+  .sprites { display: flex; flex-wrap: wrap; gap: .6rem; align-items: flex-end; margin: .6rem 0; }
+  .sprites img { height: 90px; width: auto; background: #fff; border: 1px dashed #c9c3b4; border-radius: 6px; }
+  h2 { font-family: 'Caveat', 'Patrick Hand', cursive; font-size: 2.2rem; margin: 2rem 0 .4rem; line-height: 1; }
+  h3 { font-family: 'Caveat', 'Patrick Hand', cursive; font-size: 1.6rem; margin: 1rem 0 .2rem; line-height: 1; }
+  .learnt { max-width: 60rem; padding-left: 1.3rem; }
+  .learnt li { margin: .45rem 0; }
+  .status { font-size: .85rem; color: var(--dim); }
+  @media (max-width: 600px) { .strip h1 { font-size: 2rem; } }
+</style>
+</head>
+<body>
+<header class="strip">
+  <h1>Room (a game engine)</h1>
+  <span class="track">track: engines</span>
+  <span class="pin">lab &middot; experiment &middot; pinned to kit v0.1.0</span>
+  <a href="../index.html">&larr; the lab</a>
+</header>
+<main>
+  <p class="lede">kaplay 3001.0.19 runs in the canvas below. The four lab cast characters, a desk and a vault are drawn by the kit and Rough.js into detached SVGs at load, rasterised through a canvas and handed to the engine as sprites. You are Ines: walk about, bump into the others for a line, and press E by the vault. The status line says which sprite path was used.</p>
+
+  <div class="room" id="room">
+    <canvas id="game" width="960" height="540" aria-label="A room drawn by a game engine: Ines walks among Oto, Vex and Unit, a desk and a vault"></canvas>
+    <div class="overlay" id="overlay"><span id="overlayText">baking sprites&hellip;</span><button type="button" class="marker" id="start" hidden>start the room</button></div>
+  </div>
+
+  <div class="pad" aria-label="controls">
+    <div class="dpad" role="group" aria-label="walk">
+      <button type="button" class="up" data-dir="up" aria-label="up">&uarr;</button>
+      <button type="button" class="left" data-dir="left" aria-label="left">&larr;</button>
+      <button type="button" class="down" data-dir="down" aria-label="down">&darr;</button>
+      <button type="button" class="right" data-dir="right" aria-label="right">&rarr;</button>
+    </div>
+    <button type="button" id="act" class="marker">E: use</button>
+    <span class="legend">controls: <kbd>&larr;</kbd> <kbd>&rarr;</kbd> <kbd>&uarr;</kbd> <kbd>&darr;</kbd> or <kbd>W</kbd> <kbd>A</kbd> <kbd>S</kbd> <kbd>D</kbd> walk, <kbd>E</kbd> uses the vault or the desk; bump into someone for a line. Click the room first to give it the keyboard.</span>
+  </div>
+  <p class="status" id="status">loading&hellip;</p>
+
+  <h3>The baked sprites</h3>
+  <div class="sprites" id="sprites" aria-label="the sprites the engine was given"></div>
+
+  <h2>What this taught us</h2>
+  <ol class="learnt">
+    <li>An engine gives, for nothing, the three things a storyboard page has to fake: input (keys, touch and a gamepad through one API, with the canvas owning the keyboard so a page's fields are left alone), a camera (one call a frame and the room is wider than the screen), and collisions (bumping into Vex is one handler on a tag). The room took fewer lines than the walk cycle's rig. Status: exploring.</li>
+    <li>It costs the DOM. Everything is pixels on a canvas: no text to select or search, no <code>&lt;svg&gt;</code> to inspect or export, and the kit's drawings only get in by being baked into bitmaps first (SVG serialised, loaded as an image, drawn to a canvas, handed over as a data URL). The bake is done once at load and is cheap, but a sprite is one pose at one size: a new mood or pose is another bake, and zooming the camera shows the pixels where the SVG would stay crisp.</li>
+    <li>Rasterising through a canvas was needed, not a fallback: the engine's loader takes a URL and the page must not fetch anything from a third party, so the sprite is a <code>data:</code> URL made by the page, and that needs the canvas step. The SVG is written with explicit width and height attributes, so the image has a size to draw at; the page avoids the blank-image failure rather than testing it. The kit's fonts do not reach the engine either; the lines are drawn in the engine's own font.</li>
+    <li>For a storyboard to play inside an engine it would need three things the data does not have yet: a room (where the floor is, where people stand, what blocks them), verbs on the props (the vault's "open" is a sprite swap here, written by hand) and the lines as reactions rather than a sequence (a line is said when you bump into someone, not when the panel comes up). The storyboard's kinds of scene, with cast, props and says, map onto all three; what is missing is the geometry and the triggers, which is a new scene kind, not a change to the kit.</li>
+  </ol>
+</main>
+<script>
+(function () {
+  'use strict';
+  const NS = 'http://www.w3.org/2000/svg';
+  const K = window.StoryboardKit;
+  const INK = K.INK, PAPER = K.PAPER;
+  const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const el = (tag, attrs, parent) => { const e = document.createElementNS(NS, tag); for (const k in attrs) e.setAttribute(k, attrs[k]); if (parent) parent.appendChild(e); return e; };
+  const $ = (id) => document.getElementById(id);
+  const status = (t) => { $('status').textContent = t; };
+
+  // The lab cast, copied in.
+  const CAST = [
+    { id: 'ines', name: 'Ines', kind: 'human', pronouns: 'they/them', look: { skin: '#c68642', hair: 'long', hairColour: '#2b1d14', shirt: '#0f766e', trousers: '#1f2937', accessory: 'glasses', height: 1.0 } },
+    { id: 'oto', name: 'Oto', kind: 'human', pronouns: 'they/them', look: { skin: '#f1c27d', hair: 'beanie', hatColour: '#b91c1c', hairColour: '#111827', shirt: '#7c3aed', trousers: '#334155', accessory: 'headphones', accentColour: '#f59e0b', height: 0.96 } },
+    { id: 'vex', name: 'Vex', kind: 'human', pronouns: 'they/them', look: { skin: '#e0ac69', hair: 'short', hairColour: '#6b7280', shirt: '#374151', trousers: '#111827', accessory: 'none', height: 1.02 } },
+    { id: 'unit', name: 'Unit', kind: 'agent', pronouns: 'it/its', look: { colour: '#1d4ed8' } },
+  ];
+  // What people say when Ines bumps into them, and what the things say when used.
+  const LINES = {
+    oto: 'Do not touch the vault before you read the record. I rotated the key this morning.',
+    vex: 'I tried the old key on it. Twice. It said no, politely, both times.',
+    unit: 'Press E by the vault. The record says you may.',
+    desk: 'The record, on the desk: key made at 14:02, signed, rotated this morning.',
+    vault: 'The vault opens. One key inside, signed yesterday, rotated this morning.',
+    vaultAgain: 'It is already open. The key is still there.',
+  };
+
+  // ------------------------------------------------------------ baking: a kit drawing becomes a bitmap the engine can take
+  // Draw into a detached SVG with explicit width and height, serialise it, load it as an image from a Blob URL, draw
+  // that into a canvas at the sprite's size and hand the engine the canvas's data URL. Nothing is fetched.
+  async function bake(w, h, scale, drawFn) {
+    const s = document.createElementNS(NS, 'svg');
+    s.setAttribute('xmlns', NS); s.setAttribute('width', w); s.setAttribute('height', h); s.setAttribute('viewBox', `0 0 ${w} ${h}`);
+    drawFn(el('g', {}, s), s);
+    const xml = new XMLSerializer().serializeToString(s);
+    const url = URL.createObjectURL(new Blob([xml], { type: 'image/svg+xml;charset=utf-8' }));
+    const img = new Image();
+    await new Promise((res, rej) => { img.onload = res; img.onerror = () => rej(new Error('the SVG did not load as an image')); img.src = url; });
+    const c = document.createElement('canvas');
+    c.width = Math.round(w * scale); c.height = Math.round(h * scale);
+    c.getContext('2d').drawImage(img, 0, 0, c.width, c.height);
+    URL.revokeObjectURL(url);
+    return { url: c.toDataURL('image/png'), w: c.width, h: c.height };
+  }
+  const rcFor = (svg, seed) => rough.svg(svg, { options: { seed, roughness: 1, bowing: 1.2 } });
+  const SPRITES = {};
+  async function bakeAll() {
+    const S = 0.36; // a 1600-wide panel's person, at a size that fits a 540-high room
+    let i = 0;
+    for (const who of CAST) {
+      SPRITES[who.id] = await bake(300, 560, S, (g, svg) => { K.drawCharacter(g, rcFor(svg, 61 + i), who, 150, 540, { pose: 'stand', mood: who.id === 'ines' ? 'determined' : 'neutral' }); });
+      i++;
+    }
+    SPRITES.desk = await bake(380, 220, S, (g, svg) => {
+      const rc = rcFor(svg, 71);
+      g.appendChild(rc.rectangle(20, 60, 340, 20, { fill: '#b45309', fillStyle: 'hachure', stroke: INK, strokeWidth: 2.4 }));
+      g.appendChild(rc.line(40, 80, 40, 210, { stroke: INK, strokeWidth: 3 })); g.appendChild(rc.line(340, 80, 340, 210, { stroke: INK, strokeWidth: 3 }));
+      g.appendChild(rc.rectangle(120, 20, 150, 40, { fill: '#fff', fillStyle: 'solid', stroke: INK, strokeWidth: 2 })); // the record, on the desk
+      for (let k = 0; k < 3; k++) g.appendChild(rc.line(130, 30 + k * 10, 230 - k * 20, 30 + k * 10, { stroke: '#9ca3af', strokeWidth: 1.6 }));
+    });
+    const vault = (open) => (g, svg) => {
+      const rc = rcFor(svg, 73), x = 170, y = 300, w = 240, h = 220; // after the security pack's vault, redrawn here
+      g.appendChild(rc.rectangle(x - w / 2, y - h, w, h, { fill: '#cbd5e1', fillStyle: 'solid', stroke: INK, strokeWidth: 3 }));
+      if (open) {
+        g.appendChild(rc.rectangle(x - w / 2 + 14, y - h + 14, w - 28, h - 28, { fill: '#1f2937', fillStyle: 'solid', stroke: INK, strokeWidth: 2 }));
+        g.appendChild(rc.polygon([[x - w / 2 + 14, y - h + 14], [x - w / 2 - 60, y - h + 40], [x - w / 2 - 60, y - 20], [x - w / 2 + 14, y - 14]], { fill: '#e5e7eb', fillStyle: 'solid', stroke: INK, strokeWidth: 2.4 }));
+        // the key inside
+        g.appendChild(rc.circle(x - 20, y - h / 2, 40, { fill: '#0f766e', fillStyle: 'hachure', hachureGap: 5, stroke: INK, strokeWidth: 2 }));
+        g.appendChild(rc.rectangle(x, y - h / 2 - 5, 60, 10, { fill: '#0f766e', fillStyle: 'solid', stroke: INK, strokeWidth: 2 }));
+      } else {
+        g.appendChild(rc.rectangle(x - w / 2 + 14, y - h + 14, w - 28, h - 28, { stroke: INK, strokeWidth: 2 }));
+        g.appendChild(rc.circle(x, y - h / 2, 70, { fill: '#f8fafc', fillStyle: 'solid', stroke: INK, strokeWidth: 2.4 }));
+        for (let a = 0; a < 6; a++) { const t = a * Math.PI / 3; g.appendChild(rc.line(x + Math.cos(t) * 20, y - h / 2 + Math.sin(t) * 20, x + Math.cos(t) * 32, y - h / 2 + Math.sin(t) * 32, { stroke: INK, strokeWidth: 2 })); }
+        g.appendChild(rc.line(x + 70, y - h / 2 - 30, x + 70, y - h / 2 + 30, { stroke: INK, strokeWidth: 5 }));
+      }
+    };
+    SPRITES.vault = await bake(340, 320, S * 1.2, vault(false));
+    SPRITES.vaultOpen = await bake(340, 320, S * 1.2, vault(true));
+    const box = $('sprites');
+    for (const name in SPRITES) { const im = document.createElement('img'); im.src = SPRITES[name].url; im.alt = name + ' sprite'; im.title = name; box.appendChild(im); }
+  }
+
+  // ------------------------------------------------------------ the engine
+  const held = { left: false, right: false, up: false, down: false, act: false };
+  function startRoom() {
+    const canvas = $('game');
+    const k = window.kaplay({ canvas, width: 960, height: 540, background: [251, 247, 238], global: false, pixelDensity: 1, touchToMouse: true, loadingScreen: false, debug: false, stretch: false, letterbox: false });
+    const ROOM_W = 2200, FLOOR_Y = 440, BAND = [FLOOR_Y - 40, FLOOR_Y + 60], SPEED = 220;
+    for (const name in SPRITES) k.loadSprite(name, SPRITES[name].url);
+    status('kaplay ' + (k.VERSION || '3001.0.19') + ' running; sprites rasterised through a canvas, handed over as data: URLs (' + Object.keys(SPRITES).length + ' sprites).');
+
+    k.onLoad(() => {
+      // the floor line and a wall, drawn by the engine each frame
+      k.add([k.z(-10), { draw() {
+        k.drawLine({ p1: k.vec2(0, FLOOR_Y), p2: k.vec2(ROOM_W, FLOOR_Y), width: 3, color: k.rgb(35, 38, 43) });
+        k.drawRect({ pos: k.vec2(0, FLOOR_Y), width: ROOM_W, height: 200, color: k.rgb(243, 238, 226) });
+      } }]);
+      // the hint stays on the screen while the camera moves
+      k.add([k.fixed(), k.z(900), { draw() {
+        k.drawText({ text: 'the room', pos: k.vec2(24, 24), size: 22, color: k.rgb(107, 114, 128) });
+        k.drawText({ text: 'the vault is to the right. walk, bump, press E.', pos: k.vec2(24, 54), size: 16, color: k.rgb(107, 114, 128) });
+      } }]);
+      // things: the desk and the vault (static, solid)
+      const desk = k.add([k.sprite('desk'), k.pos(760, FLOOR_Y + 8), k.anchor('bot'), k.area({ scale: k.vec2(1, 0.3), offset: k.vec2(0, 0) }), k.body({ isStatic: true }), 'thing', { what: 'desk' }]);
+      const vault = k.add([k.sprite('vault'), k.pos(2000, FLOOR_Y + 8), k.anchor('bot'), k.area({ scale: k.vec2(0.8, 0.3) }), k.body({ isStatic: true }), 'thing', { what: 'vault', open: false }]);
+      // the people
+      const npcs = [['oto', 520], ['vex', 1250], ['unit', 1620]].map(([id, x]) => k.add([k.sprite(id), k.pos(x, FLOOR_Y + 10 + (x % 3) * 12), k.anchor('bot'), k.area({ scale: k.vec2(0.55, 0.18) }), k.body({ isStatic: true }), 'npc', { who: id, cool: 0 }]));
+      const player = k.add([k.sprite('ines'), k.pos(160, FLOOR_Y + 20), k.anchor('bot'), k.area({ scale: k.vec2(0.55, 0.18) }), k.body(), 'player']);
+      const name = (obj, label) => obj.add([k.text(label, { size: 16 }), k.anchor('top'), k.pos(0, 6), k.color(107, 114, 128)]);
+      npcs.forEach(n => name(n, CAST.find(c => c.id === n.who).name)); name(player, 'Ines (you)');
+
+      // a line above someone's head: a box the engine draws, which goes after three seconds
+      let bubble = null;
+      function say(over, line) {
+        if (bubble) bubble.destroy();
+        bubble = k.add([k.pos(over.pos.x, over.pos.y - over.height - 12), k.anchor('bot'), k.z(1000)]);
+        const t = bubble.add([k.text(line, { size: 16, width: 250, align: 'center' }), k.anchor('bot'), k.pos(0, -10), k.color(35, 38, 43), k.z(2)]);
+        bubble.add([k.rect(270, t.height + 20, { radius: 8 }), k.anchor('bot'), k.color(255, 255, 255), k.outline(2, k.rgb(35, 38, 43)), k.z(1)]);
+        const b = bubble; k.wait(3, () => { if (b.exists()) b.destroy(); if (bubble === b) bubble = null; });
+      }
+      player.onCollide('npc', (n) => { if (n.cool <= 0) { say(n, LINES[n.who]); n.cool = 3; } });
+      function use() {
+        const near = (o, d) => o.pos.dist(player.pos) < d;
+        if (near(vault, 170)) { if (!vault.open) { vault.open = true; vault.use(k.sprite('vaultOpen')); say(vault, LINES.vault); } else say(vault, LINES.vaultAgain); }
+        else if (near(desk, 170)) say(desk, LINES.desk);
+        else say(player, 'Nothing to use here. The vault is to the right.');
+      }
+      k.onKeyPress('e', use);
+      k.onUpdate(() => {
+        const dir = k.vec2(0, 0);
+        if (k.isKeyDown('left') || k.isKeyDown('a') || held.left) dir.x -= 1;
+        if (k.isKeyDown('right') || k.isKeyDown('d') || held.right) dir.x += 1;
+        if (k.isKeyDown('up') || k.isKeyDown('w') || held.up) dir.y -= 1;
+        if (k.isKeyDown('down') || k.isKeyDown('s') || held.down) dir.y += 1;
+        if (dir.len() > 0) { player.move(dir.unit().scale(SPEED)); if (dir.x) player.flipX = dir.x < 0; }
+        player.pos.x = Math.max(60, Math.min(ROOM_W - 60, player.pos.x));
+        player.pos.y = Math.max(BAND[0], Math.min(BAND[1], player.pos.y));
+        if (held.act) { held.act = false; use(); }
+        for (const n of npcs) if (n.cool > 0) n.cool -= k.dt();
+        // nearer the viewer draws over, as in a storyboard
+        for (const o of [player, ...npcs, desk, vault]) o.z = o.pos.y;
+        k.setCamPos(k.vec2(Math.max(480, Math.min(ROOM_W - 480, player.pos.x)), 270));
+      });
+      $('overlay').hidden = true;
+      canvas.focus();
+    });
+  }
+
+  // ------------------------------------------------------------ the page's own controls (touch buttons, start)
+  document.querySelectorAll('[data-dir]').forEach(b => {
+    const on = (e) => { e.preventDefault(); held[b.dataset.dir] = true; }, off = () => { held[b.dataset.dir] = false; };
+    b.addEventListener('pointerdown', on); b.addEventListener('pointerup', off); b.addEventListener('pointercancel', off); b.addEventListener('pointerleave', off);
+  });
+  $('act').addEventListener('click', () => { held.act = true; });
+
+  bakeAll().then(() => {
+    if (reduced) { $('overlayText').textContent = 'Your system asks for reduced motion. The room moves only when you walk, but the engine draws every frame; start it when you want to.'; $('start').hidden = false; $('start').addEventListener('click', startRoom, { once: true }); status('sprites baked; the engine waits for you.'); }
+    else startRoom();
+  }).catch(e => { $('overlayText').textContent = 'the sprites could not be baked: ' + e.message; status('failed: ' + e.message); });
+})();
+</script>
+</body>
+</html>

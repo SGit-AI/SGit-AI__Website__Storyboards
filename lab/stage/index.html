@@ -1,0 +1,343 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Stage: actors you can direct · the Lab · storyboards.sgit.ai</title>
+<meta name="description" content="A game-like API over the storyboard kit: enter, walk, turn, say, think, exit, camera. A script of verbs, a timeline, a scrubber, and a direct mode that writes the script as you play.">
+<link rel="stylesheet" href="https://api.storyboards.sgit.ai/v0/v0.1/v0.1.0/fonts.css" integrity="sha384-ep4bdPYRUzquMICQMhuOkSZ/CB1FnMh6qnGWS1F74VepoLOlw9JGK+Zg+E6/t9dD" crossorigin="anonymous">
+<link rel="stylesheet" href="https://api.storyboards.sgit.ai/v0/v0.1/v0.1.0/storyboard.css" integrity="sha384-NGJqtVi+93pE7lBuwFU0RQWhqnQVLR33Wp8AYH1iAeyC2A7h2ijgU4bEKF5HIKIf" crossorigin="anonymous">
+<script src="https://api.storyboards.sgit.ai/v0/v0.1/v0.1.0/vendor/rough-4.6.6.js" integrity="sha384-XPr5sCJfqHMzoJ8Cn1UYdXXD+XvRi0yoZm3W0yVJ24QP0ps8SYUskiXqnl4yqWlc" crossorigin="anonymous"></script>
+<script src="https://api.storyboards.sgit.ai/v0/v0.1/v0.1.0/props/security.js" integrity="sha384-IkxAFhrp5pQhBSjFCLMEA+1iqFHJ6xPRLeO2n9g478h7Z8hW9cUyvza3PuOtmsOx" crossorigin="anonymous"></script>
+<script src="https://api.storyboards.sgit.ai/v0/v0.1/v0.1.0/storyboard.js" integrity="sha384-3xZhCe5dUdBXMwV57gyscmlqdIjzz9L6huUkcuiEyC0V3jfrlQEdyEhvvF4kCeOa" crossorigin="anonymous"></script>
+<style>
+:root{--bg:#f7f3ea;--fg:#1f2328;--dim:#5b6169;--line:#cfc6b1;--panel:#fff;--paper:#fbf7ee;--ink:#23262b;--marker:#fde68a;--accent:#0f766e;--red:#dc2626;--hand:'Caveat','Patrick Hand',cursive;--note:'Patrick Hand',cursive;--mono:ui-monospace,Menlo,Consolas,monospace}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--fg);font:16px/1.55 system-ui,-apple-system,'Segoe UI',Roboto,sans-serif}
+a{color:#115e59}
+header.lab{display:flex;flex-wrap:wrap;gap:.4rem 1rem;align-items:baseline;justify-content:space-between;padding:.8rem 1rem;border-bottom:1px solid var(--line);background:rgba(247,243,234,.95);position:sticky;top:0;z-index:5}
+header.lab h1{margin:0;font-family:var(--hand);font-size:2rem;line-height:1}
+header.lab .meta{font-family:var(--note);font-size:1.05rem;color:var(--dim)}
+main{max-width:1180px;margin:0 auto;padding:1rem}
+.lede{font-size:1.1rem;max-width:52rem;color:#2b3036;margin:.4rem 0 1rem}
+.stage{display:grid;grid-template-columns:minmax(0,1.6fr) minmax(0,1fr);gap:1rem;align-items:start}
+.panel{background:var(--paper);border:3px solid var(--ink);border-radius:12px;overflow:hidden;box-shadow:4px 4px 0 var(--ink)}
+.panel svg{display:block;width:100%;height:auto;aspect-ratio:16/10}
+.transport{display:flex;flex-wrap:wrap;gap:.5rem;align-items:center;margin:.7rem 0}
+button,select,input[type=text]{font:inherit;min-height:44px;border:2px solid var(--ink);border-radius:8px;background:var(--panel);color:var(--fg);padding:0 .8rem;cursor:pointer}
+button.ink{background:var(--ink);color:#fff;font-weight:700}
+button[aria-pressed=true]{background:var(--marker)}
+input[type=range]{flex:1;min-width:120px;accent-color:var(--accent)}
+.time{font-family:var(--mono);font-size:.85rem;color:var(--dim);min-width:7em;text-align:right}
+.tracks{display:grid;grid-template-columns:80px minmax(0,1fr);gap:.3rem .6rem;font-size:.8rem;margin:.4rem 0}
+.tracks .row{position:relative;height:26px;background:#f1ece0;border-radius:6px;overflow:hidden}
+.tracks .act{position:absolute;top:2px;bottom:2px;border:1px solid var(--ink);border-radius:5px;padding:0 6px;white-space:nowrap;overflow:hidden;font-size:.74rem;line-height:20px}
+.tracks .act.enter,.tracks .act.exit{background:#bbf7d0}.tracks .act.walk,.tracks .act.turn{background:var(--marker)}.tracks .act.say,.tracks .act.think{background:#dbeafe}.tracks .act.pose,.tracks .act.mood{background:#fecaca}.tracks .act.camera,.tracks .act.caption,.tracks .act.prop,.tracks .act.wait{background:#e9d5ff}
+.tracks .head{position:absolute;top:0;bottom:0;width:2px;background:var(--red)}
+.side h2{font-family:var(--note);font-size:1.3rem;margin:.2rem 0 .4rem}
+textarea{width:100%;min-height:300px;font:12.5px/1.45 var(--mono);background:#1f2328;color:#e8e6e1;border:0;border-radius:10px;padding:.8rem;resize:vertical}
+.err{color:#b91c1c;font-size:.9rem;min-height:1.3em}
+.direct{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:.7rem .9rem;margin-top:.8rem;font-size:.92rem}
+.direct .row{display:flex;flex-wrap:wrap;gap:.5rem;align-items:center;margin:.4rem 0}
+kbd{font-family:var(--mono);font-size:.8em;border:1px solid var(--line);border-bottom-width:2px;border-radius:4px;padding:0 .3em;background:#fff}
+.verbs{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:.5rem;margin:.6rem 0 0}
+.verbs div{background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:.5rem .7rem;font-size:.85rem}
+.verbs b{font-family:var(--mono);font-weight:600}
+section.learnt{margin-top:2rem;border-top:2px dashed var(--line);padding-top:1rem}
+section.learnt h2{font-family:var(--hand);font-size:2rem;margin:.2rem 0 .4rem}
+section.learnt li{margin:.3rem 0;max-width:56rem}
+@media (max-width:900px){.stage{grid-template-columns:1fr}}
+@media (prefers-reduced-motion:reduce){.panel svg *{animation:none!important}}
+</style>
+</head>
+<body>
+<header class="lab">
+  <div><h1>Stage: actors you can direct</h1><div class="meta">lab · experiment · motion · pinned to kit v0.1.0</div></div>
+  <nav><a href="../index.html">&larr; the Lab</a> · <a href="https://api.storyboards.sgit.ai/docs/javascript.html">the kit's API</a></nav>
+</header>
+<main>
+<p class="lede">A storyboard panel is a moment. This is the same panel with time in it: a script of verbs (<code>enter</code>, <code>walk</code>, <code>say</code>, <code>camera</code>...) that the actors carry out, drawn by the kit's own <code>drawCharacter</code> and redrawn only when a pose or a mood changes, so the sketch holds still while the figure moves. Scrub it, edit the script, or switch to <b>direct mode</b> and play it like a game: what you do is written into the script as actions.</p>
+
+<div class="stage">
+  <div>
+    <div class="panel" id="panel"><svg id="svg" viewBox="0 0 1600 1000" role="img" aria-label="The stage"></svg></div>
+    <div class="transport">
+      <button class="ink" id="play" aria-label="Play or pause">&#9654; Play</button>
+      <button id="step" title="Jump to the next action">Step</button>
+      <button id="reset">Reset</button>
+      <input type="range" id="scrub" min="0" max="1000" value="0" aria-label="Time">
+      <span class="time" id="time">0.0 / 0.0 s</span>
+      <select id="speed" aria-label="Speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option></select>
+    </div>
+    <div class="tracks" id="tracks"></div>
+    <div class="direct">
+      <div class="row"><b>Direct mode</b> <button id="direct" aria-pressed="false">Off</button>
+        <label>actor <select id="who"></select></label>
+        <label><input type="checkbox" id="record"> record into the script</label></div>
+      <div class="row"><kbd>&larr;</kbd><kbd>&rarr;</kbd> walk · <kbd>&uarr;</kbd> next pose · <kbd>&darr;</kbd> next mood · <kbd>f</kbd> turn ·
+        <input type="text" id="line" placeholder="type a line and press Enter to say it" aria-label="A line to say" style="flex:1;min-width:200px"></div>
+    </div>
+  </div>
+  <div class="side">
+    <h2>The script is data: one action per line</h2>
+    <textarea id="script" spellcheck="false" aria-label="The script as JSON"></textarea>
+    <div class="transport"><button class="ink" id="apply">Apply</button><button id="example">The example</button><button id="copy">Copy</button><span class="err" id="err"></span></div>
+    <div class="verbs">
+      <div><b>enter</b> who, from: left|right, x, for</div>
+      <div><b>exit</b> who, to: left|right, for</div>
+      <div><b>walk</b> who, to (0..1), for</div>
+      <div><b>turn</b> who</div>
+      <div><b>pose</b> who, pose; <b>mood</b> who, mood</div>
+      <div><b>say</b> / <b>think</b> who, text, for</div>
+      <div><b>wait</b> for</div>
+      <div><b>caption</b> text</div>
+      <div><b>camera</b> zoom, to [x, y], for</div>
+      <div><b>prop</b> kind, x, y, label, scale</div>
+      <div><b>at</b> on any line: a start time in seconds; without it, an actor's line starts when their last one ends</div>
+    </div>
+  </div>
+</div>
+
+<section class="learnt">
+  <h2>What this taught us</h2>
+  <ul>
+    <li><b>The script is a storyboard with time in it.</b> A panel is a script where every action is at t = 0; a played script is a panel at every t. The two can share one data file: a storyboard's scene plus an optional <code>actions</code> list.</li>
+    <li><b>Redraw on change, move by transform.</b> Drawing a character once per pose and mood and moving the group keeps Rough.js still; redrawing every frame would make the sketch boil. The kit's <code>drawCharacter</code> already returns the head position, which is all a bubble needs.</li>
+    <li><b>Direct mode is the editor nobody has to learn.</b> Walking an actor with the arrow keys and typing a line writes the actions with their times; the recording is a first draft of a script, and the script is the storyboard. Playing the game wrote the data.</li>
+    <li><b>What the kit should export next:</b> its bubble, caption and setting as functions, and a <code>walk</code> pose (two frames would do). This page redraws its own bubble in the kit's ink to get round it.</li>
+    <li><b>Timing needs a grammar.</b> "When their last line ends" was enough for a two-actor scene; a third actor and a camera wanted <code>at</code> and <code>wait</code>. A tiny timeline language is the next experiment, not a bigger JSON.</li>
+  </ul>
+</section>
+</main>
+
+<script>
+(function () {
+  'use strict';
+  const K = window.StoryboardKit, W = K.W, H = K.H, FLOOR = 900, INK = K.INK;
+  const NS = 'http://www.w3.org/2000/svg';
+  const CAST = {"what":"The lab's own cast","characters":[
+    {"id":"ines","name":"Ines","kind":"human","pronouns":"they/them","role":"the one who asks","look":{"skin":"#c68642","hair":"long","hairColour":"#2b1d14","shirt":"#0f766e","trousers":"#1f2937","accessory":"glasses","height":1.0}},
+    {"id":"oto","name":"Oto","kind":"human","pronouns":"they/them","role":"the one who tries things","look":{"skin":"#f1c27d","hair":"beanie","hatColour":"#b91c1c","hairColour":"#111827","shirt":"#7c3aed","trousers":"#334155","accessory":"headphones","accentColour":"#f59e0b","height":0.96}},
+    {"id":"vex","name":"Vex","kind":"human","pronouns":"they/them","role":"the one who breaks things","look":{"skin":"#e0ac69","hair":"short","hairColour":"#6b7280","shirt":"#374151","trousers":"#111827","accessory":"none","height":1.02}},
+    {"id":"unit","name":"Unit","kind":"agent","pronouns":"it/its","role":"the agent","look":{"colour":"#1d4ed8"}}]};
+  const EXAMPLE = [
+    { "do": "caption", "text": "Where the private half lives" },
+    { "do": "prop", "kind": "vault", "x": 0.72, "y": 900, "label": "master" },
+    { "do": "enter", "who": "ines", "from": "left", "x": 0.28 },
+    { "do": "say", "who": "ines", "text": "Show me where the private half lives." },
+    { "do": "enter", "who": "unit", "from": "right", "x": 0.52, "at": 1.2 },
+    { "do": "pose", "who": "unit", "pose": "point" },
+    { "do": "say", "who": "unit", "text": "In the master. It never leaves.", "for": 2 },
+    { "do": "mood", "who": "ines", "mood": "surprised" },
+    { "do": "walk", "who": "ines", "to": 0.42 },
+    { "do": "camera", "zoom": 1.7, "to": [0.6, 0.72], "for": 1.2 },
+    { "do": "think", "who": "ines", "text": "Not on the wire. Not in the chat.", "for": 2.2 },
+    { "do": "enter", "who": "vex", "from": "right", "x": 0.9, "at": 7.5 },
+    { "do": "say", "who": "vex", "text": "Anyone can add. Nothing is deleted.", "for": 2 },
+    { "do": "mood", "who": "unit", "mood": "determined" },
+    { "do": "camera", "zoom": 1, "to": [0.5, 0.5], "for": 1 },
+    { "do": "pose", "who": "ines", "pose": "arms-up" },
+    { "do": "mood", "who": "ines", "mood": "excited" },
+    { "do": "caption", "text": "Nothing stored to be found. Nothing leaves but ciphertext." },
+    { "do": "wait", "for": 1.5 }
+  ];
+  const who = (id) => CAST.characters.find((c) => c.id === id);
+  const hash = (s) => { let h = 2166136261; for (const c of String(s)) { h ^= c.charCodeAt(0); h = Math.imul(h, 16777619); } return (h >>> 0) % 10000; };
+  const ease = (p) => p < 0.5 ? 2 * p * p : 1 - Math.pow(-2 * p + 2, 2) / 2;
+  const clamp = (v, a, b) => Math.max(a, Math.min(b, v));
+
+  // ---- compile: every action gets a start and an end. An actor's line follows their last; a stage line follows everything.
+  const DUR = { enter: 0.8, exit: 0.8, turn: 0.3, pose: 0.3, mood: 0.3, caption: 0.3, camera: 1, prop: 0.4, wait: 1 };
+  function compile(script) {
+    const cursor = {}, out = [];
+    let stage = 0, x = {};
+    for (const a of script) {
+      const act = Object.assign({}, a);
+      const actor = act.who;
+      let start = act.at != null ? +act.at : (actor ? (cursor[actor] || 0) : stage);
+      let dur = act.for != null ? +act.for : DUR[act.do] != null ? DUR[act.do] : 1;
+      if (act.do === 'walk') { const from = x[actor] == null ? 0.3 : x[actor]; dur = act.for != null ? +act.for : Math.max(0.6, Math.abs(act.to - from) * 3); act.from = from; x[actor] = act.to; }
+      if (act.do === 'enter') { x[actor] = act.x != null ? act.x : (act.from === 'right' ? 0.72 : 0.28); act.x = x[actor]; }
+      if (act.do === 'say' || act.do === 'think') dur = act.for != null ? +act.for : Math.max(1.5, String(act.text || '').split(/\s+/).length * 0.35 + 0.6);
+      act.start = start; act.end = start + dur;
+      if (actor) cursor[actor] = act.end;
+      if (act.do === 'wait') for (const k in cursor) cursor[k] = Math.max(cursor[k], act.end);
+      stage = Math.max(stage, act.end);
+      out.push(act);
+    }
+    return out.sort((p, q) => p.start - q.start || 0);
+  }
+
+  // ---- the state of the world at time t, replayed from the compiled actions
+  function stateAt(acts, t) {
+    const actors = {}, st = { caption: '', props: [], camera: { zoom: 1, at: [0.5, 0.5] }, actors };
+    let cam = { zoom: 1, at: [0.5, 0.5] };
+    const get = (id) => actors[id] || (actors[id] = { id, x: 0.3, dir: 1, pose: 'stand', mood: 'neutral', visible: false, says: null, thinks: false, p: 0, walking: 0 });
+    for (const a of acts) {
+      if (a.start > t) break;
+      const p = clamp((t - a.start) / Math.max(a.end - a.start, 0.0001), 0, 1), e = ease(p), A = a.who ? get(a.who) : null;
+      switch (a.do) {
+        case 'enter': { const off = a.from === 'right' ? 1.12 : -0.12; A.visible = true; A.dir = a.from === 'right' ? -1 : 1; A.x = off + (a.x - off) * e; A.walking = p < 1 ? p * 6 : 0; break; }
+        case 'exit': { const off = (a.to || (A.x > 0.5 ? 'right' : 'left')) === 'right' ? 1.12 : -0.12; A.dir = off > A.x ? 1 : -1; A.x = A.x + (off - A.x) * e; A.walking = p < 1 ? p * 6 : 0; if (p >= 1) A.visible = false; break; }
+        case 'walk': A.dir = a.to >= a.from ? 1 : -1; A.x = a.from + (a.to - a.from) * e; A.walking = p < 1 ? p * 8 : 0; A.says = p < 1 ? A.says : A.says; break;
+        case 'turn': if (p >= 0) A.dir = -A.dir; break;
+        case 'pose': A.pose = a.pose; break;
+        case 'mood': A.mood = a.mood; break;
+        case 'say': case 'think': if (p < 1) { A.says = a.text; A.thinks = a.do === 'think'; A.p = Math.min(1, p * 1.6); } else if (A.says === a.text) A.says = null; break;
+        case 'caption': st.caption = a.text; break;
+        case 'prop': st.props.push(Object.assign({ scale: 1 }, a, { do: undefined, pop: p })); break;
+        case 'camera': { const from = cam; cam = { zoom: from.zoom + ((a.zoom || 1) - from.zoom) * e, at: [from.at[0] + ((a.to ? a.to[0] : 0.5) - from.at[0]) * e, from.at[1] + ((a.to ? a.to[1] : 0.5) - from.at[1]) * e] }; break; }
+        default: break;
+      }
+    }
+    st.camera = cam;
+    return st;
+  }
+
+  // ---- drawing: a background layer by the kit (setting, props, caption), an actor layer redrawn on change, bubbles per frame
+  const svg = document.getElementById('svg');
+  const bgSvg = document.createElementNS(NS, 'svg'); bgSvg.setAttribute('x', 0); bgSvg.setAttribute('y', 0); bgSvg.setAttribute('width', W); bgSvg.setAttribute('height', H); svg.appendChild(bgSvg);
+  const actorLayer = document.createElementNS(NS, 'g'); svg.appendChild(actorLayer);
+  const bubbleLayer = document.createElementNS(NS, 'g'); svg.appendChild(bubbleLayer);
+  let bgKey = '';
+  function drawBackground(st) {
+    const key = JSON.stringify([st.caption, st.props.map((p) => [p.kind, p.x, p.y, p.label, p.scale])]);
+    if (key === bgKey) return;
+    bgKey = key;
+    K.drawScene(bgSvg, { kind: 'scene', setting: 'none', caption: st.caption || undefined, cast: [], props: st.props.map((p) => ({ kind: p.kind, x: p.x, y: p.y, label: p.label, scale: p.scale, colour: p.colour })) }, CAST, { seed: 7 });
+    bgSvg.querySelectorAll('.pop').forEach((e) => { e.style.animation = 'none'; });
+  }
+  const drawn = {};
+  function actorGroup(A) {
+    const key = `${A.id}|${A.pose}|${A.mood}|${A.dir}`;
+    let d = drawn[A.id];
+    if (!d || d.key !== key) {
+      if (d) d.g.remove();
+      const g = document.createElementNS(NS, 'g');
+      const rc = rough.svg(svg, { options: { seed: 11 + hash(key) % 97, roughness: 1, bowing: 1.2 } });
+      const head = K.drawCharacter(g, rc, who(A.id), 0, FLOOR, { pose: A.pose, mood: A.mood, flip: A.dir < 0 });
+      actorLayer.appendChild(g);
+      d = drawn[A.id] = { key, g, head };
+    }
+    return d;
+  }
+  function wrap(text, max) { const words = String(text).split(/\s+/), lines = []; let line = ''; for (const w of words) { if ((line + ' ' + w).trim().length > max && line) { lines.push(line); line = w; } else line = (line + ' ' + w).trim(); } if (line) lines.push(line); return lines; }
+  function bubble(A, hx, hy) {
+    const rc = rough.svg(svg, { options: { seed: 3 + hash(A.id), roughness: 0.9, bowing: 1 } });
+    const size = 34, lines = wrap(A.says, 22), w = Math.max(...lines.map((l) => l.length)) * size * 0.44 + 60, h = lines.length * size * 1.18 + 40;
+    const bx = clamp(hx - w / 2, 20, W - w - 20), by = Math.max(hy - 50 - h, 20);
+    const g = document.createElementNS(NS, 'g'); bubbleLayer.appendChild(g);
+    const add = (n) => { n.classList.add('ink'); g.appendChild(n); };
+    if (A.thinks) {
+      add(rc.ellipse(bx + w / 2, by + h / 2, w * 1.12, h * 1.25, { fill: '#fff', fillStyle: 'solid', stroke: INK, strokeWidth: 2.4 }));
+      add(rc.circle(hx + (bx + w / 2 - hx) * 0.35, by + h + 18, 22, { fill: '#fff', fillStyle: 'solid', stroke: INK }));
+      add(rc.circle(hx + (bx + w / 2 - hx) * 0.12, hy - 18, 12, { fill: '#fff', fillStyle: 'solid', stroke: INK }));
+    } else {
+      const tx = clamp(hx, bx + 40, bx + w - 40);
+      add(rc.path(`M${bx + 26},${by} H${bx + w - 26} Q${bx + w},${by} ${bx + w},${by + 26} V${by + h - 26} Q${bx + w},${by + h} ${bx + w - 26},${by + h} H${bx + 26} Q${bx},${by + h} ${bx},${by + h - 26} V${by + 26} Q${bx},${by} ${bx + 26},${by} Z M${tx - 22},${by + h - 2} L${hx},${hy - 6} L${tx + 22},${by + h - 2}`, { fill: '#fff', fillStyle: 'solid', stroke: INK, strokeWidth: 2.6 }));
+      const cover = document.createElementNS(NS, 'rect'); cover.setAttribute('x', tx - 20); cover.setAttribute('y', by + h - 6); cover.setAttribute('width', 40); cover.setAttribute('height', 8); cover.setAttribute('fill', '#fff'); g.appendChild(cover);
+    }
+    // the text, revealed by the line's progress: the box is sized for all of it, so it does not grow
+    const shown = Math.ceil(A.says.length * A.p);
+    let left = shown;
+    const t = document.createElementNS(NS, 'text'); t.setAttribute('x', bx + w / 2); t.setAttribute('y', by + 20 + size * 0.85); t.setAttribute('font-family', "'Patrick Hand', cursive"); t.setAttribute('font-size', size); t.setAttribute('text-anchor', 'middle'); t.setAttribute('fill', INK);
+    lines.forEach((l, i) => { const s = document.createElementNS(NS, 'tspan'); s.setAttribute('x', bx + w / 2); s.setAttribute('dy', i ? size * 1.18 : 0); const take = Math.max(0, Math.min(l.length, left)); s.textContent = l.slice(0, take); left -= l.length + 1; t.appendChild(s); });
+    g.appendChild(t);
+  }
+  function render(t) {
+    const st = stateAt(compiled, t);
+    drawBackground(st);
+    while (bubbleLayer.firstChild) bubbleLayer.removeChild(bubbleLayer.firstChild);
+    for (const id in drawn) if (!st.actors[id] || !st.actors[id].visible) { drawn[id].g.style.display = 'none'; }
+    for (const id in st.actors) {
+      const A = st.actors[id];
+      if (!A.visible) continue;
+      const d = actorGroup(A);
+      d.g.style.display = '';
+      const bob = A.walking ? -Math.abs(Math.sin(A.walking * Math.PI * 2)) * 14 : 0;
+      const lean = A.walking ? A.dir * 4 : 0;
+      d.g.setAttribute('transform', `translate(${A.x * W},${bob}) rotate(${lean} 0 ${FLOOR})`);
+      if (A.says) bubble(A, A.x * W + d.head.headX, d.head.headTop + bob);
+    }
+    const cam = st.camera, vw = W / cam.zoom, vh = H / cam.zoom;
+    const cx = clamp(cam.at[0] * W, vw / 2, W - vw / 2), cy = clamp(cam.at[1] * H, vh / 2, H - vh / 2);
+    svg.setAttribute('viewBox', `${cx - vw / 2} ${cy - vh / 2} ${vw} ${vh}`);
+  }
+
+  // ---- the transport: time, play, scrub, step; the tracks drawn from the compiled actions
+  let script = JSON.parse(JSON.stringify(EXAMPLE)), compiled = compile(script), duration = 1, t = 0, playing = false, last = 0;
+  const $ = (id) => document.getElementById(id);
+  const scrub = $('scrub'), timeEl = $('time'), playBtn = $('play'), tracks = $('tracks'), ta = $('script'), err = $('err');
+  const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  function load(s) {
+    script = s; compiled = compile(script); duration = Math.max(0.1, ...compiled.map((a) => a.end));
+    bgKey = ''; for (const id in drawn) { drawn[id].g.remove(); delete drawn[id]; }
+    drawTracks(); setTime(Math.min(t, duration)); ta.value = JSON.stringify(script, null, 1).replace(/\n\s+("[^"]+": [^{\[]*?)(?=,?\n)/g, (m) => m); err.textContent = '';
+    ta.value = '[\n' + script.map((a) => '  ' + JSON.stringify(a)).join(',\n') + '\n]';
+  }
+  function drawTracks() {
+    tracks.innerHTML = '';
+    const lanes = [...new Set(compiled.map((a) => a.who || 'stage'))];
+    for (const lane of lanes) {
+      const label = document.createElement('span'); label.textContent = lane; label.style.fontWeight = '700'; tracks.appendChild(label);
+      const row = document.createElement('div'); row.className = 'row';
+      for (const a of compiled.filter((x) => (x.who || 'stage') === lane)) {
+        const el = document.createElement('span'); el.className = 'act ' + a.do; el.style.left = (a.start / duration * 100) + '%'; el.style.width = Math.max(1.5, (a.end - a.start) / duration * 100) + '%';
+        el.textContent = a.do + (a.text ? ' ' + a.text.slice(0, 18) : a.to != null ? ' ' + a.to : a.pose ? ' ' + a.pose : a.mood ? ' ' + a.mood : a.kind ? ' ' + a.kind : '');
+        el.title = `${a.do} ${a.start.toFixed(1)}s to ${a.end.toFixed(1)}s`; row.appendChild(el);
+      }
+      const head = document.createElement('div'); head.className = 'head'; row.appendChild(head); tracks.appendChild(row);
+    }
+  }
+  function setTime(v) {
+    t = clamp(v, 0, duration); render(t);
+    scrub.value = Math.round(t / duration * 1000); timeEl.textContent = `${t.toFixed(1)} / ${duration.toFixed(1)} s`;
+    tracks.querySelectorAll('.head').forEach((h) => { h.style.left = (t / duration * 100) + '%'; });
+  }
+  function tick(now) {
+    if (!playing) return;
+    const dt = (now - last) / 1000 * +$('speed').value; last = now;
+    if (t + dt >= duration) { setTime(duration); stop(); return; }
+    setTime(t + dt); requestAnimationFrame(tick);
+  }
+  function start() { if (t >= duration) setTime(0); playing = true; last = performance.now(); playBtn.innerHTML = '&#10074;&#10074; Pause'; requestAnimationFrame(tick); }
+  function stop() { playing = false; playBtn.innerHTML = '&#9654; Play'; }
+  playBtn.onclick = () => (playing ? stop() : start());
+  $('step').onclick = () => { stop(); const next = compiled.map((a) => a.start).find((s) => s > t + 0.001); setTime(next == null ? duration : next); };
+  $('reset').onclick = () => { stop(); setTime(0); };
+  scrub.oninput = () => { stop(); setTime(+scrub.value / 1000 * duration); };
+  $('apply').onclick = () => { try { const s = JSON.parse(ta.value); if (!Array.isArray(s)) throw new Error('the script must be a list of actions'); for (const a of s) if (!a.do) throw new Error('every action needs "do"'); for (const a of s) if (a.who && !who(a.who)) throw new Error(`"${a.who}" is not in the cast`); stop(); load(s); setTime(0); } catch (e) { err.textContent = e.message; } };
+  $('example').onclick = () => { stop(); load(JSON.parse(JSON.stringify(EXAMPLE))); setTime(0); };
+  $('copy').onclick = async () => { try { await navigator.clipboard.writeText(ta.value); $('copy').textContent = 'Copied'; } catch (e) { ta.select(); $('copy').textContent = 'Select and copy'; } setTimeout(() => { $('copy').textContent = 'Copy'; }, 1500); };
+
+  // ---- direct mode: the keys move one actor now; with record on, each thing you do becomes an action at the current time
+  const whoSel = $('who'); CAST.characters.forEach((c) => { const o = document.createElement('option'); o.value = c.id; o.textContent = c.name; whoSel.appendChild(o); });
+  const directBtn = $('direct'); let direct = false;
+  directBtn.onclick = () => { direct = !direct; directBtn.setAttribute('aria-pressed', String(direct)); directBtn.textContent = direct ? 'On' : 'Off'; if (direct) stop(); };
+  function act(a) {
+    const id = whoSel.value, st = stateAt(compiled, t), A = st.actors[id];
+    const line = Object.assign({ at: +t.toFixed(2) }, a);
+    if (!A || !A.visible) { script.push({ do: 'enter', who: id, from: line.to != null && line.to < 0.5 ? 'right' : 'left', x: 0.5, at: line.at, for: 0.01 }); }
+    script.push(line);
+    const was = t; load(script);
+    const a2 = compiled.find((x) => x === line || (x.do === line.do && x.at === line.at && x.who === line.who));
+    setTime(a2 && (a2.do === 'walk' || a2.do === 'say' || a2.do === 'think') ? a2.end : was + 0.05);
+    if (!$('record').checked) script = script.filter((x) => x !== line);
+  }
+  document.addEventListener('keydown', (e) => {
+    if (!direct || /^(INPUT|SELECT|TEXTAREA)$/.test(e.target.tagName)) return;
+    const st = stateAt(compiled, t), A = st.actors[whoSel.value] || { x: 0.5, pose: 'stand', mood: 'neutral' };
+    if (e.key === 'ArrowRight') { e.preventDefault(); act({ do: 'walk', who: whoSel.value, to: +clamp(A.x + 0.12, 0.08, 0.92).toFixed(2), for: 0.5 }); }
+    else if (e.key === 'ArrowLeft') { e.preventDefault(); act({ do: 'walk', who: whoSel.value, to: +clamp(A.x - 0.12, 0.08, 0.92).toFixed(2), for: 0.5 }); }
+    else if (e.key === 'ArrowUp') { e.preventDefault(); act({ do: 'pose', who: whoSel.value, pose: K.POSES[(K.POSES.indexOf(A.pose) + 1) % K.POSES.length] }); }
+    else if (e.key === 'ArrowDown') { e.preventDefault(); act({ do: 'mood', who: whoSel.value, mood: K.MOODS[(K.MOODS.indexOf(A.mood) + 1) % K.MOODS.length] }); }
+    else if (e.key === 'f') act({ do: 'turn', who: whoSel.value });
+  });
+  $('line').addEventListener('keydown', (e) => { if (e.key === 'Enter' && $('line').value.trim()) { if (!direct) { direct = true; directBtn.setAttribute('aria-pressed', 'true'); directBtn.textContent = 'On'; } act({ do: 'say', who: whoSel.value, text: $('line').value.trim() }); $('line').value = ''; } });
+
+  load(script); setTime(0);
+  if (!reduced) setTimeout(start, 600);
+})();
+</script>
+</body>
+</html>

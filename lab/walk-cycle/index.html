@@ -1,0 +1,313 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Walk cycle: a rigged stick figure, four gaits, and the same rig in a costume</title>
+<meta name="description" content="A lab experiment: an 11-joint stick figure driven by parametric walk, run, jump and idle cycles, then the same rig dressed in a lab cast character's colours.">
+<link rel="stylesheet" href="https://api.storyboards.sgit.ai/v0/v0.1/v0.1.0/fonts.css" integrity="sha384-ep4bdPYRUzquMICQMhuOkSZ/CB1FnMh6qnGWS1F74VepoLOlw9JGK+Zg+E6/t9dD" crossorigin="anonymous">
+<link rel="stylesheet" href="https://api.storyboards.sgit.ai/v0/v0.1/v0.1.0/storyboard.css" integrity="sha384-NGJqtVi+93pE7lBuwFU0RQWhqnQVLR33Wp8AYH1iAeyC2A7h2ijgU4bEKF5HIKIf" crossorigin="anonymous">
+<script src="https://api.storyboards.sgit.ai/v0/v0.1/v0.1.0/vendor/rough-4.6.6.js" integrity="sha384-XPr5sCJfqHMzoJ8Cn1UYdXXD+XvRi0yoZm3W0yVJ24QP0ps8SYUskiXqnl4yqWlc" crossorigin="anonymous"></script>
+<script src="https://api.storyboards.sgit.ai/v0/v0.1/v0.1.0/props/security.js" integrity="sha384-IkxAFhrp5pQhBSjFCLMEA+1iqFHJ6xPRLeO2n9g478h7Z8hW9cUyvza3PuOtmsOx" crossorigin="anonymous"></script>
+<script src="https://api.storyboards.sgit.ai/v0/v0.1/v0.1.0/storyboard.js" integrity="sha384-3xZhCe5dUdBXMwV57gyscmlqdIjzz9L6huUkcuiEyC0V3jfrlQEdyEhvvF4kCeOa" crossorigin="anonymous"></script>
+<style>
+  :root { --paper: #fbf7ee; --ink: #23262b; --marker: #fde68a; --accent: #0f766e; --red: #dc2626; --page: #f7f3ea; --dim: #5b6169; }
+  * { box-sizing: border-box; }
+  html { background: var(--page); }
+  body { margin: 0; background: var(--page); color: var(--ink); font-family: system-ui, -apple-system, "Segoe UI", sans-serif; line-height: 1.5; }
+  .strip { display: flex; flex-wrap: wrap; align-items: baseline; gap: .4rem 1.2rem; padding: .9rem 1.2rem; border-bottom: 2px solid var(--ink); background: var(--paper); }
+  .strip h1 { margin: 0; font-family: 'Caveat', 'Patrick Hand', cursive; font-weight: 700; font-size: 2.6rem; line-height: 1; }
+  .strip .track { font-family: 'Patrick Hand', cursive; font-size: 1.15rem; color: var(--accent); }
+  .strip .pin { font-size: .85rem; color: var(--dim); }
+  .strip a { margin-left: auto; color: var(--accent); font-weight: 600; text-decoration: none; min-height: 44px; display: inline-flex; align-items: center; }
+  .strip a:hover { text-decoration: underline; }
+  main { max-width: 1240px; margin: 0 auto; padding: 1rem 16px 3rem; }
+  .lede { max-width: 60rem; color: var(--dim); margin: .4rem 0 1rem; }
+  .stage { display: block; width: 100%; height: auto; aspect-ratio: 1600 / 600; background: var(--paper); border: 2px solid var(--ink); border-radius: 10px; }
+  .controls { display: flex; flex-wrap: wrap; gap: .6rem 1.2rem; align-items: center; margin: .8rem 0; padding: .7rem .9rem; background: #fff; border: 1px solid #d9d3c4; border-radius: 10px; }
+  .controls label { display: inline-flex; align-items: center; gap: .45rem; min-height: 44px; font-size: .95rem; }
+  .controls input[type=range] { width: 150px; min-height: 44px; }
+  .controls output { font-family: ui-monospace, Menlo, monospace; font-size: .85rem; color: var(--dim); min-width: 3.2em; }
+  .gaits { display: inline-flex; gap: .3rem; flex-wrap: wrap; }
+  button { font: inherit; min-height: 44px; min-width: 44px; padding: 0 .9rem; border: 2px solid var(--ink); border-radius: 8px; background: #fff; color: var(--ink); cursor: pointer; }
+  button:hover { background: var(--marker); }
+  button[aria-pressed=true] { background: var(--ink); color: var(--paper); }
+  button.marker { background: var(--marker); }
+  button.marker[aria-pressed=true] { background: var(--ink); color: var(--paper); }
+  .readout { font-family: 'Patrick Hand', cursive; font-size: 1.1rem; color: var(--dim); }
+  h2 { font-family: 'Caveat', 'Patrick Hand', cursive; font-size: 2.2rem; margin: 2rem 0 .4rem; line-height: 1; }
+  .learnt { max-width: 60rem; padding-left: 1.3rem; }
+  .learnt li { margin: .45rem 0; }
+  .status { font-size: .85rem; color: var(--dim); }
+  @media (max-width: 600px) { .strip h1 { font-size: 2rem; } .controls input[type=range] { width: 110px; } }
+</style>
+</head>
+<body>
+<header class="strip">
+  <h1>Walk cycle</h1>
+  <span class="track">track: motion</span>
+  <span class="pin">lab &middot; experiment &middot; pinned to kit v0.1.0</span>
+  <a href="../index.html">&larr; the lab</a>
+</header>
+<main>
+  <p class="lede">A stick figure with 11 joints, posed every frame by a gait function of a phase from 0 to 1. The same joints, with a shirt and trousers drawn over them in Oto's colours from the lab cast, show what the kit's look would sit on. The strokes are plain SVG lines with round caps; the "rough strokes" box redraws the bones with Rough.js (seed 7) so you can see why that is not the default.</p>
+
+  <svg id="stage" class="stage" viewBox="0 0 1600 600" role="img" aria-label="A stick figure and a dressed figure walking across a paper stage"></svg>
+
+  <div class="controls" aria-label="gait">
+    <span class="gaits" role="group" aria-label="gait">
+      <button type="button" data-gait="walk" aria-pressed="true">walk</button>
+      <button type="button" data-gait="run" aria-pressed="false">run</button>
+      <button type="button" data-gait="jump" aria-pressed="false">jump</button>
+      <button type="button" data-gait="idle" aria-pressed="false">idle</button>
+    </span>
+    <button type="button" id="playpause" class="marker" aria-pressed="false">play</button>
+    <span class="readout" id="readout">phase 0.25</span>
+  </div>
+  <div class="controls" aria-label="parameters">
+    <label>speed <input type="range" id="speed" min="0.2" max="3" step="0.05" value="1"> <output id="speedOut">1.00</output> cycles/s</label>
+    <label>stride <input type="range" id="stride" min="0.4" max="1.6" step="0.05" value="1"> <output id="strideOut">1.00</output></label>
+    <label>phase <input type="range" id="phase" min="0" max="1" step="0.005" value="0.25"> <output id="phaseOut">0.25</output></label>
+    <label><input type="checkbox" id="joints"> show joints</label>
+    <label><input type="checkbox" id="ghost"> ghost trail</label>
+    <label><input type="checkbox" id="roughy"> rough strokes</label>
+  </div>
+  <p class="status" id="motionNote"></p>
+
+  <h2>What this taught us</h2>
+  <ol class="learnt">
+    <li>A rig gives you every in-between for free: the four gaits here are four small functions of a phase, and speed, stride and direction are numbers, where the kit's seven drawn poses are seven fixed pictures with nothing between them. The cost is that a rig only knows what its functions know: a pose that is not on a cycle (think, shrug, sit) still has to be authored.</li>
+    <li>A walk reads as a walk from two positions, not from the whole cycle: the contact (both legs straight and apart, the body at its lowest, phase 0.25 and 0.75 here) and the passing (the swinging leg bent under a body at its highest, phase 0 and 0.5). Get those two right and the in-betweens can be plain sine waves. Scrub the phase slider to the four marks and compare.</li>
+    <li>Three things break it: the feet slide if the distance travelled per cycle does not match the stride (fixed here by deriving the distance from the thigh swing, so each gait has its own ground speed); a run with the same bob as a walk looks like a fast walk (a run needs a flight phase, a forward lean and bent arms); and Rough.js redrawn every frame boils, even with a fixed seed, because the wobble is proportional to a geometry that changes each frame. The kit's wobble suits stills and arrivals, not cycles.</li>
+    <li>The costume over the bones is thick strokes in the shirt and trousers colours plus a skin circle and the beanie, with flat fills rather than the kit's hachure; it reads as the same character at a glance. Lifting this into the kit would mean drawing a character from a joint list instead of from fixed offsets, which is a new release of drawCharacter, not a patch. Status: exploring.</li>
+  </ol>
+</main>
+<script>
+(function () {
+  'use strict';
+  const NS = 'http://www.w3.org/2000/svg';
+  const svg = document.getElementById('stage');
+  const INK = '#23262b', PAPER = '#fbf7ee', RED = '#dc2626';
+  const W = 1600, FLOOR = 500;
+  // Oto, from the lab cast: the costume figure wears these colours.
+  const OTO = { skin: '#f1c27d', hair: 'beanie', hatColour: '#b91c1c', hairColour: '#111827', shirt: '#7c3aed', trousers: '#334155', accentColour: '#f59e0b' };
+  const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  const el = (tag, attrs, parent) => { const e = document.createElementNS(NS, tag); for (const k in attrs) e.setAttribute(k, attrs[k]); if (parent) parent.appendChild(e); return e; };
+
+  // The stage: paper, a floor line drawn once with Rough.js (seeded, so it is the same line every load).
+  el('rect', { x: 0, y: 0, width: W, height: 600, fill: PAPER }, svg);
+  const rcStage = rough.svg(svg, { options: { seed: 7, roughness: 1, bowing: 1.2 } });
+  svg.appendChild(rcStage.line(0, FLOOR, W, FLOOR, { stroke: INK, strokeWidth: 3, roughness: 2 }));
+  // the four marks of a cycle, written on the paper
+  const t = el('text', { x: 24, y: 40, 'font-family': "'Patrick Hand', cursive", 'font-size': 26, fill: '#6b7280' }, svg);
+  t.textContent = 'contact at 0.25 and 0.75, passing at 0 and 0.5';
+  const ghostG = el('g', { opacity: 0.18 }, svg);
+  const stickG = el('g', {}, svg);
+  const suitG = el('g', {}, svg);
+  const jointG = el('g', {}, svg);
+
+  // ------------------------------------------------------------ the rig
+  // Lengths in stage units; angles in radians from the vertical, positive is forward (the figure faces right).
+  const L = { thigh: 72, shin: 70, foot: 28, torso: 92, neck: 20, head: 26, upper: 56, fore: 52 };
+  const TAU = Math.PI * 2;
+
+  // A gait is a function of phase (0..1) and stride (a multiplier) returning joint angles and body offsets.
+  // thigh and arm angles are forward-positive; knee and elbow are bend amounts; bob is the hip's vertical offset
+  // (negative is up); lift is extra height (jumps); lean is the torso's forward tilt; dist is the ground covered per cycle.
+  const GAITS = {
+    walk(p, S) {
+      const A = 0.38 * S, s = Math.sin(TAU * p), c = Math.cos(TAU * p);
+      return { thighL: A * s, thighR: -A * s, kneeL: 0.95 * S * Math.max(0, c) + 0.08, kneeR: 0.95 * S * Math.max(0, -c) + 0.08,
+        armL: -0.55 * A * s, armR: 0.55 * A * s, elbL: 0.35, elbR: 0.35, bob: -7 * Math.cos(2 * TAU * p), lift: 0, lean: 0.05, head: 0,
+        dist: 4 * L.thigh * Math.sin(A) };
+    },
+    run(p, S) {
+      const A = 0.62 * S, s = Math.sin(TAU * p), c = Math.cos(TAU * p);
+      return { thighL: A * s + 0.1, thighR: -A * s + 0.1, kneeL: 1.5 * S * Math.max(0, c) + 0.3, kneeR: 1.5 * S * Math.max(0, -c) + 0.3,
+        armL: -0.8 * A * s - 0.2, armR: 0.8 * A * s - 0.2, elbL: 1.6, elbR: 1.6, bob: -16 * Math.cos(2 * TAU * p) - 10, lift: 0, lean: 0.28, head: -0.1,
+        dist: 7 * L.thigh * Math.sin(A) };
+    },
+    jump(p, S) {
+      // crouch to 0.3, launch to 0.5, air to 0.8, land to 1
+      let knee, arm, lift = 0, bob = 0, lean = 0.1, thigh = 0;
+      if (p < 0.3) { const k = p / 0.3; knee = 1.1 * k; arm = -0.9 * k; bob = 40 * k; }
+      else if (p < 0.5) { const k = (p - 0.3) / 0.2; knee = 1.1 * (1 - k); arm = -0.9 + 2.4 * k; bob = 40 * (1 - k); lift = 90 * S * Math.sin(Math.PI * k / 2); }
+      else if (p < 0.8) { const k = (p - 0.5) / 0.3; knee = 0.9 * Math.sin(Math.PI * k); arm = 1.5 - 0.6 * k; lift = 90 * S * Math.cos(Math.PI * k / 2); thigh = 0.6 * Math.sin(Math.PI * k); lean = 0.2; }
+      else { const k = (p - 0.8) / 0.2; knee = 1.0 * Math.sin(Math.PI * k); arm = 0.9 * (1 - k) - 0.3 * Math.sin(Math.PI * k); bob = 36 * Math.sin(Math.PI * k); }
+      const bend = knee;
+      return { thighL: thigh + bend * 0.5, thighR: thigh + bend * 0.45, kneeL: bend, kneeR: bend * 0.95, armL: arm, armR: arm * 0.95, elbL: 0.4, elbR: 0.4,
+        bob: bob, lift: lift, lean: lean, head: 0, dist: (p >= 0.3 && p < 0.8) ? 220 * S : 0, airborne: p >= 0.3 && p < 0.8 };
+    },
+    idle(p, S) {
+      const s = Math.sin(TAU * p);
+      return { thighL: 0.04, thighR: -0.04, kneeL: 0.08, kneeR: 0.06, armL: 0.05 * s + 0.04, armR: -0.05 * s + 0.04, elbL: 0.25, elbR: 0.22,
+        bob: 3 * s, lift: 0, lean: 0.02 * s, head: 0.05 * Math.sin(TAU * p * 0.5), dist: 0 };
+    },
+  };
+
+  // Joint positions from a gait result. 11 joints: head, neck, hip, two elbows, two hands, two knees, two ankles.
+  function solve(g, x) {
+    const hipY = FLOOR - (L.thigh + L.shin + 6) + g.bob - g.lift;
+    const hip = [x, hipY];
+    const neck = [x + Math.sin(g.lean) * L.torso, hipY - Math.cos(g.lean) * L.torso];
+    const headA = g.lean + g.head;
+    const head = [neck[0] + Math.sin(headA) * (L.neck + L.head), neck[1] - Math.cos(headA) * (L.neck + L.head)];
+    const leg = (th, kn) => {
+      const knee = [hip[0] + Math.sin(th) * L.thigh, hip[1] + Math.cos(th) * L.thigh];
+      const a = th - kn;
+      const ankle = [knee[0] + Math.sin(a) * L.shin, knee[1] + Math.cos(a) * L.shin];
+      const fa = -a * 0.35; // the foot flexes a little with the shin
+      const toe = [ankle[0] + Math.cos(fa) * L.foot, ankle[1] + Math.sin(fa) * L.foot];
+      return { knee, ankle, toe };
+    };
+    const arm = (ua, eb) => {
+      const elbow = [neck[0] + Math.sin(ua) * L.upper, neck[1] + Math.cos(ua) * L.upper];
+      const a = ua + eb;
+      const hand = [elbow[0] + Math.sin(a) * L.fore, elbow[1] + Math.cos(a) * L.fore];
+      return { elbow, hand };
+    };
+    return { hip, neck, head, L: leg(g.thighL, g.kneeL), R: leg(g.thighR, g.kneeR), AL: arm(g.armL, g.elbL), AR: arm(g.armR, g.elbR) };
+  }
+
+  // ------------------------------------------------------------ drawing
+  const pts = (arr) => arr.map(p => p[0].toFixed(1) + ',' + p[1].toFixed(1)).join(' ');
+  function line(parent, a, b, stroke, width, rc) {
+    if (rc) { const n = rc.line(a[0], a[1], b[0], b[1], { stroke, strokeWidth: width, roughness: 1 }); parent.appendChild(n); return n; }
+    return el('polyline', { points: pts([a, b]), fill: 'none', stroke, 'stroke-width': width, 'stroke-linecap': 'round', 'stroke-linejoin': 'round' }, parent);
+  }
+  function poly(parent, arr, stroke, width, rc) {
+    if (rc) { const n = rc.linearPath(arr, { stroke, strokeWidth: width, roughness: 1 }); parent.appendChild(n); return n; }
+    return el('polyline', { points: pts(arr), fill: 'none', stroke, 'stroke-width': width, 'stroke-linecap': 'round', 'stroke-linejoin': 'round' }, parent);
+  }
+  function circle(parent, c, r, fill, stroke, width, rc) {
+    if (rc) { const n = rc.circle(c[0], c[1], r * 2, { stroke, strokeWidth: width, fill, fillStyle: 'solid', roughness: 0.8 }); parent.appendChild(n); return n; }
+    return el('circle', { cx: c[0], cy: c[1], r, fill, stroke, 'stroke-width': width }, parent);
+  }
+
+  function drawStick(parent, J, ink, width, rc) {
+    // far limbs first, a touch lighter, so the figure has a near side
+    poly(parent, [J.neck, J.AR.elbow, J.AR.hand], ink, width, rc);
+    poly(parent, [J.hip, J.R.knee, J.R.ankle, J.R.toe], ink, width, rc);
+    line(parent, J.hip, J.neck, ink, width, rc);
+    line(parent, J.neck, [J.head[0] - (J.head[0] - J.neck[0]) * L.head / (L.neck + L.head), J.head[1] - (J.head[1] - J.neck[1]) * L.head / (L.neck + L.head)], ink, width, rc);
+    circle(parent, J.head, L.head, PAPER, ink, width, rc);
+    poly(parent, [J.neck, J.AL.elbow, J.AL.hand], ink, width, rc);
+    poly(parent, [J.hip, J.L.knee, J.L.ankle, J.L.toe], ink, width, rc);
+  }
+
+  function perp(a, b, d) { // a point offset d sideways from the a-b direction, at a
+    const dx = b[0] - a[0], dy = b[1] - a[1], n = Math.hypot(dx, dy) || 1;
+    return [a[0] - dy / n * d, a[1] + dx / n * d];
+  }
+  function drawCostume(parent, J, look, rc) {
+    const shoe = (ankle, toe) => {
+      const mx = (ankle[0] + toe[0]) / 2, my = (ankle[1] + toe[1]) / 2 + 2;
+      el('ellipse', { cx: mx, cy: my, rx: 22, ry: 9, fill: INK, transform: `rotate(${Math.atan2(toe[1] - ankle[1], toe[0] - ankle[0]) * 180 / Math.PI} ${mx} ${my})` }, parent);
+    };
+    // far leg and arm
+    poly(parent, [J.hip, J.R.knee, J.R.ankle], look.trousers, 16, rc); shoe(J.R.ankle, J.R.toe);
+    poly(parent, [perp(J.neck, J.hip, 24), J.AR.elbow, J.AR.hand], look.shirt, 14, rc);
+    circle(parent, J.AR.hand, 10, look.skin, INK, 2, rc);
+    // the shirt: a quad over the torso, shoulders wider than the hips
+    const quad = [perp(J.neck, J.hip, -30), perp(J.neck, J.hip, 30), perp(J.hip, J.neck, -24), perp(J.hip, J.neck, 24)];
+    if (rc) parent.appendChild(rc.polygon(quad, { fill: look.shirt, fillStyle: 'hachure', hachureGap: 6, fillWeight: 2.2, hachureAngle: -40, stroke: INK, strokeWidth: 2.4, roughness: 1 }));
+    else el('polygon', { points: pts(quad), fill: look.shirt, stroke: INK, 'stroke-width': 2.4, 'stroke-linejoin': 'round' }, parent);
+    // trousers' waist, so the legs read as one garment
+    line(parent, perp(J.hip, J.neck, -22), perp(J.hip, J.neck, 22), look.trousers, 14, rc);
+    // near leg and arm
+    poly(parent, [J.hip, J.L.knee, J.L.ankle], look.trousers, 16, rc); shoe(J.L.ankle, J.L.toe);
+    poly(parent, [perp(J.neck, J.hip, -24), J.AL.elbow, J.AL.hand], look.shirt, 14, rc);
+    circle(parent, J.AL.hand, 10, look.skin, INK, 2, rc);
+    // neck, head, beanie, face
+    line(parent, J.neck, [J.neck[0] + (J.head[0] - J.neck[0]) * 0.5, J.neck[1] + (J.head[1] - J.neck[1]) * 0.5], look.skin, 12, rc);
+    circle(parent, J.head, L.head, look.skin, INK, 2.4, rc);
+    const hx = J.head[0], hy = J.head[1], r = L.head;
+    const hat = `M${hx - r - 2},${hy - 3} Q${hx - r},${hy - r - 10} ${hx},${hy - r - 12} Q${hx + r},${hy - r - 10} ${hx + r + 2},${hy - 3} Z`;
+    if (rc) parent.appendChild(rc.path(hat, { fill: look.hatColour, fillStyle: 'solid', stroke: INK, strokeWidth: 2, roughness: 1 }));
+    else el('path', { d: hat, fill: look.hatColour, stroke: INK, 'stroke-width': 2 }, parent);
+    circle(parent, [hx, hy - r - 13], 7, look.hatColour, INK, 2, rc);
+    el('circle', { cx: hx + 10, cy: hy - 2, r: 2.6, fill: INK }, parent);
+    el('path', { d: `M${hx + 4},${hy + 10} Q${hx + 10},${hy + 14} ${hx + 16},${hy + 9}`, fill: 'none', stroke: INK, 'stroke-width': 2, 'stroke-linecap': 'round' }, parent);
+    // headphones, Oto's accessory
+    el('path', { d: `M${hx - r - 2},${hy} Q${hx},${hy - r * 2.1} ${hx + r + 2},${hy}`, fill: 'none', stroke: INK, 'stroke-width': 4 }, parent);
+    for (const s of [-1, 1]) el('rect', { x: hx + s * (r + 2) - 5, y: hy - 6, width: 10, height: 16, rx: 2, fill: look.accentColour, stroke: INK, 'stroke-width': 1.5 }, parent);
+  }
+
+  function drawJoints(parent, J) {
+    for (const p of [J.head, J.neck, J.hip, J.AL.elbow, J.AL.hand, J.AR.elbow, J.AR.hand, J.L.knee, J.L.ankle, J.R.knee, J.R.ankle])
+      el('circle', { cx: p[0], cy: p[1], r: 5.5, fill: RED, stroke: '#fff', 'stroke-width': 1.5 }, parent);
+  }
+
+  // ------------------------------------------------------------ state and the loop
+  const state = { gait: 'walk', phase: 0.25, speed: 1, stride: 1, x: 420, playing: false, joints: false, ghost: false, rough: false };
+  const trail = []; // the last 8 poses of the stick figure
+  let trailTick = 0, lastT = 0;
+  const clear = (g) => { while (g.firstChild) g.removeChild(g.firstChild); };
+  const rcFig = rough.svg(svg, { options: { seed: 7, roughness: 1, bowing: 1 } });
+
+  function render() {
+    const g = GAITS[state.gait](state.phase, state.stride);
+    const rc = state.rough ? rcFig : null;
+    const J = solve(g, state.x);
+    const J2 = solve(g, state.x - 480 < -120 ? state.x - 480 + W + 240 : state.x - 480);
+    clear(stickG); clear(suitG); clear(jointG);
+    drawStick(stickG, J, INK, 5, rc);
+    drawCostume(suitG, J2, OTO, rc);
+    if (state.joints) { drawJoints(jointG, J); drawJoints(jointG, J2); }
+    clear(ghostG);
+    if (state.ghost) for (const T of trail) drawStick(ghostG, T, INK, 4, null);
+    document.getElementById('readout').textContent = 'phase ' + state.phase.toFixed(2) + (g.airborne ? ', in the air' : '');
+    document.getElementById('phase').value = state.phase.toFixed(3);
+    document.getElementById('phaseOut').value = state.phase.toFixed(2);
+  }
+
+  function step(now) {
+    if (!state.playing) return;
+    const dt = Math.min(0.05, (now - lastT) / 1000 || 0); lastT = now;
+    const g = GAITS[state.gait](state.phase, state.stride);
+    state.phase = (state.phase + dt * state.speed) % 1;
+    state.x += g.dist * state.speed * dt;
+    if (state.x > W + 120) state.x -= W + 240;
+    if (state.ghost && ++trailTick % 5 === 0) { trail.push(solve(g, state.x)); while (trail.length > 8) trail.shift(); }
+    render();
+    requestAnimationFrame(step);
+  }
+  function play(on) {
+    state.playing = on;
+    const b = document.getElementById('playpause');
+    b.textContent = on ? 'pause' : 'play'; b.setAttribute('aria-pressed', on ? 'true' : 'false');
+    if (on) { lastT = performance.now(); requestAnimationFrame(step); }
+  }
+
+  // ------------------------------------------------------------ controls
+  const $ = (id) => document.getElementById(id);
+  document.querySelectorAll('[data-gait]').forEach(b => b.addEventListener('click', () => {
+    state.gait = b.dataset.gait; trail.length = 0;
+    document.querySelectorAll('[data-gait]').forEach(o => o.setAttribute('aria-pressed', o === b ? 'true' : 'false'));
+    render();
+  }));
+  $('playpause').addEventListener('click', () => play(!state.playing));
+  $('speed').addEventListener('input', (e) => { state.speed = +e.target.value; $('speedOut').value = state.speed.toFixed(2); });
+  $('stride').addEventListener('input', (e) => { state.stride = +e.target.value; $('strideOut').value = state.stride.toFixed(2); render(); });
+  $('phase').addEventListener('input', (e) => { if (state.playing) play(false); state.phase = +e.target.value; render(); });
+  $('joints').addEventListener('change', (e) => { state.joints = e.target.checked; render(); });
+  $('ghost').addEventListener('change', (e) => { state.ghost = e.target.checked; trail.length = 0; render(); });
+  $('roughy').addEventListener('change', (e) => { state.rough = e.target.checked; render(); });
+  // keys: 1 to 4 pick a gait, space plays and pauses, left and right scrub; ignored inside a field
+  document.addEventListener('keydown', (e) => {
+    const tag = (e.target.tagName || '').toLowerCase();
+    if (tag === 'input' || tag === 'textarea' || tag === 'select' || e.target.isContentEditable) return;
+    const gaits = ['walk', 'run', 'jump', 'idle'];
+    if (e.key >= '1' && e.key <= '4') document.querySelector(`[data-gait="${gaits[+e.key - 1]}"]`).click();
+    else if (e.key === ' ') { e.preventDefault(); play(!state.playing); }
+    else if (e.key === 'ArrowLeft' || e.key === 'ArrowRight') { play(false); state.phase = (state.phase + (e.key === 'ArrowRight' ? 0.02 : -0.02) + 1) % 1; render(); }
+  });
+
+  render();
+  if (reduced) $('motionNote').textContent = 'Your system asks for reduced motion, so the figures stand still until you press play. The phase slider scrubs a cycle by hand.';
+  else { $('motionNote').textContent = 'Keys: 1 to 4 pick a gait, space plays or pauses, the arrow keys scrub the phase.'; play(true); }
+})();
+</script>
+</body>
+</html>

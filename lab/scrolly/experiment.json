@@ -1,0 +1,17 @@
+{
+ "slug": "scrolly",
+ "title": "Scrolly",
+ "track": "layout",
+ "question": "Can one sticky panel, redrawn and played as the text scrolls, tell a storyboard better than a deck does, and what should the text beside it say?",
+ "summary": "A scrollytelling storyboard: a sticky panel redrawn and played as eight steps of text scroll into the middle of the window, with a progress bar and a panels-only mode.",
+ "kit": "v0.1.0",
+ "libraries": [],
+ "status": "promising",
+ "date": "2026-10-20",
+ "learnt": [
+  "Scroll paces a story by distance, a deck paces it by clicks. A step here is 62% of the window tall, so the reader sets the tempo with a thumb and can linger or race; the deck's play-on-arrival gives every panel the same beat. The cost is that a fast scroll passes a step before its strokes have finished drawing, which a deck never does. Status: works; the thing to try next is a shorter play when a step is passed quickly.",
+  "Redraw per step is fast enough, measured. drawScene clears the svg and draws the whole scene again, seeded, and the readout under the panel times it: in the checker's Chromium the first draw took 45 to 65 ms (the cold run, with the fonts and Rough.js warming up) and every later step 4 to 15 ms, under one frame, with no flicker because the drawing happens before the browser paints. A jump from step 8 back to step 5 redrew 7 and 6 on the way at that cost, so one panel redrawn beats eight svg elements swapped.",
+  "The text beside a panel should say who, why and what to look at, and never repeat a bubble. A first draft restated the bubbles and the reader read every line twice at two sizes. What the prose carries that the panel cannot: the character's intent (Oto means well), the reason behind the rule, and a pointer (watch Unit's face). The caption inside the panel is the panel's own and stays short.",
+  "The kit's stroke draw-in did not start in Chromium 141 until this page nudged it. play() toggles a class on the panel and relies on a rule on path[pathLength] to draw the strokes; the browser did not restyle those paths for the class change, so the people and the bubbles arrived but every stroke was simply there. One inline change per path after play() makes the browser restyle them, and the draw-in runs (measured: 47 of 47 paths animating on the cover). The sequence experiment hit the same wall. Status: a bug to report against the kit's CSS, fixed by classing the paths instead of selecting them by attribute; and play() still wants a promise or an event for when the arrival ends, since it returns only a length in milliseconds."
+ ]
+}

@@ -1,0 +1,295 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pixel pack · the Lab · storyboards.sgit.ai</title>
+<meta name="description" content="The lab cast as 16 by 24 pixel sprites with a four-frame walk cycle and three moods, generated from tiny text descriptions and the cast's own colours.">
+<link rel="stylesheet" href="https://api.storyboards.sgit.ai/v0/v0.1/v0.1.0/fonts.css" integrity="sha384-ep4bdPYRUzquMICQMhuOkSZ/CB1FnMh6qnGWS1F74VepoLOlw9JGK+Zg+E6/t9dD" crossorigin="anonymous">
+<style>
+  :root { --paper: #fbf7ee; --ink: #23262b; --marker: #fde68a; --accent: #0f766e; --red: #dc2626; --page: #f7f3ea; --dim: #5b6169; --line: #d9d2c1; }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--page); color: var(--ink); font-family: system-ui, -apple-system, "Segoe UI", sans-serif; line-height: 1.5; }
+  .lab-head { display: flex; flex-wrap: wrap; align-items: baseline; gap: .3rem 1rem; padding: .7rem 16px; background: var(--paper); border-bottom: 2px solid var(--ink); }
+  .lab-head h1 { margin: 0; font-family: 'Caveat', cursive; font-weight: 700; font-size: 2.4rem; line-height: 1; }
+  .lab-head .track { font-family: 'Patrick Hand', cursive; font-size: 1.15rem; color: var(--dim); }
+  .lab-head .pin { font-size: .85rem; color: var(--dim); }
+  .lab-head .back { margin-left: auto; font-size: .9rem; color: var(--accent); }
+  main { max-width: 1200px; margin: 0 auto; padding: .8rem 16px 3rem; }
+  h2 { font-family: 'Caveat', cursive; font-weight: 700; font-size: 2rem; margin: 1.6rem 0 .4rem; line-height: 1; }
+  p.lede { margin: .2rem 0 .8rem; max-width: 60rem; color: var(--dim); }
+  .controls { display: flex; flex-wrap: wrap; gap: .4rem 1rem; align-items: center; padding: .4rem .8rem; background: var(--paper); border: 1.5px solid var(--ink); border-radius: 10px; margin: .6rem 0; }
+  .controls label { display: inline-flex; align-items: center; gap: .4rem; min-height: 44px; }
+  select, button, input { font: inherit; }
+  select { min-height: 44px; padding: 0 .5rem; border: 1.5px solid var(--ink); border-radius: 8px; background: #fff; color: var(--ink); }
+  input[type=range] { width: 160px; min-height: 44px; accent-color: var(--accent); }
+  button { min-height: 44px; min-width: 44px; padding: 0 1rem; border: 2px solid var(--ink); border-radius: 8px; background: var(--marker); color: var(--ink); cursor: pointer; font-weight: 600; }
+  button:hover { background: #fcd34d; }
+  .keys { font-size: .82rem; color: var(--dim); }
+  .keys kbd { font-family: ui-monospace, Menlo, monospace; border: 1px solid var(--line); border-bottom-width: 2px; border-radius: 4px; padding: 0 .3em; background: #fff; }
+  .stage { background: var(--paper); border: 1.5px solid var(--ink); border-radius: 10px; padding: .4rem; }
+  canvas { display: block; width: 100%; height: auto; image-rendering: pixelated; image-rendering: crisp-edges; background: var(--paper); }
+  #stage { max-width: 960px; margin: 0 auto; }
+  #strip { max-width: 560px; }
+  .names { display: grid; grid-template-columns: repeat(4, 1fr); max-width: 960px; margin: .2rem auto 0; font-family: 'Patrick Hand', cursive; font-size: 1.1rem; color: var(--dim); text-align: center; }
+  .frames { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr); gap: 1rem; align-items: start; }
+  .legend { font-size: .9rem; color: var(--dim); }
+  .legend code { font-family: ui-monospace, Menlo, monospace; background: #fff; border: 1px solid var(--line); border-radius: 4px; padding: 0 .3em; }
+  pre.desc { font-family: ui-monospace, Menlo, monospace; font-size: .78rem; line-height: 1.15; background: #fff; border: 1px solid var(--line); border-radius: 8px; padding: .5rem .7rem; overflow: auto; margin: .4rem 0; }
+  .learnt { background: var(--paper); border: 1.5px solid var(--ink); border-radius: 10px; padding: .6rem 1.1rem; max-width: 62rem; }
+  .learnt li { margin: .4rem 0; }
+  .status { font-family: 'Patrick Hand', cursive; color: var(--dim); }
+  @media (max-width: 700px) { .frames { grid-template-columns: 1fr; } .lab-head h1 { font-size: 2rem; } }
+</style>
+</head>
+<body>
+<header class="lab-head">
+  <h1>Pixel pack</h1>
+  <span class="track">track: characters</span>
+  <span class="pin">lab · experiment · pinned to kit v0.1.0</span>
+  <a class="back" href="../index.html">back to the lab</a>
+</header>
+<main>
+  <p class="lede">The lab cast at 16 by 24 pixels, the size of a sprite in a game you could run on a calculator. Each character is a few lines of text in the page (one letter per colour key), coloured from the same look fields the kit reads: skin, hair or hat, shirt, trousers, the accent, or an agent's single colour. The canvas scales them up with no smoothing. A four-frame walk and three moods are all they have.</p>
+
+  <h2>The cast, idling</h2>
+  <div class="controls">
+    <button id="play" type="button" aria-pressed="false">play</button>
+    <label>speed <input type="range" id="speed" min="0.25" max="3" step="0.25" value="1"> <span id="speedv">1×</span></label>
+    <label>scale <select id="scale"><option>6</option><option selected>8</option><option>10</option></select></label>
+    <label>mood <select id="mood"><option>neutral</option><option>happy</option><option>surprised</option></select></label>
+    <span class="keys"><kbd>space</kbd> play or pause, <kbd>m</kbd> next mood</span>
+  </div>
+  <div class="stage">
+    <canvas id="stage" width="768" height="256" role="img" aria-label="the four characters as pixel sprites"></canvas>
+    <div class="names" id="names"></div>
+  </div>
+
+  <h2>Frames</h2>
+  <p class="lede">The four walk frames of one character, side by side, and the text they are drawn from.</p>
+  <div class="controls">
+    <label>character <select id="who"></select></label>
+  </div>
+  <div class="frames">
+    <div class="stage"><canvas id="strip" width="448" height="192" role="img" aria-label="the four walk frames"></canvas></div>
+    <div>
+      <p class="legend">One letter is one pixel: <code>.</code> nothing, <code>k</code> ink, <code>s</code> skin, <code>h</code> hair, <code>p</code> hat, <code>t</code> shirt, <code>r</code> trousers, <code>a</code> accent, <code>e</code> eye, <code>m</code> mouth, <code>w</code> white, <code>c</code> an agent's colour, <code>x</code> its screen. Frame 1 below, after the hair, mood and accessory layers are laid on.</p>
+      <pre class="desc" id="desc"></pre>
+    </div>
+  </div>
+
+  <h2>What this taught us</h2>
+  <div class="learnt">
+    <p class="status">status: exploring. The sprites draw and walk; nothing from here is lifted into the kit.</p>
+    <ol id="learnt"></ol>
+  </div>
+</main>
+
+<script>
+(function () {
+  'use strict';
+  const CAST = {
+    "what": "The lab's own cast: three people and an agent, invented for the experiments.",
+    "characters": [
+      { "id": "ines", "name": "Ines", "kind": "human", "pronouns": "they/them", "role": "the one who asks",
+        "look": { "skin": "#c68642", "hair": "long", "hairColour": "#2b1d14", "shirt": "#0f766e", "trousers": "#1f2937", "accessory": "glasses", "height": 1.0 } },
+      { "id": "oto", "name": "Oto", "kind": "human", "pronouns": "they/them", "role": "the one who tries things",
+        "look": { "skin": "#f1c27d", "hair": "beanie", "hatColour": "#b91c1c", "hairColour": "#111827", "shirt": "#7c3aed", "trousers": "#334155", "accessory": "headphones", "accentColour": "#f59e0b", "height": 0.96 } },
+      { "id": "vex", "name": "Vex", "kind": "human", "pronouns": "they/them", "role": "the one who breaks things",
+        "look": { "skin": "#e0ac69", "hair": "short", "hairColour": "#6b7280", "shirt": "#374151", "trousers": "#111827", "accessory": "none", "height": 1.02 } },
+      { "id": "unit", "name": "Unit", "kind": "agent", "pronouns": "it/its", "role": "the agent", "look": { "colour": "#1d4ed8" } }
+    ]
+  };
+  const LEARNT = [
+    'Sixteen by twenty-four carries a skin, a hair shape, a shirt and a trouser colour, and three moods, because each needs only the eyes and a two-pixel mouth. The kit\'s other seven moods need brows, and there is no row for a brow between the hair and the eyes. Headphones read, because two accent-coloured blocks beside the head are unmistakable; the lanyard reads as a stripe with a card, which is enough; glasses were a dark bar across the eyes until the lenses got white pixels, which costs three rows of a nine-row face and pushes the eyes a pixel apart, so a character with glasses is a different face, not the same face with glasses.',
+    'The walk is a front-view walk: one foot lifts, then the other. It reads as walking because the figure also moves, not because the legs convince. A side-view stride would need a second drawing of every character, and the kit\'s seven poses would each need their own frames, so the pose vocabulary did not survive the trip at all.',
+    'A game engine could eat these as they are: every frame is a fixed 16 by 24 cell, the frames strip is already a sprite sheet, and KAPLAY or Phaser load a sheet by giving a frame size and a frame count. The text description is the format Bitsy and PICO-8 sprites use, so the cast could be edited in any of those. Status: not tried here; the lab vendors KAPLAY, so that is the next experiment.',
+    'Only the look data crossed over. The drawing shares nothing with the kit, and the sprite needs an idle and a walk that the cast file does not know about. If the cast JSON is the contract between packs, a pack has to invent what the file does not say and the file must not mind.',
+  ];
+  const $ = (id) => document.getElementById(id);
+  const reduced = window.matchMedia('(prefers-reduced-motion: reduce)');
+
+  // ----- the sprite descriptions: one letter per pixel, 16 columns by 24 rows; '.' is nothing
+  // the bare human: a head with no hair, a neutral face, the torso with arms, and no legs (the legs come per frame)
+  const HUMAN = [
+    '................',
+    '................',
+    '....kkkkkkkk....',
+    '...kssssssssk...',
+    '...kssssssssk...',
+    '...kssessessk...',
+    '...kssssssssk...',
+    '...ksssskksssk..',
+    '...kssssssssk...',
+    '....kkkkkkkk....',
+    '......kssk......',
+    '....kkttttkk....',
+    '.kttkttttttkttk.',
+    '.kttkttttttkttk.',
+    '.ksskttttttkssk.',
+    '.ksskttttttkssk.',
+    '.kk.krrrrrrk.kk.',
+  ];
+  // legs for the four walk frames (rows 17 to 23); frames 1 and 3 are the passing position, 0 and 2 lift a foot
+  const LEGS = {
+    both: ['....krrrrrrk....', '....krrkkrrk....', '....krrkkrrk....', '....krrkkrrk....', '....krrkkrrk....', '...kkkk..kkkk...', '...kkkk..kkkk...'],
+    left: ['....krrrrrrk....', '....krrkkrrk....', '....krrkkrrk....', '...kkkk.krrk....', '...kkkk.krrk....', '.........kkkk...', '.........kkkk...'],
+    right: ['....krrrrrrk....', '....krrkkrrk....', '....krrkkrrk....', '....krrk.kkkk...', '....krrk.kkkk...', '...kkkk.........', '...kkkk.........'],
+  };
+  const WALK = ['left', 'both', 'right', 'both'];
+  // the hair layers sit on top of the head; a '.' leaves the pixel underneath as it is
+  const HAIR = {
+    short: { 1: '.....hhhhhh.....', 2: '....hhhhhhhh....', 3: '...khhhhhhhhk...', 4: '...khsssssshk...' },
+    long: { 1: '.....hhhhhh.....', 2: '....hhhhhhhh....', 3: '...khhhhhhhhk...', 4: '..khhsssssshhk..', 5: '..kh........hk..', 6: '..kh........hk..', 7: '..kh........hk..', 8: '..kh........hk..', 9: '..khkkkkkkkkhk..', 10: '..kh..kssk..hk..', 11: '..kkkkttttkkkk..' },
+    curly: { 0: '....hh.hh.hh....', 1: '...hhhhhhhhhh...', 2: '..hhhhhhhhhhhh..', 3: '..hhhhhhhhhhhh..', 4: '..hhhsssssshhh..', 5: '..hh........hh..', 6: '...h........h...' },
+    bun: { 0: '.......hh.......', 1: '......hhhh......', 2: '....hhhhhhhh....', 3: '...khhhhhhhhk...', 4: '...khsssssshk...' },
+    beanie: { 0: '.......pp.......', 1: '....pppppppp....', 2: '...kppppppppk...', 3: '...kppppppppk...', 4: '...khsssssshk...' },
+    bald: {},
+  };
+  const ACCESSORY = {
+    glasses: { 5: '....kwewkwewk...', 6: '....kkkk.kkkk...' },
+    headphones: { 1: '....kkkkkkkk....', 2: '...k........k...', 5: '..aak......kaa..', 6: '..aak......kaa..' },
+    lanyard: { 11: '......a..a......', 12: '.......aa.......', 13: '.......ww.......', 14: '.......ww.......' },
+    none: {},
+  };
+  const MOOD = {
+    neutral: { 5: '......e..e......', 7: '.......kk.......' },
+    happy: { 5: '......e..e......', 7: '......k..k......', 8: '.......kk.......' },
+    surprised: { 4: '......e..e......', 5: '......e..e......', 7: '.......mm.......', 8: '.......mm.......' },
+  };
+  // the agent: a screen for a head, a body in its own colour, little tracks for feet
+  const AGENT = [
+    '.......k........',
+    '......kyk.......',
+    '...kkkkkkkkkk...',
+    '..kxxxxxxxxxxk..',
+    '..kxxxxxxxxxxk..',
+    '..kxxccxxxccxk..',
+    '..kxxccxxxccxk..',
+    '..kxxxxxxxxxxk..',
+    '..kxxxxxxxxxxk..',
+    '..kxxxxxxxxxxk..',
+    '...kkkkkkkkkk...',
+    '......kcck......',
+    '....kkccccckk...',
+    '.kcckcccccckcck.',
+    '.kcckcccccckcck.',
+    '.kcckcccccckcck.',
+    '.kk.kcccccck.kk.',
+  ];
+  const AGENT_MOOD = {
+    neutral: { 8: '.....cccccc.....' },
+    happy: { 8: '....cc....cc....', 9: '.....cccccc.....' },
+    surprised: { 5: '.....ccc.ccc....', 6: '.....ccc.ccc....', 7: '.....ccc.ccc....', 8: '......cccc......', 9: '......cccc......' },
+  };
+  const AGENT_LEGS = {
+    both: ['....kcccccck....', '....kcckkcck....', '....kcckkcck....', '....kcckkcck....', '....kcckkcck....', '...kkkk..kkkk...', '...kkkk..kkkk...'],
+    left: ['....kcccccck....', '....kcckkcck....', '....kcckkcck....', '...kkkk.kcck....', '...kkkk.kcck....', '.........kkkk...', '.........kkkk...'],
+    right: ['....kcccccck....', '....kcckkcck....', '....kcckkcck....', '....kcck.kkkk...', '....kcck.kkkk...', '...kkkk.........', '...kkkk.........'],
+  };
+
+  // lay one layer over the rows: a letter replaces, a dot keeps what is there
+  function lay(rows, layer) {
+    for (const r in layer) {
+      const i = +r, over = layer[r], base = rows[i] || '................';
+      rows[i] = base.split('').map((ch, j) => over[j] === '.' ? ch : over[j]).join('');
+    }
+  }
+  function sprite(who, frame, mood) {
+    const rows = [];
+    if (who.kind === 'agent') {
+      AGENT.forEach(r => rows.push(r));
+      lay(rows, AGENT_MOOD[mood] || AGENT_MOOD.neutral);
+      AGENT_LEGS[WALK[frame]].forEach(r => rows.push(r));
+    } else {
+      HUMAN.forEach(r => rows.push(r));
+      lay(rows, MOOD[mood] || MOOD.neutral);
+      lay(rows, HAIR[who.look.hair] || HAIR.short);
+      lay(rows, ACCESSORY[who.look.accessory] || {});
+      LEGS[WALK[frame]].forEach(r => rows.push(r));
+    }
+    return rows;
+  }
+  function palette(who) {
+    const l = who.look;
+    return { k: '#23262b', e: '#23262b', m: '#7a2e2e', w: '#ffffff', y: '#f59e0b', x: '#e6fffa',
+      s: l.skin || '#e0ac69', h: l.hairColour || '#3b2a20', p: l.hatColour || '#c0392b', t: l.shirt || '#2563eb', r: l.trousers || '#334155',
+      a: l.accentColour || '#2d6a4f', c: l.colour || '#0f766e' };
+  }
+  // draw a sprite at cell (cx, cy) with a cell size of z pixels
+  function blit(ctx, who, frame, mood, cx, cy, z) {
+    const rows = sprite(who, frame, mood), pal = palette(who);
+    rows.forEach((row, y) => { for (let x = 0; x < 16; x++) { const ch = row[x]; if (ch !== '.' && pal[ch]) { ctx.fillStyle = pal[ch]; ctx.fillRect(cx + x * z, cy + y * z, z, z); } } });
+  }
+
+  // ----- the stage: 96 by 32 cells, the four characters idling or walking across and wrapping
+  const stage = $('stage'), sctx = stage.getContext('2d'), strip = $('strip'), tctx = strip.getContext('2d');
+  const COLS = 96, ROWS = 32;
+  const state = { playing: false, frame: 0, pos: CAST.characters.map((c, i) => 12 + i * 22), mood: 'neutral', speed: 1, z: 8, last: 0, acc: 0 };
+  const crisp = (ctx) => { ctx.imageSmoothingEnabled = false; };
+  function drawStage() {
+    const z = state.z;
+    stage.width = COLS * z; stage.height = ROWS * z; crisp(sctx);
+    sctx.fillStyle = '#fbf7ee'; sctx.fillRect(0, 0, stage.width, stage.height);
+    sctx.fillStyle = '#e7e0cf'; sctx.fillRect(0, 29 * z, stage.width, z);
+    CAST.characters.forEach((who, i) => {
+      const frame = state.playing ? state.frame : 1;
+      const x = ((state.pos[i] % COLS) + COLS) % COLS;
+      blit(sctx, who, frame, state.mood, x * z, 5 * z, z);
+      if (x > COLS - 16) blit(sctx, who, frame, state.mood, (x - COLS) * z, 5 * z, z);
+    });
+  }
+  function drawStrip() {
+    const who = CAST.characters.find(c => c.id === $('who').value), z = 7;
+    strip.width = (4 * 16) * z; strip.height = 24 * z + 3 * z; crisp(tctx);
+    tctx.fillStyle = '#fbf7ee'; tctx.fillRect(0, 0, strip.width, strip.height);
+    for (let f = 0; f < 4; f++) {
+      blit(tctx, who, f, state.mood, f * 16 * z, z, z);
+      tctx.fillStyle = '#5b6169'; tctx.font = `${2 * z}px 'Patrick Hand', cursive`; tctx.textAlign = 'center';
+      tctx.fillText('frame ' + (f + 1), f * 16 * z + 8 * z, 26.5 * z);
+    }
+    $('desc').textContent = sprite(who, 0, state.mood).join('\n');
+  }
+  function step() {
+    state.frame = (state.frame + 1) % 4;
+    CAST.characters.forEach((c, i) => { state.pos[i] += 1; });
+    drawStage();
+  }
+  function tick(t) {
+    if (!state.playing) return;
+    const dt = Math.min(100, t - (state.last || t)); state.last = t;
+    state.acc += dt * state.speed;
+    while (state.acc >= 160) { state.acc -= 160; step(); }
+    requestAnimationFrame(tick);
+  }
+  function setPlaying(on) {
+    state.playing = on;
+    $('play').textContent = on ? (reduced.matches ? 'step' : 'pause') : 'play';
+    $('play').setAttribute('aria-pressed', String(on));
+    state.last = 0;
+    if (on && !reduced.matches) requestAnimationFrame(tick);
+    drawStage();
+  }
+  // with reduced motion the play button becomes a step button: every press is one frame of the walk
+  $('play').addEventListener('click', () => {
+    if (reduced.matches) { if (!state.playing) setPlaying(true); step(); }
+    else setPlaying(!state.playing);
+  });
+  $('speed').addEventListener('input', () => { state.speed = +$('speed').value; $('speedv').textContent = state.speed + '×'; });
+  $('scale').addEventListener('change', () => { state.z = +$('scale').value; drawStage(); });
+  $('mood').addEventListener('change', () => { state.mood = $('mood').value; drawStage(); drawStrip(); });
+  $('who').addEventListener('change', drawStrip);
+  document.addEventListener('keydown', (e) => {
+    if (e.target.closest('input, select, textarea, button') || e.metaKey || e.ctrlKey || e.altKey) return;
+    if (e.key === ' ') { e.preventDefault(); $('play').click(); }
+    else if (e.key === 'm' || e.key === 'M') { const s = $('mood'); s.selectedIndex = (s.selectedIndex + 1) % s.options.length; s.dispatchEvent(new Event('change')); }
+  });
+
+  CAST.characters.forEach(c => { const o = document.createElement('option'); o.value = c.id; o.textContent = c.name; $('who').appendChild(o); const n = document.createElement('span'); n.textContent = c.name; $('names').appendChild(n); });
+  const ol = $('learnt'); LEARNT.forEach(t => { const li = document.createElement('li'); li.textContent = t; ol.appendChild(li); });
+  document.fonts.ready.then(drawStrip);
+  drawStage(); drawStrip();
+})();
+</script>
+</body>
+</html>

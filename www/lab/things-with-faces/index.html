@@ -1,0 +1,283 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Things with faces · the Lab · storyboards.sgit.ai</title>
+<meta name="description" content="Props that act: an inbox, a vault, a padlock, a server and a boundary wall, each with a face that takes the kit's ten moods and a reaction of its own.">
+<link rel="stylesheet" href="https://api.storyboards.sgit.ai/v0/v0.1/v0.1.0/fonts.css" integrity="sha384-ep4bdPYRUzquMICQMhuOkSZ/CB1FnMh6qnGWS1F74VepoLOlw9JGK+Zg+E6/t9dD" crossorigin="anonymous">
+<link rel="stylesheet" href="https://api.storyboards.sgit.ai/v0/v0.1/v0.1.0/storyboard.css" integrity="sha384-NGJqtVi+93pE7lBuwFU0RQWhqnQVLR33Wp8AYH1iAeyC2A7h2ijgU4bEKF5HIKIf" crossorigin="anonymous">
+<script src="https://api.storyboards.sgit.ai/v0/v0.1/v0.1.0/vendor/rough-4.6.6.js" integrity="sha384-XPr5sCJfqHMzoJ8Cn1UYdXXD+XvRi0yoZm3W0yVJ24QP0ps8SYUskiXqnl4yqWlc" crossorigin="anonymous"></script>
+<script src="https://api.storyboards.sgit.ai/v0/v0.1/v0.1.0/storyboard.js" integrity="sha384-3xZhCe5dUdBXMwV57gyscmlqdIjzz9L6huUkcuiEyC0V3jfrlQEdyEhvvF4kCeOa" crossorigin="anonymous"></script>
+<style>
+  :root { --paper: #fbf7ee; --ink: #23262b; --marker: #fde68a; --accent: #0f766e; --red: #dc2626; --page: #f7f3ea; --dim: #5b6169; --line: #d9d2c1; }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--page); color: var(--ink); font-family: system-ui, -apple-system, "Segoe UI", sans-serif; line-height: 1.5; }
+  .lab-head { display: flex; flex-wrap: wrap; align-items: baseline; gap: .3rem 1rem; padding: .7rem 16px; background: var(--paper); border-bottom: 2px solid var(--ink); }
+  .lab-head h1 { margin: 0; font-family: 'Caveat', cursive; font-weight: 700; font-size: 2.4rem; line-height: 1; }
+  .lab-head .track { font-family: 'Patrick Hand', cursive; font-size: 1.15rem; color: var(--dim); }
+  .lab-head .pin { font-size: .85rem; color: var(--dim); }
+  .lab-head .back { margin-left: auto; font-size: .9rem; color: var(--accent); }
+  main { max-width: 1200px; margin: 0 auto; padding: .8rem 16px 3rem; }
+  h2 { font-family: 'Caveat', cursive; font-weight: 700; font-size: 2rem; margin: 1.6rem 0 .4rem; line-height: 1; }
+  p.lede { margin: .2rem 0 .8rem; max-width: 60rem; color: var(--dim); }
+  .controls { display: flex; flex-wrap: wrap; gap: .4rem .8rem; align-items: center; padding: .4rem .8rem; background: var(--paper); border: 1.5px solid var(--ink); border-radius: 10px; margin: .6rem 0; }
+  .controls label { display: inline-flex; align-items: center; gap: .4rem; min-height: 44px; }
+  select, button { font: inherit; }
+  select { min-height: 44px; padding: 0 .5rem; border: 1.5px solid var(--ink); border-radius: 8px; background: #fff; color: var(--ink); }
+  button { min-height: 44px; min-width: 44px; padding: 0 .9rem; border: 2px solid var(--ink); border-radius: 8px; background: var(--marker); color: var(--ink); cursor: pointer; font-weight: 600; }
+  button:hover { background: #fcd34d; }
+  button.quiet { background: #fff; font-weight: 500; }
+  .keys { font-size: .82rem; color: var(--dim); }
+  .keys kbd { font-family: ui-monospace, Menlo, monospace; border: 1px solid var(--line); border-bottom-width: 2px; border-radius: 4px; padding: 0 .3em; background: #fff; }
+  .panel { background: var(--paper); border: 2px solid var(--ink); border-radius: 10px; overflow: hidden; }
+  .panel svg { display: block; width: 100%; height: auto; aspect-ratio: 1600/640; }
+  .note { font-family: 'Patrick Hand', cursive; font-size: 1.1rem; color: var(--dim); margin: .3rem 0; min-height: 1.6em; }
+  .learnt { background: var(--paper); border: 1.5px solid var(--ink); border-radius: 10px; padding: .6rem 1.1rem; max-width: 62rem; }
+  .learnt li { margin: .4rem 0; }
+  .status { font-family: 'Patrick Hand', cursive; color: var(--dim); }
+  /* the two reactions that move: a shake on the vault and the wall's arm coming out; stills under reduced motion */
+  .shake { animation: shake .7s ease-in-out both; transform-box: fill-box; transform-origin: center bottom; }
+  @keyframes shake { 0%, 100% { transform: none; } 15% { transform: translateX(-14px) rotate(-1.5deg); } 35% { transform: translateX(12px) rotate(1.2deg); } 55% { transform: translateX(-8px); } 75% { transform: translateX(6px); } }
+  .arm-out { animation: arm-out .4s cubic-bezier(.2, 1.3, .5, 1) both; transform-box: fill-box; transform-origin: left center; }
+  @keyframes arm-out { from { transform: scaleX(.12); } to { transform: none; } }
+  .pop { animation: pop .35s ease-out both; transform-box: fill-box; transform-origin: center; }
+  @keyframes pop { from { opacity: 0; transform: scale(.6); } to { opacity: 1; transform: none; } }
+  @media (prefers-reduced-motion: reduce) { .shake, .arm-out, .pop { animation: none; } }
+  @media (max-width: 480px) { .lab-head h1 { font-size: 2rem; } }
+</style>
+</head>
+<body>
+<header class="lab-head">
+  <h1>Things with faces</h1>
+  <span class="track">track: characters</span>
+  <span class="pin">lab · experiment · pinned to kit v0.1.0</span>
+  <a class="back" href="../index.html">back to the lab</a>
+</header>
+<main>
+  <p class="lede">Five props that act: an inbox tray, a vault, a padlock, a server and a boundary wall, drawn with Rough.js in the kit's ink on the kit's paper, each with a face that takes the kit's ten moods. Three of them react. Vex, from the lab cast and drawn by the kit, is here to push the wall. The question is whether a rule, a store or a boundary can be a character in a storyboard rather than furniture.</p>
+
+  <h2>The things</h2>
+  <div class="controls">
+    <button id="message" type="button">a message arrives</button>
+    <button id="wrongkey" type="button">try the wrong key</button>
+    <button id="push" type="button">push</button>
+    <button id="reset" type="button" class="quiet">reset</button>
+    <label>mood for all <select id="mood"></select></label>
+    <span class="keys"><kbd>1</kbd> <kbd>2</kbd> <kbd>3</kbd> the three buttons, <kbd>0</kbd> reset</span>
+  </div>
+  <div class="panel"><svg id="panel" viewBox="0 360 1600 640" role="img" aria-label="five props with faces and Vex, on paper"></svg></div>
+  <p class="note" id="note">Nothing has happened yet.</p>
+
+  <h2>What this taught us</h2>
+  <div class="learnt">
+    <p class="status">status: exploring. The things draw and react; the face export they want is not in the kit.</p>
+    <ol id="learnt"></ol>
+  </div>
+</main>
+
+<script>
+(function () {
+  'use strict';
+  const CAST = {
+    "what": "The lab's own cast: three people and an agent, invented for the experiments.",
+    "characters": [
+      { "id": "ines", "name": "Ines", "kind": "human", "pronouns": "they/them", "role": "the one who asks",
+        "look": { "skin": "#c68642", "hair": "long", "hairColour": "#2b1d14", "shirt": "#0f766e", "trousers": "#1f2937", "accessory": "glasses", "height": 1.0 } },
+      { "id": "oto", "name": "Oto", "kind": "human", "pronouns": "they/them", "role": "the one who tries things",
+        "look": { "skin": "#f1c27d", "hair": "beanie", "hatColour": "#b91c1c", "hairColour": "#111827", "shirt": "#7c3aed", "trousers": "#334155", "accessory": "headphones", "accentColour": "#f59e0b", "height": 0.96 } },
+      { "id": "vex", "name": "Vex", "kind": "human", "pronouns": "they/them", "role": "the one who breaks things",
+        "look": { "skin": "#e0ac69", "hair": "short", "hairColour": "#6b7280", "shirt": "#374151", "trousers": "#111827", "accessory": "none", "height": 1.02 } },
+      { "id": "unit", "name": "Unit", "kind": "agent", "pronouns": "it/its", "role": "the agent", "look": { "colour": "#1d4ed8" } }
+    ]
+  };
+  const LEARNT = [
+    'A rule can be a character when it has a body that stands on the floor, a face, and one thing it does. The boundary wall became a character the moment it had an arm: the face says how it feels, the arm says what it will do, and the arm did more of the work. A wall with a face and no arm is a mural.',
+    'Where the face sits decides whether it reads. On the tray front the inbox reads at once; the padlock\'s body is a face already; the server\'s eyes sat among its status lights and read as two more lights until they got white rings and brows; the vault\'s dial competes with its face, so the dial moved to a corner.',
+    'A change reads better than a state. The inbox going from happy to worried to sad as the pile grows tells a story in a few clicks; the same worried face as a still is a worried tray. The shake and the arm, both CSS animations on the drawn group and stills under reduced motion, carried more than the brows did.',
+    'The kit does not export its face. Brows, mouths and eyes are private to drawCharacter, so this page copies the two tables; the day the kit changes a mouth, these things drift off model. The thing to lift is a face(g, rc, mood, x, y, size, dir) export so a prop can borrow the cast\'s expressions.',
+  ];
+  const K = window.StoryboardKit, NS = 'http://www.w3.org/2000/svg', INK = K.INK, PAPER = K.PAPER, FLOOR = 900;
+  const $ = (id) => document.getElementById(id);
+  const el = (tag, attrs, parent) => { const e = document.createElementNS(NS, tag); for (const k in attrs || {}) e.setAttribute(k, attrs[k]); if (parent) parent.appendChild(e); return e; };
+  const draw = (g, node, cls) => { node.classList.add(cls || 'ink'); g.appendChild(node); return node; };
+  const ink = (o) => Object.assign({ stroke: INK, strokeWidth: 2.6 }, o || {});
+  const hand = (g, text, x, y, size, o) => { const t = el('text', Object.assign({ x, y, 'font-family': "'Patrick Hand', cursive", 'font-size': size || 28, fill: INK, 'text-anchor': 'middle' }, o || {}), g); t.textContent = text; return t; };
+  const reduced = window.matchMedia('(prefers-reduced-motion: reduce)');
+
+  // The face: the kit's mouth and brow tables, copied (the kit keeps them private), in units of u so a face fits its thing.
+  const MOUTH = {
+    neutral: (x, y, u) => `M${x - 9 * u},${y} L${x + 9 * u},${y}`,
+    happy: (x, y, u) => `M${x - 13 * u},${y - 3 * u} Q${x},${y + 12 * u} ${x + 13 * u},${y - 3 * u}`,
+    calm: (x, y, u) => `M${x - 10 * u},${y - u} Q${x},${y + 7 * u} ${x + 10 * u},${y - u}`,
+    worried: (x, y, u) => `M${x - 10 * u},${y + 4 * u} Q${x - 3 * u},${y - 3 * u} ${x + u},${y + u} Q${x + 5 * u},${y + 4 * u} ${x + 10 * u},${y}`,
+    sad: (x, y, u) => `M${x - 11 * u},${y + 6 * u} Q${x},${y - 5 * u} ${x + 11 * u},${y + 6 * u}`,
+    thinking: (x, y, u) => `M${x - 4 * u},${y + 2 * u} L${x + 9 * u},${y}`,
+    confused: (x, y, u) => `M${x - 11 * u},${y + 2 * u} Q${x - 5 * u},${y - 4 * u} ${x},${y + u} Q${x + 5 * u},${y + 6 * u} ${x + 11 * u},${y}`,
+    determined: (x, y, u) => `M${x - 12 * u},${y} Q${x},${y + 7 * u} ${x + 12 * u},${y}`,
+  };
+  const BROWS = {
+    neutral: { both: [0, 0] }, happy: { both: [-3, -1], arch: 3 }, excited: { both: [-7, -5], arch: 4 }, calm: { both: [-1, 0], arch: 2 },
+    worried: { both: [-7, 2], arch: 1 }, sad: { both: [-6, 3], arch: 0 }, surprised: { both: [-10, -9], arch: 4 },
+    thinking: { near: [-1, -1], far: [-8, -6], arch: 2 }, confused: { near: [2, 0], far: [-9, -7], arch: 2 }, determined: { both: [2, -1], arch: 1 },
+  };
+  // face(g, rc, mood, x, y, u, { dir, eye, ring }): eyes 20u apart, brows above, a mouth 25u below; ring draws white eye
+  // discs first so a face reads on a busy or dark surface
+  function face(g, rc, mood, x, y, u, o) {
+    o = o || {}; const dir = o.dir || 1, b = BROWS[mood] || BROWS.neutral, eo = 20 * u, line = ink({ strokeWidth: 2.4, roughness: 0.6 });
+    for (const s of [-1, 1]) {
+      const ex = x + s * eo, near = s === dir;
+      if (o.ring) el('circle', { cx: ex, cy: y, r: 9 * u, fill: '#fff', stroke: INK, 'stroke-width': 1.6 }, g);
+      if (mood === 'calm') draw(g, rc.path(`M${ex - 6 * u},${y} Q${ex},${y - 7 * u} ${ex + 6 * u},${y}`, line));
+      else el('circle', { cx: ex + (mood === 'thinking' ? dir * 2 * u : 0), cy: y - (mood === 'thinking' ? 2 * u : 0), r: (mood === 'surprised' || mood === 'excited' ? 5 : 4) * u, fill: o.eye || INK, class: 'ink-solid' }, g);
+      const [inner, outer] = b.both || (near ? b.near : b.far);
+      const yi = y - 14 * u + inner * u, yo = y - 14 * u + outer * u, xi = ex - s * 9 * u, xo = ex + s * 9 * u, arch = (b.arch || 0) * u;
+      draw(g, rc.path(`M${xo},${yo} Q${ex},${Math.min(yi, yo) - arch} ${xi},${yi}`, line));
+    }
+    const my = y + 25 * u;
+    if (mood === 'surprised') draw(g, rc.ellipse(x, my + 2 * u, 14 * u, 18 * u, Object.assign({ fill: '#7a2e2e', fillStyle: 'solid' }, line)));
+    else if (mood === 'excited') draw(g, rc.path(`M${x - 15 * u},${my - 4 * u} Q${x},${my - u} ${x + 15 * u},${my - 4 * u} Q${x + 12 * u},${my + 16 * u} ${x},${my + 16 * u} Q${x - 12 * u},${my + 16 * u} ${x - 15 * u},${my - 4 * u} Z`, Object.assign({ fill: '#7a2e2e', fillStyle: 'solid' }, line)));
+    else draw(g, rc.path((MOUTH[mood] || MOUTH.neutral)(x, my, u), line));
+  }
+  function envelope(g, rc, x, y, w, h, tilt) {
+    const e = el('g', { transform: `rotate(${tilt} ${x} ${y})` }, g);
+    draw(e, rc.rectangle(x - w / 2, y - h, w, h, ink({ fill: '#fef3c7', fillStyle: 'solid', strokeWidth: 2 })));
+    draw(e, rc.path(`M${x - w / 2},${y - h} L${x},${y - h * 0.45} L${x + w / 2},${y - h}`, ink({ strokeWidth: 2 })));
+  }
+
+  // ----- the things. Each is (g, rc, mood, state) and stands on the floor at its own x.
+  const THINGS = {
+    inbox(g, rc, mood, st) {
+      const x = 190, y = FLOOR - 20, w = 240, h = 90;
+      draw(g, rc.ellipse(x, y, w + 40, 26, { fill: 'rgba(0,0,0,.1)', fillStyle: 'solid', stroke: 'none' }), 'shade');
+      // the tray: a back wall, two sides, the front with the face
+      draw(g, rc.rectangle(x - w / 2 + 16, y - h - 40, w - 32, 40, ink({ fill: '#9ca3af', fillStyle: 'solid' })));
+      const n = st.pile, shown = Math.min(n, 9);
+      for (let i = 0; i < shown; i++) envelope(g, rc, x + (i % 2 ? 10 : -8) + (i > 5 ? 6 : 0), y - h - 30 - i * 16, 150, 70, (i % 3 - 1) * 4 + (i > 6 ? 8 : 0));
+      if (n > 9) hand(g, `+${n - 9} more`, x + 120, y - h - 160, 30, { fill: '#dc2626' });
+      draw(g, rc.path(`M${x - w / 2},${y - h} L${x - w / 2 + 16},${y - h - 40} L${x + w / 2 - 16},${y - h - 40} L${x + w / 2},${y - h} Z`, ink({ fill: '#cbd5e1', fillStyle: 'solid' })));
+      draw(g, rc.rectangle(x - w / 2, y - h, w, h, ink({ fill: '#e2e8f0', fillStyle: 'solid', strokeWidth: 3 })));
+      face(g, rc, mood, x, y - h * 0.55, 0.85);
+      hand(g, 'inbox', x, y + 46);
+    },
+    vault(g, rc, mood, st) {
+      const x = 470, y = FLOOR - 20, w = 220, h = 230;
+      draw(g, rc.ellipse(x, y, w + 30, 26, { fill: 'rgba(0,0,0,.1)', fillStyle: 'solid', stroke: 'none' }), 'shade');
+      draw(g, rc.rectangle(x - w / 2, y - h, w, h, ink({ fill: '#cbd5e1', fillStyle: 'solid', strokeWidth: 3 })));
+      draw(g, rc.rectangle(x - w / 2 + 14, y - h + 14, w - 28, h - 28, ink({ strokeWidth: 2 })));
+      // the dial in a corner, the handle on the right, the face in the middle
+      const dx = x - w / 2 + 48, dy = y - h + 48;
+      draw(g, rc.circle(dx, dy, 44, ink({ fill: '#f8fafc', fillStyle: 'solid' })));
+      for (let a = 0; a < 6; a++) { const t = a * Math.PI / 3; draw(g, rc.line(dx + Math.cos(t) * 12, dy + Math.sin(t) * 12, dx + Math.cos(t) * 20, dy + Math.sin(t) * 20, ink({ strokeWidth: 2 }))); }
+      draw(g, rc.line(x + w / 2 - 30, y - h / 2 - 30, x + w / 2 - 30, y - h / 2 + 30, ink({ strokeWidth: 6 })));
+      face(g, rc, mood, x, y - h / 2 - 10, 1.1, { ring: true });
+      if (st.wrongKey) {
+        const kx = x - 40, ky = y - h - 80, kg = el('g', { class: 'pop' }, g);
+        draw(kg, rc.circle(kx - 30, ky, 36, ink({ fill: '#f59e0b', fillStyle: 'solid' })));
+        draw(kg, rc.rectangle(kx - 12, ky - 5, 70, 10, ink({ fill: '#f59e0b', fillStyle: 'solid' })));
+        draw(kg, rc.rectangle(kx + 40, ky + 5, 8, 16, ink({ fill: '#f59e0b', fillStyle: 'solid' })));
+        draw(kg, rc.line(kx - 60, ky - 50, kx + 60, ky + 50, { stroke: '#dc2626', strokeWidth: 8, roughness: 1.2 }));
+        draw(kg, rc.line(kx + 60, ky - 50, kx - 60, ky + 50, { stroke: '#dc2626', strokeWidth: 8, roughness: 1.2 }));
+        hand(kg, 'no.', x + 110, y - h - 70, 36, { fill: '#dc2626', 'font-weight': 'bold' });
+      }
+      hand(g, 'vault', x, y + 46);
+    },
+    padlock(g, rc, mood) {
+      const x = 710, y = FLOOR - 20, w = 130, h = 110;
+      draw(g, rc.ellipse(x, y, w + 30, 22, { fill: 'rgba(0,0,0,.1)', fillStyle: 'solid', stroke: 'none' }), 'shade');
+      draw(g, rc.path(`M${x - 40},${y - h} V${y - h - 50} Q${x - 40},${y - h - 95} ${x},${y - h - 95} Q${x + 40},${y - h - 95} ${x + 40},${y - h - 50} V${y - h}`, ink({ strokeWidth: 9 })));
+      draw(g, rc.rectangle(x - w / 2, y - h, w, h, ink({ fill: '#f59e0b', fillStyle: 'solid', strokeWidth: 3 })));
+      face(g, rc, mood, x, y - h * 0.6, 0.95);
+      draw(g, rc.circle(x, y - 22, 12, ink({ fill: INK, fillStyle: 'solid' })));
+      hand(g, 'padlock', x, y + 46);
+    },
+    server(g, rc, mood) {
+      const x = 930, y = FLOOR - 20, w = 170, h = 300;
+      draw(g, rc.ellipse(x, y, w + 30, 24, { fill: 'rgba(0,0,0,.1)', fillStyle: 'solid', stroke: 'none' }), 'shade');
+      draw(g, rc.rectangle(x - w / 2, y - h, w, h, ink({ fill: '#e2e8f0', fillStyle: 'solid', strokeWidth: 3 })));
+      // two slots above and two below the face; the lights are where its eyes would otherwise be mistaken for
+      [0, 1, 3, 4].forEach((i) => { draw(g, rc.rectangle(x - w / 2 + 14, y - h + 16 + i * 56, w - 28, 40, ink({ strokeWidth: 1.8 }))); el('circle', { cx: x + w / 2 - 30, cy: y - h + 36 + i * 56, r: 6, fill: i % 2 ? '#22c55e' : '#f59e0b' }, g); });
+      face(g, rc, mood, x, y - h + 142, 0.9, { ring: true });
+      hand(g, 'server', x, y + 46);
+    },
+    wall(g, rc, mood, st) {
+      const x = 1200, y = FLOOR - 20, w = 210, h = 290, bh = 36;
+      draw(g, rc.ellipse(x, y, w + 30, 24, { fill: 'rgba(0,0,0,.1)', fillStyle: 'solid', stroke: 'none' }), 'shade');
+      draw(g, rc.rectangle(x - w / 2, y - h, w, h, ink({ fill: '#d6c3a5', fillStyle: 'solid', strokeWidth: 3 })));
+      for (let r = 1; r < h / bh; r++) {
+        draw(g, rc.line(x - w / 2, y - r * bh, x + w / 2, y - r * bh, ink({ strokeWidth: 1.6, stroke: '#8b7355' })));
+        const off = r % 2 ? 0 : w / 4; for (let c = -1; c < 2; c++) { const bx = x + c * w / 2 + off; if (bx > x - w / 2 + 4 && bx < x + w / 2 - 4) draw(g, rc.line(bx, y - r * bh, bx, y - (r - 1) * bh, ink({ strokeWidth: 1.6, stroke: '#8b7355' }))); }
+      }
+      hand(g, 'boundary', x, y - h - 18, 30, { 'font-weight': 'bold' });
+      face(g, rc, mood, x, y - h + 110, 1.1, { ring: true, dir: 1 });
+      // the arm: folded down the wall's side, or out, flat palm up, at whoever pushes
+      const ax = x + w / 2, ay = y - h + 170, arm = el('g', { class: st.pushed ? 'arm-out' : '' }, g);
+      if (st.pushed) {
+        draw(arm, rc.line(ax, ay, ax + 130, ay - 6, ink({ stroke: '#d6c3a5', strokeWidth: 26 })));
+        draw(arm, rc.line(ax, ay, ax + 130, ay - 6, ink({ strokeWidth: 3, stroke: 'none' })));
+        draw(arm, rc.path(`M${ax},${ay - 13} L${ax + 130},${ay - 19} M${ax},${ay + 13} L${ax + 130},${ay + 7}`, ink({ strokeWidth: 3 })));
+        draw(arm, rc.path(`M${ax + 128},${ay - 44} Q${ax + 150},${ay - 56} ${ax + 162},${ay - 40} L${ax + 170},${ay + 10} Q${ax + 165},${ay + 36} ${ax + 140},${ay + 34} Q${ax + 118},${ay + 30} ${ax + 120},${ay + 4} Z`, ink({ fill: '#d6c3a5', fillStyle: 'solid', strokeWidth: 3 })));
+        for (let f = 0; f < 3; f++) draw(arm, rc.line(ax + 150 + f * 6, ay - 40 + f * 2, ax + 150 + f * 6, ay + 10, ink({ strokeWidth: 1.8 })));
+      } else {
+        draw(arm, rc.path(`M${ax},${ay} Q${ax + 24},${ay + 40} ${ax + 10},${ay + 120}`, ink({ stroke: '#d6c3a5', strokeWidth: 26 })));
+        draw(arm, rc.path(`M${ax - 13},${ay} Q${ax + 11},${ay + 40} ${ax - 3},${ay + 120} M${ax + 13},${ay} Q${ax + 37},${ay + 40} ${ax + 23},${ay + 120}`, ink({ strokeWidth: 3 })));
+        draw(arm, rc.circle(ax + 10, ay + 132, 44, ink({ fill: '#d6c3a5', fillStyle: 'solid', strokeWidth: 3 })));
+      }
+    },
+  };
+
+  // ----- state and render. The whole panel redraws from state with one seed, so the wobble is the same picture twice.
+  const state = { base: 'neutral', over: {}, pile: 0, wrongKey: false, pushed: false, shake: false };
+  const VEX = CAST.characters.find(c => c.id === 'vex');
+  const svg = $('panel');
+  function render() {
+    while (svg.firstChild) svg.removeChild(svg.firstChild);
+    const rc = rough.svg(svg, { options: { seed: 23, roughness: 1, bowing: 1.2 } });
+    el('rect', { x: 0, y: 0, width: 1600, height: 1000, fill: PAPER }, svg);
+    const root = el('g', {}, svg);
+    draw(root, rc.line(40, FLOOR - 18, 1560, FLOOR - 18, ink({ strokeWidth: 2, roughness: 1.6 })));
+    const moodOf = (id) => state.over[id] || state.base;
+    for (const id of ['inbox', 'vault', 'padlock', 'server', 'wall']) {
+      const g = el('g', { class: 'thing ' + (id === 'vault' && state.shake ? 'shake' : ''), 'data-thing': id }, root);
+      THINGS[id](g, rc, moodOf(id), state);
+    }
+    // the pusher: Vex walks up pointing, and steps back surprised once the wall has put its arm out
+    const pg = el('g', { class: 'actor' }, root);
+    const o = state.pushed ? { pose: 'arms-up', mood: 'surprised', flip: true } : { pose: 'point', mood: state.over.pusher || state.base, flip: true };
+    K.drawCharacter(pg, rc, VEX, state.pushed ? 1500 : 1440, FLOOR, o);
+    hand(root, 'Vex', state.pushed ? 1500 : 1440, FLOOR + 46);
+  }
+  const say = (t) => { $('note').textContent = t; };
+  function inboxMood(n) { return n === 0 ? state.base : n <= 2 ? 'happy' : n <= 4 ? 'neutral' : n <= 7 ? 'worried' : 'sad'; }
+  $('message').addEventListener('click', () => {
+    state.pile += 1; state.over.inbox = inboxMood(state.pile); render();
+    say(state.pile <= 2 ? `A message. The inbox likes a message (${state.pile} so far).` : state.pile <= 4 ? `${state.pile} messages. Fine, the inbox can cope.` : state.pile <= 7 ? `${state.pile} messages. The inbox is worried now.` : `${state.pile} messages. The inbox has given up.`);
+  });
+  $('wrongkey').addEventListener('click', () => {
+    state.wrongKey = true; state.over.vault = 'determined'; state.shake = !reduced.matches; render();
+    say('The wrong key. The vault is not moved, and says so.');
+    setTimeout(() => { state.shake = false; }, 800);
+  });
+  $('push').addEventListener('click', () => {
+    state.pushed = true; state.over.wall = 'determined'; render();
+    say('Vex pushes. The boundary puts its arm out; Vex did not expect an arm.');
+  });
+  $('reset').addEventListener('click', () => {
+    Object.assign(state, { over: {}, pile: 0, wrongKey: false, pushed: false, shake: false }); render(); say('Reset. Nothing has happened yet.');
+  });
+  $('mood').addEventListener('change', () => {
+    state.base = $('mood').value; state.over = {}; state.pushed = false; state.wrongKey = false; render();
+    say(`Everything is ${state.base}.`);
+  });
+  document.addEventListener('keydown', (e) => {
+    if (e.target.closest('input, select, textarea, button') || e.metaKey || e.ctrlKey || e.altKey) return;
+    const map = { '1': 'message', '2': 'wrongkey', '3': 'push', '0': 'reset' };
+    if (map[e.key]) $(map[e.key]).click();
+  });
+  K.MOODS.forEach(m => { const o = document.createElement('option'); o.value = m; o.textContent = m; $('mood').appendChild(o); });
+  const ol = $('learnt'); LEARNT.forEach(t => { const li = document.createElement('li'); li.textContent = t; ol.appendChild(li); });
+  render();
+})();
+</script>
+</body>
+</html>

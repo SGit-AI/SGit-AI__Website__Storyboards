@@ -1,0 +1,262 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Gravity: matter.js behind a storyboard panel, props that fall, bounce and pile up</title>
+<meta name="description" content="A lab experiment: a 1600 by 1000 storyboard panel with a matter.js world behind it; keys, envelopes and padlocks drop, bounce and pile up, and the kit's characters look surprised when one lands near them.">
+<link rel="stylesheet" href="https://api.storyboards.sgit.ai/v0/v0.1/v0.1.0/fonts.css" integrity="sha384-ep4bdPYRUzquMICQMhuOkSZ/CB1FnMh6qnGWS1F74VepoLOlw9JGK+Zg+E6/t9dD" crossorigin="anonymous">
+<link rel="stylesheet" href="https://api.storyboards.sgit.ai/v0/v0.1/v0.1.0/storyboard.css" integrity="sha384-NGJqtVi+93pE7lBuwFU0RQWhqnQVLR33Wp8AYH1iAeyC2A7h2ijgU4bEKF5HIKIf" crossorigin="anonymous">
+<script src="https://api.storyboards.sgit.ai/v0/v0.1/v0.1.0/vendor/rough-4.6.6.js" integrity="sha384-XPr5sCJfqHMzoJ8Cn1UYdXXD+XvRi0yoZm3W0yVJ24QP0ps8SYUskiXqnl4yqWlc" crossorigin="anonymous"></script>
+<script src="https://api.storyboards.sgit.ai/v0/v0.1/v0.1.0/props/security.js" integrity="sha384-IkxAFhrp5pQhBSjFCLMEA+1iqFHJ6xPRLeO2n9g478h7Z8hW9cUyvza3PuOtmsOx" crossorigin="anonymous"></script>
+<script src="https://api.storyboards.sgit.ai/v0/v0.1/v0.1.0/storyboard.js" integrity="sha384-3xZhCe5dUdBXMwV57gyscmlqdIjzz9L6huUkcuiEyC0V3jfrlQEdyEhvvF4kCeOa" crossorigin="anonymous"></script>
+<script src="../vendor/matter-0.20.0.min.js"></script>
+<style>
+  :root { --paper: #fbf7ee; --ink: #23262b; --marker: #fde68a; --accent: #0f766e; --red: #dc2626; --page: #f7f3ea; --dim: #5b6169; }
+  * { box-sizing: border-box; }
+  html { background: var(--page); }
+  body { margin: 0; background: var(--page); color: var(--ink); font-family: system-ui, -apple-system, "Segoe UI", sans-serif; line-height: 1.5; }
+  .strip { display: flex; flex-wrap: wrap; align-items: baseline; gap: .4rem 1.2rem; padding: .9rem 1.2rem; border-bottom: 2px solid var(--ink); background: var(--paper); }
+  .strip h1 { margin: 0; font-family: 'Caveat', 'Patrick Hand', cursive; font-weight: 700; font-size: 2.6rem; line-height: 1; }
+  .strip .track { font-family: 'Patrick Hand', cursive; font-size: 1.15rem; color: var(--accent); }
+  .strip .pin { font-size: .85rem; color: var(--dim); }
+  .strip a { margin-left: auto; color: var(--accent); font-weight: 600; text-decoration: none; min-height: 44px; display: inline-flex; align-items: center; }
+  .strip a:hover { text-decoration: underline; }
+  main { max-width: 1240px; margin: 0 auto; padding: 1rem 16px 3rem; }
+  .lede { max-width: 60rem; color: var(--dim); margin: .4rem 0 1rem; }
+  .panel { display: block; width: 100%; height: auto; aspect-ratio: 16 / 10; background: var(--paper); border: 2px solid var(--ink); border-radius: 10px; }
+  .controls { display: flex; flex-wrap: wrap; gap: .6rem 1.2rem; align-items: center; margin: .8rem 0; padding: .7rem .9rem; background: #fff; border: 1px solid #d9d3c4; border-radius: 10px; }
+  .controls label { display: inline-flex; align-items: center; gap: .45rem; min-height: 44px; font-size: .95rem; }
+  .controls input[type=range] { width: 160px; min-height: 44px; }
+  .controls output { font-family: ui-monospace, Menlo, monospace; font-size: .85rem; color: var(--dim); min-width: 3em; }
+  button { font: inherit; min-height: 44px; min-width: 44px; padding: 0 .9rem; border: 2px solid var(--ink); border-radius: 8px; background: #fff; color: var(--ink); cursor: pointer; }
+  button:hover { background: var(--marker); }
+  button.marker { background: var(--marker); }
+  button.marker[aria-pressed=true] { background: var(--ink); color: var(--paper); }
+  .readout { font-family: ui-monospace, Menlo, monospace; font-size: .85rem; color: var(--dim); }
+  h2 { font-family: 'Caveat', 'Patrick Hand', cursive; font-size: 2.2rem; margin: 2rem 0 .4rem; line-height: 1; }
+  .learnt { max-width: 60rem; padding-left: 1.3rem; }
+  .learnt li { margin: .45rem 0; }
+  .status { font-size: .85rem; color: var(--dim); }
+  @media (max-width: 600px) { .strip h1 { font-size: 2rem; } .controls input[type=range] { width: 120px; } }
+</style>
+</head>
+<body>
+<header class="strip">
+  <h1>Gravity</h1>
+  <span class="track">track: motion</span>
+  <span class="pin">lab &middot; experiment &middot; pinned to kit v0.1.0</span>
+  <a href="../index.html">&larr; the lab</a>
+</header>
+<main>
+  <p class="lede">A storyboard panel with a physics world behind it. The paper, the floor and the two people (Ines and Vex, from the lab cast, drawn once by the kit's <code>drawCharacter</code>) are the storyboard; every prop you drop is a matter.js body whose Rough.js drawing follows its position and angle each frame. A prop that lands within 160 px of a character makes them look surprised for a second: the kit redraws them with the same seed, so only the face changes.</p>
+
+  <svg id="panel" class="panel" viewBox="0 0 1600 1000" role="img" aria-label="A storyboard panel: Ines and Vex stand on a floor while keys, envelopes and padlocks fall and pile up"></svg>
+
+  <div class="controls" aria-label="props">
+    <button type="button" id="dropKey" class="marker">drop a key</button>
+    <button type="button" id="dropEnvelope" class="marker">drop an envelope</button>
+    <button type="button" id="dropPadlock" class="marker">drop a padlock</button>
+    <button type="button" id="shake">shake</button>
+    <button type="button" id="clear">clear</button>
+    <button type="button" id="playpause" aria-pressed="false">pause</button>
+  </div>
+  <div class="controls" aria-label="world">
+    <label>gravity <input type="range" id="gravity" min="0" max="2" step="0.05" value="1"> <output id="gravityOut">1.00</output> g</label>
+    <span class="readout" id="readout">0 props</span>
+  </div>
+  <p class="status" id="motionNote"></p>
+
+  <h2>What this taught us</h2>
+  <ol class="learnt">
+    <li>Physics adds the one thing a storyboard never had: consequence. A dropped key lands where the world says, bounces off the envelope that fell before it, and settles at an angle nobody drew. The panel stops being a picture of a moment and becomes a place where moments happen, and the characters' surprise, triggered by a collision rather than a script, reads as a reaction. Status: promising for a demo, not yet for a storyboard.</li>
+    <li>The cost is a frame loop that never stops. The engine steps and every prop's transform updates at 60 frames a second, whether or not anything is still moving; the readout shows the time a frame takes. The characters stay cheap because they are drawn once and only redrawn (a few dozen Rough.js paths each) when a prop lands near them; redrawing them every frame would cost more than the whole physics step. The panel also stops being reproducible: the same drops never pile the same way twice unless the engine is stepped on a fixed clock, which this page does.</li>
+    <li>A storyboard could carry a "drop" action as data: <code>{ action: "drop", prop: "key", x: 0.3, at: 1.2 }</code>, with the kit's prop drawing and a body of the same size, and the panel's still picture as the state after everything has settled (the reduced-motion path here does exactly that: it steps the world 300 times and draws the result). What it cannot carry is the exact pile; the author gets to choose what falls and where, not where it ends up.</li>
+    <li>The kit's props are not exported as functions, so the key, envelope and padlock here are redrawn by the page in the pack's proportions; a kit release that exports its prop drawings (and a size for each, so a body can match) is the thing to lift. The surprised face needs the kit to redraw the whole character; a mood that could be swapped on a drawn character would make the reaction a two-line change instead of a redraw.</li>
+  </ol>
+</main>
+<script>
+(function () {
+  'use strict';
+  const NS = 'http://www.w3.org/2000/svg';
+  const { Engine, Bodies, Body, Composite, Events } = window.Matter;
+  const K = window.StoryboardKit;
+  const svg = document.getElementById('panel');
+  const W = 1600, H = 1000, FLOOR = 900, INK = K.INK, PAPER = K.PAPER;
+  const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const el = (tag, attrs, parent) => { const e = document.createElementNS(NS, tag); for (const k in attrs) e.setAttribute(k, attrs[k]); if (parent) parent.appendChild(e); return e; };
+
+  // The lab cast, copied in (the two who stand in this panel).
+  const CAST = [
+    { id: 'ines', name: 'Ines', kind: 'human', pronouns: 'they/them', look: { skin: '#c68642', hair: 'long', hairColour: '#2b1d14', shirt: '#0f766e', trousers: '#1f2937', accessory: 'glasses', height: 1.0 } },
+    { id: 'vex', name: 'Vex', kind: 'human', pronouns: 'they/them', look: { skin: '#e0ac69', hair: 'short', hairColour: '#6b7280', shirt: '#374151', trousers: '#111827', accessory: 'none', height: 1.02 } },
+  ];
+
+  // ------------------------------------------------------------ the panel: paper, floor, two people drawn once
+  el('rect', { x: 0, y: 0, width: W, height: H, fill: PAPER }, svg);
+  const rcPanel = rough.svg(svg, { options: { seed: 11, roughness: 1, bowing: 1.2 } });
+  svg.appendChild(rcPanel.line(0, FLOOR, W, FLOOR, { stroke: INK, strokeWidth: 3, roughness: 2 }));
+  const caption = el('text', { x: 40, y: 60, 'font-family': "'Patrick Hand', cursive", 'font-size': 30, fill: '#6b7280' }, svg);
+  caption.textContent = 'things fall from the top of the panel';
+  const propsG = el('g', {}, svg);   // props sit between the floor and the people? No: people first, props in front, so a pile can land before them.
+  const people = [];
+  [[CAST[0], 420, false, 21], [CAST[1], 1180, true, 33]].forEach(([who, x, flip, seed]) => {
+    const g = el('g', { class: 'actor' }, svg);
+    const name = el('text', { x, y: FLOOR + 44, 'font-family': "'Patrick Hand', cursive", 'font-size': 26, fill: '#6b7280', 'text-anchor': 'middle' }, svg);
+    name.textContent = who.name;
+    const p = { who, x, flip, seed, g, mood: 'neutral', timer: 0, redraws: 0 };
+    people.push(p);
+    drawPerson(p);
+  });
+  svg.appendChild(propsG); // props draw over the people, as a thing landing in front would
+  function drawPerson(p) {
+    while (p.g.firstChild) p.g.removeChild(p.g.firstChild);
+    // a fresh Rough.js canvas with the same seed draws the same wobble, so only the face differs between moods
+    const rc = rough.svg(svg, { options: { seed: p.seed, roughness: 1, bowing: 1.2 } });
+    K.drawCharacter(p.g, rc, p.who, p.x, FLOOR, { pose: 'stand', mood: p.mood, flip: p.flip });
+    p.redraws++;
+  }
+
+  // ------------------------------------------------------------ the props: a drawing and a body of the same size
+  // Sizes follow the kit's security pack at a scale of 0.55 (the pack draws at 1.45 times the kit's scale).
+  const PROPS = {
+    key: { w: 150, h: 60, draw(g, rc) {
+      const s = 0.55 * 1.45, c = '#0f766e', bx = -75 + 35 * s, by = 0;
+      g.appendChild(rc.circle(bx, by, 70 * s, { stroke: INK, strokeWidth: 2.4, fill: c, fillStyle: 'hachure', hachureGap: 6 }));
+      g.appendChild(rc.circle(bx, by, 22 * s, { stroke: INK, strokeWidth: 2.4, fill: '#fff', fillStyle: 'solid' }));
+      g.appendChild(rc.rectangle(bx + 34 * s, by - 9 * s, 120 * s, 18 * s, { stroke: INK, strokeWidth: 2.4, fill: c, fillStyle: 'solid' }));
+      g.appendChild(rc.rectangle(bx + 118 * s, by + 9 * s, 14 * s, 26 * s, { stroke: INK, strokeWidth: 2.4, fill: c, fillStyle: 'solid' }));
+      g.appendChild(rc.rectangle(bx + 92 * s, by + 9 * s, 14 * s, 18 * s, { stroke: INK, strokeWidth: 2.4, fill: c, fillStyle: 'solid' }));
+    } },
+    envelope: { w: 184, h: 120, draw(g, rc) {
+      const w = 184, h = 120;
+      g.appendChild(rc.rectangle(-w / 2, -h / 2, w, h, { stroke: INK, strokeWidth: 2.4, fill: '#fef3c7', fillStyle: 'solid' }));
+      g.appendChild(rc.path(`M${-w / 2},${-h / 2} L0,${h / 2 - h / 2.2} L${w / 2},${-h / 2}`, { stroke: INK, strokeWidth: 2.4 }));
+      g.appendChild(rc.circle(0, h / 2 - h / 2.2, 36, { stroke: INK, strokeWidth: 2.4, fill: '#b91c1c', fillStyle: 'solid' }));
+    } },
+    padlock: { w: 62, h: 92, draw(g, rc) {
+      const s = 1.4, y = 46;
+      g.appendChild(rc.rectangle(-22 * s, y - 34 * s, 44 * s, 34 * s, { stroke: INK, strokeWidth: 2, fill: '#f59e0b', fillStyle: 'solid' }));
+      g.appendChild(rc.path(`M${-14 * s},${y - 34 * s} V${y - 50 * s} Q${-14 * s},${y - 64 * s} 0,${y - 64 * s} Q${14 * s},${y - 64 * s} ${14 * s},${y - 50 * s} V${y - 34 * s}`, { stroke: INK, strokeWidth: 3 }));
+    } },
+  };
+
+  // ------------------------------------------------------------ the world
+  const engine = Engine.create({ enableSleeping: true });
+  engine.gravity.y = 1;
+  const floor = Bodies.rectangle(W / 2, FLOOR + 50, W + 400, 100, { isStatic: true, friction: 0.8, label: 'floor' });
+  const wallL = Bodies.rectangle(-50, H / 2, 100, H * 3, { isStatic: true, label: 'wall' });
+  const wallR = Bodies.rectangle(W + 50, H / 2, 100, H * 3, { isStatic: true, label: 'wall' });
+  Composite.add(engine.world, [floor, wallL, wallR]);
+  const props = []; // { body, g, kind }
+  let nextSeed = 100, dropX = 0;
+  // a small seeded generator for drop positions, so the page is the same demo twice
+  let rs = 2024; const rand = () => { rs = (rs * 1664525 + 1013904223) >>> 0; return rs / 4294967296; };
+
+  function drop(kind) {
+    const spec = PROPS[kind];
+    const x = 200 + rand() * (W - 400), seed = nextSeed++;
+    const body = Bodies.rectangle(x, -120, spec.w, spec.h, { restitution: 0.35, friction: 0.5, frictionAir: 0.01, angle: (rand() - 0.5) * 1.5, label: kind, chamfer: { radius: 8 } });
+    Body.setAngularVelocity(body, (rand() - 0.5) * 0.2);
+    const g = el('g', { class: 'prop' }, propsG);
+    const rc = rough.svg(svg, { options: { seed, roughness: 1, bowing: 1 } });
+    spec.draw(g, rc);
+    const p = { body, g, kind, landed: false };
+    props.push(p); Composite.add(engine.world, body);
+    while (props.length > 60) { const old = props.shift(); Composite.remove(engine.world, old.body); old.g.remove(); }
+    if (reduced) settle();
+    sync();
+  }
+  function clearAll() { for (const p of props) { Composite.remove(engine.world, p.body); p.g.remove(); } props.length = 0; sync(); }
+  function shake() {
+    for (const p of props) {
+      Body.setStatic(p.body, false);
+      Body.applyForce(p.body, p.body.position, { x: (rand() - 0.5) * 0.12 * p.body.mass, y: -(0.06 + rand() * 0.1) * p.body.mass });
+    }
+    if (reduced) settle();
+    sync();
+  }
+
+  // When a prop first touches the floor or another prop near a character, that character is surprised for a second.
+  Events.on(engine, 'collisionStart', (ev) => {
+    for (const pair of ev.pairs) {
+      for (const b of [pair.bodyA, pair.bodyB]) {
+        const p = props.find(q => q.body === b);
+        if (!p || p.landed) continue;
+        const other = b === pair.bodyA ? pair.bodyB : pair.bodyA;
+        if (other.label === 'wall') continue;
+        p.landed = true;
+        for (const person of people) if (Math.abs(b.position.x - person.x) < 160) surprise(person);
+      }
+    }
+  });
+  function surprise(person) {
+    person.timer = 60; // frames
+    if (person.mood !== 'surprised') { person.mood = 'surprised'; drawPerson(person); }
+  }
+
+  // ------------------------------------------------------------ the loop: a fixed step, the SVG follows the bodies
+  let playing = !reduced, frames = 0, frameCost = 0, lastT = 0, acc = 0;
+  function sync() {
+    for (const p of props) {
+      const b = p.body;
+      p.g.setAttribute('transform', `translate(${b.position.x.toFixed(1)} ${b.position.y.toFixed(1)}) rotate(${(b.angle * 180 / Math.PI).toFixed(1)})`);
+    }
+    const awake = props.filter(p => !p.body.isSleeping).length;
+    document.getElementById('readout').textContent = `${props.length} props, ${awake} moving, frame ${frameCost.toFixed(2)} ms, ${people.reduce((n, p) => n + p.redraws, 0)} character redraws`;
+  }
+  function tickPeople() {
+    for (const person of people) if (person.timer > 0 && --person.timer === 0) { person.mood = 'neutral'; drawPerson(person); }
+  }
+  function frame(now) {
+    if (!playing) return;
+    const t0 = performance.now();
+    const dt = Math.min(50, now - lastT || 16.7); lastT = now;
+    acc += dt;
+    while (acc >= 16.667) { Engine.update(engine, 16.667); tickPeople(); acc -= 16.667; }
+    sync();
+    frameCost = frameCost * 0.9 + (performance.now() - t0) * 0.1;
+    frames++;
+    requestAnimationFrame(frame);
+  }
+  function settle() { // reduced motion: run the world forward five seconds and show where things came to rest
+    for (let i = 0; i < 300; i++) { Engine.update(engine, 16.667); tickPeople(); }
+    for (const person of people) if (person.mood !== 'neutral') { person.mood = 'neutral'; person.timer = 0; drawPerson(person); }
+  }
+  function play(on) {
+    playing = on;
+    const b = document.getElementById('playpause');
+    b.textContent = on ? 'pause' : 'play'; b.setAttribute('aria-pressed', on ? 'false' : 'true');
+    if (on) { lastT = performance.now(); requestAnimationFrame(frame); }
+  }
+
+  // ------------------------------------------------------------ controls
+  const $ = (id) => document.getElementById(id);
+  $('dropKey').addEventListener('click', () => drop('key'));
+  $('dropEnvelope').addEventListener('click', () => drop('envelope'));
+  $('dropPadlock').addEventListener('click', () => drop('padlock'));
+  $('shake').addEventListener('click', shake);
+  $('clear').addEventListener('click', clearAll);
+  $('playpause').addEventListener('click', () => play(!playing));
+  $('gravity').addEventListener('input', (e) => { engine.gravity.y = +e.target.value; $('gravityOut').value = (+e.target.value).toFixed(2); for (const p of props) Body.setStatic(p.body, false), p.body.isSleeping && Matter.Sleeping.set(p.body, false); });
+  // keys: k, e, p drop; s shakes; c clears; space pauses; ignored inside a field
+  document.addEventListener('keydown', (e) => {
+    const tag = (e.target.tagName || '').toLowerCase();
+    if (tag === 'input' || tag === 'textarea' || tag === 'select' || e.target.isContentEditable) return;
+    const map = { k: 'dropKey', e: 'dropEnvelope', p: 'dropPadlock', s: 'shake', c: 'clear' };
+    if (map[e.key]) $(map[e.key]).click();
+    else if (e.key === ' ') { e.preventDefault(); play(!playing); }
+  });
+
+  if (reduced) {
+    $('playpause').textContent = 'play'; $('playpause').setAttribute('aria-pressed', 'true');
+    $('motionNote').textContent = 'Your system asks for reduced motion, so each drop is settled at once: the world is stepped five seconds forward and drawn where things came to rest. Press play to watch it move instead.';
+  } else {
+    $('motionNote').textContent = 'Keys: k drops a key, e an envelope, p a padlock; s shakes, c clears, space pauses.';
+    play(true);
+  }
+  sync();
+})();
+</script>
+</body>
+</html>

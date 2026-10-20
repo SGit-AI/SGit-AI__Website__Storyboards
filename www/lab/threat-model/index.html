@@ -1,0 +1,240 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>A threat model, probed · the Lab · storyboards.sgit.ai</title>
+<meta name="description" content="A data-flow diagram as data: entities, processes, stores, flows and a trust boundary. The attacker walks to each flow and asks the STRIDE questions; the answers are the storyboard.">
+<link rel="stylesheet" href="https://api.storyboards.sgit.ai/v0/v0.1/v0.1.0/fonts.css" integrity="sha384-ep4bdPYRUzquMICQMhuOkSZ/CB1FnMh6qnGWS1F74VepoLOlw9JGK+Zg+E6/t9dD" crossorigin="anonymous">
+<script src="https://api.storyboards.sgit.ai/v0/v0.1/v0.1.0/vendor/rough-4.6.6.js" integrity="sha384-XPr5sCJfqHMzoJ8Cn1UYdXXD+XvRi0yoZm3W0yVJ24QP0ps8SYUskiXqnl4yqWlc" crossorigin="anonymous"></script>
+<script src="https://api.storyboards.sgit.ai/v0/v0.1/v0.1.0/storyboard.js" integrity="sha384-3xZhCe5dUdBXMwV57gyscmlqdIjzz9L6huUkcuiEyC0V3jfrlQEdyEhvvF4kCeOa" crossorigin="anonymous"></script>
+<style>
+:root{--bg:#f7f3ea;--fg:#1f2328;--dim:#5b6169;--line:#cfc6b1;--panel:#fff;--paper:#fbf7ee;--ink:#23262b;--marker:#fde68a;--accent:#0f766e;--red:#dc2626;--hand:'Caveat','Patrick Hand',cursive;--note:'Patrick Hand',cursive;--mono:ui-monospace,Menlo,Consolas,monospace}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--fg);font:16px/1.55 system-ui,-apple-system,'Segoe UI',Roboto,sans-serif}
+a{color:#115e59}
+header.lab{display:flex;flex-wrap:wrap;gap:.4rem 1rem;align-items:baseline;justify-content:space-between;padding:.8rem 1rem;border-bottom:1px solid var(--line);background:rgba(247,243,234,.95);position:sticky;top:0;z-index:5}
+header.lab h1{margin:0;font-family:var(--hand);font-size:2rem;line-height:1}
+header.lab .meta{font-family:var(--note);font-size:1.05rem;color:var(--dim)}
+main{max-width:1180px;margin:0 auto;padding:1rem}
+.lede{font-size:1.1rem;max-width:52rem;color:#2b3036;margin:.4rem 0 1rem}
+.wrap{display:grid;grid-template-columns:minmax(0,1.6fr) minmax(0,1fr);gap:1rem;align-items:start}
+.panel{background:var(--paper);border:3px solid var(--ink);border-radius:12px;overflow:hidden;box-shadow:4px 4px 0 var(--ink)}
+.panel svg{display:block;width:100%;height:auto;aspect-ratio:16/10}
+.transport{display:flex;flex-wrap:wrap;gap:.5rem;align-items:center;margin:.7rem 0}
+button,select{font:inherit;min-height:44px;border:2px solid var(--ink);border-radius:8px;background:var(--panel);color:var(--fg);padding:0 .8rem;cursor:pointer}
+button.ink{background:var(--ink);color:#fff;font-weight:700}
+.count{font-family:var(--mono);font-size:.85rem;color:var(--dim)}
+.side h2{font-family:var(--note);font-size:1.3rem;margin:.2rem 0 .4rem}
+textarea{width:100%;min-height:360px;font:12.5px/1.45 var(--mono);background:#1f2328;color:#e8e6e1;border:0;border-radius:10px;padding:.8rem;resize:vertical}
+.err{color:#b91c1c;font-size:.9rem;min-height:1.3em}
+.findings{display:grid;gap:.4rem;margin:.6rem 0}
+.finding{background:var(--panel);border:1px solid var(--line);border-left:5px solid var(--line);border-radius:8px;padding:.5rem .8rem;font-size:.9rem}
+.finding.open{border-left-color:var(--red)}.finding.mitigated{border-left-color:var(--accent)}.finding.current{background:var(--marker)}
+.finding b{font-family:var(--mono);font-weight:600}
+section.learnt{margin-top:2rem;border-top:2px dashed var(--line);padding-top:1rem}
+section.learnt h2{font-family:var(--hand);font-size:2rem;margin:.2rem 0 .4rem}
+section.learnt li{margin:.3rem 0;max-width:56rem}
+@media (max-width:900px){.wrap{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<header class="lab">
+  <div><h1>A threat model, probed</h1><div class="meta">lab · experiment · deeper · pinned to kit v0.1.0</div></div>
+  <nav><a href="../index.html">&larr; the Lab</a></nav>
+</header>
+<main>
+<p class="lede">A threat model is a data-flow diagram and a list of things that could go wrong at each flow. Here the diagram is data (entities, processes, stores, flows, one trust boundary), drawn in the kit's ink, and the list is played: <b>Vex</b> walks to each flow and asks a STRIDE question; the answer the author wrote appears, red when it is open, green when something stands in the way, and the mitigation is named. Ines watches from the reader's side. A review you can step through instead of a table you read once.</p>
+
+<div class="wrap">
+  <div>
+    <div class="panel"><svg id="svg" viewBox="0 0 1600 1000" role="img" aria-label="The data-flow diagram, with the attacker probing it"></svg></div>
+    <div class="transport">
+      <button class="ink" id="play">&#9654; Probe</button>
+      <button id="prev" aria-label="Previous probe">&larr;</button>
+      <button id="next" aria-label="Next probe">&rarr;</button>
+      <span class="count" id="count"></span>
+      <button id="all">Show every finding</button>
+    </div>
+    <div class="findings" id="findings"></div>
+  </div>
+  <div class="side">
+    <h2>The model is data</h2>
+    <textarea id="src" spellcheck="false" aria-label="The threat model as JSON"></textarea>
+    <div class="transport"><button class="ink" id="apply">Apply</button><button id="example">The example</button><span class="err" id="err"></span></div>
+    <p class="count">nodes: entity, process, store (each with x, y in 0..1); a boundary: { label, x, y, w, h }; flows: { from, to, label, threats: [{ stride: S|T|R|I|D|E, asks, answer, open, mitigation }] }</p>
+  </div>
+</div>
+
+<section class="learnt">
+  <h2>What this taught us</h2>
+  <ul>
+    <li><b>The attacker is the best narrator.</b> A threat is a question somebody asks at a flow; drawing the person asking it turns a table row into a scene with a point of view, and the mitigation into the answer they get.</li>
+    <li><b>Open and mitigated are the only two moods a finding needs.</b> Red or green on the card, worried or calm on Ines's face. A severity scale would have been a verdict; the kit's moods carry the status without one.</li>
+    <li><b>The DFD wants its own drawing vocabulary.</b> An entity is a box, a process a circle, a store two lines, a boundary a dashed red rectangle: four shapes, all a prop pack away. This page draws them itself.</li>
+    <li><b>A review is a path through the flows, like a flowchart's.</b> The order the author probes them in is part of the argument (start at the boundary crossing). The data should carry it; this page walks the flows in the order written.</li>
+    <li><b>A model this size fits a panel; a real one will not.</b> Twelve flows need the camera and a "chapter" per boundary. The next step is a threat model as a series of these panels, one boundary each.</li>
+  </ul>
+</section>
+</main>
+
+<script>
+(function () {
+  'use strict';
+  const K = window.StoryboardKit, INK = K.INK, PAPER = K.PAPER, W = K.W, H = K.H, NS = 'http://www.w3.org/2000/svg';
+  const CAST = {"characters":[
+    {"id":"ines","name":"Ines","kind":"human","look":{"skin":"#c68642","hair":"long","hairColour":"#2b1d14","shirt":"#0f766e","trousers":"#1f2937","accessory":"glasses","height":1.0}},
+    {"id":"vex","name":"Vex","kind":"human","look":{"skin":"#e0ac69","hair":"short","hairColour":"#6b7280","shirt":"#374151","trousers":"#111827","accessory":"none","height":1.02}}]};
+  const EXAMPLE = {
+    "title": "A page that draws a storyboard from the API",
+    "nodes": [
+      { "id": "reader", "kind": "entity", "label": "a reader's browser", "x": 0.11, "y": 0.5 },
+      { "id": "page", "kind": "process", "label": "the page", "x": 0.4, "y": 0.5 },
+      { "id": "api", "kind": "process", "label": "api.storyboards (Pages)", "x": 0.72, "y": 0.28 },
+      { "id": "data", "kind": "store", "label": "storyboard.json", "x": 0.72, "y": 0.72 },
+      { "id": "repo", "kind": "store", "label": "the release folder", "x": 0.92, "y": 0.28 }
+    ],
+    "boundary": { "label": "trust boundary: the host serves what the repository holds", "x": 0.57, "y": 0.1, "w": 0.4, "h": 0.8 },
+    "flows": [
+      { "from": "page", "to": "api", "label": "GET /v0/v0.1/v0.1.0/storyboard.js", "threats": [
+        { "stride": "T", "asks": "Can I change the script on its way to the page?", "answer": "No: the tag carries the file's hash; a changed byte is refused by the browser.", "open": false, "mitigation": "integrity + crossorigin on every tag" },
+        { "stride": "D", "asks": "Can I make the kit unavailable?", "answer": "The host is GitHub Pages; the page has no fallback and shows blank panels.", "open": true, "mitigation": "none yet: a second host, or the bundle inlined for the cover" } ] },
+      { "from": "repo", "to": "api", "label": "deploy", "threats": [
+        { "stride": "T", "asks": "Can I edit a published release in the repository?", "answer": "The hook, the pre-commit hook and CI's hash check refuse it; a push that fails CI is not deployed.", "open": false, "mitigation": "ABP-SB-001, code immutability" },
+        { "stride": "E", "asks": "Can an agent switch those checks off?", "answer": "It can edit the files; the hook asks the person first, and dev is not protected yet.", "open": true, "mitigation": "branch protection on dev (a host rule), CODEOWNERS" } ] },
+      { "from": "page", "to": "data", "label": "fetch bundle.json", "threats": [
+        { "stride": "I", "asks": "Is there anything in the data I should not see?", "answer": "A storyboard is public by design; the gate scans every file for key shapes before it is published.", "open": false, "mitigation": "ABP-SB-005, the key tripwire" },
+        { "stride": "S", "asks": "Can I feed the page a storyboard that is not yours?", "answer": "The embed takes any URL; a page that embeds from a host it does not control trusts that host.", "open": true, "mitigation": "pin the bundle's hash too (the format has no signature)" } ] },
+      { "from": "reader", "to": "page", "label": "a click, the keys", "threats": [
+        { "stride": "R", "asks": "Can I deny I changed a storyboard?", "answer": "Every commit carries the session that made it; the storyboard's own file names who wrote it.", "open": false, "mitigation": "Claude-Session trailers; the by field" } ] }
+    ]
+  };
+  const hash = (s) => { let h = 2166136261; for (const c of String(s)) { h ^= c.charCodeAt(0); h = Math.imul(h, 16777619); } return (h >>> 0) % 10000; };
+  const ease = (p) => p < 0.5 ? 2 * p * p : 1 - Math.pow(-2 * p + 2, 2) / 2;
+  const STRIDE = { S: 'Spoofing', T: 'Tampering', R: 'Repudiation', I: 'Information disclosure', D: 'Denial of service', E: 'Elevation of privilege' };
+
+  const svg = document.getElementById('svg'), $ = (id) => document.getElementById(id);
+  let M, probes = [], current = -1, vexG, vexHead, inesG, inesHead, cardG, playing = false, timer = null, anim = null, rc;
+  const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const px = (v) => 120 + v * (W - 240), py = (v) => 80 + v * 620;
+
+  function text(g, s, x, y, size, fill, anchor, weight) { const t = document.createElementNS(NS, 'text'); t.setAttribute('x', x); t.setAttribute('y', y); t.setAttribute('font-family', "'Patrick Hand', cursive"); t.setAttribute('font-size', size); t.setAttribute('fill', fill); t.setAttribute('text-anchor', anchor || 'middle'); if (weight) t.setAttribute('font-weight', weight); t.textContent = s; g.appendChild(t); return t; }
+  function wrap(s, max) { const words = String(s).split(/\s+/), lines = []; let line = ''; for (const w of words) { if ((line + ' ' + w).trim().length > max && line) { lines.push(line); line = w; } else line = (line + ' ' + w).trim(); } if (line) lines.push(line); return lines; }
+  function lines(g, ls, x, y, size, fill, anchor) { const t = text(g, '', x, y, size, fill, anchor); ls.forEach((l, i) => { const s = document.createElementNS(NS, 'tspan'); s.setAttribute('x', x); s.setAttribute('dy', i ? size * 1.2 : 0); s.textContent = l; t.appendChild(s); }); return t; }
+
+  // ---- the diagram: entities as boxes, processes as circles, stores as two lines, the boundary dashed and red
+  function validate(m) {
+    if (!m || !Array.isArray(m.nodes) || !Array.isArray(m.flows)) throw new Error('the model needs nodes and flows');
+    const ids = new Set(m.nodes.map((n) => n.id));
+    for (const n of m.nodes) if (!['entity', 'process', 'store'].includes(n.kind)) throw new Error(`${n.id}: kind must be entity, process or store`);
+    for (const f of m.flows) { if (!ids.has(f.from) || !ids.has(f.to)) throw new Error(`flow ${f.from} -> ${f.to} names a missing node`); for (const t of f.threats || []) if (!STRIDE[t.stride]) throw new Error(`${f.label}: stride must be one of S T R I D E`); }
+  }
+  function draw() {
+    while (svg.firstChild) svg.removeChild(svg.firstChild);
+    rc = rough.svg(svg, { options: { seed: 9, roughness: 1, bowing: 1.1 } });
+    const bg = document.createElementNS(NS, 'rect'); bg.setAttribute('width', W); bg.setAttribute('height', H); bg.setAttribute('fill', PAPER); svg.appendChild(bg);
+    text(svg, M.title || '', 40, 50, 36, INK, 'start', 'bold');
+    if (M.boundary) {
+      const b = M.boundary, g = document.createElementNS(NS, 'g'); svg.appendChild(g);
+      g.appendChild(rc.rectangle(px(b.x), py(b.y), b.w * (W - 240), b.h * 620, { stroke: '#dc2626', strokeWidth: 3, strokeLineDash: [16, 12], seed: 4 }));
+      text(g, b.label, px(b.x) + 16, py(b.y) - 12, 24, '#b91c1c', 'start');
+    }
+    const at = {};
+    M.nodes.forEach((n) => { at[n.id] = [px(n.x), py(n.y)]; });
+    const flows = document.createElementNS(NS, 'g'); svg.appendChild(flows);
+    M.flows.forEach((f, i) => {
+      const a = at[f.from], b = at[f.to], g = document.createElementNS(NS, 'g'); g.dataset.flow = i; flows.appendChild(g);
+      const ang = Math.atan2(b[1] - a[1], b[0] - a[0]), r = 90;
+      const s = [a[0] + Math.cos(ang) * r, a[1] + Math.sin(ang) * r], e = [b[0] - Math.cos(ang) * r, b[1] - Math.sin(ang) * r];
+      g.appendChild(rc.line(s[0], s[1], e[0], e[1], { stroke: '#374151', strokeWidth: 2.6, seed: 20 + i }));
+      g.appendChild(rc.path(`M${e[0] - Math.cos(ang - 0.45) * 22},${e[1] - Math.sin(ang - 0.45) * 22} L${e[0]},${e[1]} L${e[0] - Math.cos(ang + 0.45) * 22},${e[1] - Math.sin(ang + 0.45) * 22}`, { stroke: '#374151', strokeWidth: 2.6, seed: 40 + i }));
+      const mx = (s[0] + e[0]) / 2, my = (s[1] + e[1]) / 2 - 14;
+      const bgr = document.createElementNS(NS, 'rect'); bgr.setAttribute('x', mx - f.label.length * 5.2 - 6); bgr.setAttribute('y', my - 18); bgr.setAttribute('width', f.label.length * 10.4 + 12); bgr.setAttribute('height', 26); bgr.setAttribute('rx', 6); bgr.setAttribute('fill', PAPER); bgr.setAttribute('opacity', 0.92); g.appendChild(bgr);
+      text(g, f.label, mx, my + 2, 20, '#4b5563');
+      f._mid = [mx, my + 14];
+    });
+    M.nodes.forEach((n) => {
+      const [x, y] = at[n.id], g = document.createElementNS(NS, 'g'); svg.appendChild(g);
+      const o = { fill: '#fff', fillStyle: 'solid', stroke: INK, strokeWidth: 2.8, seed: 60 + hash(n.id) };
+      if (n.kind === 'entity') g.appendChild(rc.rectangle(x - 110, y - 46, 220, 92, o));
+      else if (n.kind === 'process') g.appendChild(rc.circle(x, y, 170, o));
+      else { g.appendChild(rc.line(x - 120, y - 40, x + 120, y - 40, { stroke: INK, strokeWidth: 3, seed: 61 })); g.appendChild(rc.line(x - 120, y + 40, x + 120, y + 40, { stroke: INK, strokeWidth: 3, seed: 62 })); }
+      lines(g, wrap(n.label, 18), x, y + 8 - (wrap(n.label, 18).length - 1) * 12, 24, INK);
+    });
+    // the people: Ines by the reader's side, Vex who walks; both drawn once
+    const irc = rough.svg(svg, { options: { seed: 3, roughness: 1, bowing: 1.2 } });
+    inesG = document.createElementNS(NS, 'g'); svg.appendChild(inesG);
+    inesHead = K.drawCharacter(inesG, irc, CAST.characters[0], 0, 0, { pose: 'stand', mood: 'calm', scale: 0.42 });
+    inesG.setAttribute('transform', `translate(${px(0.11)},${py(0.5) + 290})`);
+    vexG = document.createElementNS(NS, 'g'); svg.appendChild(vexG);
+    vexHead = K.drawCharacter(vexG, irc, CAST.characters[1], 0, 0, { pose: 'think', mood: 'determined', scale: 0.42 });
+    vexG.setAttribute('transform', `translate(${W - 120},${H - 40})`);
+    cardG = document.createElementNS(NS, 'g'); svg.appendChild(cardG);
+  }
+  function faces(ines, vex) {
+    const irc = rough.svg(svg, { options: { seed: 3, roughness: 1, bowing: 1.2 } });
+    const it = inesG.getAttribute('transform'), vt = vexG.getAttribute('transform');
+    while (inesG.firstChild) inesG.removeChild(inesG.firstChild); inesHead = K.drawCharacter(inesG, irc, CAST.characters[0], 0, 0, { pose: ines[0], mood: ines[1], scale: 0.42 }); inesG.setAttribute('transform', it);
+    while (vexG.firstChild) vexG.removeChild(vexG.firstChild); vexHead = K.drawCharacter(vexG, irc, CAST.characters[1], 0, 0, { pose: vex[0], mood: vex[1], scale: 0.42, flip: true }); vexG.setAttribute('transform', vt);
+  }
+  // ---- a probe: Vex at a flow, the question in a bubble, the answer on a card, the flow lit
+  function card(p) {
+    while (cardG.firstChild) cardG.removeChild(cardG.firstChild);
+    if (!p) return;
+    const f = M.flows[p.flow], t = f.threats[p.threat], crc = rough.svg(svg, { options: { seed: 5 + hash(t.asks), roughness: 0.8 } });
+    svg.querySelectorAll('[data-flow] path').forEach((el) => el.setAttribute('stroke', '#374151'));
+    svg.querySelectorAll(`[data-flow="${p.flow}"] path`).forEach((el) => el.setAttribute('stroke', '#dc2626'));
+    const vx = +vexG.getAttribute('transform').match(/translate\(([-\d.]+),([-\d.]+)/)[1], vy = +vexG.getAttribute('transform').match(/translate\(([-\d.]+),([-\d.]+)/)[2];
+    const q = wrap(t.asks, 26), qw = Math.max(...q.map((l) => l.length)) * 11 + 40, qh = q.length * 27 + 24;
+    const hx = vx + vexHead.headX, hy = vy + vexHead.headTop;
+    const bx = Math.max(10, Math.min(W - qw - 10, hx - qw - 40)), by = Math.max(10, hy - qh - 10);
+    const b = crc.path(`M${bx + 14},${by} H${bx + qw - 14} Q${bx + qw},${by} ${bx + qw},${by + 14} V${by + qh - 14} Q${bx + qw},${by + qh} ${bx + qw - 14},${by + qh} H${bx + 14} Q${bx},${by + qh} ${bx},${by + qh - 14} V${by + 14} Q${bx},${by} ${bx + 14},${by} Z`, { fill: '#fff', fillStyle: 'solid', stroke: INK, strokeWidth: 2.2 });
+    cardG.appendChild(b); cardG.appendChild(crc.line(bx + qw, by + qh / 2, hx - 10, hy + 6, { stroke: INK, strokeWidth: 2 }));
+    lines(cardG, q, bx + 20, by + 30, 22, INK, 'start');
+    const cw = 620, a = wrap(t.answer, 46), ch = 70 + a.length * 26 + 48, cx = 40, cy = H - ch - 30;
+    cardG.appendChild(crc.rectangle(cx, cy, cw, ch, { fill: t.open ? '#fff1f2' : '#ecfdf5', fillStyle: 'solid', stroke: t.open ? '#dc2626' : '#0f766e', strokeWidth: 3 }));
+    text(cardG, `${t.stride}: ${STRIDE[t.stride]} · ${t.open ? 'open' : 'mitigated'}`, cx + 18, cy + 34, 24, t.open ? '#b91c1c' : '#115e59', 'start', 'bold');
+    lines(cardG, a, cx + 18, cy + 66, 22, INK, 'start');
+    text(cardG, 'stands in the way: ' + t.mitigation, cx + 18, cy + ch - 16, 20, '#4b5563', 'start');
+  }
+  function goTo(i, animate) {
+    if (!probes.length) return;
+    i = Math.max(0, Math.min(probes.length - 1, i));
+    if (anim) cancelAnimationFrame(anim);
+    const p = probes[i], f = M.flows[p.flow], t = f.threats[p.threat], target = [f._mid[0] + 70, f._mid[1] + 150];
+    const from = vexG.getAttribute('transform').match(/translate\(([-\d.]+),([-\d.]+)/).slice(1).map(Number);
+    current = i; $('count').textContent = `${i + 1} / ${probes.length}`;
+    renderFindings();
+    const arrive = () => { vexG.setAttribute('transform', `translate(${target[0]},${target[1]})`); faces(['stand', t.open ? 'worried' : 'calm'], ['point', t.open ? 'excited' : 'confused']); card(p); if (playing) { if (current < probes.length - 1) timer = setTimeout(() => goTo(current + 1, true), 2600 + t.answer.length * 22); else stop(); } };
+    if (!animate || reduced) return arrive();
+    card(null); faces(['think', 'thinking'], ['stand', 'determined']);
+    const t0 = performance.now(), dur = 800;
+    const step = (now) => { const pr = Math.min(1, (now - t0) / dur), e = ease(pr), bob = -Math.abs(Math.sin(pr * Math.PI * 4)) * 8; vexG.setAttribute('transform', `translate(${from[0] + (target[0] - from[0]) * e},${from[1] + (target[1] - from[1]) * e + bob})`); if (pr < 1) anim = requestAnimationFrame(step); else arrive(); };
+    anim = requestAnimationFrame(step);
+  }
+  function renderFindings(all) {
+    const box = $('findings'); box.innerHTML = '';
+    probes.forEach((p, i) => {
+      if (!all && i > current) return;
+      const t = M.flows[p.flow].threats[p.threat], d = document.createElement('div');
+      d.className = 'finding ' + (t.open ? 'open' : 'mitigated') + (i === current ? ' current' : '');
+      d.innerHTML = `<b>${t.stride}</b> on <i>${M.flows[p.flow].label}</i>: ${t.asks} <span style="color:#5b6169">(${t.open ? 'open' : 'mitigated: ' + t.mitigation})</span>`;
+      d.onclick = () => { stop(); goTo(i, true); };
+      box.appendChild(d);
+    });
+  }
+  function load(m) { validate(m); M = JSON.parse(JSON.stringify(m)); probes = []; M.flows.forEach((f, fi) => (f.threats || []).forEach((_, ti) => probes.push({ flow: fi, threat: ti }))); draw(); current = -1; $('count').textContent = `0 / ${probes.length}`; renderFindings(); $('err').textContent = ''; }
+  function stop() { playing = false; clearTimeout(timer); $('play').innerHTML = '&#9654; Probe'; }
+  $('play').onclick = () => { if (playing) return stop(); playing = true; $('play').innerHTML = '&#10074;&#10074; Pause'; goTo(current >= probes.length - 1 ? 0 : current + 1, true); };
+  $('next').onclick = () => { stop(); goTo(current + 1, true); };
+  $('prev').onclick = () => { stop(); goTo(current - 1, true); };
+  $('all').onclick = () => renderFindings(true);
+  $('apply').onclick = () => { try { stop(); load(JSON.parse($('src').value)); } catch (e) { $('err').textContent = e.message; } };
+  $('example').onclick = () => { $('src').value = JSON.stringify(EXAMPLE, null, 1); stop(); load(EXAMPLE); };
+  document.addEventListener('keydown', (e) => { if (/^(INPUT|SELECT|TEXTAREA)$/.test(e.target.tagName)) return; if (e.key === 'ArrowRight') { stop(); goTo(current + 1, true); } else if (e.key === 'ArrowLeft') { stop(); goTo(current - 1, true); } });
+  $('src').value = JSON.stringify(EXAMPLE, null, 1); load(EXAMPLE);
+  if (!reduced) setTimeout(() => $('play').click(), 900);
+})();
+</script>
+</body>
+</html>

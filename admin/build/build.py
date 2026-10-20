@@ -179,7 +179,7 @@ def run_formats(series):
 
 # ------------------------------------------------------------------ the chrome
 NAV = [("Storyboards", "index.html#series"), ("Embed", "embed/index.html"), ("Formats", "formats/index.html"),
-       ("Articles", "articles/index.html"), ("The brief", "brief/index.html"), ("About", "about/index.html"), ("Behaviour policy", "abp/index.html"), ("Developers \u2197", "https://api.storyboards.sgit.ai/docs/index.html")]
+       ("Articles", "articles/index.html"), ("The brief", "brief/index.html"), ("About", "about/index.html"), ("Lab", "lab/index.html"), ("Behaviour policy", "abp/index.html"), ("Developers \u2197", "https://api.storyboards.sgit.ai/docs/index.html")]
 
 
 def page(rel, title, body, desc, version, crumbs=(), head="", scripts="", twin=None, og=None, narrow=False, current=None):
@@ -539,6 +539,80 @@ def build(out):
              f"The agents that work on {HOST}, what they can do, what they are asked to do, and what stands in the way of each rule.", abp_md, crumbs=(("Agent behaviour policy", None),), current="Behaviour policy")
     put("abp/abp.json", (ROOT / "policies/abp.json").read_bytes())
 
+    # ---- the Lab: standalone experiments, copied as they are (lab/README.md says the rules), an index generated from
+    # every lab/<slug>/experiment.json, and a markdown twin per experiment from the same file
+    lab_dir = ROOT / "lab"
+    TRACKS = [("characters", "Characters", "How to draw a character: other packs, things with faces, a designer."),
+              ("motion", "Motion and physics", "How to make it move: a stage API, a walk cycle, gravity, dialogue, a timeline."),
+              ("layout", "Layouts and camera", "How the panels sit together, and where the reader looks."),
+              ("deeper", "Deeper", "How far the format stretches: a flowchart, a threat model, a sequence diagram."),
+              ("engines", "Game engines", "What a real engine gives, and what it costs.")]
+    experiments = []
+    for ej in sorted(lab_dir.glob("*/experiment.json")):
+        e = json.loads(ej.read_text(encoding="utf-8"))
+        for k in ("slug", "title", "track", "question", "summary", "kit", "status", "date", "learnt"):
+            if k not in e:
+                die(f"{ej.relative_to(ROOT)}: experiment.json needs {k}")
+        if e["slug"] != ej.parent.name:
+            die(f"{ej.relative_to(ROOT)}: slug {e['slug']} is not the folder name")
+        if e["track"] not in {t[0] for t in TRACKS}:
+            die(f"{ej.relative_to(ROOT)}: track {e['track']} is not one of {', '.join(t[0] for t in TRACKS)}")
+        if not (ej.parent / "index.html").exists():
+            die(f"{ej.relative_to(ROOT)}: no index.html beside it")
+        if not re.fullmatch(r"v\d+\.\d+\.\d+", e["kit"]):
+            die(f"{ej.relative_to(ROOT)}: kit must be a release like v0.1.0")
+        for lib in e.get("libraries", []):
+            if not (lab_dir / "vendor" / lib).exists():
+                die(f"{ej.relative_to(ROOT)}: libraries names {lib}, which is not in lab/vendor/ (list only vendored files; the kit is 'kit')")
+        experiments.append(e)
+    experiments.sort(key=lambda e: (int(e.get("order", 50)), e["title"].lower()))
+    for f in sorted(lab_dir.rglob("*")):
+        rel = f.relative_to(ROOT).as_posix()
+        if f.is_file() and not rel.startswith("lab/tools/") and f.name != "README.md" and "__pycache__" not in rel:
+            put(rel, f.read_bytes())
+    for e in experiments:
+        md = [f"# {e['title']}", "", f"> {e['summary']}", "", f"*Source: <{SITE}/lab/{e['slug']}/>. A standalone experiment of the Lab, status {e['status']}, pinned to api.storyboards.sgit.ai {e['kit']}"
+              + (", using " + ", ".join(e.get("libraries", [])) if e.get("libraries") else "") + f". The page is drawn by code; this file is what it says.*", "", "---", "",
+              f"**The question.** {e['question']}", "", "## What this taught us", ""] + [f"- {x}" for x in e["learnt"]] + ["", f"[The Lab]({SITE}/lab/index.md)"]
+        put(f"lab/{e['slug']}/index.md", "\n".join(md) + "\n")
+    STATUS = {"exploring": "exploring", "promising": "promising", "parked": "parked", "lifted": "lifted into the kit"}
+    def lab_card(e):
+        libs = "".join(f'<span class="pill">{esc(l)}</span>' for l in e.get("libraries", []))
+        return (f'<article class="card lab-card"><div class="body"><h3><a href="{esc(e["slug"])}/index.html">{esc(e["title"])}</a></h3>'
+                f'<p class="q">{esc(e["question"])}</p><p>{esc(e["summary"])}</p>'
+                f'<div class="meta"><span class="pill {esc(e["status"])}">{esc(STATUS.get(e["status"], e["status"]))}</span><span class="pill">kit {esc(e["kit"])}</span>{libs}<span>{len(e["learnt"])} findings</span></div></div></article>')
+    tracks_html = "".join(
+        f'<section class="series" id="{t}"><div class="series-head"><div><h2>{esc(title)}</h2><p>{esc(note)}</p></div></div><div class="cards">'
+        + "".join(lab_card(e) for e in experiments if e["track"] == t) + "</div></section>"
+        for t, title, note in TRACKS if any(e["track"] == t for e in experiments))
+    libs_used = sorted({l for e in experiments for l in e.get("libraries", [])})
+    body = f"""<section class="hero" aria-labelledby="h1">
+<div>
+<p class="count">{len(experiments)} experiments &middot; {len([t for t in TRACKS if any(e["track"] == t[0] for e in experiments)])} tracks &middot; every one standalone, pinned to a release of the kit</p>
+<h1 id="h1">The Lab</h1>
+<svg class="underline" aria-hidden="true" viewBox="0 0 620 22" preserveAspectRatio="none"><path d="M4 14 Q 160 4 310 12 T 616 8"></path></svg>
+<p class="lede">Lots of small experiments in drawing, moving and laying out storyboards: other kinds of character, a stage you can direct like a game, physics, a camera, a flowchart and a threat model that explain themselves, a game engine. Each one is a single page that keeps working as the kit moves on, and each says what it taught us under the thing itself. A thing that works is lifted into the kit as a new release; a thing that does not stays here with its lesson.</p>
+<div class="actions"><a class="btn ink" href="stage/index.html">&#9654; Start with Stage</a><a class="btn marker" href="#characters">Every experiment</a><a class="btn" href="https://api.storyboards.sgit.ai/docs/javascript.html">The kit's API &#8599;</a></div>
+</div>
+<div class="hero-panel"><sg-storyboard src="../pki/the-first-key/bundle.json" view="panel" panel="4"><img src="../pki/the-first-key/thumb.jpg" alt="A panel drawn by the kit" width="480" height="300"></sg-storyboard></div>
+</section>
+<div class="features">
+<div class="feature"><b>Standalone</b><span>One HTML file each. The kit by its immutable path with integrity strings; any other library vendored under a versioned name ({esc(", ".join(libs_used)) or "none yet"}). Nothing fetched from a third party.</span></div>
+<div class="feature"><b>Programmatic</b><span>Every picture drawn by code from data, with a seed, so it is the same picture twice. No image files, no image models.</span></div>
+<div class="feature"><b>Honest</b><span>Each page ends with what it taught us: what worked, what did not, what to lift, what to try next. The status on the card is exploring, promising, parked or lifted.</span></div>
+<div class="feature"><b>Yours to add to</b><span>A folder, a page and an experiment.json, following <a href="{REPO}/blob/dev/lab/README.md">lab/README.md</a>; the checker opens it in Chromium and refuses errors and third-party requests.</span></div>
+</div>
+{tracks_html}
+"""
+    lmd = ["Standalone experiments in drawing, moving and laying out storyboards, each pinned to a release of the kit, each saying what it taught.", ""]
+    for t, title, note in TRACKS:
+        rows = [e for e in experiments if e["track"] == t]
+        if rows:
+            lmd += [f"## {title}", "", note, ""] + [f"- [{e['title']}]({e['slug']}/index.md) ({e['status']}, kit {e['kit']}): {e['question']}" for e in rows] + [""]
+    put_page("lab/index.html", "The Lab", body, f"{len(experiments)} standalone experiments in drawing, moving and laying out storyboards, each pinned to a release of the kit.",
+             "\n".join(lmd), crumbs=(("The Lab", None),), scripts=api_tag("embed.js", " defer"), current="Lab")
+    put("lab/experiments.json", jdump({"what": "Every experiment of the Lab, from each lab/<slug>/experiment.json. Generated by admin/build/build.py.", "site": SITE, "experiments": experiments}))
+
     # ---- release history
     rows = "".join(f'<tr><td class="ver">{esc(r["version"])}</td><td>{esc(r["date"])}</td><td>{esc(r["what"])}</td></tr>' for r in versions)
     body = (f'<h1>Release history</h1><p class="lede">One row per push to dev, newest first. The site is at {V}; it draws every panel with '
@@ -581,6 +655,7 @@ def build(out):
 <div class="feature"><b>Data, not pictures</b><span>Each storyboard is one JSON file and its cast another. An unknown character, pose, mood or prop stops the build.</span></div>
 <div class="feature"><b>Seven shapes</b><span>The deck, the JSON, the markdown script, a semantic graph, SVG, animated SVG and PNG or JPEG, all from the same data. <a href="formats/index.html">The formats</a>.</span></div>
 <div class="feature"><b>Embed anywhere</b><span>One script tag from <a href="https://api.storyboards.sgit.ai/">api.storyboards.sgit.ai</a>, one element. <a href="embed/index.html">How</a>.</span></div>
+<div class="feature"><b>The Lab</b><span>{len(experiments)} standalone experiments: a stage you can direct, a flowchart that explains itself, a camera, physics, other kinds of character. <a href="lab/index.html">Explore</a>.</span></div>
 <div class="feature"><b>Every version a folder</b><span>The kit is served at <code>/v0/v0.1/v0.1.0/</code>, never changed once published, with a hash for every file. <a href="articles/every-version-is-a-folder.html">Why</a>.</span></div>
 </div>
 <h2 id="series">Every storyboard</h2>
@@ -615,6 +690,8 @@ def build(out):
         llms += [f"- [{b['sb']['title']}]({SITE}/{s['meta']['slug']}/{b['sb']['slug']}/index.md): {b['sb'].get('subtitle', '')}" for b in s["boards"]] + [""]
     llms += ["## Pages", ""] + [f"- [{label}]({SITE}/{Path(href).with_suffix('.md').as_posix()})" for label, href in NAV[1:] if not href.startswith("https://")] + [""]
     llms += ["## Articles", ""] + [f"- [{m['title']}]({SITE}/articles/{slug}.md): {m['summary']}" for m, slug, _ in articles] + [""]
+    llms += ["## The Lab", "", f"- [The Lab]({SITE}/lab/index.md): {len(experiments)} standalone experiments; the list with every finding is {SITE}/lab/experiments.json", ""] + \
+            [f"- [{e['title']}]({SITE}/lab/{e['slug']}/index.md): {e['question']}" for e in experiments] + [""]
     llms += ["## Agent behaviour policy", "", f"- [The agents, their grant, mandate and rules]({SITE}/abp/index.md); data: {SITE}/abp/abp.json", ""]
     llms += ["## The API", "", f"- [api.storyboards.sgit.ai](https://api.storyboards.sgit.ai/llms.txt): the kit that draws every panel, in immutable versioned folders; this site pins {API_BASE}", ""]
     put("llms.txt", "\n".join(llms))

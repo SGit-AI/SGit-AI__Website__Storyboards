@@ -1,6 +1,6 @@
 # storyboards.sgit.ai
 
-> Storyboards drawn from data: 23 storyboards, 254 panels, 2 series. Each storyboard is a JSON file drawn by code (api.storyboards.sgit.ai v0.1.0); each comes as JSON, a bundle with its cast, a markdown script, a semantic graph and images. Site v0.1.2.
+> Storyboards drawn from data: 23 storyboards, 254 panels, 2 series. Each storyboard is a JSON file drawn by code (api.storyboards.sgit.ai v0.1.0); each comes as JSON, a bundle with its cast, a markdown script, a semantic graph and images. Site v0.1.3.
 
 Every page has a markdown twin (replace .html with .md; a storyboard's twin is its script, index.md). The full index of storyboards and formats is https://storyboards.sgit.ai/catalogue.json.
 
@@ -46,6 +46,7 @@ pki.sgit.ai's storyboards: how a person gets a key pair from a passkey, how two 
 - [Articles](https://storyboards.sgit.ai/articles/index.md)
 - [The brief](https://storyboards.sgit.ai/brief/index.md)
 - [About](https://storyboards.sgit.ai/about/index.md)
+- [Lab](https://storyboards.sgit.ai/lab/index.md)
 - [Behaviour policy](https://storyboards.sgit.ai/abp/index.md)
 
 ## Articles
@@ -53,6 +54,27 @@ pki.sgit.ai's storyboards: how a person gets a key pair from a passkey, how two 
 - [Storyboards get their own site](https://storyboards.sgit.ai/articles/storyboards-get-their-own-site.md): The storyboards started in a book, moved to gen-z-developers.sgit.ai and then to pki.sgit.ai. Today they move into a site of their own, with the code that draws them on a second site, so any page can use it.
 - [One storyboard, seven shapes](https://storyboards.sgit.ai/articles/one-storyboard-seven-shapes.md): The brief listed the shapes a storyboard should come in: JSON, markup, a semantic graph, JPEG, SVG, animated and a thumbnail. Here is each one, where it comes from, and why only two of them are committed images.
 - [Every version is a folder](https://storyboards.sgit.ai/articles/every-version-is-a-folder.md): The kit that draws every storyboard is published at a path that names its version, /v0/v0.1/v0.1.0/, and nothing at that path ever changes. Why, how it is enforced, and what it costs.
+
+## The Lab
+
+- [The Lab](https://storyboards.sgit.ai/lab/index.md): 16 standalone experiments; the list with every finding is https://storyboards.sgit.ai/lab/experiments.json
+
+- [A flowchart, explained](https://storyboards.sgit.ai/lab/flowchart/index.md): Can a diagram people already write (Mermaid) become a storyboard that explains itself, node by node?
+- [Camera: one world, many beats](https://storyboards.sgit.ai/lab/camera/index.md): Can a storyboard be one wide scene that a camera moves across, and can a scene hold another scene?
+- [Stage](https://storyboards.sgit.ai/lab/stage/index.md): Can a storyboard's actors be directed like a game, from a script of verbs, and can playing the game write the script?
+- [A threat model, probed](https://storyboards.sgit.ai/lab/threat-model/index.md): Can a threat model (a data-flow diagram and its STRIDE findings) be played as a storyboard instead of read as a table?
+- [A sequence diagram](https://storyboards.sgit.ai/lab/sequence/index.md): What does a sequence diagram gain when its lifelines are characters with faces, and what does a text language for its messages need?
+- [Cast designer](https://storyboards.sgit.ai/lab/cast-designer/index.md): Which look fields make a character, and what does a cast file need that the drawing does not?
+- [Cinematic](https://storyboards.sgit.ai/lab/cinematic/index.md): What does a real animation timeline (scrubbing, speed, easing) give a kit panel that the kit's CSS play cannot, and what in the kit's markup helps or hinders it?
+- [Comic page](https://storyboards.sgit.ai/lab/comic-page/index.md): What does a comic page, a filmstrip and a grid each want from the same seven panels, and what does panel size do to a scene?
+- [Dialogue engine](https://storyboards.sgit.ai/lab/dialogue/index.md): What happens to a storyboard when the reader chooses the next line and the text types itself out?
+- [Gravity](https://storyboards.sgit.ai/lab/gravity/index.md): What does a physics engine behind a storyboard panel add, what does it cost, and could a storyboard carry a drop as data?
+- [Ink pack](https://storyboards.sgit.ai/lab/ink-pack/index.md): Can a second character pack, clean thick-line cartoon instead of sketch, keep the kit's contract and stay on model?
+- [Pixel pack](https://storyboards.sgit.ai/lab/pixel-pack/index.md): What survives of a cast when each character is a 16 by 24 pixel sprite generated from a few lines of text?
+- [Room (a game engine)](https://storyboards.sgit.ai/lab/room/index.md): What does a game engine give a storyboard's cast, what does it cost, and what would it take for a storyboard to play inside one?
+- [Scrolly](https://storyboards.sgit.ai/lab/scrolly/index.md): Can one sticky panel, redrawn and played as the text scrolls, tell a storyboard better than a deck does, and what should the text beside it say?
+- [Things with faces](https://storyboards.sgit.ai/lab/things-with-faces/index.md): Can a rule, a store or a boundary be a character in a storyboard rather than furniture?
+- [Walk cycle](https://storyboards.sgit.ai/lab/walk-cycle/index.md): Can a stick-figure rig driven by a phase give a storyboard character a walk, a run and a jump, and still look like the kit?
 
 ## Agent behaviour policy
 

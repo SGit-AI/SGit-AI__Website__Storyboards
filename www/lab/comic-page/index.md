@@ -1,0 +1,18 @@
+# Comic page
+
+> The same seven-panel storyboard laid out as an A4 comic page with a splash, a filmstrip and a 2 by 4 grid, with a print button.
+
+*Source: <https://storyboards.sgit.ai/lab/comic-page/>. A standalone experiment of the Lab, status exploring, pinned to api.storyboards.sgit.ai v0.1.0. The page is drawn by code; this file is what it says.*
+
+---
+
+**The question.** What does a comic page, a filmstrip and a grid each want from the same seven panels, and what does panel size do to a scene?
+
+## What this taught us
+
+- Small panels lose the words first: at a third of a 780px sheet the kit's 34px bubble text is under 5px tall, so the row of three reads as pictures (figure, prop, caption block); a small panel wants one figure, one prop and a caption of a few words.
+- A splash is the cover's job; every other slot shape is a crop of a 16:10 drawing (the tall slot shows the middle 30% of the width, the wide one the lower 78% of the height), so panels 2, 6 and 7 were written for their slot, and the kit's top-left caption is hidden in cropped slots because a crop can show only half of it.
+- A layout wants a size hint per panel (splash, wide, tall, small) that the author sets, and a drawScene that reads the svg's own aspect and places cast, bubbles and caption inside it instead of inside 16:10; this page hard-codes the slots. Status: a proposal.
+- Panel numbers, the title block and the punchline belong to the layout: the seven svg elements move between layouts without a redraw, the punchline is a layout text under the last panel (a punchline panel printed it twice), and print fits the sheet to A4 with a stylesheet alone.
+
+[The Lab](https://storyboards.sgit.ai/lab/index.md)
