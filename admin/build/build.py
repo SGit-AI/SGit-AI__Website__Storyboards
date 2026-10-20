@@ -31,6 +31,7 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from md import front_matter, render as md_render  # noqa: E402
+import abp as ABP  # noqa: E402
 
 ROOT = Path(__file__).resolve().parents[2]
 HOST = "storyboards.sgit.ai"
@@ -115,6 +116,18 @@ def load_series():
         meta = json.loads((d / "series.json").read_text(encoding="utf-8"))
         if meta["slug"] != d.name:
             die(f"{d.name}/series.json names slug {meta['slug']}")
+        # ABP-SB-002: a storyboard and its cast are the origin site's bytes; a file changed here, or added without an import, stops the build
+        imported = meta["origin"].get("imported", {})
+        for f in sorted(d.glob("[0-9][0-9]__*.json")) + [d / "cast.json"]:
+            want = imported.get(f.name)
+            if want is None:
+                die(f"{d.name}/{f.name} was not imported (ABP-SB-002): bring storyboards in with admin/build/import_series.py, from their origin site")
+            if hashlib.sha256(f.read_bytes()).hexdigest() != want:
+                die(f"{d.name}/{f.name} is not the bytes imported from {meta['origin']['repo']} at {meta['origin']['commit'][:8]} (ABP-SB-002): "
+                    "correct it at the origin and re-import with admin/build/import_series.py; this site does not edit another site's storyboard")
+        for name in imported:
+            if not (d / name).exists():
+                die(f"{d.name}/{name} was imported and is missing")
         cast = json.loads((d / "cast.json").read_text(encoding="utf-8"))
         boards = []
         for f in sorted(d.glob("[0-9][0-9]__*.json")):
@@ -166,7 +179,7 @@ def run_formats(series):
 
 # ------------------------------------------------------------------ the chrome
 NAV = [("Storyboards", "index.html#series"), ("Embed", "embed/index.html"), ("Formats", "formats/index.html"),
-       ("Articles", "articles/index.html"), ("The brief", "brief/index.html"), ("About", "about/index.html"), ("Developers \u2197", "https://api.storyboards.sgit.ai/docs/index.html")]
+       ("Articles", "articles/index.html"), ("The brief", "brief/index.html"), ("About", "about/index.html"), ("Behaviour policy", "abp/index.html"), ("Developers \u2197", "https://api.storyboards.sgit.ai/docs/index.html")]
 
 
 def page(rel, title, body, desc, version, crumbs=(), head="", scripts="", twin=None, og=None, narrow=False, current=None):
@@ -516,6 +529,16 @@ def build(out):
     put_page("brief/index.html", "The brief", body, "The brief storyboards.sgit.ai was built from, in full.",
              "\n".join(f"- [{m['title']}]({stem}.md) ({m.get('date', '')}, {m.get('status', '')})" for m, stem, _ in briefs), crumbs=(("The brief", None),), current="The brief", narrow=True)
 
+    # ---- the agent behaviour policy: a top-level page from policies/abp.json, and the data itself beside it
+    abp = json.loads((ROOT / "policies/abp.json").read_text(encoding="utf-8"))
+    problems = ABP.check(abp)
+    if problems:
+        die("policies/abp.json: " + "; ".join(problems))
+    abp_md = ABP.markdown(abp)
+    put_page("abp/index.html", "Agent behaviour policy", f'<article class="article"><h1>Agent behaviour policy</h1><p class="lede">The agents that work on {HOST}, what they can do, what they are asked to do, and what stands in the way of each rule.</p>{md_render(abp_md)}</article>',
+             f"The agents that work on {HOST}, what they can do, what they are asked to do, and what stands in the way of each rule.", abp_md, crumbs=(("Agent behaviour policy", None),), current="Behaviour policy")
+    put("abp/abp.json", (ROOT / "policies/abp.json").read_bytes())
+
     # ---- release history
     rows = "".join(f'<tr><td class="ver">{esc(r["version"])}</td><td>{esc(r["date"])}</td><td>{esc(r["what"])}</td></tr>' for r in versions)
     body = (f'<h1>Release history</h1><p class="lede">One row per push to dev, newest first. The site is at {V}; it draws every panel with '
@@ -592,6 +615,7 @@ def build(out):
         llms += [f"- [{b['sb']['title']}]({SITE}/{s['meta']['slug']}/{b['sb']['slug']}/index.md): {b['sb'].get('subtitle', '')}" for b in s["boards"]] + [""]
     llms += ["## Pages", ""] + [f"- [{label}]({SITE}/{Path(href).with_suffix('.md').as_posix()})" for label, href in NAV[1:] if not href.startswith("https://")] + [""]
     llms += ["## Articles", ""] + [f"- [{m['title']}]({SITE}/articles/{slug}.md): {m['summary']}" for m, slug, _ in articles] + [""]
+    llms += ["## Agent behaviour policy", "", f"- [The agents, their grant, mandate and rules]({SITE}/abp/index.md); data: {SITE}/abp/abp.json", ""]
     llms += ["## The API", "", f"- [api.storyboards.sgit.ai](https://api.storyboards.sgit.ai/llms.txt): the kit that draws every panel, in immutable versioned folders; this site pins {API_BASE}", ""]
     put("llms.txt", "\n".join(llms))
     urls = sorted(r for r in files if r.endswith(".html") and r != "404.html")

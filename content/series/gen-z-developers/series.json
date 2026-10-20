@@ -84,24 +84,24 @@
   "commit": "e2a71808f2dbdc9d94167b9493b539f0c567b35c",
   "date": "2026-10-19",
   "path": "admin/content/storyboards/",
-  "imported": [
-   "01__the-2018-book.json",
-   "02__a-first-storyline.json",
-   "03__the-opening.json",
-   "04__where-do-you-land.json",
-   "05__connect-the-dots-backwards.json",
-   "06__where-the-thinking-came-from.json",
-   "07__generative-ai-not-ai.json",
-   "08__follow-the-rabbit-holes.json",
-   "09__everything-is-connected.json",
-   "10__lenses-roles-and-loops.json",
-   "11__the-book-in-release-mode.json",
-   "12__gen-zx-developers.json",
-   "13__page-three.json",
-   "14__not-to-me.json",
-   "15__scan-me.json",
-   "16__a-new-land.json",
-   "cast.json"
-  ]
+  "imported": {
+   "01__the-2018-book.json": "63c7b3b6d7f36120d5979261244fe2cacf2933ce373328e1124f43ffdf7995a0",
+   "02__a-first-storyline.json": "8579e37e288107e9bc5bc0fe93d0c76a2f7dd107079e2806bdea7c97e19fd189",
+   "03__the-opening.json": "ef9f37f632cd7bb476e5ce532086733580fde18c7abc8adb02759ab7d1edc2b7",
+   "04__where-do-you-land.json": "61203572ebe386b6c6a9fa5301f264c98d226edb4d00165998281f70f87be9ae",
+   "05__connect-the-dots-backwards.json": "d0b6a743aedc82e107792856a6e3785e22850208ab915596b385ea588364c2a9",
+   "06__where-the-thinking-came-from.json": "c1919ad8732f7a982d8dbdc750d533412d8df61505c62faf78b6cb283f4b04f7",
+   "07__generative-ai-not-ai.json": "051d0033f67404b1994e6465fdc5aba99d2a9638210f11941fd2f25d41ab59c1",
+   "08__follow-the-rabbit-holes.json": "556fae6e8578f9e39fdc6802ec79d1349080dbe899bf321d74e6bc2622963834",
+   "09__everything-is-connected.json": "bd2feecdab875a4aab058a897c8c8b1d150de670945b9d36994a1dbadd258a09",
+   "10__lenses-roles-and-loops.json": "43c27cb63e8ca6f3b3ef870960d2714b57d91bd32c80e63926e56f3995398073",
+   "11__the-book-in-release-mode.json": "2ee59ecadb4116ef7156087843318b80921a78d9a8fa0ae4deb3c429a7346e93",
+   "12__gen-zx-developers.json": "5a37046f606aee1d0fda2d61c11fdda4da84f61710a87477973fafe1090fff43",
+   "13__page-three.json": "c313ae78f7c9d619e10372e2c2ba4c79a7611b6e6fb31eebca8197635f849293",
+   "14__not-to-me.json": "cd148d3c6956ea1df2933436a0f4cce1e5f6a3a926e5510062c10d8474304ae7",
+   "15__scan-me.json": "1a8e1b0cdc7845e3965dd1a8e95496b974417cb95fab14de036eaaf04c9b67d1",
+   "16__a-new-land.json": "575ef2ee167d63c99425b0d0128a83a28d97cd4e38e495374a2d36c8239a1277",
+   "cast.json": "80c0e3a63f6324e236696146c57e85115995eff339f11c1880c3cc3d66011dc3"
+  }
  }
 }

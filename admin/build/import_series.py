@@ -6,10 +6,12 @@
 
 Copies admin/content/storyboards/cast.json and every NN__<slug>.json from the clone into content/series/<series>/
 unchanged (the storyboard is the origin site's file; a correction goes there, or is made here and the origin told), and
-writes the origin's commit into content/series/<series>/series.json. Everything this site adds about a series (its title,
+writes the origin's commit, and the SHA-256 of every file it copied, into content/series/<series>/series.json; the build
+refuses a file whose bytes are no longer the imported ones (behaviour policy ABP-SB-002). Everything this site adds about a series (its title,
 blurb, shelves, how its cast stands on the shelf) lives in series.json, never in the storyboards themselves. Run it again
 to take a newer commit: the storyboards are replaced, series.json keeps what this site wrote and moves the commit.
 """
+import hashlib
 import json
 import shutil
 import subprocess
@@ -40,7 +42,7 @@ def main():
     meta_path = out / "series.json"
     meta = json.loads(meta_path.read_text(encoding="utf-8")) if meta_path.exists() else {"slug": series}
     meta["origin"] = dict(ORIGINS[series], commit=commit, date=date, path="admin/content/storyboards/",
-                          imported=[f.name for f in files] + ["cast.json"])
+                          imported={f.name: hashlib.sha256((out / f.name).read_bytes()).hexdigest() for f in files + [src / "cast.json"]})
     meta_path.write_text(json.dumps(meta, indent=1, ensure_ascii=False) + "\n", encoding="utf-8")
     print(f"import_series: {len(files)} storyboards and the cast from {ORIGINS[series]['repo']} at {commit[:8]} ({date}) -> {out.relative_to(ROOT)}")
 

@@ -57,6 +57,15 @@ jobs:
               sys.exit(f"::error::content/versions.json starts at {here}; dev is at {dev}: add a row for the next version")
           print(f"{here} is above dev's {dev}")
           PY
+      - name: ABP-SB-006, a brief on dev is never edited (corrections go in BRIEF-CORRECTIONS.md)
+        if: github.ref != 'refs/heads/dev'
+        run: |
+          set -euo pipefail
+          git fetch --quiet origin dev || exit 0
+          for f in $(git ls-tree --name-only origin/dev briefs/ || true); do
+            if ! git diff --quiet origin/dev -- "$f"; then echo "::error::$f is a published brief and was changed: a brief is never edited, add a correction to BRIEF-CORRECTIONS.md"; exit 1; fi
+          done
+          echo "every brief on dev is unchanged"
       - name: Install Playwright's Chromium
         run: npm install --no-save --no-audit --no-fund playwright@1.56.1 && npx playwright install --with-deps chromium
       - name: Every page, in Chromium

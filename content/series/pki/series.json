@@ -71,15 +71,15 @@
   "commit": "ab6affc9348ae390636405d2dd24b5db31a9663c",
   "date": "2026-10-20",
   "path": "admin/content/storyboards/",
-  "imported": [
-   "01__the-first-key.json",
-   "02__two-ways.json",
-   "03__an-invitation.json",
-   "04__a-secret-by-qr.json",
-   "05__an-access-key-sealed.json",
-   "06__an-agent-gets-a-key.json",
-   "07__in-person-by-qr.json",
-   "cast.json"
-  ]
+  "imported": {
+   "01__the-first-key.json": "3e23a886c6e3e45b7b826543f90e42a6cf2a457a669b7d6881176a68e29fd928",
+   "02__two-ways.json": "0cd7633caf277566860040bf6b0770e5aeb9a502cc1a7737d65937e73df1158b",
+   "03__an-invitation.json": "d3284e385e1e70674ca8897bd8998897a9f89e8593c9cb16d56ee7e386d7dc1c",
+   "04__a-secret-by-qr.json": "33d2bdcc60964dec0d1a15cf08a06163d3a5d14d6c32cb906cf423aca42886b0",
+   "05__an-access-key-sealed.json": "0d69f3db11ca0e97a104d31318156beff6a04ed9a179dc2686ee4ae6d3bfc478",
+   "06__an-agent-gets-a-key.json": "e73a6a28e480a2bfb834d49f0b4269295f4367a5687a11fa19607bdce037fcbe",
+   "07__in-person-by-qr.json": "63e462d20f71d7f4b9bc2e60030b756191f9ab30c546a63c97f6ba1d00972190",
+   "cast.json": "0b245df099a6335c5a3729affaf6d3aa8da2a1b3821578b55fe99fc6e8d640c2"
+  }
  }
 }

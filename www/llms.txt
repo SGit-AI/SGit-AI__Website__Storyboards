@@ -46,12 +46,17 @@ pki.sgit.ai's storyboards: how a person gets a key pair from a passkey, how two 
 - [Articles](https://storyboards.sgit.ai/articles/index.md)
 - [The brief](https://storyboards.sgit.ai/brief/index.md)
 - [About](https://storyboards.sgit.ai/about/index.md)
+- [Behaviour policy](https://storyboards.sgit.ai/abp/index.md)
 
 ## Articles
 
 - [Storyboards get their own site](https://storyboards.sgit.ai/articles/storyboards-get-their-own-site.md): The storyboards started in a book, moved to gen-z-developers.sgit.ai and then to pki.sgit.ai. Today they move into a site of their own, with the code that draws them on a second site, so any page can use it.
 - [One storyboard, seven shapes](https://storyboards.sgit.ai/articles/one-storyboard-seven-shapes.md): The brief listed the shapes a storyboard should come in: JSON, markup, a semantic graph, JPEG, SVG, animated and a thumbnail. Here is each one, where it comes from, and why only two of them are committed images.
 - [Every version is a folder](https://storyboards.sgit.ai/articles/every-version-is-a-folder.md): The kit that draws every storyboard is published at a path that names its version, /v0/v0.1/v0.1.0/, and nothing at that path ever changes. Why, how it is enforced, and what it costs.
+
+## Agent behaviour policy
+
+- [The agents, their grant, mandate and rules](https://storyboards.sgit.ai/abp/index.md); data: https://storyboards.sgit.ai/abp/abp.json
 
 ## The API
 

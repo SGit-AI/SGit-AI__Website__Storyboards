@@ -74,7 +74,7 @@ try {
   await visit('pki/index.html', async (p) => { await p.waitForSelector('svg.sbx-lineup g'); }, 'series-pki');
   await visit('pki/model-sheet.html', async (p) => { await p.waitForSelector('.sb-sheet figure svg g'); }, 'model-sheet-pki');
   for (const rel of pages.filter((r) => !['index.html', 'pki/the-first-key/index.html', 'gen-z-developers/index.html', 'pki/index.html', 'pki/model-sheet.html'].includes(r))) {
-    await visit(rel, null, rel.startsWith('articles/') || rel.startsWith('embed') ? rel.replace(/\W+/g, '_') : null);
+    await visit(rel, null, rel.startsWith('articles/') || rel.startsWith('embed') || rel.startsWith('abp') ? rel.replace(/\W+/g, '_') : null);
   }
 } finally {
   await browser.close();

@@ -4,7 +4,7 @@
   {
    "version": "v0.1.2",
    "date": "2026-10-20",
-   "what": "A Developers link in the bar to api.storyboards.sgit.ai, which is now the developer site: everything about the code lives there, and this site stays about what the storyboards are and do. The second brief, published in full: code immutability as an agent behaviour policy (ABP-SB-001), and the API site as the developer site. This repository's .claude/settings.json runs the API checkout's code immutability hook, so a session started here cannot change a published release beside it either. No storyboard changed."
+   "what": "A Developers link in the bar to api.storyboards.sgit.ai, which is now the developer site: everything about the code lives there, and this site stays about what the storyboards are and do. The second brief, published in full: code immutability as an agent behaviour policy (ABP-SB-001), and the API site as the developer site. This repository's .claude/settings.json runs the API checkout's code immutability hook, so a session started here cannot change a published release beside it either. No storyboard changed. And a top-level Behaviour policy page (/abp/), generated from policies/abp.json: the agents, the layers of control, the grant, the mandate, nine rules with their barriers and enforcement, where each maps to, and the gaps. Two rules that were prose now have checks: the build refuses an imported storyboard whose bytes changed (ABP-SB-002), and CI refuses an edit to a brief already on dev (ABP-SB-006)."
   },
   {
    "version": "v0.1.1",

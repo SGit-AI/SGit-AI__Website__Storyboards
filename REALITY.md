@@ -14,6 +14,8 @@ A feature not in this file does not exist. Updated by whoever ships.
 - `.claude/settings.json` runs the API checkout's code immutability hook (ABP-SB-001) on SessionStart and PreToolUse.
 - Both sites are live: storyboards.sgit.ai and api.storyboards.sgit.ai, deployed from `dev`.
 
+- The Behaviour policy page (`/abp/`), from `policies/abp.json`: 2 agents, the layers of control, the grant, the mandate, 9 rules (ABP-SB-001 to 008 and 010), 7 of them rated setting (a check that runs) and 2 expectation. The build now refuses an imported storyboard whose bytes changed (ABP-SB-002); CI refuses an edit to a brief already on dev (ABP-SB-006).
+
 ## Does not exist yet
 
 - Making a storyboard or a cast on the site; any commercial feature.

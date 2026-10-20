@@ -18,6 +18,10 @@ The repository of **[storyboards.sgit.ai](https://storyboards.sgit.ai)**: a home
 | `www/` | the site, generated and committed; GitHub Pages serves it from `dev`, the default and release branch |
 | `tests/test_site.mjs` | every page in Chromium, both hosts routed to the local checkouts |
 
+## The agent behaviour policy
+
+`policies/abp.json` (type `abp/site/v1`) describes the agents that work on this repository, what they can do, what they are asked to do, and every rule with its barrier and what enforces it. It is rendered as the site's top-level Behaviour policy page, `/abp/`, by the renderer shared with the twin repository, and is the shape to copy to every other site.
+
 ## Release
 
 ```bash
