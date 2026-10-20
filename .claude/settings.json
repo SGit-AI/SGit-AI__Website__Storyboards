@@ -1,0 +1,11 @@
+{
+  "hooks": {
+    "SessionStart": [
+      { "hooks": [ { "type": "command", "command": "f=\"$CLAUDE_PROJECT_DIR/../SGit-AI__Website__Storyboards__API/.claude/hooks/code_immutability.py\"; [ ! -f \"$f\" ] || python3 \"$f\"" } ] }
+    ],
+    "PreToolUse": [
+      { "matcher": "Edit|Write|MultiEdit|NotebookEdit|Bash",
+        "hooks": [ { "type": "command", "command": "f=\"$CLAUDE_PROJECT_DIR/../SGit-AI__Website__Storyboards__API/.claude/hooks/code_immutability.py\"; [ ! -f \"$f\" ] || python3 \"$f\"" } ] }
+    ]
+  }
+}

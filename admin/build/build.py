@@ -166,7 +166,7 @@ def run_formats(series):
 
 # ------------------------------------------------------------------ the chrome
 NAV = [("Storyboards", "index.html#series"), ("Embed", "embed/index.html"), ("Formats", "formats/index.html"),
-       ("Articles", "articles/index.html"), ("The brief", "brief/index.html"), ("About", "about/index.html")]
+       ("Articles", "articles/index.html"), ("The brief", "brief/index.html"), ("About", "about/index.html"), ("Developers \u2197", "https://api.storyboards.sgit.ai/docs/index.html")]
 
 
 def page(rel, title, body, desc, version, crumbs=(), head="", scripts="", twin=None, og=None, narrow=False, current=None):
@@ -174,7 +174,7 @@ def page(rel, title, body, desc, version, crumbs=(), head="", scripts="", twin=N
     depth = rel.count("/")
     up = "../" * depth
     canon = f"{SITE}/{rel}".removesuffix("index.html")
-    nav = "".join(f'<a href="{up}{href}"{" aria-current=\"page\"" if current == label else ""}>{label}</a>' for label, href in NAV)
+    nav = "".join(f'<a href="{href if href.startswith("https://") else up + href}"{" aria-current=\"page\"" if current == label else ""}>{label}</a>' for label, href in NAV)
     crumb = ""
     if crumbs:
         crumb = '<p class="crumb"><a href="' + up + 'index.html">Home</a> / ' + " / ".join(
@@ -590,7 +590,7 @@ def build(out):
     for s in series:
         llms += [f"### {s['meta']['title']}", "", s["meta"]["blurb"], ""]
         llms += [f"- [{b['sb']['title']}]({SITE}/{s['meta']['slug']}/{b['sb']['slug']}/index.md): {b['sb'].get('subtitle', '')}" for b in s["boards"]] + [""]
-    llms += ["## Pages", ""] + [f"- [{label}]({SITE}/{Path(href).with_suffix('.md').as_posix()})" for label, href in NAV[1:]] + [""]
+    llms += ["## Pages", ""] + [f"- [{label}]({SITE}/{Path(href).with_suffix('.md').as_posix()})" for label, href in NAV[1:] if not href.startswith("https://")] + [""]
     llms += ["## Articles", ""] + [f"- [{m['title']}]({SITE}/articles/{slug}.md): {m['summary']}" for m, slug, _ in articles] + [""]
     llms += ["## The API", "", f"- [api.storyboards.sgit.ai](https://api.storyboards.sgit.ai/llms.txt): the kit that draws every panel, in immutable versioned folders; this site pins {API_BASE}", ""]
     put("llms.txt", "\n".join(llms))

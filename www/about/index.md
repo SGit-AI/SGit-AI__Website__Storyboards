@@ -15,7 +15,7 @@ storyboards.sgit.ai is a home for storyboards that are data: short strips of pan
 | storyboards.sgit.ai | the storyboards, their pages and every shape they come in, the articles, the brief | [SGit-AI__Website__Storyboards](https://github.com/SGit-AI/SGit-AI__Website__Storyboards) |
 | [api.storyboards.sgit.ai](https://api.storyboards.sgit.ai/) | the kit that draws them, in immutable versioned folders, and its documentation | [SGit-AI__Website__Storyboards__API](https://github.com/SGit-AI/SGit-AI__Website__Storyboards__API) |
 
-This site uses the API exactly as any other site would: from the pinned release v0.1.0, with the hash of every file it loads.
+This site uses the API exactly as any other site would: from the pinned release v0.1.0, with the hash of every file it loads. Everything about the code (the guides, the reference, a live gallery of everything the kit draws, how it works inside, every release with its diff, and the behaviour policy that keeps published code immutable) is on [the developer site](https://api.storyboards.sgit.ai/docs/index.html).
 
 ## How it is built
 

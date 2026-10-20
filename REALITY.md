@@ -1,4 +1,4 @@
-# Reality: what exists, as of site v0.1.0 (20 October 2026)
+# Reality: what exists, as of site v0.1.2 (20 October 2026)
 
 A feature not in this file does not exist. Updated by whoever ships.
 
@@ -11,9 +11,11 @@ A feature not in this file does not exist. Updated by whoever ships.
 - Every page loads the kit from `https://api.storyboards.sgit.ai/v0/v0.1/v0.1.0/` with SRI integrity strings from the pinned manifest.
 - The gate (`admin/build/validate.py`) and `build.py --check`, both passing; `tests/test_site.mjs` opens all 43 pages in Chromium with no errors (run locally, both hosts routed to the checkouts).
 
+- `.claude/settings.json` runs the API checkout's code immutability hook (ABP-SB-001) on SessionStart and PreToolUse.
+- Both sites are live: storyboards.sgit.ai and api.storyboards.sgit.ai, deployed from `dev`.
+
 ## Does not exist yet
 
-- The live sites: DNS for storyboards.sgit.ai and api.storyboards.sgit.ai, and GitHub Pages enabled on both repositories, are not done. Until the API is live, the pages here cannot load the kit.
 - Making a storyboard or a cast on the site; any commercial feature.
 - The `review/` folder the sgit.ai repository guidance asks for (section 7). A gap.
 - A listing on sgit.ai's network page: the entry is drafted in `admin/network-entry.md` for the sgit.ai site to take.

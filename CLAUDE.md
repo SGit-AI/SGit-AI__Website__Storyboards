@@ -11,3 +11,5 @@ Rules:
 - Before pushing: `render.py` (if a storyboard, cast or the pin changed), `build.py`, `validate.py`, `node tests/test_site.mjs`. All must pass.
 - Prose: no em-dashes, sentences with verbs, state the status of things, source every number. Characters use the pronouns their cast file gives.
 - Never commit a key, a token or a vault key; the gate scans for key shapes.
+- Code in a published API release folder is never changed (behaviour policy ABP-SB-001, `../SGit-AI__Website__Storyboards__API/policies/code-immutability.md`). `.claude/settings.json` here runs that repository's hook, which denies it; do not work around it.
+- Everything about the code is documented on the API site; this site documents what the storyboards are and do.
