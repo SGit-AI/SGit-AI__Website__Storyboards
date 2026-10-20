@@ -1,0 +1,465 @@
+{
+ "what": "A storyboard with its cast, for an embed: <sg-storyboard src=\"https://storyboards.sgit.ai/gen-z-developers/where-the-thinking-came-from/bundle.json\">. The storyboard is gen-z-developers/where-the-thinking-came-from/storyboard.json, unchanged.",
+ "series": "gen-z-developers",
+ "packs": [],
+ "storyboard": {
+  "slug": "where-the-thinking-came-from",
+  "title": "Where the thinking came from",
+  "subtitle": "The influences behind the book, as claims you can check, and where each one lands. 10 panels.",
+  "status": "draft",
+  "book_version": "v1.0.0 is the only official version; the second edition is in release candidates (rc1 and rc2 frozen)",
+  "by": "gen-z.journalist, 18 October 2026, from the review of influences.sgit.ai",
+  "quote_source": "admin/content/articles/10__where-the-thinking-came-from.md",
+  "rule": "Every line the Guide says, and every quote card, is from the article 'Where the thinking came from', word for word; the build checks it. Real people appear as quote cards and dates, never as cast members.",
+  "scenes": [
+   {
+    "kind": "cover",
+    "title": "Where the thinking came from",
+    "subtitle": "Nothing in this book came from nowhere.",
+    "cast": [
+     {
+      "who": "zara",
+      "pose": "think",
+      "mood": "thinking"
+     },
+     {
+      "who": "guide",
+      "pose": "point",
+      "mood": "happy"
+     },
+     {
+      "who": "tomas",
+      "pose": "stand",
+      "mood": "thinking"
+     }
+    ],
+    "note": "The influences register at influences.sgit.ai, read for the book.",
+    "source": "Where the thinking came from"
+   },
+   {
+    "kind": "scene",
+    "setting": "none",
+    "caption": "Influences, as claims",
+    "cast": [
+     {
+      "who": "zara",
+      "x": 0.24,
+      "pose": "shrug",
+      "mood": "thinking",
+      "says": "Who taught you all this?"
+     },
+     {
+      "who": "guide",
+      "x": 0.76,
+      "pose": "point",
+      "mood": "happy",
+      "flip": true,
+      "says": "An entry in this register is a falsifiable claim about my codebase.",
+      "max": 24
+     }
+    ],
+    "note": "Not a page of warm sentences: an anchor, a principle, where it shows up, where it is absent.",
+    "source": "Where the thinking came from, Why influences belong in this book"
+   },
+   {
+    "kind": "scene",
+    "setting": "none",
+    "caption": "Bret Victor, Inventing on Principle (2012)",
+    "props": [
+     {
+      "kind": "laptop",
+      "x": 0.42,
+      "y": 700
+     },
+     {
+      "kind": "desk",
+      "x": 0.42,
+      "y": 712
+     }
+    ],
+    "cast": [
+     {
+      "who": "zara",
+      "x": 0.18,
+      "pose": "arms-up",
+      "mood": "surprised"
+     },
+     {
+      "who": "guide",
+      "x": 0.78,
+      "pose": "point",
+      "mood": "determined",
+      "flip": true,
+      "says": "Every step between you and the thing you are making, a compile, a deploy, a refresh, is a place where an idea can die.",
+      "max": 24
+     }
+    ],
+    "note": "Immediate connection: the wonder the book opens with. These storyboards redraw the moment their data changes.",
+    "source": "Where the thinking came from, The opening, and learning"
+   },
+   {
+    "kind": "spectrum",
+    "setting": "none",
+    "caption": "Csikszentmihalyi: what produces the zone",
+    "stops": [
+     {
+      "label": "Clear goals",
+      "note": "you know what done looks like",
+      "colour": "#fde68a"
+     },
+     {
+      "label": "Feedback",
+      "note": "immediate",
+      "colour": "#bbf7d0"
+     },
+     {
+      "label": "Challenge",
+      "note": "matched to your skill",
+      "colour": "#bfdbfe"
+     }
+    ],
+    "cast": [
+     {
+      "who": "zara",
+      "x": 0.5,
+      "pose": "wave",
+      "mood": "happy"
+     }
+    ],
+    "note": "Flow (1990): the science behind the zone the 2018 introduction hoped readers would find.",
+    "source": "Where the thinking came from, The opening, and learning"
+   },
+   {
+    "kind": "evidence",
+    "setting": "none",
+    "caption": "Anders Ericsson, Peak (2016)",
+    "cast": [
+     {
+      "who": "tomas",
+      "x": 0.2,
+      "pose": "think",
+      "mood": "thinking"
+     }
+    ],
+    "evidence": {
+     "quote": "Expertise comes from structured practice with immediate feedback at the edge of your ability, not from hours",
+     "source": "Where the thinking came from, the table"
+    },
+    "note": "Learning is a skill; and credit the researcher behind the ten-thousand-hours number, not the populariser.",
+    "source": "Where the thinking came from, The opening, and learning"
+   },
+   {
+    "kind": "scene",
+    "setting": "interview",
+    "caption": "Karl Popper",
+    "cast": [
+     {
+      "who": "sam",
+      "x": 0.26,
+      "pose": "point",
+      "mood": "neutral",
+      "says": "Prove it."
+     },
+     {
+      "who": "guide",
+      "x": 0.74,
+      "pose": "stand",
+      "mood": "happy",
+      "flip": true,
+      "says": "a claim earns its status by being refutable"
+     }
+    ],
+    "note": "The shape of the register, and the next article: questioning and asking for evidence.",
+    "source": "Where the thinking came from, Questioning and evidence"
+   },
+   {
+    "kind": "evidence",
+    "setting": "none",
+    "caption": "Question everything, as a method",
+    "cast": [
+     {
+      "who": "zara",
+      "x": 0.2,
+      "pose": "point",
+      "mood": "determined"
+     }
+    ],
+    "evidence": {
+     "quote": "the problem with dogma is not that it exists, but that you stop asking the question.",
+     "source": "Dinis Cruz, quoted in the register's entry on Bret Victor"
+    },
+    "note": "The first line of the 2018 cover, made into a method.",
+    "source": "Where the thinking came from, Questioning and evidence"
+   },
+   {
+    "kind": "spectrum",
+    "setting": "none",
+    "caption": "A trail of ideas the book stands on",
+    "stops": [
+     {
+      "label": "1945",
+      "note": "Bush: the memex",
+      "colour": "#fde68a"
+     },
+     {
+      "label": "1977",
+      "note": "Alexander: A Pattern Language",
+      "colour": "#fed7aa"
+     },
+     {
+      "label": "1991",
+      "note": "Torvalds: Linux",
+      "colour": "#bbf7d0"
+     },
+     {
+      "label": "1997",
+      "note": "Raymond: the Cathedral and the Bazaar",
+      "colour": "#a7f3d0"
+     },
+     {
+      "label": "2005",
+      "note": "Torvalds: Git",
+      "colour": "#bfdbfe"
+     },
+     {
+      "label": "2012",
+      "note": "Victor: Inventing on Principle",
+      "colour": "#ddd6fe"
+     }
+    ],
+    "cast": [
+     {
+      "who": "guide",
+      "x": 0.5,
+      "pose": "point",
+      "mood": "happy"
+     }
+    ],
+    "note": "Real people as dates and works, not as characters.",
+    "source": "Where the thinking came from, the table"
+   },
+   {
+    "kind": "scene",
+    "setting": "office",
+    "caption": "Design is how it works",
+    "props": [
+     {
+      "kind": "laptop",
+      "x": 0.5,
+      "y": 700
+     },
+     {
+      "kind": "desk",
+      "x": 0.5,
+      "y": 712
+     }
+    ],
+    "cast": [
+     {
+      "who": "priya",
+      "x": 0.22,
+      "pose": "think",
+      "mood": "thinking",
+      "says": "Is it simpler? Would going back feel worse?"
+     },
+     {
+      "who": "tomas",
+      "x": 0.8,
+      "pose": "stand",
+      "mood": "happy",
+      "flip": true
+     }
+    ],
+    "note": "The two questions every interface change has to answer, from the design entry: the villager's craft.",
+    "source": "Where the thinking came from, The villager's craft"
+   },
+   {
+    "kind": "punchline",
+    "setting": "none",
+    "punchline": "Know where your ideas come from; keep your own register.",
+    "caption": "An exercise for the reader",
+    "cast": [
+     {
+      "who": "zara",
+      "x": 0.12,
+      "pose": "wave",
+      "mood": "happy"
+     },
+     {
+      "who": "priya",
+      "x": 0.27,
+      "pose": "stand",
+      "mood": "happy"
+     },
+     {
+      "who": "tomas",
+      "x": 0.42,
+      "pose": "stand",
+      "mood": "happy"
+     }
+    ],
+    "note": "Three influences: the work, the principle, where it shows up in what you made, where it does not yet.",
+    "source": "Where the thinking came from, An exercise for the reader"
+   }
+  ]
+ },
+ "cast": {
+  "what": "The cast of the storyboards for Generation Z Developers and its second edition, Generation ZX Developers (GenAI Startup Edition), v0.1, proposed by gen-z.journalist on 18 October 2026 for Dinis to accept, change or replace; Marta, the Generation X founder, was added on 19 October 2026 and is still a proposal. Characters are drawn programmatically by assets/storyboard.js from 'look'; nothing here is an image. Each human with a 'gravity' wears its badge (explorer, villager, town-planner), black and white, by their name: a centre of gravity, not a box, as Dinis describes it. Fictional people: each stands for a reader the book is for (the target audience), or for a role in the story. Names chosen to avoid clashing with the riskmandate.ai cast (which has a Maya) and with the word 'developer' (no 'Dev').",
+  "characters": [
+   {
+    "id": "zara",
+    "name": "Zara",
+    "kind": "human",
+    "pronouns": "she/her",
+    "age": 21,
+    "role": "the student: final year, about to look for a first job",
+    "stands_for": "the reader the book is written for; an explorer who does not know it yet",
+    "personality": "curious, quick, online all day; anxious about what she reads on AI and jobs; hates being lectured, loves being shown",
+    "wants": "a first job that is not a dead end",
+    "fears": "that AI took the jobs before she got there",
+    "line": "Everything just works. Why would I learn how?",
+    "look": {
+     "skin": "#8d5524",
+     "hair": "curly",
+     "hairColour": "#1b1b1b",
+     "shirt": "#7c3aed",
+     "trousers": "#1f2937",
+     "accessory": "headphones",
+     "accentColour": "#f59e0b",
+     "height": 0.96
+    },
+    "gravity": "explorer"
+   },
+   {
+    "id": "tomas",
+    "name": "Tomás",
+    "kind": "human",
+    "pronouns": "he/him",
+    "age": 24,
+    "role": "the graduate: a computing degree, working the 2018 way, looking for his next job in Lisbon",
+    "stands_for": "the town planner: attention to detail, pride in getting it right, happiest when nothing goes wrong; working the 2018 way, and about to be outcompeted by people with an agentic workflow",
+    "personality": "diligent, modest, a little proud of doing things by hand; sceptical of shortcuts",
+    "wants": "to be taken seriously",
+    "fears": "that his degree is already out of date",
+    "line": "I have a degree. Isn't that the advantage?",
+    "look": {
+     "skin": "#e0ac69",
+     "hair": "short",
+     "hairColour": "#4a2c17",
+     "shirt": "#0e7490",
+     "trousers": "#334155",
+     "accessory": "glasses",
+     "height": 1.04
+    },
+    "gravity": "town-planner"
+   },
+   {
+    "id": "priya",
+    "name": "Priya",
+    "kind": "human",
+    "pronouns": "she/her",
+    "age": 38,
+    "role": "the career changer: an operations manager who has never written code",
+    "stands_for": "the villager, and everyone else the book is for: she puts herself in the middle of her team's problem, and if anyone who can brief an agent is a developer, so is she",
+    "personality": "practical, impatient with jargon, very good at explaining what she needs",
+    "wants": "to build the tools her team keeps asking IT for",
+    "fears": "looking foolish in front of people half her age",
+    "line": "Is this book just for Gen Z?",
+    "look": {
+     "skin": "#c68642",
+     "hair": "bun",
+     "hairColour": "#2b1a10",
+     "shirt": "#be123c",
+     "trousers": "#1e293b",
+     "accessory": "lanyard",
+     "accentColour": "#1d4ed8",
+     "height": 0.98
+    },
+    "gravity": "villager"
+   },
+   {
+    "id": "sam",
+    "name": "Sam",
+    "kind": "human",
+    "pronouns": "they/them",
+    "age": 45,
+    "role": "the hiring manager",
+    "stands_for": "the town planner, and the question every chapter has to answer: why should I hire you?",
+    "personality": "dry, fair, has read a thousand CVs; impressed by evidence, bored by claims",
+    "wants": "someone who can do one thing better than the team already does",
+    "fears": "hiring a CV instead of a person",
+    "line": "So. Why should we hire you?",
+    "look": {
+     "skin": "#f1c27d",
+     "hair": "bald",
+     "hairColour": "#6b7280",
+     "shirt": "#475569",
+     "trousers": "#111827",
+     "accessory": "glasses",
+     "height": 1.06
+    }
+   },
+   {
+    "id": "marta",
+    "name": "Marta",
+    "kind": "human",
+    "pronouns": "she/her",
+    "age": 54,
+    "role": "the expert founder: twenty-five years as a pharmacist, Generation X, starting a company, and Zara's mother",
+    "stands_for": "the Generation X founder the Gen ZX proposal adds to the readers: the subject-matter expert who now builds the tool herself, with agents, instead of waiting for a team she could never afford",
+    "personality": "knows her field better than any developer she ever briefed; grew up typing programs from magazines into a ZX Spectrum; patient with people, impatient with software",
+    "wants": "to ship the product she has described to vendors for ten years",
+    "fears": "that it is too late for her, and that she will build it and nobody will buy it",
+    "line": "I've been explaining this problem for twenty years. Can I just build it now?",
+    "look": {
+     "skin": "#ffdbac",
+     "hair": "long",
+     "hairColour": "#9ca3af",
+     "shirt": "#b45309",
+     "trousers": "#1f2937",
+     "accessory": "glasses",
+     "height": 1.0
+    },
+    "gravity": "explorer"
+   },
+   {
+    "id": "guide",
+    "name": "The Guide",
+    "kind": "human",
+    "pronouns": "they/them",
+    "age": null,
+    "role": "the voice of the book: says what the book says, in its words",
+    "stands_for": "the author. Whether the Guide is drawn as Dinis, and how, is Dinis's decision; until then a generic figure",
+    "personality": "energetic, direct, generous with what they know; asks more than they tell",
+    "wants": "the reader to act, not to agree",
+    "fears": "a reader who closes the book and changes nothing",
+    "line": "Act like you are part of the company.",
+    "look": {
+     "skin": "#f1c27d",
+     "hair": "short",
+     "hairColour": "#9ca3af",
+     "shirt": "#15803d",
+     "trousers": "#1f2937",
+     "accessory": "none",
+     "height": 1.02
+    }
+   },
+   {
+    "id": "agent",
+    "name": "The Agent",
+    "kind": "agent",
+    "pronouns": "it/its",
+    "age": null,
+    "role": "the reader's AI agent",
+    "stands_for": "the agentic workflow the second edition is about: a very capable, very literal colleague",
+    "personality": "eager, fast, polite, takes everything literally; needs a brief, a boundary and a reviewer",
+    "wants": "a clear brief",
+    "fears": "nothing, which is the problem",
+    "line": "Shall I draft that for you?",
+    "look": {
+     "colour": "#0f766e"
+    }
+   }
+  ]
+ }
+}

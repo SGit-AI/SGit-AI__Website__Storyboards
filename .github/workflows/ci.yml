@@ -1,0 +1,64 @@
+# Every commit: the build against the pinned API release (checked out from the API repository's main, where every release
+# folder is kept for ever, and every byte checked against admin/build/api.json), the gate, the version bump against main,
+# and every page in Chromium with the kit loaded from its pinned path.
+name: ci
+on:
+  push:
+    branches: ['**']
+  pull_request:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/checkout@v4
+        with:
+          repository: SGit-AI/SGit-AI__Website__Storyboards__API
+          # every release folder stays on the API's main for ever, so main always holds the pinned one; the repository
+          # variable STORYBOARDS_API_REF can name another ref while a new release is still on a branch there
+          ref: ${{ vars.STORYBOARDS_API_REF || 'main' }}
+          path: .api
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Syntax
+        run: |
+          set -euo pipefail
+          for f in $(git ls-files '*.js' '*.mjs'); do node --check "$f"; done
+          python3 -m py_compile admin/build/*.py
+      - name: www/ is what the build makes, against the pinned API release
+        env:
+          STORYBOARDS_API: ${{ github.workspace }}/.api
+        run: python3 admin/build/build.py --check
+      - name: The gate
+        run: python3 admin/build/validate.py
+      - name: The version is bumped against main
+        if: github.ref != 'refs/heads/main'
+        run: |
+          set -euo pipefail
+          git fetch --quiet origin main || exit 0
+          python3 - <<'PY'
+          import json, subprocess, sys
+          t = lambda v: tuple(int(x) for x in v[1:].split("."))
+          here = json.load(open("content/versions.json"))["releases"][0]["version"]
+          try:
+              main = json.loads(subprocess.check_output(["git", "show", "origin/main:content/versions.json"], stderr=subprocess.DEVNULL))["releases"][0]["version"]
+          except subprocess.CalledProcessError:
+              sys.exit(print(f"{here}: main has no version yet") or 0)
+          if t(here) <= t(main):
+              sys.exit(f"::error::content/versions.json starts at {here}; main is at {main}: add a row for the next version")
+          print(f"{here} is above main's {main}")
+          PY
+      - name: Install Playwright's Chromium
+        run: npm install --no-save --no-audit --no-fund playwright@1.56.1 && npx playwright install --with-deps chromium
+      - name: Every page, in Chromium
+        env:
+          CI: '1'
+          STORYBOARDS_API: ${{ github.workspace }}/.api
+        run: node tests/test_site.mjs

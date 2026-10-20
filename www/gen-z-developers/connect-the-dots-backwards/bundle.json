@@ -1,0 +1,555 @@
+{
+ "what": "A storyboard with its cast, for an embed: <sg-storyboard src=\"https://storyboards.sgit.ai/gen-z-developers/connect-the-dots-backwards/bundle.json\">. The storyboard is gen-z-developers/connect-the-dots-backwards/storyboard.json, unchanged.",
+ "series": "gen-z-developers",
+ "packs": [],
+ "storyboard": {
+  "slug": "connect-the-dots-backwards",
+  "title": "Connect the dots backwards",
+  "subtitle": "Paths, mixing disciplines, learning as a lifelong skill, and why to read this on paper. 14 panels.",
+  "status": "draft",
+  "book_version": "v1.0.0 is the only official version; the second edition is in release candidates (rc1 and rc2 frozen)",
+  "by": "gen-z.journalist, 18 October 2026, from Dinis's memo on paths and learning",
+  "quote_source": "admin/content/articles/09__connect-the-dots-backwards.md",
+  "rule": "Every line the Guide says, and every quote card, is Dinis's words from the article 'Connect the dots backwards', word for word, including the Jobs quote as the article gives it; the build checks it.",
+  "scenes": [
+   {
+    "kind": "cover",
+    "title": "Connect the dots backwards",
+    "subtitle": "Your path only makes sense looking back. Learn to walk it anyway.",
+    "cast": [
+     {
+      "who": "zara",
+      "pose": "think",
+      "mood": "thinking"
+     },
+     {
+      "who": "priya",
+      "pose": "stand",
+      "mood": "worried"
+     },
+     {
+      "who": "tomas",
+      "pose": "stand",
+      "mood": "thinking"
+     },
+     {
+      "who": "guide",
+      "pose": "wave",
+      "mood": "happy"
+     }
+    ],
+    "note": "The paths topic.",
+    "source": "Connect the dots backwards"
+   },
+   {
+    "kind": "scene",
+    "setting": "none",
+    "caption": "Steve Jobs, Stanford, 2005",
+    "cast": [
+     {
+      "who": "zara",
+      "x": 0.24,
+      "pose": "think",
+      "mood": "worried",
+      "says": "I can't see where any of this goes.",
+      "thinks": true
+     },
+     {
+      "who": "guide",
+      "x": 0.74,
+      "pose": "point",
+      "mood": "happy",
+      "flip": true,
+      "says": "you can't connect the dots looking forward; you can only connect them looking backwards",
+      "max": 24
+     }
+    ],
+    "note": "The sentence from the 2005 commencement address, as the article quotes it.",
+    "source": "Connect the dots backwards, Connect the dots backwards"
+   },
+   {
+    "kind": "spectrum",
+    "setting": "none",
+    "caption": "His dots, connected backwards",
+    "stops": [
+     {
+      "label": "Drops out",
+      "note": "of college",
+      "colour": "#fde68a"
+     },
+     {
+      "label": "Calligraphy",
+      "note": "a class for no reason",
+      "colour": "#fed7aa"
+     },
+     {
+      "label": "Ten years",
+      "note": "nothing connects",
+      "colour": "#e5e7eb"
+     },
+     {
+      "label": "The Mac",
+      "note": "its typography",
+      "colour": "#bfdbfe"
+     }
+    ],
+    "cast": [
+     {
+      "who": "guide",
+      "x": 0.5,
+      "pose": "point",
+      "mood": "happy"
+     }
+    ],
+    "note": "Jobs's own example, from the same address: a discipline nobody would put on a programmer's syllabus.",
+    "source": "Steve Jobs, Stanford, 12 June 2005"
+   },
+   {
+    "kind": "scene",
+    "setting": "none",
+    "caption": "The edge",
+    "props": [
+     {
+      "kind": "board",
+      "x": 0.62,
+      "y": 720,
+      "lines": [
+       "the humanities",
+       "mathematics",
+       "music",
+       "code",
+       "...and where they meet"
+      ]
+     }
+    ],
+    "cast": [
+     {
+      "who": "guide",
+      "x": 0.18,
+      "pose": "point",
+      "mood": "determined",
+      "says": "it is the multidisciplinary person who has the edge"
+     }
+    ],
+    "note": "Not chaos, not every direction at once; it looks different for an explorer, a villager and a town planner.",
+    "source": "Connect the dots backwards, The edge is multidisciplinary"
+   },
+   {
+    "kind": "scene",
+    "setting": "classroom",
+    "caption": "How we teach maths",
+    "cast": [
+     {
+      "who": "tomas",
+      "x": 0.24,
+      "pose": "shrug",
+      "mood": "worried",
+      "says": "Just memorise the formula?"
+     },
+     {
+      "who": "guide",
+      "x": 0.76,
+      "pose": "point",
+      "mood": "worried",
+      "flip": true,
+      "says": "we give the solution away"
+     }
+    ],
+    "note": "Paul Lockhart's A Mathematician's Lament: no wonder, no struggle, no creativity. The same with music.",
+    "source": "Connect the dots backwards, We teach maths as if to make people hate it"
+   },
+   {
+    "kind": "scene",
+    "setting": "none",
+    "caption": "What just happened while writing this book",
+    "cast": [
+     {
+      "who": "agent",
+      "x": 0.3,
+      "pose": "wave",
+      "mood": "happy",
+      "says": "Instead of infographics, shall I draw you a cast?"
+     },
+     {
+      "who": "zara",
+      "x": 0.75,
+      "pose": "arms-up",
+      "mood": "surprised",
+      "flip": true
+     }
+    ],
+    "note": "Dinis asked for something better than infographics; this storyboard is the answer, drawing itself.",
+    "source": "Connect the dots backwards, Generative AI lets you explore again"
+   },
+   {
+    "kind": "evidence",
+    "setting": "none",
+    "caption": "The beauty of it",
+    "cast": [
+     {
+      "who": "guide",
+      "x": 0.2,
+      "pose": "point",
+      "mood": "happy"
+     }
+    ],
+    "evidence": {
+     "quote": "you can now discover how you like to work",
+     "source": "Connect the dots backwards"
+    },
+    "note": "This is about you: how you like to learn, to take in information, to get lost.",
+    "source": "Connect the dots backwards, This is about you"
+   },
+   {
+    "kind": "scene",
+    "setting": "office",
+    "caption": "When it feels like too much",
+    "cast": [
+     {
+      "who": "priya",
+      "x": 0.24,
+      "pose": "shrug",
+      "mood": "worried",
+      "says": "It's too much. Where do I even start?"
+     },
+     {
+      "who": "guide",
+      "x": 0.76,
+      "pose": "stand",
+      "mood": "happy",
+      "flip": true,
+      "says": "Let your questions guide you, and learn."
+     }
+    ],
+    "note": "Experiment, try, start, adjust.",
+    "source": "Connect the dots backwards, This is about you"
+   },
+   {
+    "kind": "scene",
+    "setting": "street",
+    "caption": "Geography no longer decides",
+    "props": [
+     {
+      "kind": "phone",
+      "x": 0.3,
+      "y": 640
+     }
+    ],
+    "cast": [
+     {
+      "who": "zara",
+      "x": 0.26,
+      "pose": "point",
+      "mood": "happy"
+     },
+     {
+      "who": "guide",
+      "x": 0.74,
+      "pose": "point",
+      "mood": "determined",
+      "flip": true,
+      "says": "The future is decentralised."
+     }
+    ],
+    "note": "A connection and, less and less, some compute: local, sovereign.",
+    "source": "Connect the dots backwards, Learning is a lifelong skill"
+   },
+   {
+    "kind": "punchline",
+    "setting": "none",
+    "punchline": "Learning is a skill, and a lifelong one.",
+    "caption": "Take it seriously",
+    "cast": [
+     {
+      "who": "tomas",
+      "x": 0.16,
+      "pose": "stand",
+      "mood": "determined"
+     }
+    ],
+    "note": "The article: learning is a skill, and you need to take it very seriously, because it is a lifelong one.",
+    "source": "Connect the dots backwards, Learning is a lifelong skill"
+   },
+   {
+    "kind": "scene",
+    "setting": "none",
+    "caption": "You, reading this",
+    "cast": [
+     {
+      "who": "zara",
+      "x": 0.14,
+      "pose": "stand",
+      "mood": "surprised"
+     },
+     {
+      "who": "priya",
+      "x": 0.32,
+      "pose": "stand",
+      "mood": "happy"
+     },
+     {
+      "who": "tomas",
+      "x": 0.5,
+      "pose": "stand",
+      "mood": "thinking"
+     },
+     {
+      "who": "guide",
+      "x": 0.82,
+      "pose": "point",
+      "mood": "happy",
+      "flip": true,
+      "says": "just by reading this book, you are already in a very small minority",
+      "max": 22
+     }
+    ],
+    "note": "Deciding to spend the time is already the advantage.",
+    "source": "Connect the dots backwards, You are already in a small minority"
+   },
+   {
+    "kind": "scene",
+    "setting": "none",
+    "caption": "Read it on paper, with a pen",
+    "props": [
+     {
+      "kind": "desk",
+      "x": 0.42,
+      "y": 712
+     },
+     {
+      "kind": "book",
+      "x": 0.38,
+      "y": 712,
+      "label": "this book",
+      "colour": "#1e3a8a"
+     }
+    ],
+    "cast": [
+     {
+      "who": "zara",
+      "x": 0.18,
+      "pose": "sit",
+      "mood": "thinking"
+     },
+     {
+      "who": "guide",
+      "x": 0.8,
+      "pose": "point",
+      "mood": "happy",
+      "flip": true,
+      "says": "books, and narratives, are still the best way we have to take in information",
+      "max": 24
+     }
+    ],
+    "note": "Focus is a skill. The 2018 book had Books and Pen and Paper; the advice stands.",
+    "source": "Connect the dots backwards, Read it on paper, with a pen"
+   },
+   {
+    "kind": "scene",
+    "setting": "none",
+    "caption": "Trust your own way of thinking",
+    "cast": [
+     {
+      "who": "guide",
+      "x": 0.3,
+      "pose": "think",
+      "mood": "thinking",
+      "says": "My thinking is very hyperlinked: I think in graphs."
+     },
+     {
+      "who": "zara",
+      "x": 0.75,
+      "pose": "think",
+      "mood": "thinking",
+      "flip": true,
+      "says": "Mine jumps around too.",
+      "thinks": true
+     }
+    ],
+    "note": "Different minds, different paths; follow your curiosity and learn every day.",
+    "source": "Connect the dots backwards, I think in graphs"
+   },
+   {
+    "kind": "punchline",
+    "setting": "none",
+    "punchline": "Search gave us answers. Now you can ask for the evidence.",
+    "caption": "From answers to questions (the next article)",
+    "cast": [
+     {
+      "who": "agent",
+      "x": 0.16,
+      "pose": "think",
+      "mood": "thinking"
+     },
+     {
+      "who": "zara",
+      "x": 0.32,
+      "pose": "point",
+      "mood": "determined"
+     }
+    ],
+    "note": "Generative AI lets you question, go deeper and ask for evidence; the next co-written article.",
+    "source": "Connect the dots backwards, From answers to questions"
+   }
+  ]
+ },
+ "cast": {
+  "what": "The cast of the storyboards for Generation Z Developers and its second edition, Generation ZX Developers (GenAI Startup Edition), v0.1, proposed by gen-z.journalist on 18 October 2026 for Dinis to accept, change or replace; Marta, the Generation X founder, was added on 19 October 2026 and is still a proposal. Characters are drawn programmatically by assets/storyboard.js from 'look'; nothing here is an image. Each human with a 'gravity' wears its badge (explorer, villager, town-planner), black and white, by their name: a centre of gravity, not a box, as Dinis describes it. Fictional people: each stands for a reader the book is for (the target audience), or for a role in the story. Names chosen to avoid clashing with the riskmandate.ai cast (which has a Maya) and with the word 'developer' (no 'Dev').",
+  "characters": [
+   {
+    "id": "zara",
+    "name": "Zara",
+    "kind": "human",
+    "pronouns": "she/her",
+    "age": 21,
+    "role": "the student: final year, about to look for a first job",
+    "stands_for": "the reader the book is written for; an explorer who does not know it yet",
+    "personality": "curious, quick, online all day; anxious about what she reads on AI and jobs; hates being lectured, loves being shown",
+    "wants": "a first job that is not a dead end",
+    "fears": "that AI took the jobs before she got there",
+    "line": "Everything just works. Why would I learn how?",
+    "look": {
+     "skin": "#8d5524",
+     "hair": "curly",
+     "hairColour": "#1b1b1b",
+     "shirt": "#7c3aed",
+     "trousers": "#1f2937",
+     "accessory": "headphones",
+     "accentColour": "#f59e0b",
+     "height": 0.96
+    },
+    "gravity": "explorer"
+   },
+   {
+    "id": "tomas",
+    "name": "Tomás",
+    "kind": "human",
+    "pronouns": "he/him",
+    "age": 24,
+    "role": "the graduate: a computing degree, working the 2018 way, looking for his next job in Lisbon",
+    "stands_for": "the town planner: attention to detail, pride in getting it right, happiest when nothing goes wrong; working the 2018 way, and about to be outcompeted by people with an agentic workflow",
+    "personality": "diligent, modest, a little proud of doing things by hand; sceptical of shortcuts",
+    "wants": "to be taken seriously",
+    "fears": "that his degree is already out of date",
+    "line": "I have a degree. Isn't that the advantage?",
+    "look": {
+     "skin": "#e0ac69",
+     "hair": "short",
+     "hairColour": "#4a2c17",
+     "shirt": "#0e7490",
+     "trousers": "#334155",
+     "accessory": "glasses",
+     "height": 1.04
+    },
+    "gravity": "town-planner"
+   },
+   {
+    "id": "priya",
+    "name": "Priya",
+    "kind": "human",
+    "pronouns": "she/her",
+    "age": 38,
+    "role": "the career changer: an operations manager who has never written code",
+    "stands_for": "the villager, and everyone else the book is for: she puts herself in the middle of her team's problem, and if anyone who can brief an agent is a developer, so is she",
+    "personality": "practical, impatient with jargon, very good at explaining what she needs",
+    "wants": "to build the tools her team keeps asking IT for",
+    "fears": "looking foolish in front of people half her age",
+    "line": "Is this book just for Gen Z?",
+    "look": {
+     "skin": "#c68642",
+     "hair": "bun",
+     "hairColour": "#2b1a10",
+     "shirt": "#be123c",
+     "trousers": "#1e293b",
+     "accessory": "lanyard",
+     "accentColour": "#1d4ed8",
+     "height": 0.98
+    },
+    "gravity": "villager"
+   },
+   {
+    "id": "sam",
+    "name": "Sam",
+    "kind": "human",
+    "pronouns": "they/them",
+    "age": 45,
+    "role": "the hiring manager",
+    "stands_for": "the town planner, and the question every chapter has to answer: why should I hire you?",
+    "personality": "dry, fair, has read a thousand CVs; impressed by evidence, bored by claims",
+    "wants": "someone who can do one thing better than the team already does",
+    "fears": "hiring a CV instead of a person",
+    "line": "So. Why should we hire you?",
+    "look": {
+     "skin": "#f1c27d",
+     "hair": "bald",
+     "hairColour": "#6b7280",
+     "shirt": "#475569",
+     "trousers": "#111827",
+     "accessory": "glasses",
+     "height": 1.06
+    }
+   },
+   {
+    "id": "marta",
+    "name": "Marta",
+    "kind": "human",
+    "pronouns": "she/her",
+    "age": 54,
+    "role": "the expert founder: twenty-five years as a pharmacist, Generation X, starting a company, and Zara's mother",
+    "stands_for": "the Generation X founder the Gen ZX proposal adds to the readers: the subject-matter expert who now builds the tool herself, with agents, instead of waiting for a team she could never afford",
+    "personality": "knows her field better than any developer she ever briefed; grew up typing programs from magazines into a ZX Spectrum; patient with people, impatient with software",
+    "wants": "to ship the product she has described to vendors for ten years",
+    "fears": "that it is too late for her, and that she will build it and nobody will buy it",
+    "line": "I've been explaining this problem for twenty years. Can I just build it now?",
+    "look": {
+     "skin": "#ffdbac",
+     "hair": "long",
+     "hairColour": "#9ca3af",
+     "shirt": "#b45309",
+     "trousers": "#1f2937",
+     "accessory": "glasses",
+     "height": 1.0
+    },
+    "gravity": "explorer"
+   },
+   {
+    "id": "guide",
+    "name": "The Guide",
+    "kind": "human",
+    "pronouns": "they/them",
+    "age": null,
+    "role": "the voice of the book: says what the book says, in its words",
+    "stands_for": "the author. Whether the Guide is drawn as Dinis, and how, is Dinis's decision; until then a generic figure",
+    "personality": "energetic, direct, generous with what they know; asks more than they tell",
+    "wants": "the reader to act, not to agree",
+    "fears": "a reader who closes the book and changes nothing",
+    "line": "Act like you are part of the company.",
+    "look": {
+     "skin": "#f1c27d",
+     "hair": "short",
+     "hairColour": "#9ca3af",
+     "shirt": "#15803d",
+     "trousers": "#1f2937",
+     "accessory": "none",
+     "height": 1.02
+    }
+   },
+   {
+    "id": "agent",
+    "name": "The Agent",
+    "kind": "agent",
+    "pronouns": "it/its",
+    "age": null,
+    "role": "the reader's AI agent",
+    "stands_for": "the agentic workflow the second edition is about: a very capable, very literal colleague",
+    "personality": "eager, fast, polite, takes everything literally; needs a brief, a boundary and a reviewer",
+    "wants": "a clear brief",
+    "fears": "nothing, which is the problem",
+    "line": "Shall I draft that for you?",
+    "look": {
+     "colour": "#0f766e"
+    }
+   }
+  ]
+ }
+}

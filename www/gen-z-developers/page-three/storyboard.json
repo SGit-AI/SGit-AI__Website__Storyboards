@@ -1,0 +1,391 @@
+{
+ "slug": "page-three",
+ "title": "Page three",
+ "subtitle": "Marta reads the first three pages of release candidate 2, puts the book down, and reads them again as the pen would have them. 10 panels.",
+ "status": "draft",
+ "book_version": "v2.0.0-rc2 (a release candidate)",
+ "by": "gen-z.journalist, 19 October 2026, from Dinis's first paper review",
+ "quote_source": "admin/content/agent-articles/10__dinis-pen-made-readable.md",
+ "rule": "Every line the Guide says is from the agent article 'Dinis's pen, made readable', word for word, and both are Dinis's notes from the printed page; the build checks it. Marta's, Zara's and the Agent's lines are the strip's, marked not_a_quote.",
+ "scenes": [
+  {
+   "kind": "cover",
+   "title": "Page three",
+   "subtitle": "A strip about the first three pages of a book.",
+   "cast": [
+    {
+     "who": "marta",
+     "pose": "think",
+     "mood": "thinking"
+    },
+    {
+     "who": "guide",
+     "pose": "wave",
+     "mood": "happy"
+    },
+    {
+     "who": "zara",
+     "pose": "point",
+     "mood": "happy"
+    }
+   ],
+   "note": "An experiment in pacing: ten panels, one beat each, one background throughout.",
+   "source": "Dinis's pen, made readable"
+  },
+  {
+   "kind": "scene",
+   "setting": "none",
+   "caption": "Page 1",
+   "props": [
+    {
+     "kind": "desk",
+     "x": 0.3,
+     "y": 640
+    },
+    {
+     "kind": "book",
+     "x": 0.3,
+     "y": 640,
+     "label": "rc2",
+     "colour": "#e5e7eb"
+    },
+    {
+     "kind": "board",
+     "x": 0.72,
+     "y": 620,
+     "lines": [
+      "SECOND EDITION · RC2",
+      "Generation ZX Developers",
+      "not signed off · not an",
+      "official version · written by",
+      "the book's agents · decision 014"
+     ]
+    }
+   ],
+   "cast": [
+    {
+     "who": "marta",
+     "pose": "think",
+     "mood": "thinking",
+     "x": 0.16,
+     "says": "Decision 014?"
+    }
+   ],
+   "note": "Beat 1: the first ten seconds go on a disclaimer.",
+   "source": "Dinis's pen, made readable, Page 1 (notes 3 to 5)",
+   "not_a_quote": true
+  },
+  {
+   "kind": "scene",
+   "setting": "none",
+   "caption": "Page 2",
+   "props": [
+    {
+     "kind": "desk",
+     "x": 0.3,
+     "y": 640
+    },
+    {
+     "kind": "book",
+     "x": 0.3,
+     "y": 640,
+     "label": "rc2",
+     "colour": "#e5e7eb"
+    },
+    {
+     "kind": "board",
+     "x": 0.72,
+     "y": 620,
+     "lines": [
+      "Contents",
+      "1. Gen ZX ...",
+      "2. You are lucky ...",
+      "...",
+      "41. How this book was made"
+     ]
+    }
+   ],
+   "cast": [
+    {
+     "who": "marta",
+     "pose": "shrug",
+     "mood": "worried",
+     "x": 0.16,
+     "says": "Forty-one chapters. Where do I start?"
+    }
+   ],
+   "note": "Beat 2: a list, no picture, no page numbers, no place to start (notes 6 to 9).",
+   "source": "Dinis's pen, made readable, Page 2",
+   "not_a_quote": true
+  },
+  {
+   "kind": "scene",
+   "setting": "none",
+   "caption": "Page 3",
+   "props": [
+    {
+     "kind": "desk",
+     "x": 0.3,
+     "y": 640
+    },
+    {
+     "kind": "book",
+     "x": 0.3,
+     "y": 640,
+     "label": "rc2",
+     "colour": "#e5e7eb"
+    },
+    {
+     "kind": "board",
+     "x": 0.72,
+     "y": 620,
+     "lines": [
+      "About this",
+      "release candidate",
+      "How the book was made,",
+      "by whom, in which vault ..."
+     ]
+    }
+   ],
+   "cast": [
+    {
+     "who": "marta",
+     "pose": "stand",
+     "mood": "worried",
+     "x": 0.16,
+     "says": "I wanted to know what I'd make."
+    },
+    {
+     "who": "agent",
+     "pose": "point",
+     "mood": "happy",
+     "x": 0.47,
+     "says": "It's about how we made it!"
+    }
+   ],
+   "note": "Beat 3: page three is about the making, not the reader (note 13).",
+   "source": "Dinis's pen, made readable, Page 3",
+   "not_a_quote": true
+  },
+  {
+   "kind": "scene",
+   "setting": "none",
+   "caption": "Page 3 of 168",
+   "props": [
+    {
+     "kind": "desk",
+     "x": 0.3,
+     "y": 640
+    },
+    {
+     "kind": "book",
+     "x": 0.42,
+     "y": 640,
+     "label": "rc2",
+     "colour": "#e5e7eb"
+    }
+   ],
+   "cast": [
+    {
+     "who": "marta",
+     "pose": "stand",
+     "mood": "neutral",
+     "x": 0.16
+    }
+   ],
+   "note": "The silent panel: the book is put down. No words; the pause is the joke.",
+   "source": "Dinis's pen, made readable, Page 3 (note 12)",
+   "not_a_quote": true
+  },
+  {
+   "kind": "scene",
+   "setting": "none",
+   "caption": "The note in the margin",
+   "cast": [
+    {
+     "who": "marta",
+     "pose": "shrug",
+     "mood": "neutral",
+     "x": 0.22
+    },
+    {
+     "who": "guide",
+     "pose": "point",
+     "mood": "happy",
+     "x": 0.76,
+     "says": "By now the reader should be very curious and excited to continue reading",
+     "flip": true,
+     "max": 22
+    }
+   ],
+   "note": "The Guide speaks Dinis's note from the foot of page 3, word for word.",
+   "source": "Dinis's pen, made readable, Page 3"
+  },
+  {
+   "kind": "scene",
+   "setting": "none",
+   "caption": "Take two: page 1",
+   "props": [
+    {
+     "kind": "desk",
+     "x": 0.3,
+     "y": 640
+    },
+    {
+     "kind": "book",
+     "x": 0.3,
+     "y": 640,
+     "label": "rc2",
+     "colour": "#e5e7eb"
+    },
+    {
+     "kind": "board",
+     "x": 0.72,
+     "y": 620,
+     "lines": [
+      "you --- start --- agents",
+      "--- the company --- A COMPANY",
+      "",
+      "Generation ZX Developers"
+     ]
+    }
+   ],
+   "cast": [
+    {
+     "who": "marta",
+     "pose": "arms-up",
+     "mood": "surprised",
+     "x": 0.16,
+     "says": "Oh. That's me, there."
+    }
+   ],
+   "note": "Take two mirrors take one, panel for panel: now the first thing on the page is a graph of the book from you to a company (notes 1 and 2).",
+   "source": "Dinis's pen, made readable, After",
+   "not_a_quote": true
+  },
+  {
+   "kind": "scene",
+   "setting": "none",
+   "caption": "Take two: the paragraph",
+   "props": [
+    {
+     "kind": "desk",
+     "x": 0.3,
+     "y": 640
+    },
+    {
+     "kind": "book",
+     "x": 0.3,
+     "y": 640,
+     "label": "rc2",
+     "colour": "#e5e7eb"
+    },
+    {
+     "kind": "board",
+     "x": 0.72,
+     "y": 620,
+     "lines": [
+      "By the end of this book,",
+      "you have started",
+      "a GenAI company.",
+      "Start on the next page."
+     ]
+    }
+   ],
+   "cast": [
+    {
+     "who": "marta",
+     "pose": "think",
+     "mood": "happy",
+     "x": 0.16
+    },
+    {
+     "who": "guide",
+     "pose": "stand",
+     "mood": "happy",
+     "x": 0.47,
+     "says": "this paragraph buys more time from the reader to continue reading",
+     "max": 18
+    }
+   ],
+   "note": "The paragraph under the title says what the book is about (notes 4 and 5).",
+   "source": "Dinis's pen, made readable, Page 1"
+  },
+  {
+   "kind": "scene",
+   "setting": "none",
+   "caption": "Take two: page 3",
+   "props": [
+    {
+     "kind": "desk",
+     "x": 0.3,
+     "y": 640
+    },
+    {
+     "kind": "book",
+     "x": 0.3,
+     "y": 640,
+     "label": "rc2",
+     "colour": "#e5e7eb"
+    },
+    {
+     "kind": "board",
+     "x": 0.72,
+     "y": 620,
+     "lines": [
+      "Before you start ......... 7",
+      "  31. Your first graph ... 135",
+      "The frame ............... 28",
+      "  32. Five lenses ........ 137"
+     ]
+    }
+   ],
+   "cast": [
+    {
+     "who": "marta",
+     "pose": "point",
+     "mood": "determined",
+     "x": 0.14,
+     "says": "Then I'm doing it."
+    },
+    {
+     "who": "zara",
+     "pose": "point",
+     "mood": "happy",
+     "x": 0.42,
+     "says": "Mum, the first exercise is right here."
+    }
+   ],
+   "note": "Page numbers, topics first, and the hands-on chapter beside the part it practises (notes 7, 8, 10, 11). Zara is Marta's daughter: the two generations of the frame.",
+   "source": "Dinis's pen, made readable, After",
+   "not_a_quote": true
+  },
+  {
+   "kind": "punchline",
+   "setting": "none",
+   "punchline": "Ten seconds buy twenty.",
+   "cast": [
+    {
+     "who": "marta",
+     "pose": "arms-up",
+     "mood": "happy",
+     "x": 0.14
+    },
+    {
+     "who": "zara",
+     "pose": "arms-up",
+     "mood": "happy",
+     "x": 0.29
+    },
+    {
+     "who": "guide",
+     "pose": "wave",
+     "mood": "happy",
+     "x": 0.44
+    }
+   ],
+   "note": "The principle the pen applies, from Zoom in, not discover.",
+   "source": "Dinis's pen, made readable"
+  }
+ ]
+}

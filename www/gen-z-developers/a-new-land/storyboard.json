@@ -1,0 +1,187 @@
+{
+ "slug": "a-new-land",
+ "title": "A new land",
+ "subtitle": "Note 142 drawn: explorers, then villagers, then town planners, as the population grows. 6 panels.",
+ "status": "draft",
+ "book_version": "v2.0.0-rc2 (a release candidate)",
+ "by": "gen-z.journalist, 19 October 2026, from Dinis's fourth paper review",
+ "quote_source": "admin/content/agent-articles/13__rc2-on-paper-pages-14-to-19.md",
+ "rule": "Every line the Guide says is from the agent article 'RC2 on paper, part 4', word for word, and each is Dinis's note from the printed page; the build checks it. The characters' own lines are the strip's, marked not_a_quote.",
+ "scenes": [
+  {
+   "kind": "cover",
+   "title": "A new land",
+   "subtitle": "A strip about who arrives, and when.",
+   "cast": [
+    {
+     "who": "zara",
+     "pose": "wave",
+     "mood": "happy"
+    },
+    {
+     "who": "priya",
+     "pose": "stand",
+     "mood": "happy"
+    },
+    {
+     "who": "tomas",
+     "pose": "stand",
+     "mood": "thinking"
+    }
+   ],
+   "note": "The fourth pacing experiment: accumulation. Every panel keeps the people of the panel before.",
+   "source": "RC2 on paper, part 4"
+  },
+  {
+   "kind": "scene",
+   "setting": "none",
+   "caption": "First",
+   "cast": [
+    {
+     "who": "zara",
+     "pose": "point",
+     "mood": "happy",
+     "x": 0.2
+    },
+    {
+     "who": "guide",
+     "pose": "wave",
+     "mood": "happy",
+     "x": 0.72,
+     "says": "explorers of a new land",
+     "flip": true,
+     "max": 16
+    }
+   ],
+   "note": "Zara, the explorer, alone on empty ground.",
+   "source": "RC2 on paper, part 4, Page 19"
+  },
+  {
+   "kind": "scene",
+   "setting": "none",
+   "caption": "Then",
+   "cast": [
+    {
+     "who": "zara",
+     "pose": "stand",
+     "mood": "happy",
+     "x": 0.14
+    },
+    {
+     "who": "priya",
+     "pose": "point",
+     "mood": "happy",
+     "x": 0.36
+    },
+    {
+     "who": "guide",
+     "pose": "point",
+     "mood": "happy",
+     "x": 0.76,
+     "says": "followed by the villagers",
+     "flip": true,
+     "max": 16
+    }
+   ],
+   "note": "Priya, the villager, turns the half-baked thing into something people use.",
+   "source": "RC2 on paper, part 4, Page 19"
+  },
+  {
+   "kind": "scene",
+   "setting": "none",
+   "caption": "Then",
+   "cast": [
+    {
+     "who": "zara",
+     "pose": "stand",
+     "mood": "happy",
+     "x": 0.1
+    },
+    {
+     "who": "priya",
+     "pose": "stand",
+     "mood": "happy",
+     "x": 0.28
+    },
+    {
+     "who": "tomas",
+     "pose": "point",
+     "mood": "thinking",
+     "x": 0.46
+    },
+    {
+     "who": "guide",
+     "pose": "point",
+     "mood": "happy",
+     "x": 0.8,
+     "says": "followed by the town planners",
+     "flip": true,
+     "max": 16
+    }
+   ],
+   "note": "Tomás, the town planner, makes it run at scale.",
+   "source": "RC2 on paper, part 4, Page 19"
+  },
+  {
+   "kind": "scene",
+   "setting": "none",
+   "caption": "And so on",
+   "cast": [
+    {
+     "who": "zara",
+     "pose": "think",
+     "mood": "thinking",
+     "x": 0.1
+    },
+    {
+     "who": "priya",
+     "pose": "stand",
+     "mood": "happy",
+     "x": 0.28
+    },
+    {
+     "who": "tomas",
+     "pose": "stand",
+     "mood": "happy",
+     "x": 0.46
+    },
+    {
+     "who": "guide",
+     "pose": "wave",
+     "mood": "happy",
+     "x": 0.8,
+     "says": "as population grows",
+     "flip": true,
+     "max": 16
+    }
+   ],
+   "note": "The land fills up; the explorer is already looking past the edge of it.",
+   "source": "RC2 on paper, part 4, Page 19"
+  },
+  {
+   "kind": "scene",
+   "setting": "none",
+   "caption": "Where do I fit?",
+   "cast": [
+    {
+     "who": "zara",
+     "pose": "shrug",
+     "mood": "worried",
+     "x": 0.16,
+     "says": "Which one am I?"
+    },
+    {
+     "who": "guide",
+     "pose": "point",
+     "mood": "happy",
+     "x": 0.7,
+     "says": "It does not matter where you start; it matters that you start.",
+     "flip": true,
+     "max": 20
+    }
+   ],
+   "note": "Note 118: the line the pen wants as a theme across the book. Zara's question is the strip's.",
+   "source": "RC2 on paper, part 4, Page 17"
+  }
+ ]
+}

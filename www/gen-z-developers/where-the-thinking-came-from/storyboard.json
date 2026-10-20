@@ -1,0 +1,301 @@
+{
+ "slug": "where-the-thinking-came-from",
+ "title": "Where the thinking came from",
+ "subtitle": "The influences behind the book, as claims you can check, and where each one lands. 10 panels.",
+ "status": "draft",
+ "book_version": "v1.0.0 is the only official version; the second edition is in release candidates (rc1 and rc2 frozen)",
+ "by": "gen-z.journalist, 18 October 2026, from the review of influences.sgit.ai",
+ "quote_source": "admin/content/articles/10__where-the-thinking-came-from.md",
+ "rule": "Every line the Guide says, and every quote card, is from the article 'Where the thinking came from', word for word; the build checks it. Real people appear as quote cards and dates, never as cast members.",
+ "scenes": [
+  {
+   "kind": "cover",
+   "title": "Where the thinking came from",
+   "subtitle": "Nothing in this book came from nowhere.",
+   "cast": [
+    {
+     "who": "zara",
+     "pose": "think",
+     "mood": "thinking"
+    },
+    {
+     "who": "guide",
+     "pose": "point",
+     "mood": "happy"
+    },
+    {
+     "who": "tomas",
+     "pose": "stand",
+     "mood": "thinking"
+    }
+   ],
+   "note": "The influences register at influences.sgit.ai, read for the book.",
+   "source": "Where the thinking came from"
+  },
+  {
+   "kind": "scene",
+   "setting": "none",
+   "caption": "Influences, as claims",
+   "cast": [
+    {
+     "who": "zara",
+     "x": 0.24,
+     "pose": "shrug",
+     "mood": "thinking",
+     "says": "Who taught you all this?"
+    },
+    {
+     "who": "guide",
+     "x": 0.76,
+     "pose": "point",
+     "mood": "happy",
+     "flip": true,
+     "says": "An entry in this register is a falsifiable claim about my codebase.",
+     "max": 24
+    }
+   ],
+   "note": "Not a page of warm sentences: an anchor, a principle, where it shows up, where it is absent.",
+   "source": "Where the thinking came from, Why influences belong in this book"
+  },
+  {
+   "kind": "scene",
+   "setting": "none",
+   "caption": "Bret Victor, Inventing on Principle (2012)",
+   "props": [
+    {
+     "kind": "laptop",
+     "x": 0.42,
+     "y": 700
+    },
+    {
+     "kind": "desk",
+     "x": 0.42,
+     "y": 712
+    }
+   ],
+   "cast": [
+    {
+     "who": "zara",
+     "x": 0.18,
+     "pose": "arms-up",
+     "mood": "surprised"
+    },
+    {
+     "who": "guide",
+     "x": 0.78,
+     "pose": "point",
+     "mood": "determined",
+     "flip": true,
+     "says": "Every step between you and the thing you are making, a compile, a deploy, a refresh, is a place where an idea can die.",
+     "max": 24
+    }
+   ],
+   "note": "Immediate connection: the wonder the book opens with. These storyboards redraw the moment their data changes.",
+   "source": "Where the thinking came from, The opening, and learning"
+  },
+  {
+   "kind": "spectrum",
+   "setting": "none",
+   "caption": "Csikszentmihalyi: what produces the zone",
+   "stops": [
+    {
+     "label": "Clear goals",
+     "note": "you know what done looks like",
+     "colour": "#fde68a"
+    },
+    {
+     "label": "Feedback",
+     "note": "immediate",
+     "colour": "#bbf7d0"
+    },
+    {
+     "label": "Challenge",
+     "note": "matched to your skill",
+     "colour": "#bfdbfe"
+    }
+   ],
+   "cast": [
+    {
+     "who": "zara",
+     "x": 0.5,
+     "pose": "wave",
+     "mood": "happy"
+    }
+   ],
+   "note": "Flow (1990): the science behind the zone the 2018 introduction hoped readers would find.",
+   "source": "Where the thinking came from, The opening, and learning"
+  },
+  {
+   "kind": "evidence",
+   "setting": "none",
+   "caption": "Anders Ericsson, Peak (2016)",
+   "cast": [
+    {
+     "who": "tomas",
+     "x": 0.2,
+     "pose": "think",
+     "mood": "thinking"
+    }
+   ],
+   "evidence": {
+    "quote": "Expertise comes from structured practice with immediate feedback at the edge of your ability, not from hours",
+    "source": "Where the thinking came from, the table"
+   },
+   "note": "Learning is a skill; and credit the researcher behind the ten-thousand-hours number, not the populariser.",
+   "source": "Where the thinking came from, The opening, and learning"
+  },
+  {
+   "kind": "scene",
+   "setting": "interview",
+   "caption": "Karl Popper",
+   "cast": [
+    {
+     "who": "sam",
+     "x": 0.26,
+     "pose": "point",
+     "mood": "neutral",
+     "says": "Prove it."
+    },
+    {
+     "who": "guide",
+     "x": 0.74,
+     "pose": "stand",
+     "mood": "happy",
+     "flip": true,
+     "says": "a claim earns its status by being refutable"
+    }
+   ],
+   "note": "The shape of the register, and the next article: questioning and asking for evidence.",
+   "source": "Where the thinking came from, Questioning and evidence"
+  },
+  {
+   "kind": "evidence",
+   "setting": "none",
+   "caption": "Question everything, as a method",
+   "cast": [
+    {
+     "who": "zara",
+     "x": 0.2,
+     "pose": "point",
+     "mood": "determined"
+    }
+   ],
+   "evidence": {
+    "quote": "the problem with dogma is not that it exists, but that you stop asking the question.",
+    "source": "Dinis Cruz, quoted in the register's entry on Bret Victor"
+   },
+   "note": "The first line of the 2018 cover, made into a method.",
+   "source": "Where the thinking came from, Questioning and evidence"
+  },
+  {
+   "kind": "spectrum",
+   "setting": "none",
+   "caption": "A trail of ideas the book stands on",
+   "stops": [
+    {
+     "label": "1945",
+     "note": "Bush: the memex",
+     "colour": "#fde68a"
+    },
+    {
+     "label": "1977",
+     "note": "Alexander: A Pattern Language",
+     "colour": "#fed7aa"
+    },
+    {
+     "label": "1991",
+     "note": "Torvalds: Linux",
+     "colour": "#bbf7d0"
+    },
+    {
+     "label": "1997",
+     "note": "Raymond: the Cathedral and the Bazaar",
+     "colour": "#a7f3d0"
+    },
+    {
+     "label": "2005",
+     "note": "Torvalds: Git",
+     "colour": "#bfdbfe"
+    },
+    {
+     "label": "2012",
+     "note": "Victor: Inventing on Principle",
+     "colour": "#ddd6fe"
+    }
+   ],
+   "cast": [
+    {
+     "who": "guide",
+     "x": 0.5,
+     "pose": "point",
+     "mood": "happy"
+    }
+   ],
+   "note": "Real people as dates and works, not as characters.",
+   "source": "Where the thinking came from, the table"
+  },
+  {
+   "kind": "scene",
+   "setting": "office",
+   "caption": "Design is how it works",
+   "props": [
+    {
+     "kind": "laptop",
+     "x": 0.5,
+     "y": 700
+    },
+    {
+     "kind": "desk",
+     "x": 0.5,
+     "y": 712
+    }
+   ],
+   "cast": [
+    {
+     "who": "priya",
+     "x": 0.22,
+     "pose": "think",
+     "mood": "thinking",
+     "says": "Is it simpler? Would going back feel worse?"
+    },
+    {
+     "who": "tomas",
+     "x": 0.8,
+     "pose": "stand",
+     "mood": "happy",
+     "flip": true
+    }
+   ],
+   "note": "The two questions every interface change has to answer, from the design entry: the villager's craft.",
+   "source": "Where the thinking came from, The villager's craft"
+  },
+  {
+   "kind": "punchline",
+   "setting": "none",
+   "punchline": "Know where your ideas come from; keep your own register.",
+   "caption": "An exercise for the reader",
+   "cast": [
+    {
+     "who": "zara",
+     "x": 0.12,
+     "pose": "wave",
+     "mood": "happy"
+    },
+    {
+     "who": "priya",
+     "x": 0.27,
+     "pose": "stand",
+     "mood": "happy"
+    },
+    {
+     "who": "tomas",
+     "x": 0.42,
+     "pose": "stand",
+     "mood": "happy"
+    }
+   ],
+   "note": "Three influences: the work, the principle, where it shows up in what you made, where it does not yet.",
+   "source": "Where the thinking came from, An exercise for the reader"
+  }
+ ]
+}

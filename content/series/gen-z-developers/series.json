@@ -1,0 +1,107 @@
+{
+ "slug": "gen-z-developers",
+ "title": "Generation Z Developers",
+ "tagline": "The book, one panel at a time.",
+ "blurb": "The second edition of Generation Z Developers, storyboarded before it was written: the punchline, the idea, the evidence and the people each chapter is for. Where the storyboards started, on 18 October 2026.",
+ "packs": [],
+ "start": "the-opening",
+ "shelves": [
+  {
+   "title": "Where it started",
+   "note": "The 2018 book, and the first proposal for the second edition.",
+   "boards": [
+    "the-2018-book",
+    "a-first-storyline"
+   ]
+  },
+  {
+   "title": "The second edition, part by part",
+   "note": "One storyboard per co-written article, the Guide speaking Dinis's words.",
+   "boards": [
+    "the-opening",
+    "where-do-you-land",
+    "connect-the-dots-backwards",
+    "where-the-thinking-came-from",
+    "generative-ai-not-ai",
+    "follow-the-rabbit-holes",
+    "everything-is-connected",
+    "lenses-roles-and-loops"
+   ]
+  },
+  {
+   "title": "How it is made, and what comes next",
+   "note": "The book in release mode, and the startup edition that became the frame of the second release candidate.",
+   "boards": [
+    "the-book-in-release-mode",
+    "gen-zx-developers"
+   ]
+  },
+  {
+   "title": "Strips from the review",
+   "note": "Short comic strips told from Dinis's review of the printed candidate: experiments in pacing, timing and flow, one beat per panel.",
+   "boards": [
+    "page-three",
+    "not-to-me",
+    "scan-me",
+    "a-new-land"
+   ]
+  }
+ ],
+ "stance": {
+  "zara": [
+   "wave",
+   "happy"
+  ],
+  "tomas": [
+   "stand",
+   "happy"
+  ],
+  "priya": [
+   "point",
+   "happy"
+  ],
+  "sam": [
+   "stand",
+   "calm"
+  ],
+  "marta": [
+   "arms-up",
+   "excited"
+  ],
+  "guide": [
+   "wave",
+   "happy"
+  ],
+  "agent": [
+   "wave",
+   "happy"
+  ]
+ },
+ "quotes": "A storyboard that names a quote_source had every Guide line and quote card checked word for word against that file by gen-z-developers.sgit.ai's build at the origin commit; the file lives in the origin repository, linked from each board.",
+ "origin": {
+  "site": "https://gen-z-developers.sgit.ai",
+  "repo": "SGit-AI/SGit-AI__Website__Gen-Z-Developers",
+  "commit": "e2a71808f2dbdc9d94167b9493b539f0c567b35c",
+  "date": "2026-10-19",
+  "path": "admin/content/storyboards/",
+  "imported": [
+   "01__the-2018-book.json",
+   "02__a-first-storyline.json",
+   "03__the-opening.json",
+   "04__where-do-you-land.json",
+   "05__connect-the-dots-backwards.json",
+   "06__where-the-thinking-came-from.json",
+   "07__generative-ai-not-ai.json",
+   "08__follow-the-rabbit-holes.json",
+   "09__everything-is-connected.json",
+   "10__lenses-roles-and-loops.json",
+   "11__the-book-in-release-mode.json",
+   "12__gen-zx-developers.json",
+   "13__page-three.json",
+   "14__not-to-me.json",
+   "15__scan-me.json",
+   "16__a-new-land.json",
+   "cast.json"
+  ]
+ }
+}

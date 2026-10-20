@@ -1,0 +1,809 @@
+{
+ "what": "A storyboard with its cast, for an embed: <sg-storyboard src=\"https://storyboards.sgit.ai/gen-z-developers/the-book-in-release-mode/bundle.json\">. The storyboard is gen-z-developers/the-book-in-release-mode/storyboard.json, unchanged.",
+ "series": "gen-z-developers",
+ "packs": [],
+ "storyboard": {
+  "slug": "the-book-in-release-mode",
+  "title": "The book in release mode",
+  "subtitle": "A first release candidate from the first list, the rounds, the adversarial review board, and precedents. 14 panels.",
+  "status": "draft",
+  "book_version": "v1.0.0 is the only official version; the second edition is in release candidates (rc1 and rc2 frozen)",
+  "by": "gen-z.journalist, 19 October 2026, from Dinis's memo on release candidates and the review board",
+  "quote_source": "admin/content/articles/15__the-book-in-release-mode.md",
+  "rule": "Every line the Guide says, and every quote card, is from the article 'The book in release mode', word for word; the build checks it. The readers' answers, the cutter's line and the precedent bars are the storyboard's illustrations.",
+  "scenes": [
+   {
+    "kind": "cover",
+    "title": "The book in release mode",
+    "subtitle": "A first release candidate, then rounds, and a board that says no.",
+    "cast": [
+     {
+      "who": "guide",
+      "pose": "wave",
+      "mood": "happy"
+     },
+     {
+      "who": "agent",
+      "pose": "point",
+      "mood": "happy"
+     },
+     {
+      "who": "zara",
+      "pose": "think",
+      "mood": "thinking"
+     },
+     {
+      "who": "sam",
+      "pose": "stand",
+      "mood": "neutral"
+     }
+    ],
+    "note": "How the second edition gets from a list of ideas to a book.",
+    "source": "The book in release mode"
+   },
+   {
+    "kind": "graph",
+    "caption": "From the first list to rc1",
+    "graph": {
+     "nodes": [
+      {
+       "id": "arts",
+       "label": "the articles",
+       "x": 0.06,
+       "y": 0.1
+      },
+      {
+       "id": "dec",
+       "label": "the decisions",
+       "x": 0.06,
+       "y": 0.5
+      },
+      {
+       "id": "news",
+       "label": "the newsroom",
+       "x": 0.06,
+       "y": 0.9
+      },
+      {
+       "id": "ideas",
+       "label": "the ideas register",
+       "x": 0.38,
+       "y": 0.5,
+       "colour": "#fde68a"
+      },
+      {
+       "id": "map",
+       "label": "the proposed chapter map",
+       "x": 0.64,
+       "y": 0.5,
+       "colour": "#fde68a"
+      },
+      {
+       "id": "rc1",
+       "label": "rc1, in the vault",
+       "x": 0.92,
+       "y": 0.2,
+       "kind": "circle",
+       "colour": "#bbf7d0"
+      },
+      {
+       "id": "gaps",
+       "label": "the gaps, at its front",
+       "x": 0.92,
+       "y": 0.85,
+       "colour": "#fecaca"
+      }
+     ],
+     "edges": [
+      {
+       "from": "arts",
+       "to": "ideas"
+      },
+      {
+       "from": "dec",
+       "to": "ideas"
+      },
+      {
+       "from": "news",
+       "to": "ideas",
+       "label": "processed into"
+      },
+      {
+       "from": "ideas",
+       "to": "map",
+       "label": "placed in"
+      },
+      {
+       "from": "map",
+       "to": "rc1",
+       "label": "written as"
+      },
+      {
+       "from": "map",
+       "to": "gaps",
+       "label": "no article yet"
+      }
+     ],
+     "path": [
+      "arts",
+      "ideas",
+      "map",
+      "rc1"
+     ]
+    },
+    "note": "The librarian's first list becomes the first release candidate. A chapter with no article behind it goes in as its title, its ideas and what is missing.",
+    "source": "The book in release mode, Run with the first list; Release mode"
+   },
+   {
+    "kind": "scene",
+    "setting": "none",
+    "caption": "Release mode",
+    "cast": [
+     {
+      "who": "agent",
+      "pose": "point",
+      "mood": "happy",
+      "x": 0.24,
+      "says": "106 ideas, 30 chapters. All proposed."
+     },
+     {
+      "who": "guide",
+      "pose": "point",
+      "mood": "happy",
+      "x": 0.76,
+      "says": "Can we have a first release candidate of the book?",
+      "flip": true,
+      "max": 22
+     }
+    ],
+    "note": "Not because the list is finished: the fastest way to find out whether it holds is to make it a book and read it.",
+    "source": "The book in release mode, Release mode"
+   },
+   {
+    "kind": "spectrum",
+    "setting": "none",
+    "caption": "Then the rounds",
+    "stops": [
+     {
+      "label": "rc1",
+      "note": "the first list",
+      "colour": "#bbf7d0"
+     },
+     {
+      "label": "Round 1",
+      "note": "this site's articles",
+      "colour": "#fde68a"
+     },
+     {
+      "label": "Round 2",
+      "note": "the 2018 book",
+      "colour": "#fed7aa"
+     },
+     {
+      "label": "Round 3",
+      "note": "the newsroom",
+      "colour": "#bfdbfe"
+     },
+     {
+      "label": "Every round",
+      "note": "what Dinis writes next",
+      "colour": "#ddd6fe"
+     }
+    ],
+    "cast": [
+     {
+      "who": "guide",
+      "pose": "point",
+      "mood": "happy",
+      "x": 0.5
+     }
+    ],
+    "note": "Each round takes one pile, looks at it against the current text, and ends in the next release candidate.",
+    "source": "The book in release mode, Then the rounds"
+   },
+   {
+    "kind": "scene",
+    "setting": "none",
+    "caption": "The same questions, every time",
+    "cast": [
+     {
+      "who": "priya",
+      "pose": "think",
+      "mood": "thinking",
+      "x": 0.24,
+      "says": "An article from last week. Does it go in?"
+     },
+     {
+      "who": "guide",
+      "pose": "stand",
+      "mood": "happy",
+      "x": 0.76,
+      "says": "Should we add this? What is missing? What value is it adding?",
+      "flip": true,
+      "max": 22
+     }
+    ],
+    "note": "The memo's three questions, asked of every idea in every round.",
+    "source": "The book in release mode, Then the rounds"
+   },
+   {
+    "kind": "spectrum",
+    "setting": "none",
+    "caption": "What can happen to an idea",
+    "stops": [
+     {
+      "label": "Add",
+      "note": "or rewrite, or merge",
+      "colour": "#bbf7d0"
+     },
+     {
+      "label": "Sign off",
+      "note": "the topic is covered",
+      "colour": "#bfdbfe"
+     },
+     {
+      "label": "Next version",
+      "note": "later",
+      "colour": "#fde68a"
+     },
+     {
+      "label": "Another book",
+      "note": "or something else",
+      "colour": "#fed7aa"
+     },
+     {
+      "label": "Not this one",
+      "note": "with the reason",
+      "colour": "#fecaca"
+     }
+    ],
+    "cast": [
+     {
+      "who": "tomas",
+      "pose": "point",
+      "mood": "determined",
+      "x": 0.5
+     }
+    ],
+    "note": "Not everything comes in; everything gets an answer, and the answer is kept.",
+    "source": "The book in release mode, Then the rounds"
+   },
+   {
+    "kind": "evidence",
+    "setting": "none",
+    "caption": "After rc1",
+    "cast": [
+     {
+      "who": "guide",
+      "pose": "point",
+      "mood": "happy",
+      "x": 0.2
+     }
+    ],
+    "evidence": {
+     "quote": "Every word, every change, every idea goes through an adversarial review board.",
+     "source": "The book in release mode"
+    },
+    "note": "Nothing enters a release candidate after rc1 without a hearing or a precedent.",
+    "source": "The book in release mode, In short"
+   },
+   {
+    "kind": "graph",
+    "caption": "A hearing",
+    "graph": {
+     "nodes": [
+      {
+       "id": "prop",
+       "label": "a proposal",
+       "x": 0.08,
+       "y": 0.45,
+       "colour": "#fde68a"
+      },
+      {
+       "id": "adv",
+       "label": "the advocate: for",
+       "x": 0.36,
+       "y": 0.04,
+       "kind": "person",
+       "colour": "#bbf7d0"
+      },
+      {
+       "id": "cut",
+       "label": "the cutter: against",
+       "x": 0.36,
+       "y": 0.32,
+       "kind": "person",
+       "colour": "#fecaca"
+      },
+      {
+       "id": "read",
+       "label": "the readers: would I miss it?",
+       "x": 0.36,
+       "y": 0.6,
+       "kind": "person",
+       "colour": "#ddd6fe"
+      },
+      {
+       "id": "chk",
+       "label": "the checker: is it true?",
+       "x": 0.36,
+       "y": 0.88,
+       "kind": "person",
+       "colour": "#bfdbfe"
+      },
+      {
+       "id": "ed",
+       "label": "the editor: where does it go?",
+       "x": 0.66,
+       "y": 0.45,
+       "kind": "person"
+      },
+      {
+       "id": "dinis",
+       "label": "Dinis decides",
+       "x": 0.92,
+       "y": 0.2,
+       "kind": "person",
+       "colour": "#ddd6fe"
+      },
+      {
+       "id": "prec",
+       "label": "a precedent",
+       "x": 0.92,
+       "y": 0.85,
+       "kind": "circle",
+       "colour": "#fde68a"
+      }
+     ],
+     "edges": [
+      {
+       "from": "prop",
+       "to": "adv"
+      },
+      {
+       "from": "prop",
+       "to": "cut"
+      },
+      {
+       "from": "prop",
+       "to": "read"
+      },
+      {
+       "from": "prop",
+       "to": "chk"
+      },
+      {
+       "from": "adv",
+       "to": "ed"
+      },
+      {
+       "from": "cut",
+       "to": "ed"
+      },
+      {
+       "from": "read",
+       "to": "ed"
+      },
+      {
+       "from": "chk",
+       "to": "ed"
+      },
+      {
+       "from": "ed",
+       "to": "dinis",
+       "label": "recommends"
+      },
+      {
+       "from": "dinis",
+       "to": "prec",
+       "label": "the reason"
+      }
+     ]
+    },
+    "note": "Each seat is a role in its own session, so the cutter is not persuaded by context it was never shown.",
+    "source": "The book in release mode, The review board"
+   },
+   {
+    "kind": "scene",
+    "setting": "none",
+    "caption": "The cutter",
+    "cast": [
+     {
+      "who": "agent",
+      "pose": "point",
+      "mood": "determined",
+      "x": 0.22,
+      "says": "Chapter 4 already says this. Cut it."
+     },
+     {
+      "who": "guide",
+      "pose": "stand",
+      "mood": "happy",
+      "x": 0.76,
+      "says": "So the default answer is no, and a proposal has to win against someone whose job is to say no.",
+      "flip": true,
+      "max": 24
+     }
+    ],
+    "note": "The first edition was liked because it was short and punchy; every book grows by things that were each a good idea on their own.",
+    "source": "The book in release mode, The review board"
+   },
+   {
+    "kind": "scene",
+    "setting": "none",
+    "caption": "The readers: would I miss it?",
+    "cast": [
+     {
+      "who": "zara",
+      "pose": "arms-up",
+      "mood": "happy",
+      "x": 0.14,
+      "says": "Yes!"
+     },
+     {
+      "who": "tomas",
+      "pose": "shrug",
+      "mood": "neutral",
+      "x": 0.38,
+      "says": "I know this."
+     },
+     {
+      "who": "priya",
+      "pose": "point",
+      "mood": "determined",
+      "x": 0.62,
+      "says": "I needed it."
+     },
+     {
+      "who": "sam",
+      "pose": "think",
+      "mood": "thinking",
+      "x": 0.86,
+      "says": "Hmm, not for hiring.",
+      "flip": true
+     }
+    ],
+    "note": "The cast as the readers' seat: one synthetic reader per session. A split like this one goes to the editor and to Dinis.",
+    "source": "The book in release mode, The review board"
+   },
+   {
+    "kind": "graph",
+    "caption": "Precedents first",
+    "graph": {
+     "nodes": [
+      {
+       "id": "new",
+       "label": "a new proposal",
+       "x": 0.06,
+       "y": 0.45,
+       "colour": "#fde68a"
+      },
+      {
+       "id": "q",
+       "label": "a precedent covers it?",
+       "x": 0.36,
+       "y": 0.45,
+       "kind": "circle"
+      },
+      {
+       "id": "apply",
+       "label": "the editor applies it",
+       "x": 0.66,
+       "y": 0.12
+      },
+      {
+       "id": "list",
+       "label": "Dinis's list: let it stand, or overturn",
+       "x": 0.92,
+       "y": 0.12,
+       "colour": "#ddd6fe"
+      },
+      {
+       "id": "board",
+       "label": "the whole board",
+       "x": 0.66,
+       "y": 0.82
+      },
+      {
+       "id": "newp",
+       "label": "a new precedent",
+       "x": 0.92,
+       "y": 0.82,
+       "colour": "#bbf7d0"
+      }
+     ],
+     "edges": [
+      {
+       "from": "new",
+       "to": "q"
+      },
+      {
+       "from": "q",
+       "to": "apply",
+       "label": "yes"
+      },
+      {
+       "from": "apply",
+       "to": "list"
+      },
+      {
+       "from": "q",
+       "to": "board",
+       "label": "no"
+      },
+      {
+       "from": "board",
+       "to": "newp",
+       "label": "the reason"
+      },
+      {
+       "from": "list",
+       "to": "newp",
+       "label": "overturned"
+      }
+     ],
+     "path": [
+      "new",
+      "q",
+      "apply",
+      "list"
+     ]
+    },
+    "note": "Only what no precedent covers needs the whole board. Spelling fixes come in without a hearing; tool tutorials go to the hands-on part: written once, decided once.",
+    "source": "The book in release mode, Every verdict is a precedent"
+   },
+   {
+    "kind": "evidence",
+    "setting": "none",
+    "caption": "Faster as we go (an illustration, not data)",
+    "cast": [
+     {
+      "who": "agent",
+      "pose": "think",
+      "mood": "thinking",
+      "x": 0.2
+     }
+    ],
+    "evidence": {
+     "title": "Decided by precedent, per round",
+     "bars": [
+      {
+       "label": "round 1",
+       "value": 10,
+       "shown": "few"
+      },
+      {
+       "label": "round 2",
+       "value": 35,
+       "shown": "some"
+      },
+      {
+       "label": "round 3",
+       "value": 65,
+       "shown": "most"
+      }
+     ]
+    },
+    "note": "What the article expects, not a measurement: the first rounds are slow because everything is new; by the third most cases are decided by something already said. The librarian will count the real ones.",
+    "source": "The book in release mode, Every verdict is a precedent"
+   },
+   {
+    "kind": "scene",
+    "setting": "night",
+    "caption": "How we know it is done",
+    "cast": [
+     {
+      "who": "tomas",
+      "pose": "think",
+      "mood": "thinking",
+      "x": 0.24,
+      "says": "So when do we stop?"
+     },
+     {
+      "who": "guide",
+      "pose": "stand",
+      "mood": "happy",
+      "x": 0.76,
+      "says": "when they stop bringing anything big, we have a book",
+      "flip": true,
+      "max": 22
+     }
+    ],
+    "note": "Every change has a size: part, chapter, section, paragraph, sentence. Rounds that start with parts and end with sentences have converged.",
+    "source": "The book in release mode, In short; How we know it is done"
+   },
+   {
+    "kind": "punchline",
+    "setting": "none",
+    "punchline": "Release, review, repeat.",
+    "cast": [
+     {
+      "who": "zara",
+      "pose": "arms-up",
+      "mood": "happy",
+      "x": 0.12
+     },
+     {
+      "who": "priya",
+      "pose": "stand",
+      "mood": "happy",
+      "x": 0.27
+     },
+     {
+      "who": "tomas",
+      "pose": "stand",
+      "mood": "happy",
+      "x": 0.42
+     },
+     {
+      "who": "sam",
+      "pose": "stand",
+      "mood": "happy",
+      "x": 0.57
+     }
+    ],
+    "note": "The book made the way this site is: every release narrated, every decision kept.",
+    "source": "The book in release mode"
+   }
+  ]
+ },
+ "cast": {
+  "what": "The cast of the storyboards for Generation Z Developers and its second edition, Generation ZX Developers (GenAI Startup Edition), v0.1, proposed by gen-z.journalist on 18 October 2026 for Dinis to accept, change or replace; Marta, the Generation X founder, was added on 19 October 2026 and is still a proposal. Characters are drawn programmatically by assets/storyboard.js from 'look'; nothing here is an image. Each human with a 'gravity' wears its badge (explorer, villager, town-planner), black and white, by their name: a centre of gravity, not a box, as Dinis describes it. Fictional people: each stands for a reader the book is for (the target audience), or for a role in the story. Names chosen to avoid clashing with the riskmandate.ai cast (which has a Maya) and with the word 'developer' (no 'Dev').",
+  "characters": [
+   {
+    "id": "zara",
+    "name": "Zara",
+    "kind": "human",
+    "pronouns": "she/her",
+    "age": 21,
+    "role": "the student: final year, about to look for a first job",
+    "stands_for": "the reader the book is written for; an explorer who does not know it yet",
+    "personality": "curious, quick, online all day; anxious about what she reads on AI and jobs; hates being lectured, loves being shown",
+    "wants": "a first job that is not a dead end",
+    "fears": "that AI took the jobs before she got there",
+    "line": "Everything just works. Why would I learn how?",
+    "look": {
+     "skin": "#8d5524",
+     "hair": "curly",
+     "hairColour": "#1b1b1b",
+     "shirt": "#7c3aed",
+     "trousers": "#1f2937",
+     "accessory": "headphones",
+     "accentColour": "#f59e0b",
+     "height": 0.96
+    },
+    "gravity": "explorer"
+   },
+   {
+    "id": "tomas",
+    "name": "Tomás",
+    "kind": "human",
+    "pronouns": "he/him",
+    "age": 24,
+    "role": "the graduate: a computing degree, working the 2018 way, looking for his next job in Lisbon",
+    "stands_for": "the town planner: attention to detail, pride in getting it right, happiest when nothing goes wrong; working the 2018 way, and about to be outcompeted by people with an agentic workflow",
+    "personality": "diligent, modest, a little proud of doing things by hand; sceptical of shortcuts",
+    "wants": "to be taken seriously",
+    "fears": "that his degree is already out of date",
+    "line": "I have a degree. Isn't that the advantage?",
+    "look": {
+     "skin": "#e0ac69",
+     "hair": "short",
+     "hairColour": "#4a2c17",
+     "shirt": "#0e7490",
+     "trousers": "#334155",
+     "accessory": "glasses",
+     "height": 1.04
+    },
+    "gravity": "town-planner"
+   },
+   {
+    "id": "priya",
+    "name": "Priya",
+    "kind": "human",
+    "pronouns": "she/her",
+    "age": 38,
+    "role": "the career changer: an operations manager who has never written code",
+    "stands_for": "the villager, and everyone else the book is for: she puts herself in the middle of her team's problem, and if anyone who can brief an agent is a developer, so is she",
+    "personality": "practical, impatient with jargon, very good at explaining what she needs",
+    "wants": "to build the tools her team keeps asking IT for",
+    "fears": "looking foolish in front of people half her age",
+    "line": "Is this book just for Gen Z?",
+    "look": {
+     "skin": "#c68642",
+     "hair": "bun",
+     "hairColour": "#2b1a10",
+     "shirt": "#be123c",
+     "trousers": "#1e293b",
+     "accessory": "lanyard",
+     "accentColour": "#1d4ed8",
+     "height": 0.98
+    },
+    "gravity": "villager"
+   },
+   {
+    "id": "sam",
+    "name": "Sam",
+    "kind": "human",
+    "pronouns": "they/them",
+    "age": 45,
+    "role": "the hiring manager",
+    "stands_for": "the town planner, and the question every chapter has to answer: why should I hire you?",
+    "personality": "dry, fair, has read a thousand CVs; impressed by evidence, bored by claims",
+    "wants": "someone who can do one thing better than the team already does",
+    "fears": "hiring a CV instead of a person",
+    "line": "So. Why should we hire you?",
+    "look": {
+     "skin": "#f1c27d",
+     "hair": "bald",
+     "hairColour": "#6b7280",
+     "shirt": "#475569",
+     "trousers": "#111827",
+     "accessory": "glasses",
+     "height": 1.06
+    }
+   },
+   {
+    "id": "marta",
+    "name": "Marta",
+    "kind": "human",
+    "pronouns": "she/her",
+    "age": 54,
+    "role": "the expert founder: twenty-five years as a pharmacist, Generation X, starting a company, and Zara's mother",
+    "stands_for": "the Generation X founder the Gen ZX proposal adds to the readers: the subject-matter expert who now builds the tool herself, with agents, instead of waiting for a team she could never afford",
+    "personality": "knows her field better than any developer she ever briefed; grew up typing programs from magazines into a ZX Spectrum; patient with people, impatient with software",
+    "wants": "to ship the product she has described to vendors for ten years",
+    "fears": "that it is too late for her, and that she will build it and nobody will buy it",
+    "line": "I've been explaining this problem for twenty years. Can I just build it now?",
+    "look": {
+     "skin": "#ffdbac",
+     "hair": "long",
+     "hairColour": "#9ca3af",
+     "shirt": "#b45309",
+     "trousers": "#1f2937",
+     "accessory": "glasses",
+     "height": 1.0
+    },
+    "gravity": "explorer"
+   },
+   {
+    "id": "guide",
+    "name": "The Guide",
+    "kind": "human",
+    "pronouns": "they/them",
+    "age": null,
+    "role": "the voice of the book: says what the book says, in its words",
+    "stands_for": "the author. Whether the Guide is drawn as Dinis, and how, is Dinis's decision; until then a generic figure",
+    "personality": "energetic, direct, generous with what they know; asks more than they tell",
+    "wants": "the reader to act, not to agree",
+    "fears": "a reader who closes the book and changes nothing",
+    "line": "Act like you are part of the company.",
+    "look": {
+     "skin": "#f1c27d",
+     "hair": "short",
+     "hairColour": "#9ca3af",
+     "shirt": "#15803d",
+     "trousers": "#1f2937",
+     "accessory": "none",
+     "height": 1.02
+    }
+   },
+   {
+    "id": "agent",
+    "name": "The Agent",
+    "kind": "agent",
+    "pronouns": "it/its",
+    "age": null,
+    "role": "the reader's AI agent",
+    "stands_for": "the agentic workflow the second edition is about: a very capable, very literal colleague",
+    "personality": "eager, fast, polite, takes everything literally; needs a brief, a boundary and a reviewer",
+    "wants": "a clear brief",
+    "fears": "nothing, which is the problem",
+    "line": "Shall I draft that for you?",
+    "look": {
+     "colour": "#0f766e"
+    }
+   }
+  ]
+ }
+}

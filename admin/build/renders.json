@@ -1,0 +1,97 @@
+{
+ "what": "What each committed thumb.jpg and og.jpg was drawn from: the sha256 of the storyboard's bundle.json and the API release. Written by admin/build/render.py; build.py refuses a storyboard whose images are stale.",
+ "boards": {
+  "gen-z-developers/a-first-storyline": {
+   "bundle_sha256": "2f8a059dfe62823f121d780be2ad970f4c39d47e8939002d645f8c1899bcb0da",
+   "api": "v0.1.0"
+  },
+  "gen-z-developers/a-new-land": {
+   "bundle_sha256": "e7fd8b65ade0207aab1e9d712a7f002b960deb43daf7693a12f6eb668297701e",
+   "api": "v0.1.0"
+  },
+  "gen-z-developers/connect-the-dots-backwards": {
+   "bundle_sha256": "0878184f0262739a271e2d31ae1ac5b3480d2d88c6c821f169322b83f5732370",
+   "api": "v0.1.0"
+  },
+  "gen-z-developers/everything-is-connected": {
+   "bundle_sha256": "110b125ad3af6854957546c8d143d7acba21f48485eaf7f1a830527db757e0ab",
+   "api": "v0.1.0"
+  },
+  "gen-z-developers/follow-the-rabbit-holes": {
+   "bundle_sha256": "9a7f618bca305030c74a4fde22831f081d401f27c6848544174ca1116bdfe2ac",
+   "api": "v0.1.0"
+  },
+  "gen-z-developers/gen-zx-developers": {
+   "bundle_sha256": "9c779f72d48341e49a44fec7aca5f6ee35466d5c55ef3780d092618352aa73c9",
+   "api": "v0.1.0"
+  },
+  "gen-z-developers/generative-ai-not-ai": {
+   "bundle_sha256": "857eee28a9a081639e40bd329bbb604c95851ebbd63ce138a67470eddef9e066",
+   "api": "v0.1.0"
+  },
+  "gen-z-developers/lenses-roles-and-loops": {
+   "bundle_sha256": "5c8656ba8e8b4a4c9ffe0ec99c96c4a02a00c84781131b26859bb756f472207c",
+   "api": "v0.1.0"
+  },
+  "gen-z-developers/not-to-me": {
+   "bundle_sha256": "dbbd57f354cf1762229024481d02b991b450efeeefa079e0624132a235f57fd2",
+   "api": "v0.1.0"
+  },
+  "gen-z-developers/page-three": {
+   "bundle_sha256": "aadad7b6997af6f1e5145c0d19f58388284fe86795e4d07f8362ed75cb263d45",
+   "api": "v0.1.0"
+  },
+  "gen-z-developers/scan-me": {
+   "bundle_sha256": "8a92d1e312450fb96753e81e2f9d436892f4362e84bd5f791968e810f4c49ac8",
+   "api": "v0.1.0"
+  },
+  "gen-z-developers/the-2018-book": {
+   "bundle_sha256": "8ba9c73648900d603587285d6e98b36ed80ff36ea83131712561164029909145",
+   "api": "v0.1.0"
+  },
+  "gen-z-developers/the-book-in-release-mode": {
+   "bundle_sha256": "0c500a13b51ea652aa1ba9636a79365749c623017a05071dd11fbe2548f1ac00",
+   "api": "v0.1.0"
+  },
+  "gen-z-developers/the-opening": {
+   "bundle_sha256": "68815be99dfd41f6a9effee28f4513d0b4362162e2a9eb322550825d4824b253",
+   "api": "v0.1.0"
+  },
+  "gen-z-developers/where-do-you-land": {
+   "bundle_sha256": "4ccb347083ccb934227c59136267655b7459ac7f3f13feab877c70d395ce4440",
+   "api": "v0.1.0"
+  },
+  "gen-z-developers/where-the-thinking-came-from": {
+   "bundle_sha256": "3da2720dc005e352d42d17ce6350c1195bb4668182f6ee9c2866bedab2bf9200",
+   "api": "v0.1.0"
+  },
+  "pki/a-secret-by-qr": {
+   "bundle_sha256": "4ce1e48d11769430467431bccb04e96ed75123e6094f7e4670e29c99798aec45",
+   "api": "v0.1.0"
+  },
+  "pki/an-access-key-sealed": {
+   "bundle_sha256": "8ea54291fff291c6379564549468057b2eff08fd5e61bf4157c62121c4d855dd",
+   "api": "v0.1.0"
+  },
+  "pki/an-agent-gets-a-key": {
+   "bundle_sha256": "d160e417424ccda8f32090ee87f0900116bfcccd02d6167bdbab2dde76d96539",
+   "api": "v0.1.0"
+  },
+  "pki/an-invitation": {
+   "bundle_sha256": "08affddb5f44b2214f37df831f420fa9db920afef47ac58beb8ce0cb2b569dc1",
+   "api": "v0.1.0"
+  },
+  "pki/in-person-by-qr": {
+   "bundle_sha256": "cee844f58a6d69ecfe6542faf1667b41560fc4682cde28fc86dc7c13cc02f800",
+   "api": "v0.1.0"
+  },
+  "pki/the-first-key": {
+   "bundle_sha256": "56a01f11096b9cc47d041851274d69628fb1ae371e0b6a06910cb599dca09e41",
+   "api": "v0.1.0"
+  },
+  "pki/two-ways": {
+   "bundle_sha256": "c446dfc5e6471c4b35de0140df142521438c99b5700b502cbd4e4200cb30e070",
+   "api": "v0.1.0"
+  }
+ }
+}

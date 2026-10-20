@@ -1,0 +1,555 @@
+{
+ "what": "A storyboard with its cast, for an embed: <sg-storyboard src=\"https://storyboards.sgit.ai/gen-z-developers/page-three/bundle.json\">. The storyboard is gen-z-developers/page-three/storyboard.json, unchanged.",
+ "series": "gen-z-developers",
+ "packs": [],
+ "storyboard": {
+  "slug": "page-three",
+  "title": "Page three",
+  "subtitle": "Marta reads the first three pages of release candidate 2, puts the book down, and reads them again as the pen would have them. 10 panels.",
+  "status": "draft",
+  "book_version": "v2.0.0-rc2 (a release candidate)",
+  "by": "gen-z.journalist, 19 October 2026, from Dinis's first paper review",
+  "quote_source": "admin/content/agent-articles/10__dinis-pen-made-readable.md",
+  "rule": "Every line the Guide says is from the agent article 'Dinis's pen, made readable', word for word, and both are Dinis's notes from the printed page; the build checks it. Marta's, Zara's and the Agent's lines are the strip's, marked not_a_quote.",
+  "scenes": [
+   {
+    "kind": "cover",
+    "title": "Page three",
+    "subtitle": "A strip about the first three pages of a book.",
+    "cast": [
+     {
+      "who": "marta",
+      "pose": "think",
+      "mood": "thinking"
+     },
+     {
+      "who": "guide",
+      "pose": "wave",
+      "mood": "happy"
+     },
+     {
+      "who": "zara",
+      "pose": "point",
+      "mood": "happy"
+     }
+    ],
+    "note": "An experiment in pacing: ten panels, one beat each, one background throughout.",
+    "source": "Dinis's pen, made readable"
+   },
+   {
+    "kind": "scene",
+    "setting": "none",
+    "caption": "Page 1",
+    "props": [
+     {
+      "kind": "desk",
+      "x": 0.3,
+      "y": 640
+     },
+     {
+      "kind": "book",
+      "x": 0.3,
+      "y": 640,
+      "label": "rc2",
+      "colour": "#e5e7eb"
+     },
+     {
+      "kind": "board",
+      "x": 0.72,
+      "y": 620,
+      "lines": [
+       "SECOND EDITION · RC2",
+       "Generation ZX Developers",
+       "not signed off · not an",
+       "official version · written by",
+       "the book's agents · decision 014"
+      ]
+     }
+    ],
+    "cast": [
+     {
+      "who": "marta",
+      "pose": "think",
+      "mood": "thinking",
+      "x": 0.16,
+      "says": "Decision 014?"
+     }
+    ],
+    "note": "Beat 1: the first ten seconds go on a disclaimer.",
+    "source": "Dinis's pen, made readable, Page 1 (notes 3 to 5)",
+    "not_a_quote": true
+   },
+   {
+    "kind": "scene",
+    "setting": "none",
+    "caption": "Page 2",
+    "props": [
+     {
+      "kind": "desk",
+      "x": 0.3,
+      "y": 640
+     },
+     {
+      "kind": "book",
+      "x": 0.3,
+      "y": 640,
+      "label": "rc2",
+      "colour": "#e5e7eb"
+     },
+     {
+      "kind": "board",
+      "x": 0.72,
+      "y": 620,
+      "lines": [
+       "Contents",
+       "1. Gen ZX ...",
+       "2. You are lucky ...",
+       "...",
+       "41. How this book was made"
+      ]
+     }
+    ],
+    "cast": [
+     {
+      "who": "marta",
+      "pose": "shrug",
+      "mood": "worried",
+      "x": 0.16,
+      "says": "Forty-one chapters. Where do I start?"
+     }
+    ],
+    "note": "Beat 2: a list, no picture, no page numbers, no place to start (notes 6 to 9).",
+    "source": "Dinis's pen, made readable, Page 2",
+    "not_a_quote": true
+   },
+   {
+    "kind": "scene",
+    "setting": "none",
+    "caption": "Page 3",
+    "props": [
+     {
+      "kind": "desk",
+      "x": 0.3,
+      "y": 640
+     },
+     {
+      "kind": "book",
+      "x": 0.3,
+      "y": 640,
+      "label": "rc2",
+      "colour": "#e5e7eb"
+     },
+     {
+      "kind": "board",
+      "x": 0.72,
+      "y": 620,
+      "lines": [
+       "About this",
+       "release candidate",
+       "How the book was made,",
+       "by whom, in which vault ..."
+      ]
+     }
+    ],
+    "cast": [
+     {
+      "who": "marta",
+      "pose": "stand",
+      "mood": "worried",
+      "x": 0.16,
+      "says": "I wanted to know what I'd make."
+     },
+     {
+      "who": "agent",
+      "pose": "point",
+      "mood": "happy",
+      "x": 0.47,
+      "says": "It's about how we made it!"
+     }
+    ],
+    "note": "Beat 3: page three is about the making, not the reader (note 13).",
+    "source": "Dinis's pen, made readable, Page 3",
+    "not_a_quote": true
+   },
+   {
+    "kind": "scene",
+    "setting": "none",
+    "caption": "Page 3 of 168",
+    "props": [
+     {
+      "kind": "desk",
+      "x": 0.3,
+      "y": 640
+     },
+     {
+      "kind": "book",
+      "x": 0.42,
+      "y": 640,
+      "label": "rc2",
+      "colour": "#e5e7eb"
+     }
+    ],
+    "cast": [
+     {
+      "who": "marta",
+      "pose": "stand",
+      "mood": "neutral",
+      "x": 0.16
+     }
+    ],
+    "note": "The silent panel: the book is put down. No words; the pause is the joke.",
+    "source": "Dinis's pen, made readable, Page 3 (note 12)",
+    "not_a_quote": true
+   },
+   {
+    "kind": "scene",
+    "setting": "none",
+    "caption": "The note in the margin",
+    "cast": [
+     {
+      "who": "marta",
+      "pose": "shrug",
+      "mood": "neutral",
+      "x": 0.22
+     },
+     {
+      "who": "guide",
+      "pose": "point",
+      "mood": "happy",
+      "x": 0.76,
+      "says": "By now the reader should be very curious and excited to continue reading",
+      "flip": true,
+      "max": 22
+     }
+    ],
+    "note": "The Guide speaks Dinis's note from the foot of page 3, word for word.",
+    "source": "Dinis's pen, made readable, Page 3"
+   },
+   {
+    "kind": "scene",
+    "setting": "none",
+    "caption": "Take two: page 1",
+    "props": [
+     {
+      "kind": "desk",
+      "x": 0.3,
+      "y": 640
+     },
+     {
+      "kind": "book",
+      "x": 0.3,
+      "y": 640,
+      "label": "rc2",
+      "colour": "#e5e7eb"
+     },
+     {
+      "kind": "board",
+      "x": 0.72,
+      "y": 620,
+      "lines": [
+       "you --- start --- agents",
+       "--- the company --- A COMPANY",
+       "",
+       "Generation ZX Developers"
+      ]
+     }
+    ],
+    "cast": [
+     {
+      "who": "marta",
+      "pose": "arms-up",
+      "mood": "surprised",
+      "x": 0.16,
+      "says": "Oh. That's me, there."
+     }
+    ],
+    "note": "Take two mirrors take one, panel for panel: now the first thing on the page is a graph of the book from you to a company (notes 1 and 2).",
+    "source": "Dinis's pen, made readable, After",
+    "not_a_quote": true
+   },
+   {
+    "kind": "scene",
+    "setting": "none",
+    "caption": "Take two: the paragraph",
+    "props": [
+     {
+      "kind": "desk",
+      "x": 0.3,
+      "y": 640
+     },
+     {
+      "kind": "book",
+      "x": 0.3,
+      "y": 640,
+      "label": "rc2",
+      "colour": "#e5e7eb"
+     },
+     {
+      "kind": "board",
+      "x": 0.72,
+      "y": 620,
+      "lines": [
+       "By the end of this book,",
+       "you have started",
+       "a GenAI company.",
+       "Start on the next page."
+      ]
+     }
+    ],
+    "cast": [
+     {
+      "who": "marta",
+      "pose": "think",
+      "mood": "happy",
+      "x": 0.16
+     },
+     {
+      "who": "guide",
+      "pose": "stand",
+      "mood": "happy",
+      "x": 0.47,
+      "says": "this paragraph buys more time from the reader to continue reading",
+      "max": 18
+     }
+    ],
+    "note": "The paragraph under the title says what the book is about (notes 4 and 5).",
+    "source": "Dinis's pen, made readable, Page 1"
+   },
+   {
+    "kind": "scene",
+    "setting": "none",
+    "caption": "Take two: page 3",
+    "props": [
+     {
+      "kind": "desk",
+      "x": 0.3,
+      "y": 640
+     },
+     {
+      "kind": "book",
+      "x": 0.3,
+      "y": 640,
+      "label": "rc2",
+      "colour": "#e5e7eb"
+     },
+     {
+      "kind": "board",
+      "x": 0.72,
+      "y": 620,
+      "lines": [
+       "Before you start ......... 7",
+       "  31. Your first graph ... 135",
+       "The frame ............... 28",
+       "  32. Five lenses ........ 137"
+      ]
+     }
+    ],
+    "cast": [
+     {
+      "who": "marta",
+      "pose": "point",
+      "mood": "determined",
+      "x": 0.14,
+      "says": "Then I'm doing it."
+     },
+     {
+      "who": "zara",
+      "pose": "point",
+      "mood": "happy",
+      "x": 0.42,
+      "says": "Mum, the first exercise is right here."
+     }
+    ],
+    "note": "Page numbers, topics first, and the hands-on chapter beside the part it practises (notes 7, 8, 10, 11). Zara is Marta's daughter: the two generations of the frame.",
+    "source": "Dinis's pen, made readable, After",
+    "not_a_quote": true
+   },
+   {
+    "kind": "punchline",
+    "setting": "none",
+    "punchline": "Ten seconds buy twenty.",
+    "cast": [
+     {
+      "who": "marta",
+      "pose": "arms-up",
+      "mood": "happy",
+      "x": 0.14
+     },
+     {
+      "who": "zara",
+      "pose": "arms-up",
+      "mood": "happy",
+      "x": 0.29
+     },
+     {
+      "who": "guide",
+      "pose": "wave",
+      "mood": "happy",
+      "x": 0.44
+     }
+    ],
+    "note": "The principle the pen applies, from Zoom in, not discover.",
+    "source": "Dinis's pen, made readable"
+   }
+  ]
+ },
+ "cast": {
+  "what": "The cast of the storyboards for Generation Z Developers and its second edition, Generation ZX Developers (GenAI Startup Edition), v0.1, proposed by gen-z.journalist on 18 October 2026 for Dinis to accept, change or replace; Marta, the Generation X founder, was added on 19 October 2026 and is still a proposal. Characters are drawn programmatically by assets/storyboard.js from 'look'; nothing here is an image. Each human with a 'gravity' wears its badge (explorer, villager, town-planner), black and white, by their name: a centre of gravity, not a box, as Dinis describes it. Fictional people: each stands for a reader the book is for (the target audience), or for a role in the story. Names chosen to avoid clashing with the riskmandate.ai cast (which has a Maya) and with the word 'developer' (no 'Dev').",
+  "characters": [
+   {
+    "id": "zara",
+    "name": "Zara",
+    "kind": "human",
+    "pronouns": "she/her",
+    "age": 21,
+    "role": "the student: final year, about to look for a first job",
+    "stands_for": "the reader the book is written for; an explorer who does not know it yet",
+    "personality": "curious, quick, online all day; anxious about what she reads on AI and jobs; hates being lectured, loves being shown",
+    "wants": "a first job that is not a dead end",
+    "fears": "that AI took the jobs before she got there",
+    "line": "Everything just works. Why would I learn how?",
+    "look": {
+     "skin": "#8d5524",
+     "hair": "curly",
+     "hairColour": "#1b1b1b",
+     "shirt": "#7c3aed",
+     "trousers": "#1f2937",
+     "accessory": "headphones",
+     "accentColour": "#f59e0b",
+     "height": 0.96
+    },
+    "gravity": "explorer"
+   },
+   {
+    "id": "tomas",
+    "name": "Tomás",
+    "kind": "human",
+    "pronouns": "he/him",
+    "age": 24,
+    "role": "the graduate: a computing degree, working the 2018 way, looking for his next job in Lisbon",
+    "stands_for": "the town planner: attention to detail, pride in getting it right, happiest when nothing goes wrong; working the 2018 way, and about to be outcompeted by people with an agentic workflow",
+    "personality": "diligent, modest, a little proud of doing things by hand; sceptical of shortcuts",
+    "wants": "to be taken seriously",
+    "fears": "that his degree is already out of date",
+    "line": "I have a degree. Isn't that the advantage?",
+    "look": {
+     "skin": "#e0ac69",
+     "hair": "short",
+     "hairColour": "#4a2c17",
+     "shirt": "#0e7490",
+     "trousers": "#334155",
+     "accessory": "glasses",
+     "height": 1.04
+    },
+    "gravity": "town-planner"
+   },
+   {
+    "id": "priya",
+    "name": "Priya",
+    "kind": "human",
+    "pronouns": "she/her",
+    "age": 38,
+    "role": "the career changer: an operations manager who has never written code",
+    "stands_for": "the villager, and everyone else the book is for: she puts herself in the middle of her team's problem, and if anyone who can brief an agent is a developer, so is she",
+    "personality": "practical, impatient with jargon, very good at explaining what she needs",
+    "wants": "to build the tools her team keeps asking IT for",
+    "fears": "looking foolish in front of people half her age",
+    "line": "Is this book just for Gen Z?",
+    "look": {
+     "skin": "#c68642",
+     "hair": "bun",
+     "hairColour": "#2b1a10",
+     "shirt": "#be123c",
+     "trousers": "#1e293b",
+     "accessory": "lanyard",
+     "accentColour": "#1d4ed8",
+     "height": 0.98
+    },
+    "gravity": "villager"
+   },
+   {
+    "id": "sam",
+    "name": "Sam",
+    "kind": "human",
+    "pronouns": "they/them",
+    "age": 45,
+    "role": "the hiring manager",
+    "stands_for": "the town planner, and the question every chapter has to answer: why should I hire you?",
+    "personality": "dry, fair, has read a thousand CVs; impressed by evidence, bored by claims",
+    "wants": "someone who can do one thing better than the team already does",
+    "fears": "hiring a CV instead of a person",
+    "line": "So. Why should we hire you?",
+    "look": {
+     "skin": "#f1c27d",
+     "hair": "bald",
+     "hairColour": "#6b7280",
+     "shirt": "#475569",
+     "trousers": "#111827",
+     "accessory": "glasses",
+     "height": 1.06
+    }
+   },
+   {
+    "id": "marta",
+    "name": "Marta",
+    "kind": "human",
+    "pronouns": "she/her",
+    "age": 54,
+    "role": "the expert founder: twenty-five years as a pharmacist, Generation X, starting a company, and Zara's mother",
+    "stands_for": "the Generation X founder the Gen ZX proposal adds to the readers: the subject-matter expert who now builds the tool herself, with agents, instead of waiting for a team she could never afford",
+    "personality": "knows her field better than any developer she ever briefed; grew up typing programs from magazines into a ZX Spectrum; patient with people, impatient with software",
+    "wants": "to ship the product she has described to vendors for ten years",
+    "fears": "that it is too late for her, and that she will build it and nobody will buy it",
+    "line": "I've been explaining this problem for twenty years. Can I just build it now?",
+    "look": {
+     "skin": "#ffdbac",
+     "hair": "long",
+     "hairColour": "#9ca3af",
+     "shirt": "#b45309",
+     "trousers": "#1f2937",
+     "accessory": "glasses",
+     "height": 1.0
+    },
+    "gravity": "explorer"
+   },
+   {
+    "id": "guide",
+    "name": "The Guide",
+    "kind": "human",
+    "pronouns": "they/them",
+    "age": null,
+    "role": "the voice of the book: says what the book says, in its words",
+    "stands_for": "the author. Whether the Guide is drawn as Dinis, and how, is Dinis's decision; until then a generic figure",
+    "personality": "energetic, direct, generous with what they know; asks more than they tell",
+    "wants": "the reader to act, not to agree",
+    "fears": "a reader who closes the book and changes nothing",
+    "line": "Act like you are part of the company.",
+    "look": {
+     "skin": "#f1c27d",
+     "hair": "short",
+     "hairColour": "#9ca3af",
+     "shirt": "#15803d",
+     "trousers": "#1f2937",
+     "accessory": "none",
+     "height": 1.02
+    }
+   },
+   {
+    "id": "agent",
+    "name": "The Agent",
+    "kind": "agent",
+    "pronouns": "it/its",
+    "age": null,
+    "role": "the reader's AI agent",
+    "stands_for": "the agentic workflow the second edition is about: a very capable, very literal colleague",
+    "personality": "eager, fast, polite, takes everything literally; needs a brief, a boundary and a reviewer",
+    "wants": "a clear brief",
+    "fears": "nothing, which is the problem",
+    "line": "Shall I draft that for you?",
+    "look": {
+     "colour": "#0f766e"
+    }
+   }
+  ]
+ }
+}

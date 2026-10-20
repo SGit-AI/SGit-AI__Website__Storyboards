@@ -1,0 +1,509 @@
+{
+ "slug": "the-opening",
+ "title": "The opening: you are lucky to be here",
+ "subtitle": "The first pages of the second edition as Dinis described them, in 16 panels: wonder, not fear; the history; technology that finally works for you; learning made for you; and why that makes you a developer.",
+ "status": "draft",
+ "book_version": "v1.0.0 is the only official version; the second edition is in release candidates (rc1 and rc2 frozen)",
+ "by": "gen-z.journalist, 18 October 2026, from Dinis's memo on the core idea",
+ "quote_source": "admin/content/articles/07__lucky-to-be-here.md",
+ "rule": "Every line the Guide says, and every quote card, is Dinis's words from the article 'You are lucky to be here', word for word; the build checks it. The other characters' lines are the storyboard's.",
+ "scenes": [
+  {
+   "kind": "cover",
+   "title": "You are lucky to be here",
+   "subtitle": "The opening of the second edition, in 16 panels: wonder, not fear.",
+   "cast": [
+    {
+     "who": "zara",
+     "pose": "arms-up",
+     "mood": "happy"
+    },
+    {
+     "who": "tomas",
+     "pose": "wave",
+     "mood": "happy"
+    },
+    {
+     "who": "priya",
+     "pose": "stand",
+     "mood": "happy"
+    },
+    {
+     "who": "agent",
+     "pose": "wave",
+     "mood": "happy"
+    },
+    {
+     "who": "guide",
+     "pose": "wave",
+     "mood": "happy"
+    }
+   ],
+   "note": "The book's first mood: wonder. Sam is left off the cover on purpose; the hiring question comes later.",
+   "source": "You are lucky to be here"
+  },
+  {
+   "kind": "scene",
+   "setting": "classroom",
+   "caption": "2017: the slide that started the first edition",
+   "cast": [
+    {
+     "who": "guide",
+     "x": 0.18,
+     "pose": "point",
+     "mood": "happy",
+     "says": "how many logos do you recognize?"
+    },
+    {
+     "who": "zara",
+     "x": 0.62,
+     "pose": "shrug",
+     "mood": "worried",
+     "says": "Hardly any.",
+     "flip": true
+    },
+    {
+     "who": "tomas",
+     "x": 0.84,
+     "pose": "think",
+     "mood": "thinking",
+     "flip": true
+    }
+   ],
+   "note": "The 2018 book opens with this question, from a presentation to young people in 2017.",
+   "source": "Book v1.0.0, Introduction"
+  },
+  {
+   "kind": "punchline",
+   "setting": "none",
+   "caption": "Looking back",
+   "punchline": "it went too technical, too deep, too soon",
+   "cast": [
+    {
+     "who": "guide",
+     "x": 0.2,
+     "pose": "shrug",
+     "mood": "thinking"
+    }
+   ],
+   "note": "Dinis's own verdict on the first edition's middle: Parts 2 and 3, nineteen chapters of technologies.",
+   "source": "You are lucky to be here, How the first edition started"
+  },
+  {
+   "kind": "scene",
+   "setting": "night",
+   "caption": "The doom",
+   "props": [
+    {
+     "kind": "phone",
+     "x": 0.3,
+     "y": 640
+    }
+   ],
+   "cast": [
+    {
+     "who": "zara",
+     "x": 0.26,
+     "pose": "think",
+     "mood": "worried",
+     "says": "Everyone says AI will take my job.",
+     "thinks": true
+    },
+    {
+     "who": "guide",
+     "x": 0.75,
+     "pose": "stand",
+     "mood": "determined",
+     "flip": true,
+     "says": "nobody knows what is going to happen"
+    }
+   ],
+   "note": "The book does not start from the fear; it answers it on the first page and moves on.",
+   "source": "You are lucky to be here, You are lucky to be here"
+  },
+  {
+   "kind": "punchline",
+   "setting": "none",
+   "caption": "The first message of the book",
+   "punchline": "ridiculously privileged to be living at this moment in time",
+   "cast": [
+    {
+     "who": "zara",
+     "x": 0.14,
+     "pose": "arms-up",
+     "mood": "surprised"
+    },
+    {
+     "who": "priya",
+     "x": 0.3,
+     "pose": "stand",
+     "mood": "happy"
+    }
+   ],
+   "note": "The core idea: whoever reads this in 2026 or 2027 is lucky to be here.",
+   "source": "You are lucky to be here"
+  },
+  {
+   "kind": "spectrum",
+   "setting": "none",
+   "caption": "The transformations I have lived through",
+   "stops": [
+    {
+     "label": "Spectrum",
+     "note": "early 1980s",
+     "colour": "#fde68a"
+    },
+    {
+     "label": "BBS",
+     "note": "1980s",
+     "colour": "#fed7aa"
+    },
+    {
+     "label": "Internet",
+     "note": "1990s",
+     "colour": "#bbf7d0"
+    },
+    {
+     "label": "Mobile",
+     "note": "late 1990s",
+     "colour": "#a7f3d0"
+    },
+    {
+     "label": "Cloud",
+     "note": "mid 2000s",
+     "colour": "#bfdbfe"
+    },
+    {
+     "label": "Apps",
+     "note": "2008",
+     "colour": "#ddd6fe"
+    },
+    {
+     "label": "AI",
+     "note": "2022",
+     "colour": "#fecaca"
+    }
+   ],
+   "cast": [
+    {
+     "who": "guide",
+     "x": 0.25,
+     "pose": "point",
+     "mood": "happy"
+    },
+    {
+     "who": "zara",
+     "x": 0.75,
+     "pose": "think",
+     "mood": "thinking",
+     "flip": true
+    }
+   ],
+   "note": "Each one changed whole industries. The dates are the commonly recorded ones and need sources in the chapter.",
+   "source": "You are lucky to be here, the table"
+  },
+  {
+   "kind": "scene",
+   "setting": "none",
+   "caption": "The only difference",
+   "props": [
+    {
+     "kind": "board",
+     "x": 0.62,
+     "y": 720,
+     "lines": [
+      "the money",
+      "the players",
+      "the whole stack,",
+      "all at once"
+     ]
+    }
+   ],
+   "cast": [
+    {
+     "who": "guide",
+     "x": 0.2,
+     "pose": "point",
+     "mood": "happy",
+     "says": "this one is televised"
+    }
+   ],
+   "note": "Why this transformation feels bigger: it is more visible.",
+   "source": "You are lucky to be here, The transformations"
+  },
+  {
+   "kind": "evidence",
+   "setting": "none",
+   "caption": "We have been here before",
+   "cast": [
+    {
+     "who": "guide",
+     "x": 0.2,
+     "pose": "point",
+     "mood": "determined"
+    }
+   ],
+   "evidence": {
+    "quote": "The Nasdaq peaked in March 2000 and had lost almost four fifths of its value by October 2002, and the internet still changed everything.",
+    "source": "You are lucky to be here; the index values to be cited in the chapter"
+   },
+   "note": "A crash would change who makes money, not what people can do.",
+   "source": "You are lucky to be here, The hype, and maybe the crash"
+  },
+  {
+   "kind": "scene",
+   "setting": "none",
+   "caption": "Wonder",
+   "props": [
+    {
+     "kind": "laptop",
+     "x": 0.5,
+     "y": 700
+    },
+    {
+     "kind": "desk",
+     "x": 0.5,
+     "y": 712
+    }
+   ],
+   "cast": [
+    {
+     "who": "zara",
+     "x": 0.25,
+     "pose": "arms-up",
+     "mood": "surprised",
+     "says": "Wait. I can build that?"
+    },
+    {
+     "who": "agent",
+     "x": 0.76,
+     "pose": "wave",
+     "mood": "happy",
+     "flip": true,
+     "says": "Want to try it now?"
+    }
+   ],
+   "note": "The feeling of discovering what you can do: workflows, ideas, executed.",
+   "source": "You are lucky to be here, Wonder"
+  },
+  {
+   "kind": "evidence",
+   "setting": "none",
+   "caption": "Not only for the creative ones",
+   "cast": [
+    {
+     "who": "priya",
+     "x": 0.2,
+     "pose": "point",
+     "mood": "happy"
+    }
+   ],
+   "evidence": {
+    "quote": "you can now scale the things you are not good at",
+    "source": "You are lucky to be here, Wonder"
+   },
+   "note": "Priya on this card: it applies to anybody.",
+   "source": "You are lucky to be here, Wonder"
+  },
+  {
+   "kind": "scene",
+   "setting": "night",
+   "caption": "Technology that worked on you",
+   "props": [
+    {
+     "kind": "phone",
+     "x": 0.3,
+     "y": 640
+    }
+   ],
+   "cast": [
+    {
+     "who": "zara",
+     "x": 0.26,
+     "pose": "think",
+     "mood": "worried"
+    },
+    {
+     "who": "guide",
+     "x": 0.72,
+     "pose": "point",
+     "mood": "worried",
+     "flip": true,
+     "says": "Gen Z in particular was given a technology stack designed to hook them",
+     "max": 26
+    }
+   ],
+   "note": "Attention, advertising, dopamine. The 2018 draft Dopamine already called it the new smoking.",
+   "source": "You are lucky to be here, Technology that did not work for you"
+  },
+  {
+   "kind": "scene",
+   "setting": "none",
+   "caption": "My generation could build things",
+   "props": [
+    {
+     "kind": "laptop",
+     "x": 0.5,
+     "y": 700
+    },
+    {
+     "kind": "desk",
+     "x": 0.5,
+     "y": 712
+    }
+   ],
+   "cast": [
+    {
+     "who": "guide",
+     "x": 0.2,
+     "pose": "point",
+     "mood": "happy",
+     "says": "Now they can build again."
+    },
+    {
+     "who": "zara",
+     "x": 0.8,
+     "pose": "arms-up",
+     "mood": "happy",
+     "flip": true
+    }
+   ],
+   "note": "From users of technology to builders of it.",
+   "source": "You are lucky to be here, Technology that did not work for you"
+  },
+  {
+   "kind": "scene",
+   "setting": "classroom",
+   "caption": "Learning, made for you",
+   "cast": [
+    {
+     "who": "priya",
+     "x": 0.22,
+     "pose": "shrug",
+     "mood": "worried",
+     "says": "I was never good at school."
+    },
+    {
+     "who": "guide",
+     "x": 0.75,
+     "pose": "point",
+     "mood": "happy",
+     "flip": true,
+     "says": "The academic model was generic, made for a mythical student",
+     "max": 24
+    }
+   ],
+   "note": "The fish and the tree; personalised learning paths; going deep where your gaps are.",
+   "source": "You are lucky to be here, Learning, made for you"
+  },
+  {
+   "kind": "scene",
+   "setting": "none",
+   "caption": "Become a developer",
+   "props": [
+    {
+     "kind": "laptop",
+     "x": 0.5,
+     "y": 700
+    },
+    {
+     "kind": "desk",
+     "x": 0.5,
+     "y": 712
+    }
+   ],
+   "cast": [
+    {
+     "who": "zara",
+     "x": 0.22,
+     "pose": "point",
+     "mood": "thinking",
+     "says": "So I make my own tools?"
+    },
+    {
+     "who": "guide",
+     "x": 0.78,
+     "pose": "stand",
+     "mood": "happy",
+     "flip": true,
+     "says": "craftspeople made their own tools"
+    }
+   ],
+   "note": "The reason the title says developer: craft, and customisation.",
+   "source": "You are lucky to be here, Become a developer"
+  },
+  {
+   "kind": "scene",
+   "setting": "none",
+   "caption": "It is still your name",
+   "cast": [
+    {
+     "who": "agent",
+     "x": 0.25,
+     "pose": "wave",
+     "mood": "happy",
+     "says": "Shall I just decide for you?"
+    },
+    {
+     "who": "guide",
+     "x": 0.75,
+     "pose": "stand",
+     "mood": "determined",
+     "flip": true,
+     "says": "it is you thinking with generative AI"
+    }
+   ],
+   "note": "Responsibility stays with you; and sometimes you use generative AI so that you do not have to use it.",
+   "source": "You are lucky to be here, Think with it"
+  },
+  {
+   "kind": "spectrum",
+   "setting": "none",
+   "caption": "The jobs that never scaled, and where on the map you land",
+   "stops": [
+    {
+     "label": "Explorer",
+     "note": "builds the new",
+     "colour": "#fde68a",
+     "badge": "explorer"
+    },
+    {
+     "label": "Villager",
+     "note": "makes it work for people",
+     "colour": "#bbf7d0",
+     "badge": "villager"
+    },
+    {
+     "label": "Town planner",
+     "note": "makes it reliable, and answers for it",
+     "colour": "#bfdbfe",
+     "badge": "town-planner"
+    }
+   ],
+   "cast": [
+    {
+     "who": "zara",
+     "x": 0.2,
+     "pose": "wave",
+     "mood": "happy",
+     "says": "Where do I land?"
+    },
+    {
+     "who": "priya",
+     "x": 0.5,
+     "pose": "point",
+     "mood": "determined"
+    },
+    {
+     "who": "tomas",
+     "x": 0.8,
+     "pose": "stand",
+     "mood": "thinking",
+     "flip": true
+    }
+   ],
+   "note": "Old jobs, finally with good technology; and each reader finds where their personality is drawn.",
+   "source": "You are lucky to be here, The jobs that never scaled"
+  }
+ ]
+}

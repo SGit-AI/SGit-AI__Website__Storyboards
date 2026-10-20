@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>About storyboards.sgit.ai · storyboards.sgit.ai</title>
+<meta name="description" content="What this site is, who it is by, how it is built and released, and what it does not do yet.">
+<link rel="canonical" href="https://storyboards.sgit.ai/about/">
+<link rel="alternate" type="text/markdown" href="index.md">
+<meta property="og:title" content="About storyboards.sgit.ai">
+<meta property="og:description" content="What this site is, who it is by, how it is built and released, and what it does not do yet.">
+<meta property="og:url" content="https://storyboards.sgit.ai/about/">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://storyboards.sgit.ai/og.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="site-version" content="v0.1.0">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect x='4' y='10' width='56' height='44' rx='6' fill='%23fbf7ee' stroke='%2323262b' stroke-width='4'/%3E%3Cpath d='M12 44 Q32 30 52 40' stroke='%23dc2626' stroke-width='4' fill='none'/%3E%3Ccircle cx='24' cy='26' r='6' fill='%2323262b'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="https://api.storyboards.sgit.ai/v0/v0.1/v0.1.0/fonts.css" integrity="sha384-ep4bdPYRUzquMICQMhuOkSZ/CB1FnMh6qnGWS1F74VepoLOlw9JGK+Zg+E6/t9dD" crossorigin="anonymous">
+<link rel="stylesheet" href="https://api.storyboards.sgit.ai/v0/v0.1/v0.1.0/storyboard.css" integrity="sha384-NGJqtVi+93pE7lBuwFU0RQWhqnQVLR33Wp8AYH1iAeyC2A7h2ijgU4bEKF5HIKIf" crossorigin="anonymous">
+<link rel="stylesheet" href="../assets/site.css">
+<script>window.StoryboardPrefsKey = 'storyboards.sgit.ai.v1';</script>
+<script src="../assets/site.js"></script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to the content</a>
+<nav class="site" aria-label="Site"><div class="row">
+<a class="brand" href="../index.html">storyboards<span>.sgit.ai</span></a>
+<div class="nav-items"><a href="../index.html#series">Storyboards</a><a href="../embed/index.html">Embed</a><a href="../formats/index.html">Formats</a><a href="../articles/index.html">Articles</a><a href="../brief/index.html">The brief</a><a href="../about/index.html" aria-current="page">About</a></div>
+<div class="nav-tools"><a class="parent" href="https://sgit.ai" title="One of the sgit.ai network of sites">&#8599; part of <b>sgit.ai</b></a>
+<a class="parent" href="https://api.storyboards.sgit.ai/" title="The kit that draws every panel">API v0.1.0</a>
+<button type="button" class="theme" aria-label="Switch the theme">dark</button>
+<span class="ver">site <a href="../admin/versions.html" title="Site release history">v0.1.0</a></span></div>
+</div></nav>
+<main id="main" class="narrow">
+<p class="crumb"><a href="../index.html">Home</a> / About storyboards.sgit.ai</p>
+<article class="article"><h1>About storyboards.sgit.ai</h1><p class="lede">What this site is, who it is by, how it is built and released, and what it does not do yet.</p><p>storyboards.sgit.ai is a home for storyboards that are data: short strips of panels, each one a JSON file naming who is in the panel, their pose and mood, what they say, the evidence and its source, drawn by code in the reader's browser. It was started on 20 October 2026 from <a href="../brief/2026-10-20__storyboards-sgit-ai.html">a voice memo</a>, published in full, and is part of the <a href="https://sgit.ai/network/index.html">sgit.ai network</a>.</p>
+<h2 id="two-sites">Two sites</h2>
+<div class="tablewrap"><table><thead><tr><th></th><th>Does</th><th>Repository</th></tr></thead><tbody><tr><td>storyboards.sgit.ai</td><td>the storyboards, their pages and every shape they come in, the articles, the brief</td><td><a href="https://github.com/SGit-AI/SGit-AI__Website__Storyboards">SGit-AI__Website__Storyboards</a></td></tr><tr><td><a href="https://api.storyboards.sgit.ai/">api.storyboards.sgit.ai</a></td><td>the kit that draws them, in immutable versioned folders, and its documentation</td><td><a href="https://github.com/SGit-AI/SGit-AI__Website__Storyboards__API">SGit-AI__Website__Storyboards__API</a></td></tr></tbody></table></div>
+<p>This site uses the API exactly as any other site would: from the pinned release v0.1.0, with the hash of every file it loads.</p>
+<h2 id="how-it-is-built">How it is built</h2>
+<p><code>admin/build/build.py</code> turns <code>content/</code> into <code>www/</code>, which is committed and deployed by GitHub Pages on every push to <code>main</code>. The build validates every storyboard against the kit's vocabulary (an unknown character, kind, pose, mood, setting or prop stops it), writes every page and its markdown twin, and refuses a storyboard whose committed thumbnail is stale. CI runs the build again and fails if <code>www/</code> is not what it makes, then runs <code>admin/build/validate.py</code>: every internal link resolves, every page has its twin and is in the sitemap, every script from the API is the pinned path with its integrity string, the version agrees everywhere, and no key shapes appear anywhere.</p>
+<h2 id="what-it-does-not-do-yet">What it does not do yet</h2>
+<ul><li>Let you make a storyboard or a cast on the site. The brief puts it later; the JSON is the editor for now.</li><li>Sell anything. The brief mentions commercialisation; nothing here is for sale.</li><li>Carry the <code>review/</code> folder the <a href="https://sgit.ai/docs/guidance/repositories.html">sgit.ai guidance</a> asks of a new repository: a gap, recorded in the repository's reality file.</li><li>Run the gen-z quote check here. Those boards were checked word for word against the book's files by gen-z-developers.sgit.ai's build at the commit they were imported from; the files are in that repository, and each board links to its source.</li></ul>
+<p>Content is CC BY 4.0; code is Apache-2.0. <a href="participant.html">The participant disclosure</a>.</p></article>
+</main>
+<footer class="site"><div class="row">
+<div><b>storyboards.sgit.ai</b>: make, share and embed storyboards that are data, drawn by code. Panels drawn by <a href="https://api.storyboards.sgit.ai/">api.storyboards.sgit.ai</a> v0.1.0 (<a href="https://api.storyboards.sgit.ai/v0/v0.1/v0.1.0/manifest.json">manifest</a>); content CC BY 4.0, code Apache-2.0.</div>
+<div class="netline"><a href="https://sgit.ai">&#8599; sgit.ai</a>, the parent project &middot; <a href="https://gen-z-developers.sgit.ai/storyboards/index.html">&#8599; gen-z-developers.sgit.ai</a>, where the storyboards began &middot; <a href="https://pki.sgit.ai/storyboards/index.html">&#8599; pki.sgit.ai</a> &middot; <a href="https://newsroom.sgit.ai">&#8599; newsroom.sgit.ai</a> &middot; <a href="https://sgit.ai/network/index.html">&#8599; the network</a></div>
+<div>&#9888; Participant disclosure: published by the sgit project, which builds the tools these storyboards explain. <a href="../about/participant.html">Read the disclosure</a>.</div>
+<div>Site v0.1.0 &middot; <a href="../admin/versions.html">release history</a> &middot; <a href="index.md">this page as markdown</a> &middot; <a href="../llms.txt">llms.txt</a> &middot; <a href="../catalogue.json">catalogue.json</a> &middot; <a href="https://github.com/SGit-AI/SGit-AI__Website__Storyboards">GitHub</a></div>
+</div></footer>
+
+</body>
+</html>

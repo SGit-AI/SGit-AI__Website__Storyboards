@@ -1,0 +1,492 @@
+{
+ "slug": "a-first-storyline",
+ "title": "A first storyline for the second edition",
+ "subtitle": "A proposal in 15 panels: the order the second edition could tell its argument in, built from the topics the newsroom's articles already cover. For Dinis to tear apart. Superseded: the second release candidate follows the Gen ZX frame (decision 015, storyboard 12).",
+ "status": "superseded",
+ "book_version": "v1.0.0 is the only official version; the second edition is in release candidates (rc1 and rc2 frozen)",
+ "by": "gen-z.journalist, 18 October 2026, from the survey of the newsroom's articles",
+ "rule": "The Guide's lines and every quote card are Dinis's published words, from the newsroom article named in the panel's note, word for word, unless the note says otherwise. The other characters' lines are the storyboard's.",
+ "scenes": [
+  {
+   "kind": "cover",
+   "title": "Generation Z Developers, again",
+   "subtitle": "A first storyline for the second edition, October 2026: from the fear to the workflow, in 15 panels.",
+   "cast": [
+    {
+     "who": "zara",
+     "pose": "think",
+     "mood": "worried"
+    },
+    {
+     "who": "tomas",
+     "pose": "stand",
+     "mood": "neutral"
+    },
+    {
+     "who": "priya",
+     "pose": "stand",
+     "mood": "thinking"
+    },
+    {
+     "who": "agent",
+     "pose": "wave",
+     "mood": "happy"
+    },
+    {
+     "who": "sam",
+     "pose": "stand",
+     "mood": "neutral"
+    },
+    {
+     "who": "guide",
+     "pose": "wave",
+     "mood": "happy"
+    }
+   ],
+   "note": "The whole cast, because the second edition is for all of them, not only Zara.",
+   "source": "admin/content/storyboards/cast.json"
+  },
+  {
+   "kind": "scene",
+   "setting": "night",
+   "caption": "2026. The fear.",
+   "props": [
+    {
+     "kind": "phone",
+     "x": 0.42,
+     "y": 640
+    }
+   ],
+   "cast": [
+    {
+     "who": "zara",
+     "x": 0.38,
+     "pose": "think",
+     "mood": "worried",
+     "says": "AI took the jobs before I even got there.",
+     "thinks": true
+    }
+   ],
+   "note": "The cold open. Dinis's reading, not a measured result: young Europeans are fed a lot of fear about AI. The book answers it from the first page.",
+   "source": "Generation Z Developers, again, ‘The name’"
+  },
+  {
+   "kind": "evidence",
+   "setting": "none",
+   "caption": "The claim the book is built on",
+   "cast": [
+    {
+     "who": "guide",
+     "x": 0.2,
+     "pose": "point",
+     "mood": "determined"
+    }
+   ],
+   "evidence": {
+    "quote": "today anyone who can brief an agent to build something is one",
+    "source": "Generation Z Developers, again (newsroom, 18 October 2026), on who is a developer"
+   },
+   "note": "Topic 1 of the survey: everyone who can brief an agent is a developer now. Articles: the citizen developer, explorer coding, hired for the workflow.",
+   "source": "Generation Z Developers, again"
+  },
+  {
+   "kind": "scene",
+   "setting": "office",
+   "caption": "Including Priya",
+   "props": [
+    {
+     "kind": "laptop",
+     "x": 0.5,
+     "y": 700
+    },
+    {
+     "kind": "desk",
+     "x": 0.5,
+     "y": 712
+    }
+   ],
+   "cast": [
+    {
+     "who": "priya",
+     "x": 0.25,
+     "pose": "shrug",
+     "mood": "surprised",
+     "says": "So I'm a developer now?"
+    },
+    {
+     "who": "agent",
+     "x": 0.76,
+     "pose": "wave",
+     "mood": "happy",
+     "says": "Tell me what your team needs. I'll build a first version.",
+     "flip": true
+    }
+   ],
+   "note": "The reader who is not Gen Z. The 2018 GitHub issue #28 asked whether the book was just for Gen Z; this panel answers it.",
+   "source": "The citizen developer; 2018 GitHub issue #28"
+  },
+  {
+   "kind": "spectrum",
+   "setting": "none",
+   "caption": "What kind of developer? Where do you fit, and where do you want to?",
+   "stops": [
+    {
+     "label": "Explorer",
+     "note": "builds the new thing, rough and fast",
+     "colour": "#fde68a",
+     "badge": "explorer"
+    },
+    {
+     "label": "Villager",
+     "note": "makes it work for the people who now depend on it",
+     "colour": "#bbf7d0",
+     "badge": "villager"
+    },
+    {
+     "label": "Town planner",
+     "note": "turns it into something everyone can rely on, and answers for it",
+     "colour": "#bfdbfe",
+     "badge": "town-planner"
+    }
+   ],
+   "cast": [
+    {
+     "who": "zara",
+     "x": 0.18,
+     "pose": "wave",
+     "mood": "happy"
+    },
+    {
+     "who": "priya",
+     "x": 0.5,
+     "pose": "stand",
+     "mood": "happy"
+    },
+    {
+     "who": "tomas",
+     "x": 0.82,
+     "pose": "stand",
+     "mood": "thinking",
+     "flip": true
+    }
+   ],
+   "note": "The frame of the edition: Wardley's explorers, villagers and town planners. Zara explores, Priya lives in her users' problem, Tomás gets the details right. Topic 2.",
+   "source": "Explorer coding; Software vendors as villagers; Why I love Wardley maps"
+  },
+  {
+   "kind": "scene",
+   "setting": "interview",
+   "caption": "The one advantage, 2026",
+   "props": [
+    {
+     "kind": "desk",
+     "x": 0.5,
+     "y": 700
+    },
+    {
+     "kind": "laptop",
+     "x": 0.42,
+     "y": 700
+    }
+   ],
+   "cast": [
+    {
+     "who": "sam",
+     "x": 0.72,
+     "pose": "stand",
+     "mood": "neutral",
+     "says": "So. Why should we hire you?",
+     "flip": true
+    },
+    {
+     "who": "zara",
+     "x": 0.25,
+     "pose": "point",
+     "mood": "determined",
+     "says": "Let me show you my workflow, not my CV."
+    }
+   ],
+   "note": "The 2018 chapter's question, with the 2026 answer: you are hired for the workflow. Topic 3, getting the job.",
+   "source": "Hired for the workflow"
+  },
+  {
+   "kind": "evidence",
+   "setting": "none",
+   "caption": "The evidence",
+   "cast": [
+    {
+     "who": "sam",
+     "x": 0.2,
+     "pose": "think",
+     "mood": "thinking"
+    }
+   ],
+   "evidence": {
+    "quote": "71% of leaders said they would rather hire a less experienced candidate with AI skills than a more experienced one without",
+    "source": "Microsoft and LinkedIn, 2024, as quoted in Hired for the workflow (newsroom)"
+   },
+   "note": "Hired for the workflow also cites PwC's 2026 barometer: jobs asking for AI skills pay 62% more. The book should date and link both.",
+   "source": "Hired for the workflow"
+  },
+  {
+   "kind": "scene",
+   "setting": "none",
+   "caption": "Act as the job you want",
+   "props": [
+    {
+     "kind": "laptop",
+     "x": 0.48,
+     "y": 700
+    },
+    {
+     "kind": "desk",
+     "x": 0.48,
+     "y": 712
+    }
+   ],
+   "cast": [
+    {
+     "who": "tomas",
+     "x": 0.25,
+     "pose": "shrug",
+     "mood": "worried",
+     "says": "Work for them before they hire me? Nobody will even see it."
+    },
+    {
+     "who": "guide",
+     "x": 0.78,
+     "pose": "point",
+     "mood": "happy",
+     "says": "Publish anyway, because reach is not the point.",
+     "flip": true
+    }
+   ],
+   "note": "The 2018 advice (act like you are part of the company), finished: do the job in public, so it can be linked.",
+   "source": "Act as the job you want"
+  },
+  {
+   "kind": "scene",
+   "setting": "none",
+   "caption": "Your own newsroom: voice memo in, a checked site out",
+   "props": [
+    {
+     "kind": "phone",
+     "x": 0.3,
+     "y": 640
+    }
+   ],
+   "cast": [
+    {
+     "who": "zara",
+     "x": 0.25,
+     "pose": "point",
+     "mood": "happy",
+     "says": "Here's my voice memo. Make it an article."
+    },
+    {
+     "who": "agent",
+     "x": 0.72,
+     "pose": "think",
+     "mood": "thinking",
+     "flip": true
+    },
+    {
+     "who": "guide",
+     "x": 0.9,
+     "pose": "stand",
+     "mood": "happy",
+     "flip": true,
+     "says": "The memo is a draft of a thought; the article is the thought, checked.",
+     "max": 22
+    }
+   ],
+   "note": "Topic 4, publish, publish, publish, as a workflow a reader can copy on day one.",
+   "source": "Your own newsroom"
+  },
+  {
+   "kind": "scene",
+   "setting": "office",
+   "caption": "The handover",
+   "cast": [
+    {
+     "who": "sam",
+     "x": 0.22,
+     "pose": "point",
+     "mood": "worried",
+     "says": "Who fixes Priya's app when it breaks?"
+    },
+    {
+     "who": "priya",
+     "x": 0.5,
+     "pose": "shrug",
+     "mood": "worried"
+    },
+    {
+     "who": "guide",
+     "x": 0.8,
+     "pose": "point",
+     "mood": "determined",
+     "flip": true,
+     "says": "The prototype is not a mess. It is the most precise requirement the company has ever had.",
+     "max": 26
+    }
+   ],
+   "note": "Explorer to villager to town planner, as a handover rather than a cliff. Topic 2.",
+   "source": "Who will fix your mess?"
+  },
+  {
+   "kind": "scene",
+   "setting": "none",
+   "caption": "One-way and two-way doors",
+   "props": [
+    {
+     "kind": "sign",
+     "x": 0.15,
+     "y": 560,
+     "label": "two-way door",
+     "colour": "#bbf7d0"
+    },
+    {
+     "kind": "sign",
+     "x": 0.85,
+     "y": 560,
+     "label": "one-way door",
+     "colour": "#fecaca"
+    }
+   ],
+   "cast": [
+    {
+     "who": "agent",
+     "x": 0.35,
+     "pose": "point",
+     "mood": "happy",
+     "says": "Shall I send it?"
+    },
+    {
+     "who": "guide",
+     "x": 0.62,
+     "pose": "stand",
+     "mood": "thinking",
+     "says": "A change you can roll back is a two-way door; the work of a release pipeline is to keep it one.",
+     "max": 24,
+     "flip": true
+    }
+   ],
+   "note": "Topic 7: where a person belongs is decided by the cost of undoing. Email in your name is a one-way door; a published page you can fix is a two-way door.",
+   "source": "How cheap is it to undo?"
+  },
+  {
+   "kind": "evidence",
+   "setting": "none",
+   "caption": "Why ‘a human in the loop’ is not enough",
+   "cast": [
+    {
+     "who": "guide",
+     "x": 0.2,
+     "pose": "point",
+     "mood": "worried"
+    }
+   ],
+   "evidence": {
+    "quote": "people approve almost everything they are shown, which Anthropic measured at 93% of permission prompts",
+    "source": "The human in the loop (newsroom)"
+   },
+   "note": "Put the person where the blast radius is large, not everywhere. Topics 7 and 8.",
+   "source": "The human in the loop"
+  },
+  {
+   "kind": "spectrum",
+   "setting": "none",
+   "caption": "The last part: how this book was made, as the workflow it teaches",
+   "stops": [
+    {
+     "label": "Memo",
+     "note": "Dinis talks",
+     "colour": "#fde68a"
+    },
+    {
+     "label": "Article",
+     "note": "the journalist writes it up, checked",
+     "colour": "#fbcfe8"
+    },
+    {
+     "label": "Review",
+     "note": "every finding answered",
+     "colour": "#bbf7d0"
+    },
+    {
+     "label": "Version",
+     "note": "signed off, with a delta",
+     "colour": "#bfdbfe"
+    },
+    {
+     "label": "Published",
+     "note": "Leanpub, then Amazon",
+     "colour": "#ddd6fe"
+    }
+   ],
+   "cast": [
+    {
+     "who": "guide",
+     "x": 0.3,
+     "pose": "stand",
+     "mood": "happy"
+    },
+    {
+     "who": "agent",
+     "x": 0.7,
+     "pose": "wave",
+     "mood": "happy",
+     "flip": true
+    }
+   ],
+   "note": "Topic 15. The making of the book is its last example.",
+   "source": "A website to finish the book; Short, punchy, and co-written with Claude"
+  },
+  {
+   "kind": "punchline",
+   "setting": "none",
+   "punchline": "When you can see the board, a bad week is a move, not a verdict.",
+   "cast": [
+    {
+     "who": "zara",
+     "x": 0.14,
+     "pose": "arms-up",
+     "mood": "happy"
+    },
+    {
+     "who": "tomas",
+     "x": 0.3,
+     "pose": "stand",
+     "mood": "determined"
+    }
+   ],
+   "note": "The answer to the cold open's fear, in Dinis's words: the Wardley map shows the game.",
+   "source": "Two years in the opposite"
+  },
+  {
+   "kind": "scene",
+   "setting": "none",
+   "caption": "The first line on the 2018 cover: question everything",
+   "cast": [
+    {
+     "who": "zara",
+     "x": 0.25,
+     "pose": "point",
+     "mood": "thinking",
+     "says": "Including this book?"
+    },
+    {
+     "who": "guide",
+     "x": 0.75,
+     "pose": "stand",
+     "mood": "happy",
+     "flip": true,
+     "says": "Especially this book."
+    }
+   ],
+   "note": "Not a quote: the Guide's answer here is a proposal, and it is the editor's interview question 2 (what should a reader question first?) waiting for Dinis's real answer.",
+   "source": "team/editor/briefs/book__v1.0.0__interview-01-who-is-the-reader.md, question 2"
+  }
+ ]
+}

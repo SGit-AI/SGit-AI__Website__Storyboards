@@ -1,0 +1,771 @@
+{
+ "what": "A storyboard with its cast, for an embed: <sg-storyboard src=\"https://storyboards.sgit.ai/gen-z-developers/where-do-you-land/bundle.json\">. The storyboard is gen-z-developers/where-do-you-land/storyboard.json, unchanged.",
+ "series": "gen-z-developers",
+ "packs": [],
+ "storyboard": {
+  "slug": "where-do-you-land",
+  "title": "Where do you land?",
+  "subtitle": "Wardley maps, shown before they are named, and the three centres of gravity: explorer, villager, town planner. 14 panels.",
+  "status": "draft",
+  "book_version": "v1.0.0 is the only official version; the second edition is in release candidates (rc1 and rc2 frozen)",
+  "by": "gen-z.journalist, 18 October 2026, from Dinis's memo on Wardley maps",
+  "quote_source": "admin/content/articles/08__where-do-you-land.md",
+  "rule": "Every line the Guide says, and every quote card, is Dinis's words from the article 'Where do you land?', word for word; the build checks it. The map of Zara's first job is the storyboard's illustration, not Dinis's.",
+  "scenes": [
+   {
+    "kind": "cover",
+    "title": "Where do you land?",
+    "subtitle": "Maps first, names later; then the three kinds of people who build things.",
+    "cast": [
+     {
+      "who": "zara",
+      "pose": "wave",
+      "mood": "happy"
+     },
+     {
+      "who": "priya",
+      "pose": "stand",
+      "mood": "happy"
+     },
+     {
+      "who": "tomas",
+      "pose": "stand",
+      "mood": "thinking"
+     },
+     {
+      "who": "guide",
+      "pose": "point",
+      "mood": "happy"
+     }
+    ],
+    "note": "The badges by the names are the three centres of gravity: compass, house, grid. Black and white, because the book will be.",
+    "source": "Where do you land?"
+   },
+   {
+    "kind": "map",
+    "caption": "A map of what Zara's first job depends on. (We have not named it yet.)",
+    "map": {
+     "axis": "plain",
+     "nodes": [
+      {
+       "id": "zara",
+       "label": "Zara",
+       "x": 0.6,
+       "y": 0.0,
+       "anchor": true
+      },
+      {
+       "id": "job",
+       "label": "a first job",
+       "x": 0.52,
+       "y": 0.15
+      },
+      {
+       "id": "portfolio",
+       "label": "work people can see",
+       "x": 0.33,
+       "y": 0.34
+      },
+      {
+       "id": "cv",
+       "label": "a CV",
+       "x": 0.86,
+       "y": 0.3
+      },
+      {
+       "id": "workflow",
+       "label": "her agentic workflow",
+       "x": 0.16,
+       "y": 0.55,
+       "highlight": true
+      },
+      {
+       "id": "site",
+       "label": "a website",
+       "x": 0.66,
+       "y": 0.52
+      },
+      {
+       "id": "models",
+       "label": "AI models",
+       "x": 0.56,
+       "y": 0.74
+      },
+      {
+       "id": "cloud",
+       "label": "cloud",
+       "x": 0.84,
+       "y": 0.8
+      },
+      {
+       "id": "power",
+       "label": "electricity",
+       "x": 0.93,
+       "y": 0.97
+      }
+     ],
+     "links": [
+      [
+       "zara",
+       "job"
+      ],
+      [
+       "job",
+       "portfolio"
+      ],
+      [
+       "job",
+       "cv"
+      ],
+      [
+       "portfolio",
+       "workflow"
+      ],
+      [
+       "portfolio",
+       "site"
+      ],
+      [
+       "workflow",
+       "models"
+      ],
+      [
+       "site",
+       "cloud"
+      ],
+      [
+       "models",
+       "cloud"
+      ],
+      [
+       "cloud",
+       "power"
+      ]
+     ]
+    },
+    "note": "Shown before it is named: the user and the need at the top, what serves it below, ordered from what she sees to what she never sees, and placed from brand new to everywhere.",
+    "source": "Where do you land?, Maps everywhere"
+   },
+   {
+    "kind": "scene",
+    "setting": "none",
+    "caption": "How a map starts",
+    "props": [
+     {
+      "kind": "board",
+      "x": 0.62,
+      "y": 720,
+      "lines": [
+       "1. who is the user?",
+       "2. what do they need?",
+       "3. what serves that need?",
+       "4. how evolved is each part?"
+      ]
+     }
+    ],
+    "cast": [
+     {
+      "who": "guide",
+      "x": 0.18,
+      "pose": "point",
+      "mood": "happy",
+      "says": "You start with the user needs"
+     }
+    ],
+    "note": "The method in four lines on the board; the board is the storyboard's, the Guide's line is Dinis's.",
+    "source": "Where do you land?, Maps everywhere"
+   },
+   {
+    "kind": "map",
+    "caption": "The same map, with its names. And everything moves.",
+    "map": {
+     "axis": "wardley",
+     "nodes": [
+      {
+       "id": "zara",
+       "label": "Zara",
+       "x": 0.6,
+       "y": 0.0,
+       "anchor": true
+      },
+      {
+       "id": "job",
+       "label": "a first job",
+       "x": 0.52,
+       "y": 0.15
+      },
+      {
+       "id": "portfolio",
+       "label": "work people can see",
+       "x": 0.33,
+       "y": 0.34
+      },
+      {
+       "id": "cv",
+       "label": "a CV",
+       "x": 0.86,
+       "y": 0.3
+      },
+      {
+       "id": "workflow",
+       "label": "her agentic workflow",
+       "x": 0.16,
+       "y": 0.55,
+       "highlight": true
+      },
+      {
+       "id": "site",
+       "label": "a website",
+       "x": 0.66,
+       "y": 0.52
+      },
+      {
+       "id": "models",
+       "label": "AI models",
+       "x": 0.56,
+       "y": 0.74
+      },
+      {
+       "id": "cloud",
+       "label": "cloud",
+       "x": 0.84,
+       "y": 0.8
+      },
+      {
+       "id": "power",
+       "label": "electricity",
+       "x": 0.93,
+       "y": 0.97
+      }
+     ],
+     "links": [
+      [
+       "zara",
+       "job"
+      ],
+      [
+       "job",
+       "portfolio"
+      ],
+      [
+       "job",
+       "cv"
+      ],
+      [
+       "portfolio",
+       "workflow"
+      ],
+      [
+       "portfolio",
+       "site"
+      ],
+      [
+       "workflow",
+       "models"
+      ],
+      [
+       "site",
+       "cloud"
+      ],
+      [
+       "models",
+       "cloud"
+      ],
+      [
+       "cloud",
+       "power"
+      ]
+     ],
+     "moves": [
+      {
+       "from": "workflow",
+       "to": 0.42,
+       "label": "everything moves"
+      },
+      {
+       "from": "models",
+       "to": 0.82,
+       "label": "being commoditised"
+      }
+     ]
+    },
+    "note": "Now the axis has Wardley's stages. Her agentic workflow is in genesis today, moving to custom built; the models are a product, being commoditised.",
+    "source": "Where do you land?, Maps everywhere"
+   },
+   {
+    "kind": "evidence",
+    "setting": "none",
+    "caption": "Why I love it",
+    "cast": [
+     {
+      "who": "guide",
+      "x": 0.2,
+      "pose": "stand",
+      "mood": "happy"
+     }
+    ],
+    "evidence": {
+     "quote": "Wardley Maps gives me inner peace (allowed me to understand why things happen)",
+     "source": "The eleventh shift in Dinis's talk 'Why Wardley Maps changed how I think', Open Security Summit"
+    },
+    "note": "The zen Dinis describes: understanding the landscape.",
+    "source": "Where do you land?, Maps everywhere"
+   },
+   {
+    "kind": "scene",
+    "setting": "none",
+    "caption": "Not just activities",
+    "props": [
+     {
+      "kind": "board",
+      "x": 0.62,
+      "y": 740,
+      "lines": [
+       "content: confidential to CC0",
+       "software: proprietary to public domain",
+       "backups: never to real time",
+       "data: raw text to map"
+      ]
+     }
+    ],
+    "cast": [
+     {
+      "who": "guide",
+      "x": 0.18,
+      "pose": "point",
+      "mood": "determined",
+      "says": "evolution is everywhere"
+     }
+    ],
+    "note": "Four of the rows Dinis added to Wardley's table, shortened to fit the board; the full table is in the article.",
+    "source": "Where do you land?, The four stages are not only for activities"
+   },
+   {
+    "kind": "spectrum",
+    "setting": "none",
+    "caption": "Where do you fit?",
+    "stops": [
+     {
+      "label": "Explorer",
+      "note": "bursting with ideas",
+      "colour": "#fde68a",
+      "badge": "explorer"
+     },
+     {
+      "label": "Villager",
+      "note": "loves the user, ships it",
+      "colour": "#bbf7d0",
+      "badge": "villager"
+     },
+     {
+      "label": "Town planner",
+      "note": "the details, at scale",
+      "colour": "#bfdbfe",
+      "badge": "town-planner"
+     }
+    ],
+    "cast": [
+     {
+      "who": "zara",
+      "x": 0.18,
+      "pose": "wave",
+      "mood": "happy"
+     },
+     {
+      "who": "priya",
+      "x": 0.5,
+      "pose": "stand",
+      "mood": "happy"
+     },
+     {
+      "who": "tomas",
+      "x": 0.82,
+      "pose": "stand",
+      "mood": "thinking",
+      "flip": true
+     }
+    ],
+    "note": "Wardley's three, as personalities: the reader's first question about themselves.",
+    "source": "Where do you land?, Where do you fit?"
+   },
+   {
+    "kind": "scene",
+    "setting": "none",
+    "caption": "The explorer",
+    "props": [
+     {
+      "kind": "laptop",
+      "x": 0.42,
+      "y": 700
+     },
+     {
+      "kind": "desk",
+      "x": 0.42,
+      "y": 712
+     }
+    ],
+    "cast": [
+     {
+      "who": "zara",
+      "x": 0.2,
+      "pose": "arms-up",
+      "mood": "happy",
+      "says": "It works! Right, that's boring now. Next."
+     },
+     {
+      "who": "guide",
+      "x": 0.8,
+      "pose": "point",
+      "mood": "happy",
+      "flip": true,
+      "says": "Failure is just an experiment, something you learn from.",
+      "max": 22
+     }
+    ],
+    "note": "Ideas, experiments, the Lego bricks rather than the Lego; change is natural.",
+    "source": "Where do you land?, The explorer"
+   },
+   {
+    "kind": "scene",
+    "setting": "office",
+    "caption": "The villager",
+    "props": [
+     {
+      "kind": "laptop",
+      "x": 0.42,
+      "y": 700
+     },
+     {
+      "kind": "desk",
+      "x": 0.42,
+      "y": 712
+     }
+    ],
+    "cast": [
+     {
+      "who": "priya",
+      "x": 0.2,
+      "pose": "point",
+      "mood": "determined",
+      "says": "Does it make my team's day easier? Then ship it."
+     },
+     {
+      "who": "guide",
+      "x": 0.8,
+      "pose": "stand",
+      "mood": "happy",
+      "flip": true,
+      "says": "The first version just has to work. The second version has to be designed.",
+      "max": 22
+     }
+    ],
+    "note": "In the middle of the user's problem; packaging, shipping, simplicity, design.",
+    "source": "Where do you land?, The villager"
+   },
+   {
+    "kind": "scene",
+    "setting": "none",
+    "caption": "The town planner",
+    "props": [
+     {
+      "kind": "laptop",
+      "x": 0.42,
+      "y": 700
+     },
+     {
+      "kind": "desk",
+      "x": 0.42,
+      "y": 712
+     }
+    ],
+    "cast": [
+     {
+      "who": "tomas",
+      "x": 0.2,
+      "pose": "point",
+      "mood": "happy",
+      "says": "Found it. One missing comma."
+     },
+     {
+      "who": "guide",
+      "x": 0.8,
+      "pose": "stand",
+      "mood": "happy",
+      "flip": true,
+      "says": "boring is good"
+     }
+    ],
+    "note": "Attention to detail, marginal gains, scale; Dinis's friend's phrase.",
+    "source": "Where do you land?, The town planner"
+   },
+   {
+    "kind": "punchline",
+    "setting": "none",
+    "punchline": "they know they have done their job right when nothing goes wrong",
+    "cast": [
+     {
+      "who": "tomas",
+      "x": 0.18,
+      "pose": "stand",
+      "mood": "determined"
+     }
+    ],
+    "note": "The town planner's invisibility, in Dinis's words.",
+    "source": "Where do you land?, The town planner"
+   },
+   {
+    "kind": "scene",
+    "setting": "none",
+    "caption": "A centre of gravity, not a box",
+    "cast": [
+     {
+      "who": "zara",
+      "x": 0.14,
+      "pose": "think",
+      "mood": "thinking"
+     },
+     {
+      "who": "priya",
+      "x": 0.36,
+      "pose": "think",
+      "mood": "thinking"
+     },
+     {
+      "who": "tomas",
+      "x": 0.58,
+      "pose": "think",
+      "mood": "thinking"
+     },
+     {
+      "who": "guide",
+      "x": 0.84,
+      "pose": "point",
+      "mood": "happy",
+      "flip": true,
+      "says": "what makes you lose sense of time?"
+     }
+    ],
+    "note": "Some people play at several levels; the centre moves over a career; the test is where time flies.",
+    "source": "Where do you land?, Where do you fit?"
+   },
+   {
+    "kind": "scene",
+    "setting": "classroom",
+    "caption": "Different skills, different learning paths",
+    "cast": [
+     {
+      "who": "zara",
+      "x": 0.18,
+      "pose": "point",
+      "mood": "happy",
+      "says": "Teach me to prototype."
+     },
+     {
+      "who": "priya",
+      "x": 0.5,
+      "pose": "point",
+      "mood": "happy",
+      "says": "Teach me to ship."
+     },
+     {
+      "who": "tomas",
+      "x": 0.82,
+      "pose": "point",
+      "mood": "happy",
+      "says": "Teach me to test.",
+      "flip": true
+     }
+    ],
+    "note": "All three are brilliant; they should be learning different things. The editor drafts a learning path for each.",
+    "source": "Where do you land?, A centre of gravity, not a box"
+   },
+   {
+    "kind": "punchline",
+    "setting": "none",
+    "punchline": "Where is your centre of gravity?",
+    "caption": "The question the book asks early, and keeps asking",
+    "cast": [
+     {
+      "who": "zara",
+      "x": 0.12,
+      "pose": "wave",
+      "mood": "happy"
+     },
+     {
+      "who": "priya",
+      "x": 0.27,
+      "pose": "stand",
+      "mood": "happy"
+     },
+     {
+      "who": "tomas",
+      "x": 0.42,
+      "pose": "stand",
+      "mood": "happy"
+     }
+    ],
+    "note": "Every part of the book will carry a badge; the reader learns to see which ones are theirs.",
+    "source": "Where do you land?"
+   }
+  ]
+ },
+ "cast": {
+  "what": "The cast of the storyboards for Generation Z Developers and its second edition, Generation ZX Developers (GenAI Startup Edition), v0.1, proposed by gen-z.journalist on 18 October 2026 for Dinis to accept, change or replace; Marta, the Generation X founder, was added on 19 October 2026 and is still a proposal. Characters are drawn programmatically by assets/storyboard.js from 'look'; nothing here is an image. Each human with a 'gravity' wears its badge (explorer, villager, town-planner), black and white, by their name: a centre of gravity, not a box, as Dinis describes it. Fictional people: each stands for a reader the book is for (the target audience), or for a role in the story. Names chosen to avoid clashing with the riskmandate.ai cast (which has a Maya) and with the word 'developer' (no 'Dev').",
+  "characters": [
+   {
+    "id": "zara",
+    "name": "Zara",
+    "kind": "human",
+    "pronouns": "she/her",
+    "age": 21,
+    "role": "the student: final year, about to look for a first job",
+    "stands_for": "the reader the book is written for; an explorer who does not know it yet",
+    "personality": "curious, quick, online all day; anxious about what she reads on AI and jobs; hates being lectured, loves being shown",
+    "wants": "a first job that is not a dead end",
+    "fears": "that AI took the jobs before she got there",
+    "line": "Everything just works. Why would I learn how?",
+    "look": {
+     "skin": "#8d5524",
+     "hair": "curly",
+     "hairColour": "#1b1b1b",
+     "shirt": "#7c3aed",
+     "trousers": "#1f2937",
+     "accessory": "headphones",
+     "accentColour": "#f59e0b",
+     "height": 0.96
+    },
+    "gravity": "explorer"
+   },
+   {
+    "id": "tomas",
+    "name": "Tomás",
+    "kind": "human",
+    "pronouns": "he/him",
+    "age": 24,
+    "role": "the graduate: a computing degree, working the 2018 way, looking for his next job in Lisbon",
+    "stands_for": "the town planner: attention to detail, pride in getting it right, happiest when nothing goes wrong; working the 2018 way, and about to be outcompeted by people with an agentic workflow",
+    "personality": "diligent, modest, a little proud of doing things by hand; sceptical of shortcuts",
+    "wants": "to be taken seriously",
+    "fears": "that his degree is already out of date",
+    "line": "I have a degree. Isn't that the advantage?",
+    "look": {
+     "skin": "#e0ac69",
+     "hair": "short",
+     "hairColour": "#4a2c17",
+     "shirt": "#0e7490",
+     "trousers": "#334155",
+     "accessory": "glasses",
+     "height": 1.04
+    },
+    "gravity": "town-planner"
+   },
+   {
+    "id": "priya",
+    "name": "Priya",
+    "kind": "human",
+    "pronouns": "she/her",
+    "age": 38,
+    "role": "the career changer: an operations manager who has never written code",
+    "stands_for": "the villager, and everyone else the book is for: she puts herself in the middle of her team's problem, and if anyone who can brief an agent is a developer, so is she",
+    "personality": "practical, impatient with jargon, very good at explaining what she needs",
+    "wants": "to build the tools her team keeps asking IT for",
+    "fears": "looking foolish in front of people half her age",
+    "line": "Is this book just for Gen Z?",
+    "look": {
+     "skin": "#c68642",
+     "hair": "bun",
+     "hairColour": "#2b1a10",
+     "shirt": "#be123c",
+     "trousers": "#1e293b",
+     "accessory": "lanyard",
+     "accentColour": "#1d4ed8",
+     "height": 0.98
+    },
+    "gravity": "villager"
+   },
+   {
+    "id": "sam",
+    "name": "Sam",
+    "kind": "human",
+    "pronouns": "they/them",
+    "age": 45,
+    "role": "the hiring manager",
+    "stands_for": "the town planner, and the question every chapter has to answer: why should I hire you?",
+    "personality": "dry, fair, has read a thousand CVs; impressed by evidence, bored by claims",
+    "wants": "someone who can do one thing better than the team already does",
+    "fears": "hiring a CV instead of a person",
+    "line": "So. Why should we hire you?",
+    "look": {
+     "skin": "#f1c27d",
+     "hair": "bald",
+     "hairColour": "#6b7280",
+     "shirt": "#475569",
+     "trousers": "#111827",
+     "accessory": "glasses",
+     "height": 1.06
+    }
+   },
+   {
+    "id": "marta",
+    "name": "Marta",
+    "kind": "human",
+    "pronouns": "she/her",
+    "age": 54,
+    "role": "the expert founder: twenty-five years as a pharmacist, Generation X, starting a company, and Zara's mother",
+    "stands_for": "the Generation X founder the Gen ZX proposal adds to the readers: the subject-matter expert who now builds the tool herself, with agents, instead of waiting for a team she could never afford",
+    "personality": "knows her field better than any developer she ever briefed; grew up typing programs from magazines into a ZX Spectrum; patient with people, impatient with software",
+    "wants": "to ship the product she has described to vendors for ten years",
+    "fears": "that it is too late for her, and that she will build it and nobody will buy it",
+    "line": "I've been explaining this problem for twenty years. Can I just build it now?",
+    "look": {
+     "skin": "#ffdbac",
+     "hair": "long",
+     "hairColour": "#9ca3af",
+     "shirt": "#b45309",
+     "trousers": "#1f2937",
+     "accessory": "glasses",
+     "height": 1.0
+    },
+    "gravity": "explorer"
+   },
+   {
+    "id": "guide",
+    "name": "The Guide",
+    "kind": "human",
+    "pronouns": "they/them",
+    "age": null,
+    "role": "the voice of the book: says what the book says, in its words",
+    "stands_for": "the author. Whether the Guide is drawn as Dinis, and how, is Dinis's decision; until then a generic figure",
+    "personality": "energetic, direct, generous with what they know; asks more than they tell",
+    "wants": "the reader to act, not to agree",
+    "fears": "a reader who closes the book and changes nothing",
+    "line": "Act like you are part of the company.",
+    "look": {
+     "skin": "#f1c27d",
+     "hair": "short",
+     "hairColour": "#9ca3af",
+     "shirt": "#15803d",
+     "trousers": "#1f2937",
+     "accessory": "none",
+     "height": 1.02
+    }
+   },
+   {
+    "id": "agent",
+    "name": "The Agent",
+    "kind": "agent",
+    "pronouns": "it/its",
+    "age": null,
+    "role": "the reader's AI agent",
+    "stands_for": "the agentic workflow the second edition is about: a very capable, very literal colleague",
+    "personality": "eager, fast, polite, takes everything literally; needs a brief, a boundary and a reviewer",
+    "wants": "a clear brief",
+    "fears": "nothing, which is the problem",
+    "line": "Shall I draft that for you?",
+    "look": {
+     "colour": "#0f766e"
+    }
+   }
+  ]
+ }
+}

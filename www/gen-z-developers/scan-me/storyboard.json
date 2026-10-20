@@ -1,0 +1,210 @@
+{
+ "slug": "scan-me",
+ "title": "Scan me",
+ "subtitle": "Marta meets a word she does not know on page 12, and a code in the margin. 6 panels.",
+ "status": "draft",
+ "book_version": "v2.0.0-rc2 (a release candidate)",
+ "by": "gen-z.journalist, 19 October 2026, from Dinis's third paper review",
+ "quote_source": "admin/content/agent-articles/12__rc2-on-paper-pages-10-to-13.md",
+ "rule": "Every line the Guide says is from the agent article 'RC2 on paper, part 3', word for word, and each is Dinis's note from the printed page; the build checks it. Marta's lines are the strip's, marked not_a_quote.",
+ "scenes": [
+  {
+   "kind": "cover",
+   "title": "Scan me",
+   "subtitle": "A strip about a page that needs more room.",
+   "cast": [
+    {
+     "who": "marta",
+     "pose": "think",
+     "mood": "thinking"
+    },
+    {
+     "who": "guide",
+     "pose": "wave",
+     "mood": "happy"
+    },
+    {
+     "who": "agent",
+     "pose": "point",
+     "mood": "happy"
+    }
+   ],
+   "note": "The third pacing experiment: the cut between the page and the phone, the way attention actually moves.",
+   "source": "RC2 on paper, part 3"
+  },
+  {
+   "kind": "scene",
+   "setting": "none",
+   "caption": "On the page",
+   "props": [
+    {
+     "kind": "desk",
+     "x": 0.3,
+     "y": 640
+    },
+    {
+     "kind": "book",
+     "x": 0.3,
+     "y": 640,
+     "label": "printed",
+     "colour": "#e5e7eb"
+    },
+    {
+     "kind": "board",
+     "x": 0.72,
+     "y": 620,
+     "lines": [
+      "In Custom UIs are not",
+      "the exception I argued",
+      "that this is backwards ..."
+     ]
+    }
+   ],
+   "cast": [
+    {
+     "who": "marta",
+     "pose": "think",
+     "mood": "thinking",
+     "x": 0.16,
+     "says": "What's a UI?"
+    }
+   ],
+   "note": "Page 12: a term the reader may not know (note 69).",
+   "source": "RC2 on paper, part 3, Page 12",
+   "not_a_quote": true
+  },
+  {
+   "kind": "scene",
+   "setting": "none",
+   "caption": "In the margin",
+   "cast": [
+    {
+     "who": "marta",
+     "pose": "shrug",
+     "mood": "worried",
+     "x": 0.22
+    },
+    {
+     "who": "guide",
+     "pose": "point",
+     "mood": "happy",
+     "x": 0.76,
+     "says": "most readers don't know what UI or interface is",
+     "flip": true,
+     "max": 20
+    }
+   ],
+   "note": "The Guide speaks the pen's note, word for word.",
+   "source": "RC2 on paper, part 3, Page 12"
+  },
+  {
+   "kind": "scene",
+   "setting": "none",
+   "caption": "Say it first",
+   "props": [
+    {
+     "kind": "desk",
+     "x": 0.3,
+     "y": 640
+    },
+    {
+     "kind": "book",
+     "x": 0.3,
+     "y": 640,
+     "label": "printed",
+     "colour": "#e5e7eb"
+    },
+    {
+     "kind": "board",
+     "x": 0.72,
+     "y": 620,
+     "lines": [
+      "A UI is the dashboard:",
+      "the program is the engine.",
+      "",
+      "[QR]  /q/custom-ui"
+     ]
+    }
+   ],
+   "cast": [
+    {
+     "who": "marta",
+     "pose": "stand",
+     "mood": "happy",
+     "x": 0.16
+    },
+    {
+     "who": "guide",
+     "pose": "point",
+     "mood": "happy",
+     "x": 0.47,
+     "says": "say it first, then link",
+     "max": 16
+    }
+   ],
+   "note": "Note 74 and the margin sketch: the concept in one line, then a code for more.",
+   "source": "RC2 on paper, part 3, Page 12"
+  },
+  {
+   "kind": "scene",
+   "setting": "none",
+   "caption": "The cut",
+   "props": [
+    {
+     "kind": "phone",
+     "x": 0.28,
+     "y": 470
+    },
+    {
+     "kind": "board",
+     "x": 0.72,
+     "y": 620,
+     "lines": [
+      "Custom UIs are not the exception",
+      "the whole article,",
+      "on the book's site"
+     ]
+    }
+   ],
+   "cast": [
+    {
+     "who": "marta",
+     "pose": "arms-up",
+     "mood": "surprised",
+     "x": 0.16,
+     "says": "Oh. The whole article."
+    }
+   ],
+   "note": "From the page to the phone and back: the code takes the reader where the page has no room.",
+   "source": "RC2 on paper, part 3, The margin, sketched",
+   "not_a_quote": true
+  },
+  {
+   "kind": "punchline",
+   "setting": "none",
+   "punchline": "The page says it. The code says more.",
+   "cast": [
+    {
+     "who": "marta",
+     "pose": "arms-up",
+     "mood": "happy",
+     "x": 0.14
+    },
+    {
+     "who": "agent",
+     "pose": "wave",
+     "mood": "happy",
+     "x": 0.29
+    },
+    {
+     "who": "guide",
+     "pose": "wave",
+     "mood": "happy",
+     "x": 0.44
+    }
+   ],
+   "note": "Paper that talks both ways: out through the codes, back through the pen.",
+   "source": "RC2 on paper, part 3"
+  }
+ ]
+}

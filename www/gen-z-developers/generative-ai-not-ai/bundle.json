@@ -1,0 +1,524 @@
+{
+ "what": "A storyboard with its cast, for an embed: <sg-storyboard src=\"https://storyboards.sgit.ai/gen-z-developers/generative-ai-not-ai/bundle.json\">. The storyboard is gen-z-developers/generative-ai-not-ai/storyboard.json, unchanged.",
+ "series": "gen-z-developers",
+ "packs": [],
+ "storyboard": {
+  "slug": "generative-ai-not-ai",
+  "title": "Generative AI, not AI",
+  "subtitle": "What the book means by generative AI, how a language model works in plain words, where hallucinations come from, and where Dinis was corrected. 12 panels.",
+  "status": "draft",
+  "book_version": "v1.0.0 is the only official version; the second edition is in release candidates (rc1 and rc2 frozen)",
+  "by": "gen-z.journalist, 18 October 2026, from Dinis's memo on generative AI",
+  "quote_source": "admin/content/articles/11__generative-ai-not-ai.md",
+  "rule": "Every line the Guide says, and every quote card, is from the article 'Generative AI, not AI', word for word; the build checks it. The next-word probabilities in panel 4 are illustrative.",
+  "scenes": [
+   {
+    "kind": "cover",
+    "title": "Generative AI, not AI",
+    "subtitle": "The technology this book is about is the one that generates.",
+    "cast": [
+     {
+      "who": "agent",
+      "pose": "wave",
+      "mood": "happy"
+     },
+     {
+      "who": "zara",
+      "pose": "think",
+      "mood": "thinking"
+     },
+     {
+      "who": "guide",
+      "pose": "point",
+      "mood": "happy"
+     }
+    ],
+    "note": "Being exact about the word.",
+    "source": "Generative AI, not AI"
+   },
+   {
+    "kind": "spectrum",
+    "setting": "none",
+    "caption": "AI has become a huge bucket, and to be honest the word gets abused a lot.",
+    "stops": [
+     {
+      "label": "AI",
+      "note": "the whole field, rules included",
+      "colour": "#e5e7eb"
+     },
+     {
+      "label": "Machine learning",
+      "note": "learns from data",
+      "colour": "#bfdbfe"
+     },
+     {
+      "label": "Deep learning",
+      "note": "many layers",
+      "colour": "#bbf7d0"
+     },
+     {
+      "label": "Generative AI",
+      "note": "produces new content",
+      "colour": "#fde68a"
+     }
+    ],
+    "cast": [
+     {
+      "who": "guide",
+      "x": 0.5,
+      "pose": "point",
+      "mood": "determined"
+     }
+    ],
+    "note": "Each is a subset of the one before; the book is about the last.",
+    "source": "Generative AI, not AI, Where I was corrected"
+   },
+   {
+    "kind": "scene",
+    "setting": "none",
+    "caption": "What makes it generative",
+    "cast": [
+     {
+      "who": "agent",
+      "x": 0.3,
+      "pose": "wave",
+      "mood": "happy"
+     },
+     {
+      "who": "guide",
+      "x": 0.75,
+      "pose": "point",
+      "mood": "happy",
+      "flip": true,
+      "says": "it generates the output"
+     }
+    ],
+    "note": "Data in, an internal representation, an output recreated from it.",
+    "source": "Generative AI, not AI, How I understand it"
+   },
+   {
+    "kind": "scene",
+    "setting": "none",
+    "caption": "Predicting the next word",
+    "props": [
+     {
+      "kind": "board",
+      "x": 0.5,
+      "y": 620,
+      "lines": [
+       "The sun sets behind the ...",
+       "   mountains  62%",
+       "   hills      21%",
+       "   sea         9%"
+      ]
+     }
+    ],
+    "cast": [
+     {
+      "who": "agent",
+      "x": 0.14,
+      "pose": "think",
+      "mood": "thinking"
+     },
+     {
+      "who": "guide",
+      "x": 0.86,
+      "pose": "point",
+      "mood": "happy",
+      "flip": true,
+      "says": "what happens is that it predicts the next word",
+      "max": 20
+     }
+    ],
+    "note": "The percentages are illustrative. Strictly, the next token: a piece of a word.",
+    "source": "Generative AI, not AI, How I understand it"
+   },
+   {
+    "kind": "scene",
+    "setting": "none",
+    "caption": "Why a better prompt helps",
+    "props": [
+     {
+      "kind": "phone",
+      "x": 0.3,
+      "y": 640
+     }
+    ],
+    "cast": [
+     {
+      "who": "zara",
+      "x": 0.26,
+      "pose": "point",
+      "mood": "determined",
+      "says": "Here's ten minutes of context."
+     },
+     {
+      "who": "guide",
+      "x": 0.76,
+      "pose": "stand",
+      "mood": "happy",
+      "flip": true,
+      "says": "the better your prompt, the better the output"
+     }
+    ],
+    "note": "The prompt steers which concepts the model draws on; it does not change the model.",
+    "source": "Generative AI, not AI, How I understand it"
+   },
+   {
+    "kind": "scene",
+    "setting": "none",
+    "caption": "Where hallucinations come from",
+    "cast": [
+     {
+      "who": "agent",
+      "x": 0.18,
+      "pose": "point",
+      "mood": "happy",
+      "says": "Your 2018 book has a chapter on Kotlin."
+     },
+     {
+      "who": "zara",
+      "x": 0.5,
+      "pose": "shrug",
+      "mood": "surprised"
+     },
+     {
+      "who": "guide",
+      "x": 0.84,
+      "pose": "stand",
+      "mood": "thinking",
+      "flip": true,
+      "says": "Just about everything is connected to everything",
+      "max": 20
+     }
+    ],
+    "note": "A plausible connection, stated with confidence; the text you give the model says which connections hold.",
+    "source": "Generative AI, not AI, Where hallucinations come from"
+   },
+   {
+    "kind": "evidence",
+    "setting": "none",
+    "caption": "Lisbon, June 2024",
+    "cast": [
+     {
+      "who": "guide",
+      "x": 0.2,
+      "pose": "point",
+      "mood": "happy"
+     }
+    ],
+    "evidence": {
+     "quote": "Are a FEATURE when creating content and when we want creativity, But are a BUG and PROBLEM when we want facts, evident and trust",
+     "source": "Dinis's talk at OWASP Global AppSec EU, as the newsroom recorded it"
+    },
+    "note": "Hallucinations, as Dinis put it on a slide; quoted as the slide wrote it.",
+    "source": "Generative AI, not AI, Where hallucinations come from"
+   },
+   {
+    "kind": "scene",
+    "setting": "none",
+    "caption": "The image that made it click",
+    "props": [
+     {
+      "kind": "board",
+      "x": 0.5,
+      "y": 680,
+      "lines": [
+       "Van Gogh's The Starry Night,",
+       "  extended on every side",
+       "  = more swirls, more stars,",
+       "    the same brushwork"
+      ]
+     }
+    ],
+    "cast": [
+     {
+      "who": "guide",
+      "x": 0.14,
+      "pose": "point",
+      "mood": "happy"
+     },
+     {
+      "who": "zara",
+      "x": 0.86,
+      "pose": "arms-up",
+      "mood": "surprised",
+      "flip": true,
+      "says": "So text works the same way?"
+     }
+    ],
+    "note": "Slide 70 of Dinis's Lisbon keynote (28 June 2024), 'The image that caused my GenAI Paradigm Shift': Lee Brimelow's post, using Generative Fill and Adobe Firefly to extend The Starry Night.",
+    "source": "Generative AI, not AI, The image that made it click; Deterministic GenAI Output With Provenance, slide 70"
+   },
+   {
+    "kind": "scene",
+    "setting": "none",
+    "caption": "And then text",
+    "cast": [
+     {
+      "who": "guide",
+      "x": 0.3,
+      "pose": "point",
+      "mood": "determined",
+      "says": "that is exactly what happens with text"
+     },
+     {
+      "who": "agent",
+      "x": 0.75,
+      "pose": "wave",
+      "mood": "happy",
+      "flip": true
+     }
+    ],
+    "note": "Language models doing with words what image models do with pixels; the mechanisms differ, the idea of learned structure does not.",
+    "source": "Generative AI, not AI, The image that made it click"
+   },
+   {
+    "kind": "evidence",
+    "setting": "none",
+    "caption": "Corrected: hallucinations have a second cause",
+    "cast": [
+     {
+      "who": "agent",
+      "x": 0.2,
+      "pose": "think",
+      "mood": "thinking"
+     }
+    ],
+    "evidence": {
+     "quote": "a guess is sometimes right, while an honest \"I don't know\" scores nothing",
+     "source": "Why Language Models Hallucinate, Kalai, Nachum, Vempala and Zhang, September 2025, as the article puts it"
+    },
+    "note": "Training and evaluation reward guessing.",
+    "source": "Generative AI, not AI, Where I was corrected"
+   },
+   {
+    "kind": "scene",
+    "setting": "none",
+    "caption": "Corrected: what is actually inside",
+    "cast": [
+     {
+      "who": "agent",
+      "x": 0.26,
+      "pose": "point",
+      "mood": "happy",
+      "says": "Inside me: numbers, layers and attention. No stored graph."
+     },
+     {
+      "who": "guide",
+      "x": 0.76,
+      "pose": "stand",
+      "mood": "happy",
+      "flip": true,
+      "says": "My graph is a metaphor, and the book should say so."
+     }
+    ],
+    "note": "Keep both in the book: the picture, and what is really there.",
+    "source": "Generative AI, not AI, Where I was corrected"
+   },
+   {
+    "kind": "spectrum",
+    "setting": "none",
+    "caption": "A note on the name",
+    "stops": [
+     {
+      "label": "Gen Z",
+      "note": "born after 1996",
+      "colour": "#ddd6fe"
+     },
+     {
+      "label": "GenAI",
+      "note": "the edition's subtitle",
+      "colour": "#fde68a"
+     },
+     {
+      "label": "Gen Alpha",
+      "note": "born 2010 to 2024",
+      "colour": "#bbf7d0"
+     },
+     {
+      "label": "Gen Beta",
+      "note": "from 2025",
+      "colour": "#bfdbfe"
+     }
+    ],
+    "cast": [
+     {
+      "who": "zara",
+      "x": 0.2,
+      "pose": "wave",
+      "mood": "happy"
+     },
+     {
+      "who": "priya",
+      "x": 0.8,
+      "pose": "think",
+      "mood": "thinking",
+      "flip": true
+     }
+    ],
+    "note": "Gen Z as the 2018 book defined it; Alpha and Beta as Mark McCrindle names them. This was a question for the title interview; Dinis has since decided it: Gen Z Developers (GenAI Edition) in decision 010, then Generation ZX Developers (GenAI Startup Edition) in decision 014, GenAI as one word.",
+    "source": "Generative AI, not AI, A note on the name"
+   }
+  ]
+ },
+ "cast": {
+  "what": "The cast of the storyboards for Generation Z Developers and its second edition, Generation ZX Developers (GenAI Startup Edition), v0.1, proposed by gen-z.journalist on 18 October 2026 for Dinis to accept, change or replace; Marta, the Generation X founder, was added on 19 October 2026 and is still a proposal. Characters are drawn programmatically by assets/storyboard.js from 'look'; nothing here is an image. Each human with a 'gravity' wears its badge (explorer, villager, town-planner), black and white, by their name: a centre of gravity, not a box, as Dinis describes it. Fictional people: each stands for a reader the book is for (the target audience), or for a role in the story. Names chosen to avoid clashing with the riskmandate.ai cast (which has a Maya) and with the word 'developer' (no 'Dev').",
+  "characters": [
+   {
+    "id": "zara",
+    "name": "Zara",
+    "kind": "human",
+    "pronouns": "she/her",
+    "age": 21,
+    "role": "the student: final year, about to look for a first job",
+    "stands_for": "the reader the book is written for; an explorer who does not know it yet",
+    "personality": "curious, quick, online all day; anxious about what she reads on AI and jobs; hates being lectured, loves being shown",
+    "wants": "a first job that is not a dead end",
+    "fears": "that AI took the jobs before she got there",
+    "line": "Everything just works. Why would I learn how?",
+    "look": {
+     "skin": "#8d5524",
+     "hair": "curly",
+     "hairColour": "#1b1b1b",
+     "shirt": "#7c3aed",
+     "trousers": "#1f2937",
+     "accessory": "headphones",
+     "accentColour": "#f59e0b",
+     "height": 0.96
+    },
+    "gravity": "explorer"
+   },
+   {
+    "id": "tomas",
+    "name": "Tomás",
+    "kind": "human",
+    "pronouns": "he/him",
+    "age": 24,
+    "role": "the graduate: a computing degree, working the 2018 way, looking for his next job in Lisbon",
+    "stands_for": "the town planner: attention to detail, pride in getting it right, happiest when nothing goes wrong; working the 2018 way, and about to be outcompeted by people with an agentic workflow",
+    "personality": "diligent, modest, a little proud of doing things by hand; sceptical of shortcuts",
+    "wants": "to be taken seriously",
+    "fears": "that his degree is already out of date",
+    "line": "I have a degree. Isn't that the advantage?",
+    "look": {
+     "skin": "#e0ac69",
+     "hair": "short",
+     "hairColour": "#4a2c17",
+     "shirt": "#0e7490",
+     "trousers": "#334155",
+     "accessory": "glasses",
+     "height": 1.04
+    },
+    "gravity": "town-planner"
+   },
+   {
+    "id": "priya",
+    "name": "Priya",
+    "kind": "human",
+    "pronouns": "she/her",
+    "age": 38,
+    "role": "the career changer: an operations manager who has never written code",
+    "stands_for": "the villager, and everyone else the book is for: she puts herself in the middle of her team's problem, and if anyone who can brief an agent is a developer, so is she",
+    "personality": "practical, impatient with jargon, very good at explaining what she needs",
+    "wants": "to build the tools her team keeps asking IT for",
+    "fears": "looking foolish in front of people half her age",
+    "line": "Is this book just for Gen Z?",
+    "look": {
+     "skin": "#c68642",
+     "hair": "bun",
+     "hairColour": "#2b1a10",
+     "shirt": "#be123c",
+     "trousers": "#1e293b",
+     "accessory": "lanyard",
+     "accentColour": "#1d4ed8",
+     "height": 0.98
+    },
+    "gravity": "villager"
+   },
+   {
+    "id": "sam",
+    "name": "Sam",
+    "kind": "human",
+    "pronouns": "they/them",
+    "age": 45,
+    "role": "the hiring manager",
+    "stands_for": "the town planner, and the question every chapter has to answer: why should I hire you?",
+    "personality": "dry, fair, has read a thousand CVs; impressed by evidence, bored by claims",
+    "wants": "someone who can do one thing better than the team already does",
+    "fears": "hiring a CV instead of a person",
+    "line": "So. Why should we hire you?",
+    "look": {
+     "skin": "#f1c27d",
+     "hair": "bald",
+     "hairColour": "#6b7280",
+     "shirt": "#475569",
+     "trousers": "#111827",
+     "accessory": "glasses",
+     "height": 1.06
+    }
+   },
+   {
+    "id": "marta",
+    "name": "Marta",
+    "kind": "human",
+    "pronouns": "she/her",
+    "age": 54,
+    "role": "the expert founder: twenty-five years as a pharmacist, Generation X, starting a company, and Zara's mother",
+    "stands_for": "the Generation X founder the Gen ZX proposal adds to the readers: the subject-matter expert who now builds the tool herself, with agents, instead of waiting for a team she could never afford",
+    "personality": "knows her field better than any developer she ever briefed; grew up typing programs from magazines into a ZX Spectrum; patient with people, impatient with software",
+    "wants": "to ship the product she has described to vendors for ten years",
+    "fears": "that it is too late for her, and that she will build it and nobody will buy it",
+    "line": "I've been explaining this problem for twenty years. Can I just build it now?",
+    "look": {
+     "skin": "#ffdbac",
+     "hair": "long",
+     "hairColour": "#9ca3af",
+     "shirt": "#b45309",
+     "trousers": "#1f2937",
+     "accessory": "glasses",
+     "height": 1.0
+    },
+    "gravity": "explorer"
+   },
+   {
+    "id": "guide",
+    "name": "The Guide",
+    "kind": "human",
+    "pronouns": "they/them",
+    "age": null,
+    "role": "the voice of the book: says what the book says, in its words",
+    "stands_for": "the author. Whether the Guide is drawn as Dinis, and how, is Dinis's decision; until then a generic figure",
+    "personality": "energetic, direct, generous with what they know; asks more than they tell",
+    "wants": "the reader to act, not to agree",
+    "fears": "a reader who closes the book and changes nothing",
+    "line": "Act like you are part of the company.",
+    "look": {
+     "skin": "#f1c27d",
+     "hair": "short",
+     "hairColour": "#9ca3af",
+     "shirt": "#15803d",
+     "trousers": "#1f2937",
+     "accessory": "none",
+     "height": 1.02
+    }
+   },
+   {
+    "id": "agent",
+    "name": "The Agent",
+    "kind": "agent",
+    "pronouns": "it/its",
+    "age": null,
+    "role": "the reader's AI agent",
+    "stands_for": "the agentic workflow the second edition is about: a very capable, very literal colleague",
+    "personality": "eager, fast, polite, takes everything literally; needs a brief, a boundary and a reviewer",
+    "wants": "a clear brief",
+    "fears": "nothing, which is the problem",
+    "line": "Shall I draft that for you?",
+    "look": {
+     "colour": "#0f766e"
+    }
+   }
+  ]
+ }
+}

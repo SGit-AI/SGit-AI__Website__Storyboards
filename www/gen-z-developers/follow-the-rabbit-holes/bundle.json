@@ -1,0 +1,484 @@
+{
+ "what": "A storyboard with its cast, for an embed: <sg-storyboard src=\"https://storyboards.sgit.ai/gen-z-developers/follow-the-rabbit-holes/bundle.json\">. The storyboard is gen-z-developers/follow-the-rabbit-holes/storyboard.json, unchanged.",
+ "series": "gen-z-developers",
+ "packs": [],
+ "storyboard": {
+  "slug": "follow-the-rabbit-holes",
+  "title": "Follow the rabbit holes",
+  "subtitle": "Provenance, explainability and asking for the evidence; and being the best-prepared person in the room. 10 panels.",
+  "status": "draft",
+  "book_version": "v1.0.0 is the only official version; the second edition is in release candidates (rc1 and rc2 frozen)",
+  "by": "gen-z.journalist, 18 October 2026, from Dinis's memo on questioning and evidence",
+  "quote_source": "admin/content/articles/12__follow-the-rabbit-holes.md",
+  "rule": "Every line the Guide says, and every quote card, is from the article 'Follow the rabbit holes', word for word; the build checks it.",
+  "scenes": [
+   {
+    "kind": "cover",
+    "title": "Follow the rabbit holes",
+    "subtitle": "Never take it at face value.",
+    "cast": [
+     {
+      "who": "zara",
+      "pose": "point",
+      "mood": "determined"
+     },
+     {
+      "who": "agent",
+      "pose": "think",
+      "mood": "thinking"
+     },
+     {
+      "who": "guide",
+      "pose": "stand",
+      "mood": "happy"
+     }
+    ],
+    "note": "Questioning and evidence.",
+    "source": "Follow the rabbit holes"
+   },
+   {
+    "kind": "scene",
+    "setting": "none",
+    "caption": "People underestimate them",
+    "props": [
+     {
+      "kind": "phone",
+      "x": 0.3,
+      "y": 640
+     }
+    ],
+    "cast": [
+     {
+      "who": "zara",
+      "x": 0.26,
+      "pose": "point",
+      "mood": "happy",
+      "says": "Found the original photo. It's from 2019, not today."
+     },
+     {
+      "who": "guide",
+      "x": 0.76,
+      "pose": "stand",
+      "mood": "happy",
+      "flip": true,
+      "says": "They are very good detectives."
+     }
+    ],
+    "note": "Connecting the dots, finding things.",
+    "source": "Follow the rabbit holes, They already have it"
+   },
+   {
+    "kind": "scene",
+    "setting": "night",
+    "caption": "And they care about privacy",
+    "props": [
+     {
+      "kind": "phone",
+      "x": 0.5,
+      "y": 640
+     }
+    ],
+    "cast": [
+     {
+      "who": "zara",
+      "x": 0.46,
+      "pose": "think",
+      "mood": "happy",
+      "says": "Best feature? The picture disappears.",
+      "thinks": true
+     }
+    ],
+    "note": "Snapchat's design, as Dinis saw it with his daughters.",
+    "source": "Follow the rabbit holes, They already have it"
+   },
+   {
+    "kind": "scene",
+    "setting": "none",
+    "caption": "A prompt away",
+    "props": [
+     {
+      "kind": "board",
+      "x": 0.6,
+      "y": 720,
+      "lines": [
+       "a claim",
+       "  -> its source",
+       "    -> the source's source",
+       "      -> the evidence"
+      ]
+     }
+    ],
+    "cast": [
+     {
+      "who": "guide",
+      "x": 0.16,
+      "pose": "point",
+      "mood": "happy",
+      "says": "Following a rabbit hole is now a prompt away."
+     }
+    ],
+    "note": "Provenance and explainability; build your own agents and tools to follow it.",
+    "source": "Follow the rabbit holes, Provenance, explainability and the rabbit holes"
+   },
+   {
+    "kind": "evidence",
+    "setting": "none",
+    "caption": "The newsroom's rule",
+    "cast": [
+     {
+      "who": "agent",
+      "x": 0.2,
+      "pose": "point",
+      "mood": "happy"
+     }
+    ],
+    "evidence": {
+     "quote": "Not found is not false.",
+     "source": "My memory, checked (newsroom)"
+    },
+    "note": "Every claim checked: confirmed, corrected, or not found, and the article says which.",
+    "source": "Follow the rabbit holes, How you can disagree rationally"
+   },
+   {
+    "kind": "scene",
+    "setting": "office",
+    "caption": "How you can disagree rationally",
+    "cast": [
+     {
+      "who": "sam",
+      "x": 0.18,
+      "pose": "shrug",
+      "mood": "thinking",
+      "says": "Are you sure?"
+     },
+     {
+      "who": "priya",
+      "x": 0.48,
+      "pose": "point",
+      "mood": "determined",
+      "says": "Here's the evidence. And here's what we don't know yet."
+     },
+     {
+      "who": "guide",
+      "x": 0.84,
+      "pose": "stand",
+      "mood": "happy",
+      "flip": true,
+      "says": "Sometimes not knowing is a fact."
+     }
+    ],
+    "note": "What is evidence and what is not; what we know and what we do not.",
+    "source": "Follow the rabbit holes, How you can disagree rationally"
+   },
+   {
+    "kind": "spectrum",
+    "setting": "none",
+    "caption": "This article's own rabbit hole",
+    "stops": [
+     {
+      "label": "A link",
+      "note": "shared by Dinis",
+      "colour": "#fde68a"
+     },
+     {
+      "label": "The video",
+      "note": "its real title",
+      "colour": "#fed7aa"
+     },
+     {
+      "label": "Summit 2011",
+      "note": "a session on presenting it",
+      "colour": "#bbf7d0"
+     },
+     {
+      "label": "Blog, 2016",
+      "note": "the full talk, its name",
+      "colour": "#bfdbfe"
+     }
+    ],
+    "cast": [
+     {
+      "who": "agent",
+      "x": 0.35,
+      "pose": "point",
+      "mood": "happy"
+     },
+     {
+      "who": "guide",
+      "x": 0.7,
+      "pose": "stand",
+      "mood": "happy",
+      "flip": true
+     }
+    ],
+    "note": "Finding David Rice's keynote while the article was written: the agent followed the link to the video and the 2011 Summit session; Dinis's 2016 post, The Pollution Analogy, confirmed it is Upon the Threshold of Opportunity.",
+    "source": "Follow the rabbit holes, Provenance, explainability and the rabbit holes"
+   },
+   {
+    "kind": "scene",
+    "setting": "none",
+    "caption": "Be the best-prepared person in the room",
+    "props": [
+     {
+      "kind": "board",
+      "x": 0.5,
+      "y": 700,
+      "lines": [
+       "my brief:",
+       "  who they are, what they want",
+       "  what I want, what I know",
+       "  what I don't know",
+       "  the follow-ups"
+      ]
+     }
+    ],
+    "cast": [
+     {
+      "who": "tomas",
+      "x": 0.14,
+      "pose": "point",
+      "mood": "determined"
+     },
+     {
+      "who": "guide",
+      "x": 0.86,
+      "pose": "stand",
+      "mood": "happy",
+      "flip": true,
+      "says": "These days there is no excuse not to be.",
+      "max": 18
+     }
+    ],
+    "note": "Briefings, pre-briefings, briefings on who you meet, follow-ups: overhead once, now scalable.",
+    "source": "Follow the rabbit holes, Be the best-prepared person in the room"
+   },
+   {
+    "kind": "evidence",
+    "setting": "none",
+    "caption": "And answer every finding",
+    "cast": [
+     {
+      "who": "tomas",
+      "x": 0.2,
+      "pose": "stand",
+      "mood": "determined"
+     }
+    ],
+    "evidence": {
+     "quote": "A finding with no answer is just a complaint.",
+     "source": "Reviews on the record (newsroom)"
+    },
+    "note": "The other half of following the evidence: answering it.",
+    "source": "Follow the rabbit holes, How you can disagree rationally"
+   },
+   {
+    "kind": "spectrum",
+    "setting": "none",
+    "caption": "A hands-on part, for 2026",
+    "stops": [
+     {
+      "label": "Workflow",
+      "note": "an agentic workflow from zero",
+      "colour": "#fde68a"
+     },
+     {
+      "label": "Images",
+      "note": "and infographics",
+      "colour": "#fed7aa"
+     },
+     {
+      "label": "Storyboards",
+      "note": "drawn by code",
+      "colour": "#bbf7d0"
+     },
+     {
+      "label": "Meetings",
+      "note": "briefs and follow-ups",
+      "colour": "#bfdbfe"
+     },
+     {
+      "label": "Publishing",
+      "note": "your own newsroom",
+      "colour": "#ddd6fe"
+     }
+    ],
+    "cast": [
+     {
+      "who": "zara",
+      "x": 0.2,
+      "pose": "wave",
+      "mood": "happy"
+     },
+     {
+      "who": "priya",
+      "x": 0.8,
+      "pose": "point",
+      "mood": "happy",
+      "flip": true
+     }
+    ],
+    "note": "Proposed here as practical workflows, dated 2026, renewed each year; Dinis put the hands-on part in the release candidate (decision 013). rc2's map has eleven hands-on chapters; five of them are here.",
+    "source": "Follow the rabbit holes, A hands-on part, for 2026"
+   }
+  ]
+ },
+ "cast": {
+  "what": "The cast of the storyboards for Generation Z Developers and its second edition, Generation ZX Developers (GenAI Startup Edition), v0.1, proposed by gen-z.journalist on 18 October 2026 for Dinis to accept, change or replace; Marta, the Generation X founder, was added on 19 October 2026 and is still a proposal. Characters are drawn programmatically by assets/storyboard.js from 'look'; nothing here is an image. Each human with a 'gravity' wears its badge (explorer, villager, town-planner), black and white, by their name: a centre of gravity, not a box, as Dinis describes it. Fictional people: each stands for a reader the book is for (the target audience), or for a role in the story. Names chosen to avoid clashing with the riskmandate.ai cast (which has a Maya) and with the word 'developer' (no 'Dev').",
+  "characters": [
+   {
+    "id": "zara",
+    "name": "Zara",
+    "kind": "human",
+    "pronouns": "she/her",
+    "age": 21,
+    "role": "the student: final year, about to look for a first job",
+    "stands_for": "the reader the book is written for; an explorer who does not know it yet",
+    "personality": "curious, quick, online all day; anxious about what she reads on AI and jobs; hates being lectured, loves being shown",
+    "wants": "a first job that is not a dead end",
+    "fears": "that AI took the jobs before she got there",
+    "line": "Everything just works. Why would I learn how?",
+    "look": {
+     "skin": "#8d5524",
+     "hair": "curly",
+     "hairColour": "#1b1b1b",
+     "shirt": "#7c3aed",
+     "trousers": "#1f2937",
+     "accessory": "headphones",
+     "accentColour": "#f59e0b",
+     "height": 0.96
+    },
+    "gravity": "explorer"
+   },
+   {
+    "id": "tomas",
+    "name": "Tomás",
+    "kind": "human",
+    "pronouns": "he/him",
+    "age": 24,
+    "role": "the graduate: a computing degree, working the 2018 way, looking for his next job in Lisbon",
+    "stands_for": "the town planner: attention to detail, pride in getting it right, happiest when nothing goes wrong; working the 2018 way, and about to be outcompeted by people with an agentic workflow",
+    "personality": "diligent, modest, a little proud of doing things by hand; sceptical of shortcuts",
+    "wants": "to be taken seriously",
+    "fears": "that his degree is already out of date",
+    "line": "I have a degree. Isn't that the advantage?",
+    "look": {
+     "skin": "#e0ac69",
+     "hair": "short",
+     "hairColour": "#4a2c17",
+     "shirt": "#0e7490",
+     "trousers": "#334155",
+     "accessory": "glasses",
+     "height": 1.04
+    },
+    "gravity": "town-planner"
+   },
+   {
+    "id": "priya",
+    "name": "Priya",
+    "kind": "human",
+    "pronouns": "she/her",
+    "age": 38,
+    "role": "the career changer: an operations manager who has never written code",
+    "stands_for": "the villager, and everyone else the book is for: she puts herself in the middle of her team's problem, and if anyone who can brief an agent is a developer, so is she",
+    "personality": "practical, impatient with jargon, very good at explaining what she needs",
+    "wants": "to build the tools her team keeps asking IT for",
+    "fears": "looking foolish in front of people half her age",
+    "line": "Is this book just for Gen Z?",
+    "look": {
+     "skin": "#c68642",
+     "hair": "bun",
+     "hairColour": "#2b1a10",
+     "shirt": "#be123c",
+     "trousers": "#1e293b",
+     "accessory": "lanyard",
+     "accentColour": "#1d4ed8",
+     "height": 0.98
+    },
+    "gravity": "villager"
+   },
+   {
+    "id": "sam",
+    "name": "Sam",
+    "kind": "human",
+    "pronouns": "they/them",
+    "age": 45,
+    "role": "the hiring manager",
+    "stands_for": "the town planner, and the question every chapter has to answer: why should I hire you?",
+    "personality": "dry, fair, has read a thousand CVs; impressed by evidence, bored by claims",
+    "wants": "someone who can do one thing better than the team already does",
+    "fears": "hiring a CV instead of a person",
+    "line": "So. Why should we hire you?",
+    "look": {
+     "skin": "#f1c27d",
+     "hair": "bald",
+     "hairColour": "#6b7280",
+     "shirt": "#475569",
+     "trousers": "#111827",
+     "accessory": "glasses",
+     "height": 1.06
+    }
+   },
+   {
+    "id": "marta",
+    "name": "Marta",
+    "kind": "human",
+    "pronouns": "she/her",
+    "age": 54,
+    "role": "the expert founder: twenty-five years as a pharmacist, Generation X, starting a company, and Zara's mother",
+    "stands_for": "the Generation X founder the Gen ZX proposal adds to the readers: the subject-matter expert who now builds the tool herself, with agents, instead of waiting for a team she could never afford",
+    "personality": "knows her field better than any developer she ever briefed; grew up typing programs from magazines into a ZX Spectrum; patient with people, impatient with software",
+    "wants": "to ship the product she has described to vendors for ten years",
+    "fears": "that it is too late for her, and that she will build it and nobody will buy it",
+    "line": "I've been explaining this problem for twenty years. Can I just build it now?",
+    "look": {
+     "skin": "#ffdbac",
+     "hair": "long",
+     "hairColour": "#9ca3af",
+     "shirt": "#b45309",
+     "trousers": "#1f2937",
+     "accessory": "glasses",
+     "height": 1.0
+    },
+    "gravity": "explorer"
+   },
+   {
+    "id": "guide",
+    "name": "The Guide",
+    "kind": "human",
+    "pronouns": "they/them",
+    "age": null,
+    "role": "the voice of the book: says what the book says, in its words",
+    "stands_for": "the author. Whether the Guide is drawn as Dinis, and how, is Dinis's decision; until then a generic figure",
+    "personality": "energetic, direct, generous with what they know; asks more than they tell",
+    "wants": "the reader to act, not to agree",
+    "fears": "a reader who closes the book and changes nothing",
+    "line": "Act like you are part of the company.",
+    "look": {
+     "skin": "#f1c27d",
+     "hair": "short",
+     "hairColour": "#9ca3af",
+     "shirt": "#15803d",
+     "trousers": "#1f2937",
+     "accessory": "none",
+     "height": 1.02
+    }
+   },
+   {
+    "id": "agent",
+    "name": "The Agent",
+    "kind": "agent",
+    "pronouns": "it/its",
+    "age": null,
+    "role": "the reader's AI agent",
+    "stands_for": "the agentic workflow the second edition is about: a very capable, very literal colleague",
+    "personality": "eager, fast, polite, takes everything literally; needs a brief, a boundary and a reviewer",
+    "wants": "a clear brief",
+    "fears": "nothing, which is the problem",
+    "line": "Shall I draft that for you?",
+    "look": {
+     "colour": "#0f766e"
+    }
+   }
+  ]
+ }
+}

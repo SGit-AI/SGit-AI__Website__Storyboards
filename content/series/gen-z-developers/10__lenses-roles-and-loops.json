@@ -1,0 +1,588 @@
+{
+ "slug": "lenses-roles-and-loops",
+ "title": "Lenses, roles and loops",
+ "subtitle": "How LLMs and agents work: a prompt as a lens, a role as a model with a description, an agent as a loop, tools as requests, no memory, compression, and focused threads. 13 panels.",
+ "status": "draft",
+ "book_version": "v1.0.0 is the only official version; the second edition is in release candidates (rc1 and rc2 frozen)",
+ "by": "gen-z.journalist, 18 October 2026, from Dinis's memo on LLMs and agents",
+ "quote_source": "admin/content/articles/14__lenses-roles-and-loops.md",
+ "rule": "Every line the Guide says, and every quote card, is from the article 'Lenses, roles and loops', word for word; the build checks it. The five lenses on recursion, the weather question and the named threads are the storyboard's illustrations.",
+ "scenes": [
+  {
+   "kind": "cover",
+   "title": "Lenses, roles and loops",
+   "subtitle": "It stops being magic when you see how it works.",
+   "cast": [
+    {
+     "who": "zara",
+     "pose": "think",
+     "mood": "thinking"
+    },
+    {
+     "who": "agent",
+     "pose": "wave",
+     "mood": "happy"
+    },
+    {
+     "who": "priya",
+     "pose": "stand",
+     "mood": "happy"
+    },
+    {
+     "who": "guide",
+     "pose": "wave",
+     "mood": "happy"
+    }
+   ],
+   "note": "The second half of the generative AI chapter: what happens when you use a model.",
+   "source": "Lenses, roles and loops"
+  },
+  {
+   "kind": "spectrum",
+   "setting": "none",
+   "caption": "One idea, recursion, through five lenses",
+   "stops": [
+    {
+     "label": "Teenager",
+     "note": "a meme of a meme",
+     "colour": "#fde68a"
+    },
+    {
+     "label": "Musician",
+     "note": "a round, sung over itself",
+     "colour": "#fed7aa"
+    },
+    {
+     "label": "Doctor",
+     "note": "cells dividing into cells",
+     "colour": "#fecaca"
+    },
+    {
+     "label": "Football fan",
+     "note": "the replay of the replay",
+     "colour": "#bbf7d0"
+    },
+    {
+     "label": "Portuguese",
+     "note": "recursividade",
+     "colour": "#bfdbfe"
+    }
+   ],
+   "cast": [
+    {
+     "who": "guide",
+     "x": 0.5,
+     "pose": "point",
+     "mood": "happy"
+    }
+   ],
+   "note": "To a model, translating into another language is no different from translating for an audience: the prompt is the lens. The five analogies are the storyboard's, not the memo's.",
+   "source": "Lenses, roles and loops, A prompt is a lens"
+  },
+  {
+   "kind": "scene",
+   "setting": "none",
+   "caption": "The wrong lens",
+   "cast": [
+    {
+     "who": "priya",
+     "x": 0.24,
+     "pose": "shrug",
+     "mood": "worried",
+     "says": "I've always been bad at maths."
+    },
+    {
+     "who": "guide",
+     "x": 0.76,
+     "pose": "point",
+     "mood": "happy",
+     "flip": true,
+     "says": "The analogy is the reason someone understands something.",
+     "max": 22
+    }
+   ],
+   "note": "Priya ran rotas, budgets and stock levels for years: maths all day, just not the kind school called maths.",
+   "source": "Lenses, roles and loops, A prompt is a lens"
+  },
+  {
+   "kind": "graph",
+   "caption": "A role is a model with a description",
+   "graph": {
+    "nodes": [
+     {
+      "id": "model",
+      "label": "a raw model",
+      "x": 0.12,
+      "y": 0.15
+     },
+     {
+      "id": "role",
+      "label": "role.md: who you are, what you refuse",
+      "x": 0.12,
+      "y": 0.5,
+      "colour": "#fde68a"
+     },
+     {
+      "id": "question",
+      "label": "a question",
+      "x": 0.12,
+      "y": 0.85
+     },
+     {
+      "id": "editor",
+      "label": "the editor",
+      "x": 0.72,
+      "y": 0.2,
+      "kind": "person",
+      "colour": "#ddd6fe"
+     },
+     {
+      "id": "publisher",
+      "label": "the publisher",
+      "x": 0.88,
+      "y": 0.5,
+      "kind": "person",
+      "colour": "#ddd6fe"
+     },
+     {
+      "id": "journalist",
+      "label": "the journalist",
+      "x": 0.72,
+      "y": 0.82,
+      "kind": "person",
+      "colour": "#ddd6fe"
+     }
+    ],
+    "edges": [
+     {
+      "from": "model",
+      "to": "editor"
+     },
+     {
+      "from": "role",
+      "to": "editor",
+      "label": "the lens"
+     },
+     {
+      "from": "role",
+      "to": "publisher",
+      "label": "a different file"
+     },
+     {
+      "from": "role",
+      "to": "journalist"
+     },
+     {
+      "from": "question",
+      "to": "journalist",
+      "label": "asks"
+     }
+    ]
+   },
+   "note": "The same model behind every role on this site; what changes is the description and the question.",
+   "source": "Lenses, roles and loops, A role is a model with a description"
+  },
+  {
+   "kind": "scene",
+   "setting": "none",
+   "caption": "An agent is a loop with a goal",
+   "cast": [
+    {
+     "who": "agent",
+     "x": 0.22,
+     "pose": "think",
+     "mood": "thinking"
+    },
+    {
+     "who": "guide",
+     "x": 0.76,
+     "pose": "point",
+     "mood": "happy",
+     "flip": true,
+     "says": "Fundamentally the agent is simply a task: do this; then, are we done yet, or do we need to continue?",
+     "max": 24
+    }
+   ],
+   "note": "And rinse and repeat. The loop is the skeleton; good agents add planning, checks and limits.",
+   "source": "Lenses, roles and loops, An agent is a loop with a goal"
+  },
+  {
+   "kind": "graph",
+   "caption": "The loop, with one tool call",
+   "graph": {
+    "nodes": [
+     {
+      "id": "task",
+      "label": "the task",
+      "x": 0.06,
+      "y": 0.1,
+      "kind": "person",
+      "colour": "#ddd6fe"
+     },
+     {
+      "id": "model",
+      "label": "the model",
+      "x": 0.4,
+      "y": 0.1,
+      "colour": "#fde68a"
+     },
+     {
+      "id": "call",
+      "label": "a tool call: search the web",
+      "x": 0.85,
+      "y": 0.1
+     },
+     {
+      "id": "harness",
+      "label": "the harness runs it",
+      "x": 0.85,
+      "y": 0.55
+     },
+     {
+      "id": "result",
+      "label": "the result, added",
+      "x": 0.5,
+      "y": 0.52
+     },
+     {
+      "id": "done",
+      "label": "are we done?",
+      "x": 0.2,
+      "y": 0.9,
+      "kind": "circle",
+      "colour": "#bbf7d0"
+     },
+     {
+      "id": "answer",
+      "label": "the answer",
+      "x": 0.7,
+      "y": 0.92
+     }
+    ],
+    "edges": [
+     {
+      "from": "task",
+      "to": "model",
+      "label": "sent"
+     },
+     {
+      "from": "model",
+      "to": "call",
+      "label": "returns"
+     },
+     {
+      "from": "call",
+      "to": "harness"
+     },
+     {
+      "from": "harness",
+      "to": "result"
+     },
+     {
+      "from": "result",
+      "to": "model",
+      "label": "next request"
+     },
+     {
+      "from": "result",
+      "to": "done"
+     },
+     {
+      "from": "done",
+      "to": "answer",
+      "label": "yes"
+     }
+    ],
+    "path": [
+     "task",
+     "model",
+     "call",
+     "harness",
+     "result",
+     "done",
+     "answer"
+    ]
+   },
+   "note": "The model never runs a tool: it writes a request; the program around it decides, runs it and sends the result back. If the answer to 'are we done?' is no, round again.",
+   "source": "Lenses, roles and loops, Tools changed everything; Precisely"
+  },
+  {
+   "kind": "spectrum",
+   "setting": "none",
+   "caption": "What the next request carries",
+   "stops": [
+    {
+     "label": "Your question",
+     "note": "is it raining in Lisbon?",
+     "colour": "#e5e7eb"
+    },
+    {
+     "label": "Model asks",
+     "note": "call the weather service",
+     "colour": "#fde68a"
+    },
+    {
+     "label": "Harness",
+     "note": "calls it: 'light rain'",
+     "colour": "#fed7aa"
+    },
+    {
+     "label": "All of it, resent",
+     "note": "question + call + result",
+     "colour": "#bfdbfe"
+    },
+    {
+     "label": "The answer",
+     "note": "take an umbrella",
+     "colour": "#bbf7d0"
+    }
+   ],
+   "cast": [
+    {
+     "who": "zara",
+     "x": 0.5,
+     "pose": "point",
+     "mood": "determined"
+    }
+   ],
+   "note": "Two requests for one answer; the second holds everything the first did, plus the tool's result. (A made-up example.)",
+   "source": "Lenses, roles and loops, Tools changed everything"
+  },
+  {
+   "kind": "spectrum",
+   "setting": "none",
+   "caption": "From training only, to tools",
+   "stops": [
+    {
+     "label": "Nov 2022",
+     "note": "ChatGPT, no tools",
+     "colour": "#e5e7eb"
+    },
+    {
+     "label": "Mar 2023",
+     "note": "plugins",
+     "colour": "#fde68a"
+    },
+    {
+     "label": "Mid 2023",
+     "note": "functions for developers",
+     "colour": "#fed7aa"
+    },
+    {
+     "label": "Nov 2024",
+     "note": "Model Context Protocol",
+     "colour": "#bfdbfe"
+    },
+    {
+     "label": "2026",
+     "note": "the loop, many tools, hours",
+     "colour": "#bbf7d0"
+    }
+   ],
+   "cast": [
+    {
+     "who": "guide",
+     "x": 0.5,
+     "pose": "stand",
+     "mood": "happy"
+    }
+   ],
+   "note": "Training is a compression of the world, frozen on the day it ended; tools let the model ask for what it does not hold.",
+   "source": "Lenses, roles and loops, Tools changed everything"
+  },
+  {
+   "kind": "scene",
+   "setting": "night",
+   "caption": "It remembers nothing",
+   "cast": [
+    {
+     "who": "zara",
+     "x": 0.24,
+     "pose": "think",
+     "mood": "surprised",
+     "says": "So it doesn't remember what I said an hour ago?"
+    },
+    {
+     "who": "guide",
+     "x": 0.76,
+     "pose": "stand",
+     "mood": "happy",
+     "flip": true,
+     "says": "There is no memory."
+    }
+   ],
+   "note": "Every request carries the whole conversation; that is why there is a context window, and why long chats get slower.",
+   "source": "Lenses, roles and loops, It remembers nothing"
+  },
+  {
+   "kind": "evidence",
+   "setting": "none",
+   "caption": "Long chats are compressed",
+   "cast": [
+    {
+     "who": "agent",
+     "x": 0.2,
+     "pose": "think",
+     "mood": "thinking"
+    }
+   ],
+   "evidence": {
+    "title": "What one summary keeps",
+    "bars": [
+     {
+      "label": "the chat",
+      "value": 100,
+      "shown": "100%"
+     },
+     {
+      "label": "its summary",
+      "value": 1.7,
+      "shown": "1.7%"
+     }
+    ]
+   },
+   "note": "One session, one month: summarised eighteen times, each summary keeping on average 1.7% of what it replaced (re-anchoring, newsroom). What the summary leaves out is not forgotten; it was never given back.",
+   "source": "Lenses, roles and loops, Long chats are compressed"
+  },
+  {
+   "kind": "evidence",
+   "setting": "none",
+   "caption": "The newsroom's answer",
+   "cast": [
+    {
+     "who": "guide",
+     "x": 0.2,
+     "pose": "point",
+     "mood": "happy"
+    }
+   ],
+   "evidence": {
+    "quote": "The rules are restored, not remembered.",
+    "source": "Re-anchoring agent behaviour policies (newsroom)"
+   },
+   "note": "The rules live in a file printed back after every summary.",
+   "source": "Lenses, roles and loops, Long chats are compressed"
+  },
+  {
+   "kind": "graph",
+   "caption": "Many focused threads, each with a name",
+   "graph": {
+    "nodes": [
+     {
+      "id": "dinis",
+      "label": "a person",
+      "x": 0.08,
+      "y": 0.12,
+      "kind": "person",
+      "colour": "#ddd6fe"
+     },
+     {
+      "id": "inbox",
+      "label": "inbox.triage",
+      "x": 0.1,
+      "y": 0.9
+     },
+     {
+      "id": "drafts",
+      "label": "inbox.drafts",
+      "x": 0.37,
+      "y": 0.9
+     },
+     {
+      "id": "editor",
+      "label": "gen-z.editor",
+      "x": 0.63,
+      "y": 0.9
+     },
+     {
+      "id": "journalist",
+      "label": "gen-z.journalist",
+      "x": 0.9,
+      "y": 0.9
+     },
+     {
+      "id": "files",
+      "label": "the files",
+      "x": 0.5,
+      "y": 0.42,
+      "colour": "#fde68a"
+     }
+    ],
+    "edges": [
+     {
+      "from": "inbox",
+      "to": "files",
+      "label": "writes"
+     },
+     {
+      "from": "drafts",
+      "to": "files",
+      "label": "reads"
+     },
+     {
+      "from": "editor",
+      "to": "files"
+     },
+     {
+      "from": "journalist",
+      "to": "files",
+      "label": "briefs"
+     },
+     {
+      "from": "files",
+      "to": "dinis",
+      "label": "drafts to send"
+     }
+    ]
+   },
+   "note": "One topic per session keeps what each model has to hold small; the sessions talk through files, never through memory. The thread names are illustrative.",
+   "source": "Lenses, roles and loops, Many focused threads"
+  },
+  {
+   "kind": "evidence",
+   "setting": "none",
+   "caption": "Where the memory is",
+   "cast": [
+    {
+     "who": "tomas",
+     "x": 0.2,
+     "pose": "think",
+     "mood": "thinking"
+    }
+   ],
+   "evidence": {
+    "quote": "Nothing is remembered by the model between sessions. Everything is remembered by the files.",
+    "source": "Memory is not a spectator sport (newsroom)"
+   },
+   "note": "The principle the threads rely on.",
+   "source": "Lenses, roles and loops, Long chats are compressed"
+  },
+  {
+   "kind": "punchline",
+   "setting": "none",
+   "punchline": "Not magic: a lens, a role, a loop.",
+   "cast": [
+    {
+     "who": "zara",
+     "x": 0.12,
+     "pose": "arms-up",
+     "mood": "happy"
+    },
+    {
+     "who": "priya",
+     "x": 0.27,
+     "pose": "stand",
+     "mood": "happy"
+    },
+    {
+     "who": "agent",
+     "x": 0.42,
+     "pose": "wave",
+     "mood": "happy"
+    }
+   ],
+   "note": "Understand it, and you are the one who sets the constraints.",
+   "source": "Lenses, roles and loops, Why this matters"
+  }
+ ]
+}

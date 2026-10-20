@@ -1,0 +1,320 @@
+{
+ "slug": "follow-the-rabbit-holes",
+ "title": "Follow the rabbit holes",
+ "subtitle": "Provenance, explainability and asking for the evidence; and being the best-prepared person in the room. 10 panels.",
+ "status": "draft",
+ "book_version": "v1.0.0 is the only official version; the second edition is in release candidates (rc1 and rc2 frozen)",
+ "by": "gen-z.journalist, 18 October 2026, from Dinis's memo on questioning and evidence",
+ "quote_source": "admin/content/articles/12__follow-the-rabbit-holes.md",
+ "rule": "Every line the Guide says, and every quote card, is from the article 'Follow the rabbit holes', word for word; the build checks it.",
+ "scenes": [
+  {
+   "kind": "cover",
+   "title": "Follow the rabbit holes",
+   "subtitle": "Never take it at face value.",
+   "cast": [
+    {
+     "who": "zara",
+     "pose": "point",
+     "mood": "determined"
+    },
+    {
+     "who": "agent",
+     "pose": "think",
+     "mood": "thinking"
+    },
+    {
+     "who": "guide",
+     "pose": "stand",
+     "mood": "happy"
+    }
+   ],
+   "note": "Questioning and evidence.",
+   "source": "Follow the rabbit holes"
+  },
+  {
+   "kind": "scene",
+   "setting": "none",
+   "caption": "People underestimate them",
+   "props": [
+    {
+     "kind": "phone",
+     "x": 0.3,
+     "y": 640
+    }
+   ],
+   "cast": [
+    {
+     "who": "zara",
+     "x": 0.26,
+     "pose": "point",
+     "mood": "happy",
+     "says": "Found the original photo. It's from 2019, not today."
+    },
+    {
+     "who": "guide",
+     "x": 0.76,
+     "pose": "stand",
+     "mood": "happy",
+     "flip": true,
+     "says": "They are very good detectives."
+    }
+   ],
+   "note": "Connecting the dots, finding things.",
+   "source": "Follow the rabbit holes, They already have it"
+  },
+  {
+   "kind": "scene",
+   "setting": "night",
+   "caption": "And they care about privacy",
+   "props": [
+    {
+     "kind": "phone",
+     "x": 0.5,
+     "y": 640
+    }
+   ],
+   "cast": [
+    {
+     "who": "zara",
+     "x": 0.46,
+     "pose": "think",
+     "mood": "happy",
+     "says": "Best feature? The picture disappears.",
+     "thinks": true
+    }
+   ],
+   "note": "Snapchat's design, as Dinis saw it with his daughters.",
+   "source": "Follow the rabbit holes, They already have it"
+  },
+  {
+   "kind": "scene",
+   "setting": "none",
+   "caption": "A prompt away",
+   "props": [
+    {
+     "kind": "board",
+     "x": 0.6,
+     "y": 720,
+     "lines": [
+      "a claim",
+      "  -> its source",
+      "    -> the source's source",
+      "      -> the evidence"
+     ]
+    }
+   ],
+   "cast": [
+    {
+     "who": "guide",
+     "x": 0.16,
+     "pose": "point",
+     "mood": "happy",
+     "says": "Following a rabbit hole is now a prompt away."
+    }
+   ],
+   "note": "Provenance and explainability; build your own agents and tools to follow it.",
+   "source": "Follow the rabbit holes, Provenance, explainability and the rabbit holes"
+  },
+  {
+   "kind": "evidence",
+   "setting": "none",
+   "caption": "The newsroom's rule",
+   "cast": [
+    {
+     "who": "agent",
+     "x": 0.2,
+     "pose": "point",
+     "mood": "happy"
+    }
+   ],
+   "evidence": {
+    "quote": "Not found is not false.",
+    "source": "My memory, checked (newsroom)"
+   },
+   "note": "Every claim checked: confirmed, corrected, or not found, and the article says which.",
+   "source": "Follow the rabbit holes, How you can disagree rationally"
+  },
+  {
+   "kind": "scene",
+   "setting": "office",
+   "caption": "How you can disagree rationally",
+   "cast": [
+    {
+     "who": "sam",
+     "x": 0.18,
+     "pose": "shrug",
+     "mood": "thinking",
+     "says": "Are you sure?"
+    },
+    {
+     "who": "priya",
+     "x": 0.48,
+     "pose": "point",
+     "mood": "determined",
+     "says": "Here's the evidence. And here's what we don't know yet."
+    },
+    {
+     "who": "guide",
+     "x": 0.84,
+     "pose": "stand",
+     "mood": "happy",
+     "flip": true,
+     "says": "Sometimes not knowing is a fact."
+    }
+   ],
+   "note": "What is evidence and what is not; what we know and what we do not.",
+   "source": "Follow the rabbit holes, How you can disagree rationally"
+  },
+  {
+   "kind": "spectrum",
+   "setting": "none",
+   "caption": "This article's own rabbit hole",
+   "stops": [
+    {
+     "label": "A link",
+     "note": "shared by Dinis",
+     "colour": "#fde68a"
+    },
+    {
+     "label": "The video",
+     "note": "its real title",
+     "colour": "#fed7aa"
+    },
+    {
+     "label": "Summit 2011",
+     "note": "a session on presenting it",
+     "colour": "#bbf7d0"
+    },
+    {
+     "label": "Blog, 2016",
+     "note": "the full talk, its name",
+     "colour": "#bfdbfe"
+    }
+   ],
+   "cast": [
+    {
+     "who": "agent",
+     "x": 0.35,
+     "pose": "point",
+     "mood": "happy"
+    },
+    {
+     "who": "guide",
+     "x": 0.7,
+     "pose": "stand",
+     "mood": "happy",
+     "flip": true
+    }
+   ],
+   "note": "Finding David Rice's keynote while the article was written: the agent followed the link to the video and the 2011 Summit session; Dinis's 2016 post, The Pollution Analogy, confirmed it is Upon the Threshold of Opportunity.",
+   "source": "Follow the rabbit holes, Provenance, explainability and the rabbit holes"
+  },
+  {
+   "kind": "scene",
+   "setting": "none",
+   "caption": "Be the best-prepared person in the room",
+   "props": [
+    {
+     "kind": "board",
+     "x": 0.5,
+     "y": 700,
+     "lines": [
+      "my brief:",
+      "  who they are, what they want",
+      "  what I want, what I know",
+      "  what I don't know",
+      "  the follow-ups"
+     ]
+    }
+   ],
+   "cast": [
+    {
+     "who": "tomas",
+     "x": 0.14,
+     "pose": "point",
+     "mood": "determined"
+    },
+    {
+     "who": "guide",
+     "x": 0.86,
+     "pose": "stand",
+     "mood": "happy",
+     "flip": true,
+     "says": "These days there is no excuse not to be.",
+     "max": 18
+    }
+   ],
+   "note": "Briefings, pre-briefings, briefings on who you meet, follow-ups: overhead once, now scalable.",
+   "source": "Follow the rabbit holes, Be the best-prepared person in the room"
+  },
+  {
+   "kind": "evidence",
+   "setting": "none",
+   "caption": "And answer every finding",
+   "cast": [
+    {
+     "who": "tomas",
+     "x": 0.2,
+     "pose": "stand",
+     "mood": "determined"
+    }
+   ],
+   "evidence": {
+    "quote": "A finding with no answer is just a complaint.",
+    "source": "Reviews on the record (newsroom)"
+   },
+   "note": "The other half of following the evidence: answering it.",
+   "source": "Follow the rabbit holes, How you can disagree rationally"
+  },
+  {
+   "kind": "spectrum",
+   "setting": "none",
+   "caption": "A hands-on part, for 2026",
+   "stops": [
+    {
+     "label": "Workflow",
+     "note": "an agentic workflow from zero",
+     "colour": "#fde68a"
+    },
+    {
+     "label": "Images",
+     "note": "and infographics",
+     "colour": "#fed7aa"
+    },
+    {
+     "label": "Storyboards",
+     "note": "drawn by code",
+     "colour": "#bbf7d0"
+    },
+    {
+     "label": "Meetings",
+     "note": "briefs and follow-ups",
+     "colour": "#bfdbfe"
+    },
+    {
+     "label": "Publishing",
+     "note": "your own newsroom",
+     "colour": "#ddd6fe"
+    }
+   ],
+   "cast": [
+    {
+     "who": "zara",
+     "x": 0.2,
+     "pose": "wave",
+     "mood": "happy"
+    },
+    {
+     "who": "priya",
+     "x": 0.8,
+     "pose": "point",
+     "mood": "happy",
+     "flip": true
+    }
+   ],
+   "note": "Proposed here as practical workflows, dated 2026, renewed each year; Dinis put the hands-on part in the release candidate (decision 013). rc2's map has eleven hands-on chapters; five of them are here.",
+   "source": "Follow the rabbit holes, A hands-on part, for 2026"
+  }
+ ]
+}

@@ -1,0 +1,159 @@
+{
+ "what": "The cast of the storyboards for Generation Z Developers and its second edition, Generation ZX Developers (GenAI Startup Edition), v0.1, proposed by gen-z.journalist on 18 October 2026 for Dinis to accept, change or replace; Marta, the Generation X founder, was added on 19 October 2026 and is still a proposal. Characters are drawn programmatically by assets/storyboard.js from 'look'; nothing here is an image. Each human with a 'gravity' wears its badge (explorer, villager, town-planner), black and white, by their name: a centre of gravity, not a box, as Dinis describes it. Fictional people: each stands for a reader the book is for (the target audience), or for a role in the story. Names chosen to avoid clashing with the riskmandate.ai cast (which has a Maya) and with the word 'developer' (no 'Dev').",
+ "characters": [
+  {
+   "id": "zara",
+   "name": "Zara",
+   "kind": "human",
+   "pronouns": "she/her",
+   "age": 21,
+   "role": "the student: final year, about to look for a first job",
+   "stands_for": "the reader the book is written for; an explorer who does not know it yet",
+   "personality": "curious, quick, online all day; anxious about what she reads on AI and jobs; hates being lectured, loves being shown",
+   "wants": "a first job that is not a dead end",
+   "fears": "that AI took the jobs before she got there",
+   "line": "Everything just works. Why would I learn how?",
+   "look": {
+    "skin": "#8d5524",
+    "hair": "curly",
+    "hairColour": "#1b1b1b",
+    "shirt": "#7c3aed",
+    "trousers": "#1f2937",
+    "accessory": "headphones",
+    "accentColour": "#f59e0b",
+    "height": 0.96
+   },
+   "gravity": "explorer"
+  },
+  {
+   "id": "tomas",
+   "name": "Tomás",
+   "kind": "human",
+   "pronouns": "he/him",
+   "age": 24,
+   "role": "the graduate: a computing degree, working the 2018 way, looking for his next job in Lisbon",
+   "stands_for": "the town planner: attention to detail, pride in getting it right, happiest when nothing goes wrong; working the 2018 way, and about to be outcompeted by people with an agentic workflow",
+   "personality": "diligent, modest, a little proud of doing things by hand; sceptical of shortcuts",
+   "wants": "to be taken seriously",
+   "fears": "that his degree is already out of date",
+   "line": "I have a degree. Isn't that the advantage?",
+   "look": {
+    "skin": "#e0ac69",
+    "hair": "short",
+    "hairColour": "#4a2c17",
+    "shirt": "#0e7490",
+    "trousers": "#334155",
+    "accessory": "glasses",
+    "height": 1.04
+   },
+   "gravity": "town-planner"
+  },
+  {
+   "id": "priya",
+   "name": "Priya",
+   "kind": "human",
+   "pronouns": "she/her",
+   "age": 38,
+   "role": "the career changer: an operations manager who has never written code",
+   "stands_for": "the villager, and everyone else the book is for: she puts herself in the middle of her team's problem, and if anyone who can brief an agent is a developer, so is she",
+   "personality": "practical, impatient with jargon, very good at explaining what she needs",
+   "wants": "to build the tools her team keeps asking IT for",
+   "fears": "looking foolish in front of people half her age",
+   "line": "Is this book just for Gen Z?",
+   "look": {
+    "skin": "#c68642",
+    "hair": "bun",
+    "hairColour": "#2b1a10",
+    "shirt": "#be123c",
+    "trousers": "#1e293b",
+    "accessory": "lanyard",
+    "accentColour": "#1d4ed8",
+    "height": 0.98
+   },
+   "gravity": "villager"
+  },
+  {
+   "id": "sam",
+   "name": "Sam",
+   "kind": "human",
+   "pronouns": "they/them",
+   "age": 45,
+   "role": "the hiring manager",
+   "stands_for": "the town planner, and the question every chapter has to answer: why should I hire you?",
+   "personality": "dry, fair, has read a thousand CVs; impressed by evidence, bored by claims",
+   "wants": "someone who can do one thing better than the team already does",
+   "fears": "hiring a CV instead of a person",
+   "line": "So. Why should we hire you?",
+   "look": {
+    "skin": "#f1c27d",
+    "hair": "bald",
+    "hairColour": "#6b7280",
+    "shirt": "#475569",
+    "trousers": "#111827",
+    "accessory": "glasses",
+    "height": 1.06
+   }
+  },
+  {
+   "id": "marta",
+   "name": "Marta",
+   "kind": "human",
+   "pronouns": "she/her",
+   "age": 54,
+   "role": "the expert founder: twenty-five years as a pharmacist, Generation X, starting a company, and Zara's mother",
+   "stands_for": "the Generation X founder the Gen ZX proposal adds to the readers: the subject-matter expert who now builds the tool herself, with agents, instead of waiting for a team she could never afford",
+   "personality": "knows her field better than any developer she ever briefed; grew up typing programs from magazines into a ZX Spectrum; patient with people, impatient with software",
+   "wants": "to ship the product she has described to vendors for ten years",
+   "fears": "that it is too late for her, and that she will build it and nobody will buy it",
+   "line": "I've been explaining this problem for twenty years. Can I just build it now?",
+   "look": {
+    "skin": "#ffdbac",
+    "hair": "long",
+    "hairColour": "#9ca3af",
+    "shirt": "#b45309",
+    "trousers": "#1f2937",
+    "accessory": "glasses",
+    "height": 1.0
+   },
+   "gravity": "explorer"
+  },
+  {
+   "id": "guide",
+   "name": "The Guide",
+   "kind": "human",
+   "pronouns": "they/them",
+   "age": null,
+   "role": "the voice of the book: says what the book says, in its words",
+   "stands_for": "the author. Whether the Guide is drawn as Dinis, and how, is Dinis's decision; until then a generic figure",
+   "personality": "energetic, direct, generous with what they know; asks more than they tell",
+   "wants": "the reader to act, not to agree",
+   "fears": "a reader who closes the book and changes nothing",
+   "line": "Act like you are part of the company.",
+   "look": {
+    "skin": "#f1c27d",
+    "hair": "short",
+    "hairColour": "#9ca3af",
+    "shirt": "#15803d",
+    "trousers": "#1f2937",
+    "accessory": "none",
+    "height": 1.02
+   }
+  },
+  {
+   "id": "agent",
+   "name": "The Agent",
+   "kind": "agent",
+   "pronouns": "it/its",
+   "age": null,
+   "role": "the reader's AI agent",
+   "stands_for": "the agentic workflow the second edition is about: a very capable, very literal colleague",
+   "personality": "eager, fast, polite, takes everything literally; needs a brief, a boundary and a reviewer",
+   "wants": "a clear brief",
+   "fears": "nothing, which is the problem",
+   "line": "Shall I draft that for you?",
+   "look": {
+    "colour": "#0f766e"
+   }
+  }
+ ]
+}

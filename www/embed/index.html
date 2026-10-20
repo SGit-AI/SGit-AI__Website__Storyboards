@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Embed a storyboard · storyboards.sgit.ai</title>
+<meta name="description" content="Any storyboard on this site, or your own, on any page: one script tag pinned to an immutable release of the kit, and one element.">
+<link rel="canonical" href="https://storyboards.sgit.ai/embed/">
+<link rel="alternate" type="text/markdown" href="index.md">
+<meta property="og:title" content="Embed a storyboard">
+<meta property="og:description" content="Any storyboard on this site, or your own, on any page: one script tag pinned to an immutable release of the kit, and one element.">
+<meta property="og:url" content="https://storyboards.sgit.ai/embed/">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://storyboards.sgit.ai/og.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="site-version" content="v0.1.0">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect x='4' y='10' width='56' height='44' rx='6' fill='%23fbf7ee' stroke='%2323262b' stroke-width='4'/%3E%3Cpath d='M12 44 Q32 30 52 40' stroke='%23dc2626' stroke-width='4' fill='none'/%3E%3Ccircle cx='24' cy='26' r='6' fill='%2323262b'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="https://api.storyboards.sgit.ai/v0/v0.1/v0.1.0/fonts.css" integrity="sha384-ep4bdPYRUzquMICQMhuOkSZ/CB1FnMh6qnGWS1F74VepoLOlw9JGK+Zg+E6/t9dD" crossorigin="anonymous">
+<link rel="stylesheet" href="https://api.storyboards.sgit.ai/v0/v0.1/v0.1.0/storyboard.css" integrity="sha384-NGJqtVi+93pE7lBuwFU0RQWhqnQVLR33Wp8AYH1iAeyC2A7h2ijgU4bEKF5HIKIf" crossorigin="anonymous">
+<link rel="stylesheet" href="../assets/site.css">
+<script>window.StoryboardPrefsKey = 'storyboards.sgit.ai.v1';</script>
+<script src="../assets/site.js"></script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to the content</a>
+<nav class="site" aria-label="Site"><div class="row">
+<a class="brand" href="../index.html">storyboards<span>.sgit.ai</span></a>
+<div class="nav-items"><a href="../index.html#series">Storyboards</a><a href="../embed/index.html" aria-current="page">Embed</a><a href="../formats/index.html">Formats</a><a href="../articles/index.html">Articles</a><a href="../brief/index.html">The brief</a><a href="../about/index.html">About</a></div>
+<div class="nav-tools"><a class="parent" href="https://sgit.ai" title="One of the sgit.ai network of sites">&#8599; part of <b>sgit.ai</b></a>
+<a class="parent" href="https://api.storyboards.sgit.ai/" title="The kit that draws every panel">API v0.1.0</a>
+<button type="button" class="theme" aria-label="Switch the theme">dark</button>
+<span class="ver">site <a href="../admin/versions.html" title="Site release history">v0.1.0</a></span></div>
+</div></nav>
+<main id="main" class="narrow">
+<p class="crumb"><a href="../index.html">Home</a> / Embed a storyboard</p>
+<article class="article"><h1>Embed a storyboard</h1><p class="lede">Any storyboard on this site, or your own, on any page: one script tag pinned to an immutable release of the kit, and one element.</p><h2 id="two-lines">Two lines</h2>
+<pre><code class="lang-html">&lt;script src=&quot;https://api.storyboards.sgit.ai/v0/v0.1/v0.1.0/embed.js&quot; defer&gt;&lt;/script&gt;
+&lt;sg-storyboard src=&quot;https://storyboards.sgit.ai/pki/the-first-key/bundle.json&quot;&gt;&lt;/sg-storyboard&gt;</code></pre>
+<p>The script is <code>embed.js</code> from release v0.1.0 of <a href="https://api.storyboards.sgit.ai/">api.storyboards.sgit.ai</a>. It loads the rest of that release (the fonts, the stylesheet, Rough.js, the drawing code and any prop pack the storyboard needs) from beside itself, once per page, and draws the storyboard in the element. Every storyboard page on this site has its own snippet under "Put it on your page".</p>
+<h2 id="what-you-can-ask-for">What you can ask for</h2>
+<div class="tablewrap"><table><thead><tr><th>Attribute</th><th>Means</th><th>Default</th></tr></thead><tbody><tr><td><code>src</code></td><td>a bundle: a storyboard with its cast and packs (every storyboard here has a <code>bundle.json</code>)</td><td></td></tr><tr><td><code>storyboard</code>, <code>cast</code></td><td>two URLs instead of a bundle</td><td></td></tr><tr><td><code>view</code></td><td><code>deck</code> (one panel at a time), <code>grid</code>, <code>script</code> (as text) or <code>panel</code> (one still panel)</td><td><code>deck</code></td></tr><tr><td><code>panel</code></td><td>with <code>view="panel"</code>, which one, from 1</td><td><code>1</code></td></tr><tr><td><code>packs</code></td><td>extra prop packs, comma separated (today: <code>security</code>)</td><td>the bundle's</td></tr></tbody></table></div>
+<h2 id="why-the-version-is-in-the-path">Why the version is in the path</h2>
+<p>The address <code>https://api.storyboards.sgit.ai/v0/v0.1/v0.1.0/</code> is a release that never changes: not a fix, not a typo. An embed you write today draws the same panels for as long as the page exists. When a newer release is out, moving to it is changing that one line, on purpose. If you want the browser to refuse anything but the exact bytes, add the <code>integrity</code> string from the release's <a href="https://api.storyboards.sgit.ai/v0/v0.1/v0.1.0/manifest.json">manifest</a> and <code>crossorigin="anonymous"</code> to the script tag; every page on this site does. <a href="../articles/every-version-is-a-folder.html">Every version is a folder</a> explains the rule.</p>
+<h2 id="your-own-storyboard">Your own storyboard</h2>
+<p>A bundle is plain JSON: <code>{ "storyboard": {...}, "cast": {...}, "packs": [] }</code>, served from anywhere that sends <code>access-control-allow-origin</code> (GitHub Pages does). The shape of a storyboard and a cast is documented on <a href="https://api.storyboards.sgit.ai/docs/format.html">api.storyboards.sgit.ai</a>, and the 23 here are worked examples: open any <code>storyboard.json</code>. Making a storyboard on this site, and casts of your own, are on the list for later; for now the JSON is the editor.</p>
+<h2 id="what-embedding-does-to-your-page">What embedding does to your page</h2>
+<p>The element draws into the page itself (no iframe, no shadow root), so your styles can dress it. In the deck view, the arrow keys move the deck and the panel number is written into the address bar's <code>#scene-N</code>, as on this site; use <code>view="panel"</code> or <code>view="grid"</code> where that would get in the way. Nothing is stored except the reader's viewing preferences (animation on or off, panels per row), in their own browser.</p></article>
+</main>
+<footer class="site"><div class="row">
+<div><b>storyboards.sgit.ai</b>: make, share and embed storyboards that are data, drawn by code. Panels drawn by <a href="https://api.storyboards.sgit.ai/">api.storyboards.sgit.ai</a> v0.1.0 (<a href="https://api.storyboards.sgit.ai/v0/v0.1/v0.1.0/manifest.json">manifest</a>); content CC BY 4.0, code Apache-2.0.</div>
+<div class="netline"><a href="https://sgit.ai">&#8599; sgit.ai</a>, the parent project &middot; <a href="https://gen-z-developers.sgit.ai/storyboards/index.html">&#8599; gen-z-developers.sgit.ai</a>, where the storyboards began &middot; <a href="https://pki.sgit.ai/storyboards/index.html">&#8599; pki.sgit.ai</a> &middot; <a href="https://newsroom.sgit.ai">&#8599; newsroom.sgit.ai</a> &middot; <a href="https://sgit.ai/network/index.html">&#8599; the network</a></div>
+<div>&#9888; Participant disclosure: published by the sgit project, which builds the tools these storyboards explain. <a href="../about/participant.html">Read the disclosure</a>.</div>
+<div>Site v0.1.0 &middot; <a href="../admin/versions.html">release history</a> &middot; <a href="index.md">this page as markdown</a> &middot; <a href="../llms.txt">llms.txt</a> &middot; <a href="../catalogue.json">catalogue.json</a> &middot; <a href="https://github.com/SGit-AI/SGit-AI__Website__Storyboards">GitHub</a></div>
+</div></footer>
+
+</body>
+</html>

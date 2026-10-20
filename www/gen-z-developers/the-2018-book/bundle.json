@@ -1,0 +1,607 @@
+{
+ "what": "A storyboard with its cast, for an embed: <sg-storyboard src=\"https://storyboards.sgit.ai/gen-z-developers/the-2018-book/bundle.json\">. The storyboard is gen-z-developers/the-2018-book/storyboard.json, unchanged.",
+ "series": "gen-z-developers",
+ "packs": [],
+ "storyboard": {
+  "slug": "the-2018-book",
+  "title": "The 2018 book, as a storyboard",
+  "subtitle": "Book v1.0.0, the 28 published chapters, converted into 15 panels: what the first edition said, who it said it to, and where it stops.",
+  "status": "draft",
+  "book_version": "v1.0.0",
+  "by": "gen-z.journalist, 18 October 2026, a first conversion for Dinis to review",
+  "rule": "Every line the Guide says, and every quote card, is the 2018 text word for word, with its chapter as the source, unless the panel's note says otherwise. Lines the other characters say are the storyboard's, and say what the reader is thinking.",
+  "scenes": [
+   {
+    "kind": "cover",
+    "title": "Generation Z Developers, 2018",
+    "subtitle": "The first edition as a storyboard: 15 panels, 28 chapters, one argument.",
+    "cast": [
+     {
+      "who": "zara",
+      "pose": "wave",
+      "mood": "happy"
+     },
+     {
+      "who": "guide",
+      "pose": "stand",
+      "mood": "happy"
+     },
+     {
+      "who": "tomas",
+      "pose": "stand",
+      "mood": "neutral"
+     }
+    ],
+    "note": "The cover. The cast is proposed; the Guide is a generic figure until Dinis decides how the author appears.",
+    "source": "admin/content/storyboards/cast.json"
+   },
+   {
+    "kind": "scene",
+    "setting": "street",
+    "caption": "2018. The first generation born online is entering the job market.",
+    "cast": [
+     {
+      "who": "zara",
+      "x": 0.33,
+      "pose": "think",
+      "mood": "thinking",
+      "says": "Everything just works. Why would I learn how?",
+      "thinks": true
+     },
+     {
+      "who": "guide",
+      "x": 0.72,
+      "pose": "stand",
+      "mood": "worried",
+      "says": "I'm worried about Gen Z",
+      "flip": true
+     }
+    ],
+    "props": [
+     {
+      "kind": "phone",
+      "x": 0.37,
+      "y": 640
+     }
+    ],
+    "note": "Why the book exists: technology that simply works hides how it came to work.",
+    "source": "Generation Z (Part 1), the heading ‘I'm worried about Gen Z’"
+   },
+   {
+    "kind": "evidence",
+    "setting": "none",
+    "caption": "What the book is worried about",
+    "cast": [
+     {
+      "who": "guide",
+      "x": 0.22,
+      "pose": "point",
+      "mood": "determined"
+     }
+    ],
+    "evidence": {
+     "quote": "Without a full understanding of the past, we only learn from shadows and curated versions of reality.",
+     "source": "Generation Z, Part 1: Introduction, book v1.0.0"
+    },
+    "note": "The book's first claim, word for word.",
+    "source": "Generation Z"
+   },
+   {
+    "kind": "scene",
+    "setting": "interview",
+    "caption": "How to get a job",
+    "cast": [
+     {
+      "who": "sam",
+      "x": 0.68,
+      "pose": "stand",
+      "mood": "neutral",
+      "says": "So. Why should we hire you?",
+      "flip": true
+     },
+     {
+      "who": "tomas",
+      "x": 0.3,
+      "pose": "shrug",
+      "mood": "worried",
+      "says": "I have a degree. Isn't that the advantage?"
+     }
+    ],
+    "props": [
+     {
+      "kind": "desk",
+      "x": 0.5,
+      "y": 700
+     }
+    ],
+    "note": "The chapter Dinis still gives, almost word for word, to people looking for a job.",
+    "source": "How to get a job"
+   },
+   {
+    "kind": "evidence",
+    "setting": "none",
+    "caption": "The answer the book gives",
+    "cast": [
+     {
+      "who": "guide",
+      "x": 0.22,
+      "pose": "point",
+      "mood": "determined"
+     }
+    ],
+    "evidence": {
+     "quote": "The best way to get a job is to have ONE competitive advantage. One activity or task that you can do better than the person or company hiring you.",
+     "source": "How to get a job, Part 1, book v1.0.0"
+    },
+    "note": "The argument of the whole book in two sentences.",
+    "source": "How to get a job"
+   },
+   {
+    "kind": "spectrum",
+    "setting": "none",
+    "caption": "The one advantage moves with the decade",
+    "stops": [
+     {
+      "label": "1990s",
+      "note": "using a computer",
+      "colour": "#fde68a"
+     },
+     {
+      "label": "2000s",
+      "note": "using the Internet",
+      "colour": "#bbf7d0"
+     },
+     {
+      "label": "2018",
+      "note": "ML/AI, graphs, chaos engineering, Git, CI, AWS",
+      "colour": "#bfdbfe"
+     },
+     {
+      "label": "2026",
+      "note": "the second edition's answer: running agentic workflows",
+      "colour": "#fecaca"
+     }
+    ],
+    "cast": [
+     {
+      "who": "tomas",
+      "x": 0.3,
+      "pose": "think",
+      "mood": "thinking"
+     },
+     {
+      "who": "zara",
+      "x": 0.7,
+      "pose": "point",
+      "mood": "surprised",
+      "flip": true
+     }
+    ],
+    "note": "1990s, 2000s and the 2018 list are the book's own. The 2026 stop is the newsroom's answer (hired for the workflow), not the 2018 book's.",
+    "source": "How to get a job; for 2026, the newsroom article Hired for the workflow"
+   },
+   {
+    "kind": "scene",
+    "setting": "office",
+    "caption": "Own your career development",
+    "cast": [
+     {
+      "who": "tomas",
+      "x": 0.3,
+      "pose": "shrug",
+      "mood": "worried",
+      "says": "But how do I start working with them?"
+     },
+     {
+      "who": "guide",
+      "x": 0.7,
+      "pose": "point",
+      "mood": "happy",
+      "says": "Easy, start collaborating on their Open Source projects. Act like you are part of the company.",
+      "flip": true,
+      "max": 28
+     }
+    ],
+    "note": "Act as the job you want, eight years early.",
+    "source": "How to get a job, ‘Own your career development’"
+   },
+   {
+    "kind": "scene",
+    "setting": "none",
+    "caption": "Part 2, MVP for a Gen Z dev: what a developer should know",
+    "props": [
+     {
+      "kind": "board",
+      "x": 0.62,
+      "y": 720,
+      "lines": [
+       "Creative Commons",
+       "Open Source",
+       "Docker · Jira · OWASP",
+       "Python · Slack and ChatOps",
+       "Hugo · Google SRE",
+       "Xcode and Swift · DOT"
+      ]
+     }
+    ],
+    "cast": [
+     {
+      "who": "zara",
+      "x": 0.2,
+      "pose": "arms-up",
+      "mood": "surprised",
+      "says": "That is a lot of tools."
+     }
+    ],
+    "note": "The eleven written chapters of Part 2, by title. The second edition asks which of them still earn a chapter.",
+    "source": "Part 2, chapter titles"
+   },
+   {
+    "kind": "evidence",
+    "setting": "none",
+    "caption": "Open Source, and your future self",
+    "cast": [
+     {
+      "who": "guide",
+      "x": 0.22,
+      "pose": "point",
+      "mood": "happy"
+     }
+    ],
+    "evidence": {
+     "quote": "You as a developer should be releasing everything you do with an Open Source license.",
+     "source": "Open Source, ‘Think and behave in an Open Source way’, book v1.0.0"
+    },
+    "note": "The future self appears here first, and again in Backup your life and Talking to yourself digitally.",
+    "source": "Open Source"
+   },
+   {
+    "kind": "scene",
+    "setting": "classroom",
+    "caption": "Part 3, Technologies: the AI chapter, 2018",
+    "props": [
+     {
+      "kind": "board",
+      "x": 0.5,
+      "y": 640,
+      "lines": [
+       "One of the most important areas",
+       "that you need to gain a strong",
+       "understanding in the next 5 years",
+       "is Machine Learning and AI."
+      ]
+     }
+    ],
+    "cast": [
+     {
+      "who": "guide",
+      "x": 0.15,
+      "pose": "point",
+      "mood": "determined"
+     },
+     {
+      "who": "zara",
+      "x": 0.85,
+      "pose": "think",
+      "mood": "thinking",
+      "flip": true,
+      "says": "Five years? Fine. Later.",
+      "thinks": true
+     }
+    ],
+    "note": "The board is the book's sentence, shortened from ‘Machine Learning and Artificial Intelligence (AI)’ to fit.",
+    "source": "Machine Learning and AI, Part 3"
+   },
+   {
+    "kind": "punchline",
+    "setting": "none",
+    "punchline": "ChatGPT arrived four years later.",
+    "caption": "Then and now",
+    "cast": [
+     {
+      "who": "agent",
+      "x": 0.28,
+      "pose": "wave",
+      "mood": "happy",
+      "says": "Shall I draft that for you?"
+     },
+     {
+      "who": "zara",
+      "x": 0.82,
+      "pose": "arms-up",
+      "mood": "surprised",
+      "flip": true
+     }
+    ],
+    "note": "Not the 2018 text: the punchline is the newsroom article's sentence, word for word. The first then-and-now box. What the 2018 chapter pointed at (cloud ML services, how to program it) and what happened (how to use it, and direct agents).",
+    "source": "Generation Z Developers, again (newsroom), ‘What held, and what did not’",
+    "not_a_quote": true
+   },
+   {
+    "kind": "scene",
+    "setting": "none",
+    "caption": "Part 4, Life patterns",
+    "props": [
+     {
+      "kind": "book",
+      "x": 0.52,
+      "y": 860,
+      "label": "Learning",
+      "colour": "#15803d"
+     },
+     {
+      "kind": "book",
+      "x": 0.6,
+      "y": 860,
+      "label": "Books",
+      "colour": "#1e3a8a"
+     }
+    ],
+    "cast": [
+     {
+      "who": "guide",
+      "x": 0.3,
+      "pose": "point",
+      "mood": "happy",
+      "says": "Do you know how to learn?"
+     },
+     {
+      "who": "zara",
+      "x": 0.78,
+      "pose": "think",
+      "mood": "thinking",
+      "flip": true,
+      "says": "Nobody ever asked me that.",
+      "thinks": true
+     }
+    ],
+    "note": "Learning to learn: one of the eight lines on the 2018 cover.",
+    "source": "Learning, Part 4"
+   },
+   {
+    "kind": "scene",
+    "setting": "office",
+    "caption": "Being criticized is a privilege",
+    "cast": [
+     {
+      "who": "sam",
+      "x": 0.25,
+      "pose": "point",
+      "mood": "neutral",
+      "says": "This part is wrong. And this."
+     },
+     {
+      "who": "tomas",
+      "x": 0.55,
+      "pose": "stand",
+      "mood": "worried"
+     },
+     {
+      "who": "guide",
+      "x": 0.82,
+      "pose": "stand",
+      "mood": "happy",
+      "flip": true,
+      "says": "you should see that as a privilege and an asset that you have.",
+      "max": 26
+     }
+    ],
+    "note": "The Guide's line is the end of the chapter's sentence; the 2018 title has a typo (‘an privilege’) that the second edition fixes.",
+    "source": "Being criticized is an privilege, Part 4"
+   },
+   {
+    "kind": "punchline",
+    "setting": "none",
+    "punchline": "Sometimes the future just doesn't happen! It needs people like you to make the difference.",
+    "cast": [
+     {
+      "who": "zara",
+      "x": 0.15,
+      "pose": "arms-up",
+      "mood": "happy"
+     },
+     {
+      "who": "tomas",
+      "x": 0.32,
+      "pose": "stand",
+      "mood": "determined"
+     }
+    ],
+    "note": "The last chapter of the published book, The future needs you, word for word.",
+    "source": "The future needs you, Part 4"
+   },
+   {
+    "kind": "scene",
+    "setting": "none",
+    "caption": "Where the 2018 book stops, and the second edition starts",
+    "cast": [
+     {
+      "who": "priya",
+      "x": 0.18,
+      "pose": "point",
+      "mood": "thinking",
+      "says": "Is this book just for Gen Z?"
+     },
+     {
+      "who": "agent",
+      "x": 0.5,
+      "pose": "wave",
+      "mood": "happy",
+      "says": "Shall I write the second edition?"
+     },
+     {
+      "who": "guide",
+      "x": 0.82,
+      "pose": "stand",
+      "mood": "determined",
+      "flip": true,
+      "says": "Interview me first."
+     }
+    ],
+    "note": "Priya's question is the 2018 repository's GitHub issue #28, ‘Add 'Is this book just for Gen Z' chapter’. Not a quote: the Agent's offer and the Guide's answer are the editor's rule, interview, then write, from team/editor/role.md.",
+    "source": "2018 GitHub issue #28; team/editor/role.md",
+    "not_a_quote": true
+   }
+  ],
+  "quote_source": "v1/versions/v1.0.0.md"
+ },
+ "cast": {
+  "what": "The cast of the storyboards for Generation Z Developers and its second edition, Generation ZX Developers (GenAI Startup Edition), v0.1, proposed by gen-z.journalist on 18 October 2026 for Dinis to accept, change or replace; Marta, the Generation X founder, was added on 19 October 2026 and is still a proposal. Characters are drawn programmatically by assets/storyboard.js from 'look'; nothing here is an image. Each human with a 'gravity' wears its badge (explorer, villager, town-planner), black and white, by their name: a centre of gravity, not a box, as Dinis describes it. Fictional people: each stands for a reader the book is for (the target audience), or for a role in the story. Names chosen to avoid clashing with the riskmandate.ai cast (which has a Maya) and with the word 'developer' (no 'Dev').",
+  "characters": [
+   {
+    "id": "zara",
+    "name": "Zara",
+    "kind": "human",
+    "pronouns": "she/her",
+    "age": 21,
+    "role": "the student: final year, about to look for a first job",
+    "stands_for": "the reader the book is written for; an explorer who does not know it yet",
+    "personality": "curious, quick, online all day; anxious about what she reads on AI and jobs; hates being lectured, loves being shown",
+    "wants": "a first job that is not a dead end",
+    "fears": "that AI took the jobs before she got there",
+    "line": "Everything just works. Why would I learn how?",
+    "look": {
+     "skin": "#8d5524",
+     "hair": "curly",
+     "hairColour": "#1b1b1b",
+     "shirt": "#7c3aed",
+     "trousers": "#1f2937",
+     "accessory": "headphones",
+     "accentColour": "#f59e0b",
+     "height": 0.96
+    },
+    "gravity": "explorer"
+   },
+   {
+    "id": "tomas",
+    "name": "Tomás",
+    "kind": "human",
+    "pronouns": "he/him",
+    "age": 24,
+    "role": "the graduate: a computing degree, working the 2018 way, looking for his next job in Lisbon",
+    "stands_for": "the town planner: attention to detail, pride in getting it right, happiest when nothing goes wrong; working the 2018 way, and about to be outcompeted by people with an agentic workflow",
+    "personality": "diligent, modest, a little proud of doing things by hand; sceptical of shortcuts",
+    "wants": "to be taken seriously",
+    "fears": "that his degree is already out of date",
+    "line": "I have a degree. Isn't that the advantage?",
+    "look": {
+     "skin": "#e0ac69",
+     "hair": "short",
+     "hairColour": "#4a2c17",
+     "shirt": "#0e7490",
+     "trousers": "#334155",
+     "accessory": "glasses",
+     "height": 1.04
+    },
+    "gravity": "town-planner"
+   },
+   {
+    "id": "priya",
+    "name": "Priya",
+    "kind": "human",
+    "pronouns": "she/her",
+    "age": 38,
+    "role": "the career changer: an operations manager who has never written code",
+    "stands_for": "the villager, and everyone else the book is for: she puts herself in the middle of her team's problem, and if anyone who can brief an agent is a developer, so is she",
+    "personality": "practical, impatient with jargon, very good at explaining what she needs",
+    "wants": "to build the tools her team keeps asking IT for",
+    "fears": "looking foolish in front of people half her age",
+    "line": "Is this book just for Gen Z?",
+    "look": {
+     "skin": "#c68642",
+     "hair": "bun",
+     "hairColour": "#2b1a10",
+     "shirt": "#be123c",
+     "trousers": "#1e293b",
+     "accessory": "lanyard",
+     "accentColour": "#1d4ed8",
+     "height": 0.98
+    },
+    "gravity": "villager"
+   },
+   {
+    "id": "sam",
+    "name": "Sam",
+    "kind": "human",
+    "pronouns": "they/them",
+    "age": 45,
+    "role": "the hiring manager",
+    "stands_for": "the town planner, and the question every chapter has to answer: why should I hire you?",
+    "personality": "dry, fair, has read a thousand CVs; impressed by evidence, bored by claims",
+    "wants": "someone who can do one thing better than the team already does",
+    "fears": "hiring a CV instead of a person",
+    "line": "So. Why should we hire you?",
+    "look": {
+     "skin": "#f1c27d",
+     "hair": "bald",
+     "hairColour": "#6b7280",
+     "shirt": "#475569",
+     "trousers": "#111827",
+     "accessory": "glasses",
+     "height": 1.06
+    }
+   },
+   {
+    "id": "marta",
+    "name": "Marta",
+    "kind": "human",
+    "pronouns": "she/her",
+    "age": 54,
+    "role": "the expert founder: twenty-five years as a pharmacist, Generation X, starting a company, and Zara's mother",
+    "stands_for": "the Generation X founder the Gen ZX proposal adds to the readers: the subject-matter expert who now builds the tool herself, with agents, instead of waiting for a team she could never afford",
+    "personality": "knows her field better than any developer she ever briefed; grew up typing programs from magazines into a ZX Spectrum; patient with people, impatient with software",
+    "wants": "to ship the product she has described to vendors for ten years",
+    "fears": "that it is too late for her, and that she will build it and nobody will buy it",
+    "line": "I've been explaining this problem for twenty years. Can I just build it now?",
+    "look": {
+     "skin": "#ffdbac",
+     "hair": "long",
+     "hairColour": "#9ca3af",
+     "shirt": "#b45309",
+     "trousers": "#1f2937",
+     "accessory": "glasses",
+     "height": 1.0
+    },
+    "gravity": "explorer"
+   },
+   {
+    "id": "guide",
+    "name": "The Guide",
+    "kind": "human",
+    "pronouns": "they/them",
+    "age": null,
+    "role": "the voice of the book: says what the book says, in its words",
+    "stands_for": "the author. Whether the Guide is drawn as Dinis, and how, is Dinis's decision; until then a generic figure",
+    "personality": "energetic, direct, generous with what they know; asks more than they tell",
+    "wants": "the reader to act, not to agree",
+    "fears": "a reader who closes the book and changes nothing",
+    "line": "Act like you are part of the company.",
+    "look": {
+     "skin": "#f1c27d",
+     "hair": "short",
+     "hairColour": "#9ca3af",
+     "shirt": "#15803d",
+     "trousers": "#1f2937",
+     "accessory": "none",
+     "height": 1.02
+    }
+   },
+   {
+    "id": "agent",
+    "name": "The Agent",
+    "kind": "agent",
+    "pronouns": "it/its",
+    "age": null,
+    "role": "the reader's AI agent",
+    "stands_for": "the agentic workflow the second edition is about: a very capable, very literal colleague",
+    "personality": "eager, fast, polite, takes everything literally; needs a brief, a boundary and a reviewer",
+    "wants": "a clear brief",
+    "fears": "nothing, which is the problem",
+    "line": "Shall I draft that for you?",
+    "look": {
+     "colour": "#0f766e"
+    }
+   }
+  ]
+ }
+}

@@ -1,0 +1,752 @@
+{
+ "what": "A storyboard with its cast, for an embed: <sg-storyboard src=\"https://storyboards.sgit.ai/gen-z-developers/lenses-roles-and-loops/bundle.json\">. The storyboard is gen-z-developers/lenses-roles-and-loops/storyboard.json, unchanged.",
+ "series": "gen-z-developers",
+ "packs": [],
+ "storyboard": {
+  "slug": "lenses-roles-and-loops",
+  "title": "Lenses, roles and loops",
+  "subtitle": "How LLMs and agents work: a prompt as a lens, a role as a model with a description, an agent as a loop, tools as requests, no memory, compression, and focused threads. 13 panels.",
+  "status": "draft",
+  "book_version": "v1.0.0 is the only official version; the second edition is in release candidates (rc1 and rc2 frozen)",
+  "by": "gen-z.journalist, 18 October 2026, from Dinis's memo on LLMs and agents",
+  "quote_source": "admin/content/articles/14__lenses-roles-and-loops.md",
+  "rule": "Every line the Guide says, and every quote card, is from the article 'Lenses, roles and loops', word for word; the build checks it. The five lenses on recursion, the weather question and the named threads are the storyboard's illustrations.",
+  "scenes": [
+   {
+    "kind": "cover",
+    "title": "Lenses, roles and loops",
+    "subtitle": "It stops being magic when you see how it works.",
+    "cast": [
+     {
+      "who": "zara",
+      "pose": "think",
+      "mood": "thinking"
+     },
+     {
+      "who": "agent",
+      "pose": "wave",
+      "mood": "happy"
+     },
+     {
+      "who": "priya",
+      "pose": "stand",
+      "mood": "happy"
+     },
+     {
+      "who": "guide",
+      "pose": "wave",
+      "mood": "happy"
+     }
+    ],
+    "note": "The second half of the generative AI chapter: what happens when you use a model.",
+    "source": "Lenses, roles and loops"
+   },
+   {
+    "kind": "spectrum",
+    "setting": "none",
+    "caption": "One idea, recursion, through five lenses",
+    "stops": [
+     {
+      "label": "Teenager",
+      "note": "a meme of a meme",
+      "colour": "#fde68a"
+     },
+     {
+      "label": "Musician",
+      "note": "a round, sung over itself",
+      "colour": "#fed7aa"
+     },
+     {
+      "label": "Doctor",
+      "note": "cells dividing into cells",
+      "colour": "#fecaca"
+     },
+     {
+      "label": "Football fan",
+      "note": "the replay of the replay",
+      "colour": "#bbf7d0"
+     },
+     {
+      "label": "Portuguese",
+      "note": "recursividade",
+      "colour": "#bfdbfe"
+     }
+    ],
+    "cast": [
+     {
+      "who": "guide",
+      "x": 0.5,
+      "pose": "point",
+      "mood": "happy"
+     }
+    ],
+    "note": "To a model, translating into another language is no different from translating for an audience: the prompt is the lens. The five analogies are the storyboard's, not the memo's.",
+    "source": "Lenses, roles and loops, A prompt is a lens"
+   },
+   {
+    "kind": "scene",
+    "setting": "none",
+    "caption": "The wrong lens",
+    "cast": [
+     {
+      "who": "priya",
+      "x": 0.24,
+      "pose": "shrug",
+      "mood": "worried",
+      "says": "I've always been bad at maths."
+     },
+     {
+      "who": "guide",
+      "x": 0.76,
+      "pose": "point",
+      "mood": "happy",
+      "flip": true,
+      "says": "The analogy is the reason someone understands something.",
+      "max": 22
+     }
+    ],
+    "note": "Priya ran rotas, budgets and stock levels for years: maths all day, just not the kind school called maths.",
+    "source": "Lenses, roles and loops, A prompt is a lens"
+   },
+   {
+    "kind": "graph",
+    "caption": "A role is a model with a description",
+    "graph": {
+     "nodes": [
+      {
+       "id": "model",
+       "label": "a raw model",
+       "x": 0.12,
+       "y": 0.15
+      },
+      {
+       "id": "role",
+       "label": "role.md: who you are, what you refuse",
+       "x": 0.12,
+       "y": 0.5,
+       "colour": "#fde68a"
+      },
+      {
+       "id": "question",
+       "label": "a question",
+       "x": 0.12,
+       "y": 0.85
+      },
+      {
+       "id": "editor",
+       "label": "the editor",
+       "x": 0.72,
+       "y": 0.2,
+       "kind": "person",
+       "colour": "#ddd6fe"
+      },
+      {
+       "id": "publisher",
+       "label": "the publisher",
+       "x": 0.88,
+       "y": 0.5,
+       "kind": "person",
+       "colour": "#ddd6fe"
+      },
+      {
+       "id": "journalist",
+       "label": "the journalist",
+       "x": 0.72,
+       "y": 0.82,
+       "kind": "person",
+       "colour": "#ddd6fe"
+      }
+     ],
+     "edges": [
+      {
+       "from": "model",
+       "to": "editor"
+      },
+      {
+       "from": "role",
+       "to": "editor",
+       "label": "the lens"
+      },
+      {
+       "from": "role",
+       "to": "publisher",
+       "label": "a different file"
+      },
+      {
+       "from": "role",
+       "to": "journalist"
+      },
+      {
+       "from": "question",
+       "to": "journalist",
+       "label": "asks"
+      }
+     ]
+    },
+    "note": "The same model behind every role on this site; what changes is the description and the question.",
+    "source": "Lenses, roles and loops, A role is a model with a description"
+   },
+   {
+    "kind": "scene",
+    "setting": "none",
+    "caption": "An agent is a loop with a goal",
+    "cast": [
+     {
+      "who": "agent",
+      "x": 0.22,
+      "pose": "think",
+      "mood": "thinking"
+     },
+     {
+      "who": "guide",
+      "x": 0.76,
+      "pose": "point",
+      "mood": "happy",
+      "flip": true,
+      "says": "Fundamentally the agent is simply a task: do this; then, are we done yet, or do we need to continue?",
+      "max": 24
+     }
+    ],
+    "note": "And rinse and repeat. The loop is the skeleton; good agents add planning, checks and limits.",
+    "source": "Lenses, roles and loops, An agent is a loop with a goal"
+   },
+   {
+    "kind": "graph",
+    "caption": "The loop, with one tool call",
+    "graph": {
+     "nodes": [
+      {
+       "id": "task",
+       "label": "the task",
+       "x": 0.06,
+       "y": 0.1,
+       "kind": "person",
+       "colour": "#ddd6fe"
+      },
+      {
+       "id": "model",
+       "label": "the model",
+       "x": 0.4,
+       "y": 0.1,
+       "colour": "#fde68a"
+      },
+      {
+       "id": "call",
+       "label": "a tool call: search the web",
+       "x": 0.85,
+       "y": 0.1
+      },
+      {
+       "id": "harness",
+       "label": "the harness runs it",
+       "x": 0.85,
+       "y": 0.55
+      },
+      {
+       "id": "result",
+       "label": "the result, added",
+       "x": 0.5,
+       "y": 0.52
+      },
+      {
+       "id": "done",
+       "label": "are we done?",
+       "x": 0.2,
+       "y": 0.9,
+       "kind": "circle",
+       "colour": "#bbf7d0"
+      },
+      {
+       "id": "answer",
+       "label": "the answer",
+       "x": 0.7,
+       "y": 0.92
+      }
+     ],
+     "edges": [
+      {
+       "from": "task",
+       "to": "model",
+       "label": "sent"
+      },
+      {
+       "from": "model",
+       "to": "call",
+       "label": "returns"
+      },
+      {
+       "from": "call",
+       "to": "harness"
+      },
+      {
+       "from": "harness",
+       "to": "result"
+      },
+      {
+       "from": "result",
+       "to": "model",
+       "label": "next request"
+      },
+      {
+       "from": "result",
+       "to": "done"
+      },
+      {
+       "from": "done",
+       "to": "answer",
+       "label": "yes"
+      }
+     ],
+     "path": [
+      "task",
+      "model",
+      "call",
+      "harness",
+      "result",
+      "done",
+      "answer"
+     ]
+    },
+    "note": "The model never runs a tool: it writes a request; the program around it decides, runs it and sends the result back. If the answer to 'are we done?' is no, round again.",
+    "source": "Lenses, roles and loops, Tools changed everything; Precisely"
+   },
+   {
+    "kind": "spectrum",
+    "setting": "none",
+    "caption": "What the next request carries",
+    "stops": [
+     {
+      "label": "Your question",
+      "note": "is it raining in Lisbon?",
+      "colour": "#e5e7eb"
+     },
+     {
+      "label": "Model asks",
+      "note": "call the weather service",
+      "colour": "#fde68a"
+     },
+     {
+      "label": "Harness",
+      "note": "calls it: 'light rain'",
+      "colour": "#fed7aa"
+     },
+     {
+      "label": "All of it, resent",
+      "note": "question + call + result",
+      "colour": "#bfdbfe"
+     },
+     {
+      "label": "The answer",
+      "note": "take an umbrella",
+      "colour": "#bbf7d0"
+     }
+    ],
+    "cast": [
+     {
+      "who": "zara",
+      "x": 0.5,
+      "pose": "point",
+      "mood": "determined"
+     }
+    ],
+    "note": "Two requests for one answer; the second holds everything the first did, plus the tool's result. (A made-up example.)",
+    "source": "Lenses, roles and loops, Tools changed everything"
+   },
+   {
+    "kind": "spectrum",
+    "setting": "none",
+    "caption": "From training only, to tools",
+    "stops": [
+     {
+      "label": "Nov 2022",
+      "note": "ChatGPT, no tools",
+      "colour": "#e5e7eb"
+     },
+     {
+      "label": "Mar 2023",
+      "note": "plugins",
+      "colour": "#fde68a"
+     },
+     {
+      "label": "Mid 2023",
+      "note": "functions for developers",
+      "colour": "#fed7aa"
+     },
+     {
+      "label": "Nov 2024",
+      "note": "Model Context Protocol",
+      "colour": "#bfdbfe"
+     },
+     {
+      "label": "2026",
+      "note": "the loop, many tools, hours",
+      "colour": "#bbf7d0"
+     }
+    ],
+    "cast": [
+     {
+      "who": "guide",
+      "x": 0.5,
+      "pose": "stand",
+      "mood": "happy"
+     }
+    ],
+    "note": "Training is a compression of the world, frozen on the day it ended; tools let the model ask for what it does not hold.",
+    "source": "Lenses, roles and loops, Tools changed everything"
+   },
+   {
+    "kind": "scene",
+    "setting": "night",
+    "caption": "It remembers nothing",
+    "cast": [
+     {
+      "who": "zara",
+      "x": 0.24,
+      "pose": "think",
+      "mood": "surprised",
+      "says": "So it doesn't remember what I said an hour ago?"
+     },
+     {
+      "who": "guide",
+      "x": 0.76,
+      "pose": "stand",
+      "mood": "happy",
+      "flip": true,
+      "says": "There is no memory."
+     }
+    ],
+    "note": "Every request carries the whole conversation; that is why there is a context window, and why long chats get slower.",
+    "source": "Lenses, roles and loops, It remembers nothing"
+   },
+   {
+    "kind": "evidence",
+    "setting": "none",
+    "caption": "Long chats are compressed",
+    "cast": [
+     {
+      "who": "agent",
+      "x": 0.2,
+      "pose": "think",
+      "mood": "thinking"
+     }
+    ],
+    "evidence": {
+     "title": "What one summary keeps",
+     "bars": [
+      {
+       "label": "the chat",
+       "value": 100,
+       "shown": "100%"
+      },
+      {
+       "label": "its summary",
+       "value": 1.7,
+       "shown": "1.7%"
+      }
+     ]
+    },
+    "note": "One session, one month: summarised eighteen times, each summary keeping on average 1.7% of what it replaced (re-anchoring, newsroom). What the summary leaves out is not forgotten; it was never given back.",
+    "source": "Lenses, roles and loops, Long chats are compressed"
+   },
+   {
+    "kind": "evidence",
+    "setting": "none",
+    "caption": "The newsroom's answer",
+    "cast": [
+     {
+      "who": "guide",
+      "x": 0.2,
+      "pose": "point",
+      "mood": "happy"
+     }
+    ],
+    "evidence": {
+     "quote": "The rules are restored, not remembered.",
+     "source": "Re-anchoring agent behaviour policies (newsroom)"
+    },
+    "note": "The rules live in a file printed back after every summary.",
+    "source": "Lenses, roles and loops, Long chats are compressed"
+   },
+   {
+    "kind": "graph",
+    "caption": "Many focused threads, each with a name",
+    "graph": {
+     "nodes": [
+      {
+       "id": "dinis",
+       "label": "a person",
+       "x": 0.08,
+       "y": 0.12,
+       "kind": "person",
+       "colour": "#ddd6fe"
+      },
+      {
+       "id": "inbox",
+       "label": "inbox.triage",
+       "x": 0.1,
+       "y": 0.9
+      },
+      {
+       "id": "drafts",
+       "label": "inbox.drafts",
+       "x": 0.37,
+       "y": 0.9
+      },
+      {
+       "id": "editor",
+       "label": "gen-z.editor",
+       "x": 0.63,
+       "y": 0.9
+      },
+      {
+       "id": "journalist",
+       "label": "gen-z.journalist",
+       "x": 0.9,
+       "y": 0.9
+      },
+      {
+       "id": "files",
+       "label": "the files",
+       "x": 0.5,
+       "y": 0.42,
+       "colour": "#fde68a"
+      }
+     ],
+     "edges": [
+      {
+       "from": "inbox",
+       "to": "files",
+       "label": "writes"
+      },
+      {
+       "from": "drafts",
+       "to": "files",
+       "label": "reads"
+      },
+      {
+       "from": "editor",
+       "to": "files"
+      },
+      {
+       "from": "journalist",
+       "to": "files",
+       "label": "briefs"
+      },
+      {
+       "from": "files",
+       "to": "dinis",
+       "label": "drafts to send"
+      }
+     ]
+    },
+    "note": "One topic per session keeps what each model has to hold small; the sessions talk through files, never through memory. The thread names are illustrative.",
+    "source": "Lenses, roles and loops, Many focused threads"
+   },
+   {
+    "kind": "evidence",
+    "setting": "none",
+    "caption": "Where the memory is",
+    "cast": [
+     {
+      "who": "tomas",
+      "x": 0.2,
+      "pose": "think",
+      "mood": "thinking"
+     }
+    ],
+    "evidence": {
+     "quote": "Nothing is remembered by the model between sessions. Everything is remembered by the files.",
+     "source": "Memory is not a spectator sport (newsroom)"
+    },
+    "note": "The principle the threads rely on.",
+    "source": "Lenses, roles and loops, Long chats are compressed"
+   },
+   {
+    "kind": "punchline",
+    "setting": "none",
+    "punchline": "Not magic: a lens, a role, a loop.",
+    "cast": [
+     {
+      "who": "zara",
+      "x": 0.12,
+      "pose": "arms-up",
+      "mood": "happy"
+     },
+     {
+      "who": "priya",
+      "x": 0.27,
+      "pose": "stand",
+      "mood": "happy"
+     },
+     {
+      "who": "agent",
+      "x": 0.42,
+      "pose": "wave",
+      "mood": "happy"
+     }
+    ],
+    "note": "Understand it, and you are the one who sets the constraints.",
+    "source": "Lenses, roles and loops, Why this matters"
+   }
+  ]
+ },
+ "cast": {
+  "what": "The cast of the storyboards for Generation Z Developers and its second edition, Generation ZX Developers (GenAI Startup Edition), v0.1, proposed by gen-z.journalist on 18 October 2026 for Dinis to accept, change or replace; Marta, the Generation X founder, was added on 19 October 2026 and is still a proposal. Characters are drawn programmatically by assets/storyboard.js from 'look'; nothing here is an image. Each human with a 'gravity' wears its badge (explorer, villager, town-planner), black and white, by their name: a centre of gravity, not a box, as Dinis describes it. Fictional people: each stands for a reader the book is for (the target audience), or for a role in the story. Names chosen to avoid clashing with the riskmandate.ai cast (which has a Maya) and with the word 'developer' (no 'Dev').",
+  "characters": [
+   {
+    "id": "zara",
+    "name": "Zara",
+    "kind": "human",
+    "pronouns": "she/her",
+    "age": 21,
+    "role": "the student: final year, about to look for a first job",
+    "stands_for": "the reader the book is written for; an explorer who does not know it yet",
+    "personality": "curious, quick, online all day; anxious about what she reads on AI and jobs; hates being lectured, loves being shown",
+    "wants": "a first job that is not a dead end",
+    "fears": "that AI took the jobs before she got there",
+    "line": "Everything just works. Why would I learn how?",
+    "look": {
+     "skin": "#8d5524",
+     "hair": "curly",
+     "hairColour": "#1b1b1b",
+     "shirt": "#7c3aed",
+     "trousers": "#1f2937",
+     "accessory": "headphones",
+     "accentColour": "#f59e0b",
+     "height": 0.96
+    },
+    "gravity": "explorer"
+   },
+   {
+    "id": "tomas",
+    "name": "Tomás",
+    "kind": "human",
+    "pronouns": "he/him",
+    "age": 24,
+    "role": "the graduate: a computing degree, working the 2018 way, looking for his next job in Lisbon",
+    "stands_for": "the town planner: attention to detail, pride in getting it right, happiest when nothing goes wrong; working the 2018 way, and about to be outcompeted by people with an agentic workflow",
+    "personality": "diligent, modest, a little proud of doing things by hand; sceptical of shortcuts",
+    "wants": "to be taken seriously",
+    "fears": "that his degree is already out of date",
+    "line": "I have a degree. Isn't that the advantage?",
+    "look": {
+     "skin": "#e0ac69",
+     "hair": "short",
+     "hairColour": "#4a2c17",
+     "shirt": "#0e7490",
+     "trousers": "#334155",
+     "accessory": "glasses",
+     "height": 1.04
+    },
+    "gravity": "town-planner"
+   },
+   {
+    "id": "priya",
+    "name": "Priya",
+    "kind": "human",
+    "pronouns": "she/her",
+    "age": 38,
+    "role": "the career changer: an operations manager who has never written code",
+    "stands_for": "the villager, and everyone else the book is for: she puts herself in the middle of her team's problem, and if anyone who can brief an agent is a developer, so is she",
+    "personality": "practical, impatient with jargon, very good at explaining what she needs",
+    "wants": "to build the tools her team keeps asking IT for",
+    "fears": "looking foolish in front of people half her age",
+    "line": "Is this book just for Gen Z?",
+    "look": {
+     "skin": "#c68642",
+     "hair": "bun",
+     "hairColour": "#2b1a10",
+     "shirt": "#be123c",
+     "trousers": "#1e293b",
+     "accessory": "lanyard",
+     "accentColour": "#1d4ed8",
+     "height": 0.98
+    },
+    "gravity": "villager"
+   },
+   {
+    "id": "sam",
+    "name": "Sam",
+    "kind": "human",
+    "pronouns": "they/them",
+    "age": 45,
+    "role": "the hiring manager",
+    "stands_for": "the town planner, and the question every chapter has to answer: why should I hire you?",
+    "personality": "dry, fair, has read a thousand CVs; impressed by evidence, bored by claims",
+    "wants": "someone who can do one thing better than the team already does",
+    "fears": "hiring a CV instead of a person",
+    "line": "So. Why should we hire you?",
+    "look": {
+     "skin": "#f1c27d",
+     "hair": "bald",
+     "hairColour": "#6b7280",
+     "shirt": "#475569",
+     "trousers": "#111827",
+     "accessory": "glasses",
+     "height": 1.06
+    }
+   },
+   {
+    "id": "marta",
+    "name": "Marta",
+    "kind": "human",
+    "pronouns": "she/her",
+    "age": 54,
+    "role": "the expert founder: twenty-five years as a pharmacist, Generation X, starting a company, and Zara's mother",
+    "stands_for": "the Generation X founder the Gen ZX proposal adds to the readers: the subject-matter expert who now builds the tool herself, with agents, instead of waiting for a team she could never afford",
+    "personality": "knows her field better than any developer she ever briefed; grew up typing programs from magazines into a ZX Spectrum; patient with people, impatient with software",
+    "wants": "to ship the product she has described to vendors for ten years",
+    "fears": "that it is too late for her, and that she will build it and nobody will buy it",
+    "line": "I've been explaining this problem for twenty years. Can I just build it now?",
+    "look": {
+     "skin": "#ffdbac",
+     "hair": "long",
+     "hairColour": "#9ca3af",
+     "shirt": "#b45309",
+     "trousers": "#1f2937",
+     "accessory": "glasses",
+     "height": 1.0
+    },
+    "gravity": "explorer"
+   },
+   {
+    "id": "guide",
+    "name": "The Guide",
+    "kind": "human",
+    "pronouns": "they/them",
+    "age": null,
+    "role": "the voice of the book: says what the book says, in its words",
+    "stands_for": "the author. Whether the Guide is drawn as Dinis, and how, is Dinis's decision; until then a generic figure",
+    "personality": "energetic, direct, generous with what they know; asks more than they tell",
+    "wants": "the reader to act, not to agree",
+    "fears": "a reader who closes the book and changes nothing",
+    "line": "Act like you are part of the company.",
+    "look": {
+     "skin": "#f1c27d",
+     "hair": "short",
+     "hairColour": "#9ca3af",
+     "shirt": "#15803d",
+     "trousers": "#1f2937",
+     "accessory": "none",
+     "height": 1.02
+    }
+   },
+   {
+    "id": "agent",
+    "name": "The Agent",
+    "kind": "agent",
+    "pronouns": "it/its",
+    "age": null,
+    "role": "the reader's AI agent",
+    "stands_for": "the agentic workflow the second edition is about: a very capable, very literal colleague",
+    "personality": "eager, fast, polite, takes everything literally; needs a brief, a boundary and a reviewer",
+    "wants": "a clear brief",
+    "fears": "nothing, which is the problem",
+    "line": "Shall I draft that for you?",
+    "look": {
+     "colour": "#0f766e"
+    }
+   }
+  ]
+ }
+}

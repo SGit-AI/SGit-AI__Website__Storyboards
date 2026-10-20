@@ -1,0 +1,85 @@
+{
+ "slug": "pki",
+ "title": "Keys for people and agents",
+ "tagline": "The register, one panel at a time.",
+ "blurb": "pki.sgit.ai's storyboards: how a person gets a key pair from a passkey, how two people verify each other two ways, how a secret travels by QR code and how an agent gets a key of its own. Each board links to the page where you can try it for real.",
+ "packs": [
+  "security"
+ ],
+ "start": "the-first-key",
+ "shelves": [
+  {
+   "title": "Keys for people",
+   "note": "A passkey opens a vault, the vault holds the keys, and two people find and verify each other.",
+   "boards": [
+    "the-first-key",
+    "two-ways",
+    "an-invitation",
+    "a-secret-by-qr",
+    "an-access-key-sealed"
+   ]
+  },
+  {
+   "title": "Keys for agents",
+   "note": "An agent makes its own key, names its operator and is confirmed for a week.",
+   "boards": [
+    "an-agent-gets-a-key"
+   ]
+  },
+  {
+   "title": "Next: proposed",
+   "note": "Boards for what is proposed and not built yet.",
+   "boards": [
+    "in-person-by-qr"
+   ]
+  }
+ ],
+ "stance": {
+  "anchor": [
+   "point",
+   "happy"
+  ],
+  "noor": [
+   "wave",
+   "happy"
+  ],
+  "leo": [
+   "stand",
+   "happy"
+  ],
+  "kofi": [
+   "think",
+   "thinking"
+  ],
+  "mallory": [
+   "shrug",
+   "determined"
+  ],
+  "scout": [
+   "wave",
+   "happy"
+  ],
+  "fleet": [
+   "stand",
+   "calm"
+  ]
+ },
+ "quotes": "Every line a character says is the storyboard's, not a quote, and is marked not_a_quote; evidence panels quote pki.sgit.ai's pages word for word, which pki.sgit.ai's build checked at the origin commit.",
+ "origin": {
+  "site": "https://pki.sgit.ai",
+  "repo": "SGit-AI/SGit-AI__Website__PKI",
+  "commit": "ab6affc9348ae390636405d2dd24b5db31a9663c",
+  "date": "2026-10-20",
+  "path": "admin/content/storyboards/",
+  "imported": [
+   "01__the-first-key.json",
+   "02__two-ways.json",
+   "03__an-invitation.json",
+   "04__a-secret-by-qr.json",
+   "05__an-access-key-sealed.json",
+   "06__an-agent-gets-a-key.json",
+   "07__in-person-by-qr.json",
+   "cast.json"
+  ]
+ }
+}

@@ -1,0 +1,271 @@
+{
+ "slug": "not-to-me",
+ "title": "Not to me",
+ "subtitle": "Marta reads the front of release candidate 2 on her phone, and the book keeps talking to its author. 8 panels.",
+ "status": "draft",
+ "book_version": "v2.0.0-rc2 (a release candidate)",
+ "by": "gen-z.journalist, 19 October 2026, from Dinis's second paper review",
+ "quote_source": "admin/content/agent-articles/11__rc2-on-paper-pages-4-to-9.md",
+ "rule": "Every line the Guide says is from the agent article 'RC2 on paper, part 2', word for word, and each is Dinis's note from the printed page; the build checks it. Marta's and Zara's lines are the strip's, marked not_a_quote.",
+ "scenes": [
+  {
+   "kind": "cover",
+   "title": "Not to me",
+   "subtitle": "A strip about who a book is talking to.",
+   "cast": [
+    {
+     "who": "marta",
+     "pose": "think",
+     "mood": "thinking"
+    },
+    {
+     "who": "guide",
+     "pose": "wave",
+     "mood": "happy"
+    },
+    {
+     "who": "zara",
+     "pose": "point",
+     "mood": "happy"
+    }
+   ],
+   "note": "The second pacing experiment: a running gag across three panels, a prop that changes hands, and a late payoff.",
+   "source": "RC2 on paper, part 2"
+  },
+  {
+   "kind": "scene",
+   "setting": "none",
+   "caption": "Page 5, on a phone",
+   "props": [
+    {
+     "kind": "phone",
+     "x": 0.27,
+     "y": 560
+    },
+    {
+     "kind": "board",
+     "x": 0.72,
+     "y": 620,
+     "lines": [
+      "Read it as a reader first.",
+      "Then, if you are Dinis,",
+      "read it with a pen."
+     ]
+    }
+   ],
+   "cast": [
+    {
+     "who": "marta",
+     "pose": "think",
+     "mood": "thinking",
+     "x": 0.16,
+     "says": "I'm not Dinis."
+    }
+   ],
+   "note": "The gag, first time: the book talks to its author.",
+   "source": "RC2 on paper, part 2, Page 5 (note 22)",
+   "not_a_quote": true
+  },
+  {
+   "kind": "scene",
+   "setting": "none",
+   "caption": "Page 9, still on the phone",
+   "props": [
+    {
+     "kind": "phone",
+     "x": 0.27,
+     "y": 560
+    },
+    {
+     "kind": "board",
+     "x": 0.72,
+     "y": 620,
+     "lines": [
+      "For Dinis: the measure.",
+      "How does a reader",
+      "tell us about their company?"
+     ]
+    }
+   ],
+   "cast": [
+    {
+     "who": "marta",
+     "pose": "shrug",
+     "mood": "worried",
+     "x": 0.16,
+     "says": "Still not Dinis."
+    }
+   ],
+   "note": "The gag, second time: a box addressed to Dinis in the middle of chapter 1 (notes 49 to 51).",
+   "source": "RC2 on paper, part 2, Page 9",
+   "not_a_quote": true
+  },
+  {
+   "kind": "scene",
+   "setting": "none",
+   "caption": "The margin answers",
+   "cast": [
+    {
+     "who": "marta",
+     "pose": "shrug",
+     "mood": "neutral",
+     "x": 0.22
+    },
+    {
+     "who": "guide",
+     "pose": "point",
+     "mood": "happy",
+     "x": 0.76,
+     "says": "Not to me",
+     "flip": true
+    }
+   ],
+   "note": "The gag, third time, turned: the Guide speaks the pen's answer, word for word.",
+   "source": "RC2 on paper, part 2, Page 5"
+  },
+  {
+   "kind": "scene",
+   "setting": "none",
+   "caption": "Screen or paper",
+   "props": [
+    {
+     "kind": "phone",
+     "x": 0.27,
+     "y": 560
+    },
+    {
+     "kind": "board",
+     "x": 0.72,
+     "y": 620,
+     "lines": [
+      "Reading this on a screen?",
+      "Stop, and print it."
+     ]
+    }
+   ],
+   "cast": [
+    {
+     "who": "marta",
+     "pose": "think",
+     "mood": "surprised",
+     "x": 0.14
+    },
+    {
+     "who": "guide",
+     "pose": "stand",
+     "mood": "happy",
+     "x": 0.44,
+     "says": "we need to tell the reader that if they are reading this on a screen they should stop",
+     "max": 20
+    }
+   ],
+   "note": "Note 23: print the book.",
+   "source": "RC2 on paper, part 2, Page 5"
+  },
+  {
+   "kind": "scene",
+   "setting": "none",
+   "caption": "The prop changes hands",
+   "props": [
+    {
+     "kind": "book",
+     "x": 0.62,
+     "y": 640,
+     "label": "printed",
+     "colour": "#e5e7eb"
+    }
+   ],
+   "cast": [
+    {
+     "who": "marta",
+     "pose": "stand",
+     "mood": "happy",
+     "x": 0.16
+    },
+    {
+     "who": "zara",
+     "pose": "point",
+     "mood": "happy",
+     "x": 0.44,
+     "says": "Printed it. Can I copy it? Sell it? Remix it?",
+     "max": 18
+    },
+    {
+     "who": "guide",
+     "pose": "point",
+     "mood": "happy",
+     "x": 0.82,
+     "says": "All they need to do is to have a small credit of where the text came from.",
+     "flip": true,
+     "max": 18
+    }
+   ],
+   "note": "Notes 24 and 25: the website, the chapter PDFs, and CC BY in plain words. Zara brings the paper copy.",
+   "source": "RC2 on paper, part 2, Page 5"
+  },
+  {
+   "kind": "scene",
+   "setting": "none",
+   "caption": "Page 9",
+   "props": [
+    {
+     "kind": "board",
+     "x": 0.72,
+     "y": 620,
+     "lines": [
+      "Start the company.",
+      "Ship it, and see if",
+      "they miss it.",
+      "Not to plan. Ship."
+     ]
+    }
+   ],
+   "cast": [
+    {
+     "who": "marta",
+     "pose": "arms-up",
+     "mood": "surprised",
+     "x": 0.14,
+     "says": "Oh. That's why."
+    },
+    {
+     "who": "guide",
+     "pose": "point",
+     "mood": "happy",
+     "x": 0.44,
+     "says": "Finally we tell the reader why they should read this book",
+     "max": 18
+    }
+   ],
+   "note": "The late payoff, as late as the book has it: the reason to read arrives on page 9 (note 47).",
+   "source": "RC2 on paper, part 2, Page 9"
+  },
+  {
+   "kind": "punchline",
+   "setting": "none",
+   "punchline": "Page 9 is too late.",
+   "cast": [
+    {
+     "who": "marta",
+     "pose": "think",
+     "mood": "thinking",
+     "x": 0.14
+    },
+    {
+     "who": "zara",
+     "pose": "arms-up",
+     "mood": "happy",
+     "x": 0.29
+    },
+    {
+     "who": "guide",
+     "pose": "wave",
+     "mood": "happy",
+     "x": 0.44
+    }
+   ],
+   "note": "Notes 26 and 47 together: the reason to read belongs on the first page.",
+   "source": "RC2 on paper, part 2"
+  }
+ ]
+}

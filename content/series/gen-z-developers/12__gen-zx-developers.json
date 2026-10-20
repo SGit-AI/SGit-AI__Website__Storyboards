@@ -1,0 +1,556 @@
+{
+ "slug": "gen-zx-developers",
+ "title": "Gen ZX Developers",
+ "subtitle": "The GenAI Startup Edition, for Generation Z and Generation X, with one objective, a company by the end of the book: proposed on 19 October 2026 and adopted by Dinis as the frame of the second release candidate (decisions 014 and 015). 14 panels.",
+ "status": "draft",
+ "book_version": "v1.0.0 is the only official version; the second edition is in release candidates (rc1 and rc2 frozen)",
+ "by": "gen-z.journalist, 19 October 2026, from Dinis's memo proposing Gen ZX",
+ "quote_source": "admin/content/articles/16__gen-zx-developers.md",
+ "rule": "Every line the Guide says, and every quote card, is from the article 'Gen ZX Developers', word for word; the build checks it. Marta, the BASIC on the board, the path and the serverless graph are the storyboard's illustrations.",
+ "scenes": [
+  {
+   "kind": "cover",
+   "title": "Gen ZX Developers",
+   "subtitle": "The GenAI Startup Edition: the frame of rc2.",
+   "cast": [
+    {
+     "who": "marta",
+     "pose": "wave",
+     "mood": "happy"
+    },
+    {
+     "who": "zara",
+     "pose": "point",
+     "mood": "happy"
+    },
+    {
+     "who": "agent",
+     "pose": "wave",
+     "mood": "happy"
+    },
+    {
+     "who": "guide",
+     "pose": "stand",
+     "mood": "happy"
+    }
+   ],
+   "note": "Proposed as the first change set for the board, and adopted by Dinis as the frame of rc2 (decision 015): the founder as the reader, two generations, one objective.",
+   "source": "Gen ZX Developers"
+  },
+  {
+   "kind": "scene",
+   "setting": "none",
+   "caption": "Who is it for?",
+   "cast": [
+    {
+     "who": "priya",
+     "pose": "shrug",
+     "mood": "thinking",
+     "x": 0.24,
+     "says": "Is this book just for Gen Z?"
+    },
+    {
+     "who": "guide",
+     "pose": "point",
+     "mood": "happy",
+     "x": 0.76,
+     "says": "Two generations, not one: Generation Z and Generation X.",
+     "flip": true,
+     "max": 22
+    }
+   ],
+   "note": "Priya is 38, a millennial: in the middle. She can read it; it is written first for the two generations either side of her.",
+   "source": "Gen ZX Developers, In short; Generation X, too"
+  },
+  {
+   "kind": "spectrum",
+   "setting": "none",
+   "caption": "The generations, by Pew's dates",
+   "stops": [
+    {
+     "label": "Gen X",
+     "note": "1965 to 1980: the experts",
+     "colour": "#fed7aa"
+    },
+    {
+     "label": "Millennials",
+     "note": "1981 to 1996: the middle",
+     "colour": "#e5e7eb"
+    },
+    {
+     "label": "Gen Z",
+     "note": "1997 to 2012: the new entrants",
+     "colour": "#ddd6fe"
+    },
+    {
+     "label": "Gen Alpha",
+     "note": "2013 on: next",
+     "colour": "#e5e7eb"
+    }
+   ],
+   "cast": [
+    {
+     "who": "guide",
+     "pose": "point",
+     "mood": "happy",
+     "x": 0.5
+    }
+   ],
+   "note": "Boundaries differ between sources; the book will say which it uses.",
+   "source": "Gen ZX Developers, Precisely"
+  },
+  {
+   "kind": "scene",
+   "setting": "none",
+   "caption": "The expert, and her daughter",
+   "cast": [
+    {
+     "who": "marta",
+     "pose": "think",
+     "mood": "determined",
+     "x": 0.26,
+     "says": "I've been explaining this problem for twenty years. Can I just build it now?",
+     "max": 22
+    },
+    {
+     "who": "zara",
+     "pose": "point",
+     "mood": "happy",
+     "x": 0.76,
+     "says": "Yes. I'll show you the agent.",
+     "flip": true
+    }
+   ],
+   "note": "Marta (proposed for the cast): Generation X, twenty-five years a pharmacist, Zara's mother. Execution just got cheap; what she knows did not.",
+   "source": "Gen ZX Developers, Generation X, too"
+  },
+  {
+   "kind": "scene",
+   "setting": "none",
+   "caption": "The plot twist",
+   "props": [
+    {
+     "kind": "board",
+     "x": 0.5,
+     "y": 620,
+     "lines": [
+      "ZX Spectrum, April 1982",
+      "10 PRINT \"HELLO\"",
+      "20 GOTO 10"
+     ]
+    }
+   ],
+   "cast": [
+    {
+     "who": "guide",
+     "pose": "point",
+     "mood": "happy",
+     "x": 0.14,
+     "says": "If we are talking about Generation Z and Generation X, we actually have Generation ZX.",
+     "max": 20
+    },
+    {
+     "who": "marta",
+     "pose": "arms-up",
+     "mood": "surprised",
+     "x": 0.86,
+     "flip": true
+    }
+   ],
+   "note": "Dinis's origins; and Gen ZX, not Gen XZ (XZ is the library backdoored in 2024).",
+   "source": "Gen ZX Developers, Generation ZX; Precisely"
+  },
+  {
+   "kind": "evidence",
+   "setting": "none",
+   "caption": "Explorer coding, not vibe coding",
+   "cast": [
+    {
+     "who": "zara",
+     "pose": "point",
+     "mood": "determined",
+     "x": 0.2
+    }
+   ],
+   "evidence": {
+    "quote": "What people call vibe coding is exploration, and the word should say so.",
+    "source": "Explorer coding (newsroom)"
+   },
+   "note": "The chapter that should replace vibe coding, and explain the move.",
+   "source": "Gen ZX Developers, Explorer coding, not vibe coding"
+  },
+  {
+   "kind": "graph",
+   "caption": "From a problem to a company",
+   "graph": {
+    "nodes": [
+     {
+      "id": "prob",
+      "label": "twenty years inside a problem",
+      "x": 0.06,
+      "y": 0.1,
+      "kind": "person",
+      "colour": "#fed7aa"
+     },
+     {
+      "id": "exp",
+      "label": "the explorer build",
+      "x": 0.36,
+      "y": 0.1
+     },
+     {
+      "id": "brief",
+      "label": "the brief",
+      "x": 0.64,
+      "y": 0.1
+     },
+     {
+      "id": "ship",
+      "label": "ship it",
+      "x": 0.92,
+      "y": 0.1,
+      "colour": "#fde68a"
+     },
+     {
+      "id": "miss",
+      "label": "do they miss it?",
+      "x": 0.92,
+      "y": 0.55,
+      "kind": "circle"
+     },
+     {
+      "id": "price",
+      "label": "price it",
+      "x": 0.6,
+      "y": 0.55
+     },
+     {
+      "id": "sell",
+      "label": "sell",
+      "x": 0.34,
+      "y": 0.55
+     },
+     {
+      "id": "co",
+      "label": "a company",
+      "x": 0.08,
+      "y": 0.85,
+      "kind": "circle",
+      "colour": "#bbf7d0"
+     },
+     {
+      "id": "again",
+      "label": "try again",
+      "x": 0.64,
+      "y": 0.9,
+      "colour": "#fecaca"
+     }
+    ],
+    "edges": [
+     {
+      "from": "prob",
+      "to": "exp"
+     },
+     {
+      "from": "exp",
+      "to": "brief",
+      "label": "produces"
+     },
+     {
+      "from": "brief",
+      "to": "ship"
+     },
+     {
+      "from": "ship",
+      "to": "miss"
+     },
+     {
+      "from": "miss",
+      "to": "price",
+      "label": "yes"
+     },
+     {
+      "from": "price",
+      "to": "sell"
+     },
+     {
+      "from": "sell",
+      "to": "co"
+     },
+     {
+      "from": "miss",
+      "to": "again",
+      "label": "no"
+     },
+     {
+      "from": "again",
+      "to": "exp"
+     }
+    ],
+    "path": [
+     "prob",
+     "exp",
+     "brief",
+     "ship",
+     "miss",
+     "price",
+     "sell",
+     "co"
+    ]
+   },
+   "note": "Ship, give it away, take it away; if they do not miss it, try again. Profitable before raising.",
+   "source": "Gen ZX Developers, The objective; The question is whether they miss it (newsroom)"
+  },
+  {
+   "kind": "scene",
+   "setting": "none",
+   "caption": "The objective",
+   "cast": [
+    {
+     "who": "zara",
+     "pose": "think",
+     "mood": "thinking",
+     "x": 0.14
+    },
+    {
+     "who": "marta",
+     "pose": "stand",
+     "mood": "determined",
+     "x": 0.36
+    },
+    {
+     "who": "guide",
+     "pose": "point",
+     "mood": "happy",
+     "x": 0.8,
+     "says": "Our job is to empower the reader to create a startup by the end of the book.",
+     "flip": true,
+     "max": 22
+    }
+   ],
+   "note": "A book with an objective: the one you give somebody who wants to start a GenAI company.",
+   "source": "Gen ZX Developers, The objective: start a company"
+  },
+  {
+   "kind": "evidence",
+   "setting": "none",
+   "caption": "Ship now",
+   "cast": [
+    {
+     "who": "marta",
+     "pose": "point",
+     "mood": "determined",
+     "x": 0.2
+    }
+   ],
+   "evidence": {
+    "quote": "Not to plan, not to pitch, not to architect. Ship.",
+    "source": "The question is whether they miss it (newsroom)"
+   },
+   "note": "It is painful; ship anyway.",
+   "source": "Gen ZX Developers, The objective: start a company"
+  },
+  {
+   "kind": "graph",
+   "caption": "Ship serverless",
+   "graph": {
+    "nodes": [
+     {
+      "id": "user",
+      "label": "the user's browser: the logic",
+      "x": 0.5,
+      "y": 0.08,
+      "kind": "person",
+      "colour": "#ddd6fe"
+     },
+     {
+      "id": "static",
+      "label": "static hosting",
+      "x": 0.08,
+      "y": 0.6
+     },
+     {
+      "id": "vault",
+      "label": "an sgit vault: ciphertext only",
+      "x": 0.36,
+      "y": 0.85,
+      "colour": "#bfdbfe"
+     },
+     {
+      "id": "pay",
+      "label": "a payment link",
+      "x": 0.64,
+      "y": 0.85
+     },
+     {
+      "id": "model",
+      "label": "a model, the user's own key",
+      "x": 0.92,
+      "y": 0.6
+     },
+     {
+      "id": "policy",
+      "label": "RiskMandate: a policy beside the agent",
+      "x": 0.92,
+      "y": 0.2,
+      "colour": "#fde68a"
+     }
+    ],
+    "edges": [
+     {
+      "from": "user",
+      "to": "static",
+      "label": "loads from"
+     },
+     {
+      "from": "user",
+      "to": "vault",
+      "label": "encrypts, then stores"
+     },
+     {
+      "from": "user",
+      "to": "pay",
+      "label": "pays"
+     },
+     {
+      "from": "user",
+      "to": "model",
+      "label": "asks"
+     },
+     {
+      "from": "policy",
+      "to": "model",
+      "label": "controls"
+     }
+    ]
+   },
+   "note": "No servers of mine with logic in them; nothing to run at three in the morning, nothing to pay for when nobody uses it. SG/Send and sgit for privacy; RiskMandate for control.",
+   "source": "Gen ZX Developers, Ship serverless"
+  },
+  {
+   "kind": "evidence",
+   "setting": "none",
+   "caption": "The test",
+   "cast": [
+    {
+     "who": "tomas",
+     "pose": "think",
+     "mood": "thinking",
+     "x": 0.2
+    }
+   ],
+   "evidence": {
+    "quote": "If it bills you by the hour when nobody is using it, it is not serverless.",
+    "source": "Ephemeral town planner services (newsroom)"
+   },
+   "note": "A founder's cost of doing nothing should be zero.",
+   "source": "Gen ZX Developers, Ship serverless"
+  },
+  {
+   "kind": "spectrum",
+   "setting": "none",
+   "caption": "Start the company, for real",
+   "stops": [
+    {
+     "label": "The company",
+     "note": "UK, Portugal, Lithuania, EU",
+     "colour": "#fed7aa"
+    },
+    {
+     "label": "The cloud",
+     "note": "credits and programmes",
+     "colour": "#bfdbfe"
+    },
+    {
+     "label": "The price",
+     "note": "then give it away",
+     "colour": "#fde68a"
+    },
+    {
+     "label": "Customers",
+     "note": "the first ten",
+     "colour": "#bbf7d0"
+    },
+    {
+     "label": "Tell us",
+     "note": "the community",
+     "colour": "#ddd6fe"
+    }
+   ],
+   "cast": [
+    {
+     "who": "marta",
+     "pose": "point",
+     "mood": "determined",
+     "x": 0.5
+    }
+   ],
+   "note": "The new part, Start the company. The company, the first customers and the community need new articles first; the credits are dated, in the hands-on part.",
+   "source": "Gen ZX Developers, What would change; What the newsroom does not have"
+  },
+  {
+   "kind": "scene",
+   "setting": "night",
+   "caption": "The measure",
+   "cast": [
+    {
+     "who": "marta",
+     "pose": "stand",
+     "mood": "happy",
+     "x": 0.16
+    },
+    {
+     "who": "zara",
+     "pose": "arms-up",
+     "mood": "happy",
+     "x": 0.36,
+     "says": "We shipped!"
+    },
+    {
+     "who": "guide",
+     "pose": "stand",
+     "mood": "happy",
+     "x": 0.8,
+     "says": "we measure the success of this book by how many companies have been created from it",
+     "flip": true,
+     "max": 22
+    }
+   ],
+   "note": "Ask readers to tell us what they are doing, and build a community around it.",
+   "source": "Gen ZX Developers, Measured by the companies it creates"
+  },
+  {
+   "kind": "punchline",
+   "setting": "none",
+   "punchline": "Gen ZX Developers: start the company.",
+   "cast": [
+    {
+     "who": "marta",
+     "pose": "arms-up",
+     "mood": "happy",
+     "x": 0.12
+    },
+    {
+     "who": "zara",
+     "pose": "arms-up",
+     "mood": "happy",
+     "x": 0.27
+    },
+    {
+     "who": "tomas",
+     "pose": "stand",
+     "mood": "happy",
+     "x": 0.42
+    },
+    {
+     "who": "agent",
+     "pose": "wave",
+     "mood": "happy",
+     "x": 0.57
+    }
+   ],
+   "note": "Proposed here; Dinis decided after the board's hearing: the title is Generation ZX Developers (GenAI Startup Edition), decision 014, and the proposal is the frame of rc2, decision 015.",
+   "source": "Gen ZX Developers"
+  }
+ ]
+}
