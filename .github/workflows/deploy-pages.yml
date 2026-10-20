@@ -1,8 +1,8 @@
-# main is the release branch: the same checks as ci, then www/ is published as storyboards.sgit.ai.
+# dev is the release branch: the same checks as ci, then www/ is published as storyboards.sgit.ai.
 name: deploy-pages
 on:
   push:
-    branches: [main]
+    branches: [dev]
   workflow_dispatch:
 permissions:
   contents: read
@@ -20,9 +20,9 @@ jobs:
       - uses: actions/checkout@v4
         with:
           repository: SGit-AI/SGit-AI__Website__Storyboards__API
-          # every release folder stays on the API's main for ever, so main always holds the pinned one; the repository
+          # every release folder stays on the API's dev for ever, so dev always holds the pinned one; the repository
           # variable STORYBOARDS_API_REF can name another ref while a new release is still on a branch there
-          ref: ${{ vars.STORYBOARDS_API_REF || 'main' }}
+          ref: ${{ vars.STORYBOARDS_API_REF || 'dev' }}
           path: .api
       - uses: actions/setup-node@v4
         with:

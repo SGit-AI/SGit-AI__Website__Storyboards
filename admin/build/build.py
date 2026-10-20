@@ -511,14 +511,14 @@ def build(out):
         body = f'<article class="article"><h1>{esc(m["title"])}</h1><p class="byline">{esc(m.get("status", ""))} &middot; {esc(m.get("date", ""))} &middot; {esc(m.get("by", ""))}</p>{md_render(body_md)}</article>'
         put_page(f"brief/{f.stem}.html", m["title"], body, m.get("summary", m["title"]), body_md, crumbs=(("The brief", "brief/index.html"), (m["title"], None)), current="The brief", narrow=True)
     body = ('<h1>The brief</h1><p class="lede">The words this site was built from, published in full and never edited afterwards. '
-            f'Where a brief turned out to be wrong, the correction is in <a href="{REPO}/blob/main/BRIEF-CORRECTIONS.md">BRIEF-CORRECTIONS.md</a>, not in the brief.</p><ul class="list">' + "".join(
+            f'Where a brief turned out to be wrong, the correction is in <a href="{REPO}/blob/dev/BRIEF-CORRECTIONS.md">BRIEF-CORRECTIONS.md</a>, not in the brief.</p><ul class="list">' + "".join(
                 f'<li><a href="{stem}.html">{esc(m["title"])}</a> <span class="small dim">{esc(m.get("date", ""))} &middot; {esc(m.get("status", ""))}</span><p>{esc(m.get("summary", ""))}</p></li>' for m, stem, _ in briefs) + "</ul>")
     put_page("brief/index.html", "The brief", body, "The brief storyboards.sgit.ai was built from, in full.",
              "\n".join(f"- [{m['title']}]({stem}.md) ({m.get('date', '')}, {m.get('status', '')})" for m, stem, _ in briefs), crumbs=(("The brief", None),), current="The brief", narrow=True)
 
     # ---- release history
     rows = "".join(f'<tr><td class="ver">{esc(r["version"])}</td><td>{esc(r["date"])}</td><td>{esc(r["what"])}</td></tr>' for r in versions)
-    body = (f'<h1>Release history</h1><p class="lede">One row per push to main, newest first. The site is at {V}; it draws every panel with '
+    body = (f'<h1>Release history</h1><p class="lede">One row per push to dev, newest first. The site is at {V}; it draws every panel with '
             f'<a href="https://api.storyboards.sgit.ai/">api.storyboards.sgit.ai</a> {API["release"]}, pinned in <code>admin/build/api.json</code>.</p>'
             f'<table><thead><tr><th>Version</th><th>Date</th><th>What changed, and why</th></tr></thead><tbody>{rows}</tbody></table>')
     put_page("admin/versions.html", "Release history", body, "Every release of storyboards.sgit.ai.",

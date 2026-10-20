@@ -15,7 +15,7 @@ The repository of **[storyboards.sgit.ai](https://storyboards.sgit.ai)**: a home
 | `admin/build/render.py` | draws each storyboard's `thumb.jpg` and `og.jpg` with the API's `tools/render.mjs`; records them in `renders.json` |
 | `admin/build/validate.py` | the gate |
 | `admin/assets/` | the site's own CSS and JS, copied to `www/assets/` |
-| `www/` | the site, generated and committed; GitHub Pages serves it from `main` |
+| `www/` | the site, generated and committed; GitHub Pages serves it from `dev`, the default and release branch |
 | `tests/test_site.mjs` | every page in Chromium, both hosts routed to the local checkouts |
 
 ## Release

@@ -17,7 +17,7 @@ This site uses the API exactly as any other site would: from the pinned release 
 
 ## How it is built
 
-`admin/build/build.py` turns `content/` into `www/`, which is committed and deployed by GitHub Pages on every push to `main`. The build validates every storyboard against the kit's vocabulary (an unknown character, kind, pose, mood, setting or prop stops it), writes every page and its markdown twin, and refuses a storyboard whose committed thumbnail is stale. CI runs the build again and fails if `www/` is not what it makes, then runs `admin/build/validate.py`: every internal link resolves, every page has its twin and is in the sitemap, every script from the API is the pinned path with its integrity string, the version agrees everywhere, and no key shapes appear anywhere.
+`admin/build/build.py` turns `content/` into `www/`, which is committed and deployed by GitHub Pages on every push to `dev`. The build validates every storyboard against the kit's vocabulary (an unknown character, kind, pose, mood, setting or prop stops it), writes every page and its markdown twin, and refuses a storyboard whose committed thumbnail is stale. CI runs the build again and fails if `www/` is not what it makes, then runs `admin/build/validate.py`: every internal link resolves, every page has its twin and is in the sitemap, every script from the API is the pinned path with its integrity string, the version agrees everywhere, and no key shapes appear anywhere.
 
 ## What it does not do yet
 

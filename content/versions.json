@@ -1,5 +1,5 @@
 {
- "what": "One row per push to main, newest first. The newest row is the site's version: build.py shows it on every page and refuses a malformed row. Say what changed and why, in a sentence a reader can act on.",
+ "what": "One row per push to dev, newest first. The newest row is the site's version: build.py shows it on every page and refuses a malformed row. Say what changed and why, in a sentence a reader can act on.",
  "releases": [
   {
    "version": "v0.1.0",
