@@ -17,7 +17,7 @@ api.storyboards.sgit.ai as a new release; a thing that does not stays here with 
 3. **Nothing fetched from a third party at run time.** `node lab/tools/check.mjs lab/<slug>/index.html` fails on any
    request to a host other than the two sites, on any page error and on any console error; run it before you are done,
    and look at the screenshot it writes (`SHOT=/path.png`).
-4. **The page says what it is.** A header strip with the title, the track and `lab · experiment · pinned to kit v0.1.0`,
+4. **The page says what it is.** It carries the site's inline icon (copy the `<link rel="icon" href="data:image/svg+xml,...">` line from any experiment), so the browser does not ask the host for a favicon.ico it does not have. A header strip with the title, the track and `lab · experiment · pinned to kit v0.1.0`,
    a link back to `../index.html`, the thing itself, then a section headed "What this taught us" with two to five short
    findings, plain and honest (what worked, what did not, what to lift into the kit, what to try next).
 5. **A reader can play.** Controls are real buttons, sliders and text fields with labels; keyboard handlers ignore keys

@@ -1,6 +1,6 @@
 # storyboards.sgit.ai
 
-> Storyboards drawn from data: 23 storyboards, 254 panels, 2 series. Each storyboard is a JSON file drawn by code (api.storyboards.sgit.ai v0.1.0); each comes as JSON, a bundle with its cast, a markdown script, a semantic graph and images. Site v0.1.3.
+> Storyboards drawn from data: 23 storyboards, 254 panels, 2 series. Each storyboard is a JSON file drawn by code (api.storyboards.sgit.ai v0.1.0); each comes as JSON, a bundle with its cast, a markdown script, a semantic graph and images. Site v0.1.4.
 
 Every page has a markdown twin (replace .html with .md; a storyboard's twin is its script, index.md). The full index of storyboards and formats is https://storyboards.sgit.ai/catalogue.json.
 

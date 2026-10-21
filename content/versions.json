@@ -2,6 +2,11 @@
  "what": "One row per push to dev, newest first. The newest row is the site's version: build.py shows it on every page and refuses a malformed row. Say what changed and why, in a sentence a reader can act on.",
  "releases": [
   {
+   "version": "v0.1.4",
+   "date": "2026-10-21",
+   "what": "Every Lab page carries the site's inline icon: without one the browser asked the host for /favicon.ico, which is a 404 and a console error on every experiment (seen on the live site, not in the local checker, which does not fetch favicons). No experiment changed otherwise."
+  },
+  {
    "version": "v0.1.3",
    "date": "2026-10-20",
    "what": "The Lab (/lab/): standalone experiments in drawing, moving and laying out storyboards, each one page pinned to kit v0.1.0 by path and hash, other libraries vendored (matter.js, anime.js, kaplay, dagre), an index generated from each experiment's experiment.json with what it taught. The gate accepts any immutable release on a Lab page and scans the Lab's prose. The fourth brief, published in full. No storyboard changed."
